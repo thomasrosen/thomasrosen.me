@@ -575,6 +575,7 @@
 						{
 							"type": "longterm_activity",
 							"s_date": "2017",
+							"e_date": "2018",
 							"name": "Firmkatechet",
 							"stages": [
 								{
