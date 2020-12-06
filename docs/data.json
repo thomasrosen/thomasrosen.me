@@ -287,6 +287,7 @@
 					"type": "point_in_time_activity",
 					"s_date": "2018.10.11 18:00",
 					"e_date": "2018.12.13 19:00",
+					"received_money": true,
 					"place": "Rheinschule, Am Propsthof 102, 53121 Bonn, Germany",
 					"name": "Aufsicht - Post Sport Schwimmen",
 					"more": "I count this as volunteering. Eventhough this should've been paid. I didn't get the money in the end."
@@ -303,24 +304,28 @@
 							"type": "point_in_time_activity",
 							"s_date": "2020",
 							"e_date": "2020.09.",
+							"received_money": true,
 							"name": "Aushilfe als Rettungschwimmer"
 						},
 						{
 							"type": "point_in_time_activity",
 							"s_date": "2019.",
 							"e_date": "2019.09.",
+							"received_money": true,
 							"name": "Aushilfe als Rettungschwimmer"
 						},
 						{
 							"type": "point_in_time_activity",
 							"s_date": "2018.05.07 07:00",
 							"e_date": "2018.09.29 15:30",
+							"received_money": true,
 							"name": "Aushilfe als Rettungschwimmer"
 						},
 						{
 							"type": "point_in_time_activity",
 							"s_date": "2017.05.05 07:00",
 							"e_date": "2017.07.31 20:30",
+							"received_money": true,
 							"name": "Aushilfe als Rettungschwimmer"
 						}
 					]
@@ -329,6 +334,7 @@
 					"type": "longterm_activity",
 					"s_date": "2015.05.21 16:00",
 					"e_date": "2020.03.12 18:00",
+					"received_money": true,
 					"place": "Rheinschule, Am Propsthof 102, 53121 Bonn, Germany",
 					"name": "Aufsicht beim Kinder- und Jugendschwimmen des JAP",
 					"more": "Immer Donnerstags von 16 bis 18 Uhr. Ab März 2020 begann der Lockdown in Deutschland. Damit wurde das Schwimmen bis auf weiteres pausiert."
