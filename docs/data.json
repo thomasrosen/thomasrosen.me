@@ -548,6 +548,13 @@
 									"date": "2017",
 									"name": "Design von Wahl-Information",
 									"more": "Design der Wahl-Information zur PGR-Wahl (Plakate, Ausleger, Infographik im Kontakte-Heft)"
+								},
+								{
+									"type": "fixed_time_activity",
+									"date": "2020",
+									"name": "Lebendiger Adventskalender 2020",
+									"shortname": "Adventskalender",
+									"more": "Für den Lebendiger Adventskalender 2020 habe ich eine kleine Website programmiert, um die Fenster Corona konform zu erleben. Die Webseite kann unter <a href=\"https://adventskalender.puk-bonn.de/\">adventskalender.puk-bonn.de</a> besucht werden."
 								}
 							]
 						},
