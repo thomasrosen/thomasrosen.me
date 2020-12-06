@@ -615,17 +615,20 @@
 							"more": "<a target='_blank' href='https://volt-bonn.de/'>volt-bonn.de</a>",
 							"stages": [
 								{
+									"type": "longterm_activity",
 									"s_date": "2019",
 									"name": "Diversity Lead",
 									"more": "Der Bereich Diversity achtet darauf, dass Volt die Menschliche Vielfalt korrekt repräsentiert – in unserer Policy, unseren Teams, und jeglichen anderen Bereichen. Input und Mitarbeit sind immer herzlich willkommen!"
 								},
 								{
+									"type": "fixed_time_activity",
 									"s_date": "2020",
 									"e_date": "2020.11.18",
 									"name": "Community Lead",
 									"more": "Das Community Team ist für alle Themen rund um das Community Organizing zuständig: von dem Onboarding neuer Mitglieder bis hin zur internen Organisation des Teams, sodass sich alle aus der Bewegung bei Volt einbringen können."
 								},
 								{
+									"type": "longterm_activity",
 									"s_date": "2020.10.12",
 									"name": "Volt DE Bonn City-Co-Lead",
 									"shortname": "City Co-Lead",
