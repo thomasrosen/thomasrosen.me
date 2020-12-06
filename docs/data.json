@@ -599,7 +599,48 @@
 					"place": "anyway, Kamekestraße 14, 50672 Köln, Germany",
 					"name": "Anyway TV",
 					"more": "Mitarbeit, hinter und vor der Kamera, bei Filmen für die Känale von Anyway TV (YouTube, Instagramm, Facebook)"
-				}
+				},
+				{
+					"s_date": "2019.05.05",
+					"shortname": "Volt",
+					"name": "Volt Europa",
+					"more": "<a target='_blank' href='https://www.volteuropa.org/'>www.volteuropa.org</a>",
+					"stages": [
+						{
+							"type": "longterm_activity",
+							"s_date": "2019.05.05",
+							"name": "Mitarbeit in Volt Bonn",
+							"shortname": "Volt Bonn",
+							"more": "<a target='_blank' href='https://volt-bonn.de/'>volt-bonn.de</a>",
+							"stages": [
+								{
+									"s_date": "2019",
+									"name": "Diversity Lead",
+									"more": "Der Bereich Diversity achtet darauf, dass Volt die Menschliche Vielfalt korrekt repräsentiert – in unserer Policy, unseren Teams, und jeglichen anderen Bereichen. Input und Mitarbeit sind immer herzlich willkommen!"
+								},
+								{
+									"s_date": "2020",
+									"e_date": "2020",
+									"name": "Community Lead",
+									"more": "Das Community Team ist für alle Themen rund um das Community Organizing zuständig: von dem Onboarding neuer Mitglieder bis hin zur internen Organisation des Teams, sodass sich alle aus der Bewegung bei Volt einbringen können."
+								},
+								{
+									"s_date": "2020.10.12",
+									"name": "Volt DE Bonn City-Co-Lead",
+									"shortname": "City Co-Lead",
+									"more": "Die City Leads koordinieren unser Städteteam, halten den Kontakt zur Deutschland- und EU-Ebene und tauschen sich in regelmäßigen Calls mit anderen Städteteams aus."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2020",
+							"shortname": "DE Queer Lead",
+							"name": "Volt DE Arbeitskreis Queer Lead",
+							"more": "Zusammen mit Claudia, Severin und Olga koordiniere ich den AK Queer. Darin geht es um SOGIE Themen und Antidiskriminierung von LGBTQIA+ Menschen."
+						}
+					]
+				},
 			]
 		}
 	]
