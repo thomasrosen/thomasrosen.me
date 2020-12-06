@@ -598,8 +598,22 @@
 					"type": "longterm_activity",
 					"s_date": "2018.12.17",
 					"place": "anyway, Kamekestraße 14, 50672 Köln, Germany",
-					"name": "Anyway TV",
-					"more": "Mitarbeit, hinter und vor der Kamera, bei Filmen für die Känale von Anyway TV (YouTube, Instagramm, Facebook)"
+					"name": "anyway",
+					"more": "",
+					"stages": [
+						{
+							"type": "longterm_activity",
+							"s_date": "2018.12.17",
+							"name": "anywayTV",
+							"more": "Mitarbeit, hinter und vor der Kamera, bei Filmen für die Känale von Anyway TV (YouTube, Instagramm, Facebook)"
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2020",
+							"name": "#mitmischen",
+							"more": "Mitmischen in der kölner lokal Politik! Dazu hab ich zB ein Interview mit den beiden Oberbürgermeister:innen Kandidat:innen gefühert."
+						}
+					]
 				},
 				{
 					"s_date": "2019.05.05",
