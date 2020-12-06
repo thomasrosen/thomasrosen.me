@@ -307,9 +307,10 @@
 				{
 					"type": "longterm_activity",
 					"s_date": "2015.05.21 16:00",
+					"e_date": "2020.03.12 18:00",
 					"place": "Rheinschule, Am Propsthof 102, 53121 Bonn, Germany",
 					"name": "Aufsicht beim Kinder- und Jugendschwimmen des JAP",
-					"more": "Immer Donnerstags von 16 bis 18 Uhr"
+					"more": "Immer Donnerstags von 16 bis 18 Uhr. Ab März 2020 begann der Lockdown in Deutschland. Damit wurde das Schwimmen bis auf weiteres pausiert."
 				}
 			]
 		},
