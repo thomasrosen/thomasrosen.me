@@ -292,18 +292,38 @@
 					"more": "I count this as volunteering. Eventhough this should've been paid. I didn't get the money in the end."
 				},
 				{
-					"type": "point_in_time_activity",
+					"type": "longterm_activity",
 					"s_date": "2018.05.07 07:00",
-					"e_date": "2018.09.29 15:30",
-					"place": "Stadt Bonn",
-					"name": "Aushilfe als Rettungschwimmer"
-				},
-				{
-					"type": "point_in_time_activity",
-					"s_date": "2017.05.05 07:00",
-					"e_date": "2017.07.31 20:30",
-					"place": "Stadt Bonn",
-					"name": "Aushilfe als Rettungschwimmer"
+					"place": "Bonn",
+					"name": "Sport und Bäderamt der Stadt Bonn",
+					"shortname": "Stadt Bonn",
+					"more": "Aushilfe als Rettungschwimmer („Bademeister”)",
+					"stages": [
+						{
+							"type": "point_in_time_activity",
+							"s_date": "2020",
+							"e_date": "2020.09.",
+							"name": "Aushilfe als Rettungschwimmer"
+						},
+						{
+							"type": "point_in_time_activity",
+							"s_date": "2019.",
+							"e_date": "2019.09.",
+							"name": "Aushilfe als Rettungschwimmer"
+						},
+						{
+							"type": "point_in_time_activity",
+							"s_date": "2018.05.07 07:00",
+							"e_date": "2018.09.29 15:30",
+							"name": "Aushilfe als Rettungschwimmer"
+						},
+						{
+							"type": "point_in_time_activity",
+							"s_date": "2017.05.05 07:00",
+							"e_date": "2017.07.31 20:30",
+							"name": "Aushilfe als Rettungschwimmer"
+						}
+					]
 				},
 				{
 					"type": "longterm_activity",
