@@ -1,0 +1,610 @@
+{
+	"slug": "_startpage",
+	"name": "Thomas Rosen",
+	"more": "I'm on: <a target='_blank' href='https://www.instagram.com/thomasrosen/''>instagramm</a>, <a target='_blank' href='https://twitter.com/thomas_roses'>twitter</a>, <a target='_blank' href='https://thomasrosen.tumblr.com/'>tumblr</a>, <a target='_blank' href='https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA'>youtube</a>, <a target='_blank' href='https://github.com/thomasrosen'>github</a>, <a target='_blank' href='https://sub.cafe/thomasrosen/'>sublevel</a>, <a href='https://www.flickr.com/photos/116207237@N03/'>flickr</a>, <a target='_blank' href='https://dribbble.com/thomasrosen/likes'>dribbble</a>, <a target='_blank' href='https://medium.com/@thomas_rosen'>medium</a> and other platforms, I forgot. Most of the time, my username is @thomasrosen. If not, it's thomasroses, thomas_rosen, thomas_roses and in seldom cases petacat or wourbe. (petacat is an insider about multiples of the unit byte.)",
+	"DONT_stages": [
+		{
+			"type": "longterm_activity",
+			"name": "Personal",
+			"s_date": "1996.12.10",
+			"stages": [
+				{
+					"type": "fixed_time_activity",
+					"date": "1996.12.10",
+					"place": "Marien-Hospital, Köln, Germany",
+					"name": "Geburt"
+				},
+				{
+					"type": "fixed_time_activity",
+					"date": "1996.12.10",
+					"shortname": "Name",
+					"name": "Thomas Rosen",
+					"more": "Thomas Christian Rosen"
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "1996",
+					"name": "Wohnorte",
+					"stages": [
+						{
+							"type": "fixed_time_activity",
+							"s_date": "1996",
+							"e_date": "1997",
+							"place": "Köln, Germany",
+							"name": "Cologne"
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "1997",
+							"place": "53115 Bonn, Germany",
+							"name": "Weststadt, Bonn",
+							"comment": "Neuenahrerstr. 2, 53115 Bonn, Germany"
+						},
+						{
+							"type": "fixed_time_activity",
+							"s_date": "2018.09.22",
+							"place": "53117 Bonn-Buschdorf, Germany",
+							"name": "Bonn-Buschdorf",
+							"comment": "Heinrich-Settels-Straße 9, 53117 Bonn-Buschdorf, Germany"
+						}
+					]
+				}
+			]
+		}
+	],
+	"stages": [
+		{
+			"comment": {
+				"type": "longterm_activity / fixed_time_activity",
+				"slug": "",
+				"date": "",
+				"s_date": "",
+				"e_date": "",
+				"place": "",
+				"name": "",
+				"shortname": "",
+				"more": "",
+				"stages": [],
+				"notes": [],
+				"private": {},
+				"comment": "can contain any object-type. this wont show anywhere. it's a layer deeper than private."
+			}
+		},
+		{
+			"type": "longterm_activity",
+			"s_date": "2003",
+			"shortname": "Education",
+			"name": "Education",
+			"comment": "Education / Bildung",
+			"stages": [
+				{
+					"type": "fixed_time_activity",
+					"s_date": "2013",
+					"name": "Schulungen",
+					"comment": "Schoolings",
+					"stages": [
+						{
+							"type": "fixed_time_activity",
+							"date": "2015.06.23",
+							"shortname": "Erste-Hilfe-Lehrgang",
+							"name": "Erste-Hilfe-Lehrgang (9 UE)"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2017.06.26",
+							"shortname": "Erste-Hilfe-Lehrgang",
+							"name": "Auffrischung Erste-Hilfe-Lehrgang (9 UE)"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2013",
+							"name": "Präventionsschulung",
+							"more": "Präventionsschulung durch das Erzbistum Köln"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "Frühjahr/2012",
+							"shortname": "Gruppenleiterschulung",
+							"name": "Gruppenleiterschulung bei der KJA",
+							"more": "ab Dez. 2012 JuLeiCa",
+							"stages": [
+								{
+									"date": "2012.12",
+									"name": "Jugend Leiter Card",
+									"shortname": "JuLeiCa",
+									"more": "Erhalt der Jugend Leiter Card"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"name": "Languages",
+					"s_date": "1996.12.10",
+					"stages": [
+						{
+							"type": "longterm_activity",
+							"s_date": "1996.12.10",
+							"name": "German",
+							"props": {
+								"type": "lang",
+								"fluidity": "native"
+							},
+							"stages": [
+								{
+									"date": "1996.12.10",
+									"shortname": "Started German",
+									"name": "I started to learn German",
+									"more": "I started learning German as my mother tongue."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2005",
+							"name": "English",
+							"more": "Ab der dritten Klasse",
+							"props": {
+								"type": "lang",
+								"fluidity": "pretty good"
+							},
+							"stages": [
+								{
+									"date": "2005",
+									"shortname": "Started English",
+									"name": "I started to learn English",
+									"more": "I started learning English in the thrid year of school."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2007",
+							"name": "Latin",
+							"more": "Ab der fünften Klasse bis zur einschließlich zehnten.",
+							"props": {
+								"type": "lang",
+								"fluidity": "started forgetting way too much"
+							},
+							"stages": [
+								{
+									"date": "2007",
+									"shortname": "Started Latin",
+									"name": "I started to learn Latin",
+									"more": "I started learning Latin, in the first year of high school."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2017",
+							"name": "Norwegian",
+							"props": {
+								"type": "lang",
+								"fluidity": "beginner"
+							},
+							"stages": [
+								{
+									"date": "2017",
+									"shortname": "SKAM",
+									"name": "I discovered the norwegian series SKAM!",
+									"more": "While watching SKAM with english subtitles, I found a comment, that SKAM should also make the norwegian language a bit more popular. As I likes the series and would love to understand it without subs, I accepted the callendge and started lerning."
+								},
+								{
+									"s_date": "2017",
+									"shortname": "Duolingo",
+									"name": "Learing with Duolingo",
+									"more": "I started learning Norwegian with Duolingo"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2003",
+					"e_date": "2007",
+					"place": "Matthias-Claudius, Bonn-Endenich, Germany",
+					"name": "Grundschule"
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2007.08",
+					"e_date": "2015.06",
+					"place": "Collegium Josephinum Bonn, Bonn-Auerberg, Germany",
+					"name": "Gymnasium",
+					"more": "Abitur (Leistungskurse: Mathematik, Physik) (Großes Latinum) (<a target='_blank' href='https://www.cojobo.net/'>https://www.cojobo.net/</a>)",
+					"stages": [
+						{
+							"type": "fixed_time_activity",
+							"date": "2007.08",
+							"name": "Aufnahmefeier",
+							"more":  "<a target='_blank' href='https://www.cojobo.net/aktuelles/detail/items/1-schultag.html'>https://www.cojobo.net/aktuelles/detail/items/1-schultag.html</a>"
+						},
+						{
+							"type": "fixed_time_activity",
+							"s_date": "2009",
+							"e_date": "2015",
+							"name": "Physik AG (LEGO-Roboter)",
+							"more":  "<a target='_blank' href='https://user.cojobo.net/~u.neffgen/homepage/robolab.html'>https://user.cojobo.net/~u.neffgen/homepage/robolab.html</a>"
+						},
+						{
+							"type": "fixed_time_activity",
+							"s_date": "2013",
+							"e_date": "2015",
+							"name": "2. Physik AG",
+							"more":  "In dieser Physik-AG ging es um wirkliche Physik. Wir bekamen Zugang zur gesamten Physik-Sammlung und konnten Experimente durchführen. Angeleitet wurde diese von Herr Thomas Hildebrand."
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2008",
+							"e_date": "2016",
+							"name": "Mithilfe im IT-Bereich des CoJoBo (Informatik-AG)",
+							"shortname": "Informatik-AG",
+							"more": "<a target='_blank' href='https://user.cojobo.net/~u.neffgen/homepage/informatikag.html'>https://user.cojobo.net/~u.neffgen/homepage/informatikag.html</a>",
+							"stages": [
+								{
+									"s_date": "Anfang/2014",
+									"e_date": "2016",
+									"shortname": "Administrator",
+									"name": "Administrator des Schul-Netzwerks",
+									"more": "ab Anfang 2014 Administrator des Schul-Netzwerks; ab 2016 nur noch spontan"
+								}
+							]
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "Herbst/2012",
+							"place": "LVR-Christophorusschule Bonn",
+							"name": "Sozialpraktikum",
+							"more": "Sozialpraktikum an der LVR-Christophorusschule Bonn"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2015.06",
+							"name": "Abitur",
+							"more": "2015 habe ich am CoJoBo mein Abitur mit den Leistungskursen Mathematik und Physik erhalten. (<a target='_blank' href='https://www.cojobo.net/aktuelles/detail/items/abiturentlassfeier-2015.html'>https://www.cojobo.net/aktuelles/detail/items/abiturentlassfeier-2015.html</a>)"
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2015.09.14",
+					"place": "Rheinische Friedrich-Wilhelms-Universität Bonn, Germany",
+					"name": "Informatik Studium"
+				}
+			]
+		},
+		{
+			"type": "fixed_time_activity",
+			"s_date": "2015",
+			"shortname": "Work",
+			"name": "Traditionall / Employed Work",
+			"comment": "Práca",
+			"stages": [
+				{
+					"type": "fixed_time_activity",
+					"s_date": "2018.10.11 18:00",
+					"e_date": "2018.12.13 19:00",
+					"place": "Rheinschule, Am Propsthof 102, 53121 Bonn, Germany",
+					"name": "Aufsicht - Post Sport Schwimmen"
+				},
+				{
+					"type": "fixed_time_activity",
+					"s_date": "2018.05.07 07:00",
+					"e_date": "2018.09.29 15:30",
+					"place": "Stadt Bonn",
+					"name": "Aushilfe als Rettungschwimmer"
+				},
+				{
+					"type": "fixed_time_activity",
+					"s_date": "2017.05.05 07:00",
+					"e_date": "2017.07.31 20:30",
+					"place": "Stadt Bonn",
+					"name": "Aushilfe als Rettungschwimmer"
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2015.05.21 16:00",
+					"place": "Rheinschule, Am Propsthof 102, 53121 Bonn, Germany",
+					"name": "Aufsicht beim Kinder- und Jugendschwimmen des JAP",
+					"more": "Immer Donnerstags von 16 bis 18 Uhr"
+				}
+			]
+		},
+		{
+			"type": "fixed_time_activity",
+			"s_date": "1997",
+			"shortname": "Freetime + Volunteering",
+			"name": "Freetime + Volunteering + Self-Employed",
+			"stages": [
+				{
+					"type": "longterm_activity",
+					"s_date": "2013",
+					"shortname": "EduLUG",
+					"name": "Education Lego User Group",
+					"more":  "<a target='_blank' href='http://edulug.de/'>http://edulug.de/</a>"
+				},
+				{
+					"s_date": "2007",
+					"shortname": "CoJoBo",
+					"name": "Collegium Josephinum Bonn",
+					"more": "<a target='_blank' href='https://www.cojobo.net/'>https://www.cojobo.net/</a>",
+					"stages": [
+						{
+							"type": "longterm_activity",
+							"s_date": "2014",
+							"e_date": "Sommer/2018",
+							"name": "Mitarbeit bei den Frühschichten des CoJoBo",
+							"shortname": "Frühschichten im CoJoBo",
+							"more": "Plakate, Frühstück machen, Aufräumen/Spülen",
+							"stages": [
+								{
+									"date": "Advent/2018",
+									"name": "Nur Plakate",
+									"more": "In diesem Advent habe ich nur die Gestalltung der Plakate übernommen, nicht bei den eigentlichen Frühschichten mitgeholfen."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2014",
+							"e_date": "2015",
+							"shortname": "Schulpastoralkonferenz",
+							"name": "Mitarbeit in der Schulpastoralkonferenz des CoJoBo",
+							"more": "Ich war erst Gründungsmitglied und normaler Teilnahmer sowie am Ende ein Drittel des Moderamens."
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2002",
+					"place": "Bonn, Germany",
+					"name": "DLRG Mitglied",
+					"shortname": "DLRG",
+					"stages": [
+						{
+							"type": "fixed_time_activity",
+							"date": "2003.08.22",
+							"place": "Freibad, Friesdorf, Germany",
+							"name": "Erlangen des Zeugnisses \"Frühschwimmer / Seepferdchen\"",
+							"shortname": "Seepferdchen"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2004.06.11",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Deutsches Jugendschwimmabzeichen Bronze (Freischwimmer)",
+							"shortname": "Bronze"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2008.05.30",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Deutsches Jugendschwimmabzeichen Silber",
+							"shortname": "Silber"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2009.06.19",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Deutsches Jugendschwimmabzeichen Gold",
+							"shortname": "Gold"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2009.12.11",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Junior-Retter der DLRG",
+							"shortname": "Junior-Retter"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2010.03.19",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Deutsches Rettungschwimmabzeichen der DLRG in Bronze",
+							"shortname": "Rettungschwimmer Bronze"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2013.07.12",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Deutsches Rettungschwimmabzeichen der DLRG in Silber",
+							"shortname": "Rettungschwimmer Silber"
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "Herbst/2015",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Mitarbeit im AZ GHH",
+							"more": "Durch mein Interesse das Rettungschwimmabzeichen Gold zu erlangen, begann ich 2015 im DLRG Ausbildungszentrum Gustav-Heinemann-Haus beim Schwimmunterricht mitzuhelfen."
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2010.03.19",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Wiederhohlungsprüfung des Deutsches Rettungschwimmabzeichen der DLRG in Silber",
+							"shortname": "Wiederhohlungsprüfung, DR Silber"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2016.03.18",
+							"place": "Ausbildungszentrum Gustav-Heinemann-Haus, Bonn, Germany",
+							"name": "Deutsches Rettungschwimmabzeichen der DLRG in Gold",
+							"shortname": "Rettungschwimmer Gold"
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2011",
+					"name": "Mitarbeiter im JAP (Jugendzentrum am Propsthof)",
+					"shortname": "JAP",
+					"more": "Website (<a target='_blank' href='https://www.jap-bonn.de/'>jap-bonn.de</a>), Ferienprogramme, Spieletage, Unterstützung bei verschiedensten Aktivitäten",
+					"stages": [
+						{
+							"type": "fixed_time_activity",
+							"date": "Sommerferien/2014",
+							"place": "Bonn-Endenich, Germany",
+							"name": "Leiter im Ferienprogramm"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2015",
+							"place": "Bonn-Endenich, Germany",
+							"name": "Umgestaltung der Webseite",
+							"more": "<a target='_blank' href='https://www.jap-bonn.de/'>https://www.jap-bonn.de/</a>"
+						},
+						{
+							"type": "fixed_time_activity",
+							"date": "2017",
+							"place": "Bonn-Endenich, Germany",
+							"name": "Filmprojekt des JAPs und der Messdiener",
+							"shortname": "Filmprojekt",
+							"more": "Leitung eines Filmprojektes über den Ort Endenich aus Blickwinkeln verschiedener sozialer Gruppen. Wir haben dafür Hilfe von einem WDR Mitsrbeiter bekommen. Dieses Projekt vom JAP und den Messdienern zusammen veranstaltet."
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "Sommer/2016",
+					"name": "Kultur- und Bürgerverein Endenich",
+					"shortname": "KUBE",
+					"more": "Gestaltung Website (<a target='_blank' href='https://www.kube-bonn.de/'>kube-bonn.de</a>), Social Media und Planung von Events",
+					"stages": [
+						{
+							"date": "Sommer/2016",
+							"name": "Ich wurde Mitglied",
+							"more": "Bei der BurgArt 2016 wurde ich angesprochen, ob ich nicht bei der Webseite für den Verein helfen kann. Da ich eh überlegte, mein Engagement in Endenich zu diversifizieren, wurde ich Mitglied."
+						},
+						{
+							"date": "Winter/2016",
+							"name": "Fertigstellung der Webseite",
+							"more": "Für die Website sollte Wordpress verwendet werden. Da ich dies schon bei vorherigen Projekten benutzt habe, konnte ich schnell ein Theme auswählen und endsprechend der Marke \"KUBE\" anpassen."
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "1997",
+					"name": "Pfarrgemeinde St. Maria Magdalena und Christi Auferstehung",
+					"shortname": "PUK / St.MMCA",
+					"stages": [
+						{
+							"type": "longterm_activity",
+							"s_date": "2006",
+							"place": "Bonn-Endenich, Germany",
+							"name": "Messdiener in der Pfarrei St. Maria Magdalena und Christi Auferstehung Bonn (PUK)",
+							"shortname": "Messdiener",
+							"stages": [
+								{
+									"type": "longterm_activity",
+									"s_date": "2012",
+									"name": "Messdienerleiter",
+									"more": "Organisation von Events und Fahrten"
+								},
+								{
+									"type": "longterm_activity",
+									"s_date": "2011",
+									"name": "Gestaltung und Programmierung der Messdiener Webseite",
+									"more": "<a target='_blank' href='https://muk-bonn.de/'>https://muk-bonn.de/</a>",
+									"notes": [
+										{
+											"date": "2018.12.27 17:57:00.000",
+											"more": "Ab 2015 wurden vermehrt andere Medien verwendet und die Webseite nach und nach abgeschafft."
+										}
+									]
+								},
+								{
+									"type": "longterm_activity",
+									"s_date": "2014",
+									"e_date": "Sommer/2018",
+									"name": "Leitung von Gruppenstunden",
+									"more": "Immer am Dienstag von 17 bis 18 Uhr"
+								},
+								{
+									"type": "longterm_activity",
+									"s_date": "Sommer/2018",
+									"name": "Break",
+									"more": "Ab dem Sommer 2018 habe ich mein Engagement in der Messdienerarbeit verringert um mich um mein eigenes Leben zu kümmern. Ich stehe weiterhin für die Techik zur Verfügung."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2014",
+							"e_date": "2018",
+							"shortname": "Gemeindeausschuss",
+							"name": "Mitglied des Endenicher Gemeindeausschuss"
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2014",
+							"name": "Mitarbeit in der Öffentlichkeitsarbeit",
+							"stages": [
+								{
+									"type": "fixed_time_activity",
+									"date": "2017",
+									"name": "Design von Wahl-Information",
+									"more": "Design der Wahl-Information zur PGR-Wahl (Plakate, Ausleger, Infographik im Kontakte-Heft)"
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2016",
+							"name": "Pfarrgemeiderrat",
+							"shortname": "PGR",
+							"stages": [
+								{
+									"type": "longterm_activity",
+									"s_date": "2016",
+									"e_date": "2017",
+									"name": "Vertreter des Jugendausschuss",
+									"more": "Anwesend als Vertreter der Jugendarbeit"
+								},
+								{
+									"type": "longterm_activity",
+									"s_date": "2017",
+									"name": "Gewähltes Mitglied",
+									"more": "Ab 2017 war ich gewähltes Mitglied."
+								}
+							]
+						},
+						{
+							"type": "longterm_activity",
+							"s_date": "2017",
+							"name": "Firmkatechet",
+							"stages": [
+								{
+									"type": "fixed_time_activity",
+									"date": "2017",
+									"name": "Leitung einer Firmgruppe",
+									"more": "Leitung einer Firmgruppe mit zwei weiteren Katecheten"
+								},
+								{
+									"type": "fixed_time_activity",
+									"date": "2018",
+									"name": "Leitung einer Firmgruppe",
+									"more": "Leitung einer Firmgruppe mit zwei weiteren Katecheten"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "longterm_activity",
+					"s_date": "2018.12.17",
+					"place": "anyway, Kamekestraße 14, 50672 Köln, Germany",
+					"name": "Anyway TV",
+					"more": "Mitarbeit, hinter und vor der Kamera, bei Filmen für die Känale von Anyway TV (YouTube, Instagramm, Facebook)"
+				}
+			]
+		}
+
+
+
+
+	]
+}
