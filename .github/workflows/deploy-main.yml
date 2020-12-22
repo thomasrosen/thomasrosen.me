@@ -39,5 +39,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           email: thomas.rosen@me.com
-          build_dir: build
+          build_dir: ./app/build/
           cname: adventskalender.puk-bonn.de
