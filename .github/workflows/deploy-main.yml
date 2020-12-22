@@ -27,8 +27,6 @@ jobs:
         with:
           node-version: '12'
           check-latest: true
-      - name: Go into app directory
-        run: cd app/
       - name: Install Dependencies
         run: yarn
       - name: Add gh-pages as a dev-dependency
