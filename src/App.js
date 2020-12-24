@@ -1,4 +1,4 @@
-// import './App.css'
+import './App.css'
 import Timeline from './Timeline.js'
 
 function App() {
