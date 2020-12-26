@@ -13,8 +13,8 @@ function renderRoles(docs){
 		return null
 	}
 
-	return <div>
 		<ul>
+	return <div className={styles.infos_by_type}>
 		<h6 className={styles.headline}>
 		</h6>
 		{
