@@ -81,6 +81,7 @@ import Month from './Month.js'
 
 function Timeline() {
 	const [by_month_data, setByMonthData] = useState(null)
+	const [by_year_data, setByYearData] = useState(null)
 
 	useEffect(() => {
 		import('../timeline_data.yml').then(timeline_data => {
@@ -99,6 +100,7 @@ function Timeline() {
 			const start_dates = timeline_data.default.start_dates
 
 			const new_by_month_data = {}
+			const new_by_year_data = {}
 			for (const data of flat_data) {
 				if (!!start_dates[data.type]) {
 					const start_date_key = start_dates[data.type]
@@ -114,14 +116,24 @@ function Timeline() {
 						}
 						new_by_month_data[year+'_'+month][data.type].push(data)
 					}
+					if (!!year) {
+						if (!(!!new_by_year_data[year])) {
+							new_by_year_data[year] = {}
+						}
+						if (!(!!new_by_year_data[year][data.type])) {
+							new_by_year_data[year][data.type] = []
+						}
+						new_by_year_data[year][data.type].push(data)
+					}
 				}
 			}
 
 			setByMonthData(new_by_month_data)
+			setByYearData(new_by_year_data)
 		})
 	}, [])
 
-	if (!!by_month_data) {
+	if (!!by_month_data && !!by_year_data) {
 		const months = []
 		const now = new Date()
 		const current_year = now.getFullYear()
@@ -135,6 +147,10 @@ function Timeline() {
 			let end_month = 1
 			if (year === 1996) {
 				end_month = 12
+			}
+
+			if (!!by_year_data[year]) {
+				months.push(<Month key={year} year={year} month={-1} data={by_year_data[year]} />)
 			}
 
 			for (let month = start_month; month >= end_month; month-=1) {
