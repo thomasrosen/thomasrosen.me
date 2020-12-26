@@ -35,11 +35,13 @@ function renderOrgs(docs){
 			</div>
 			<span>Organisation</span>
 		</h3>
-		<div className={styles.cards}>
-			{
-				docs.map(org => <OrgCard key={org.shortname} data={org} />)
-			}
-		</div>
+			<span>Organisations</span>
+		</h6>
+		<ul className={styles.list}>
+		{
+			docs.map(role => <li key={role.name}>{role.name}</li>)
+		}
+		</ul>
 	</div>
 }
 
