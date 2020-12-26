@@ -77,14 +77,28 @@ data:
       start_date:
         year: 2020
         month: 12
+    - shortname: Grundschule
+      name: Matthias-Claudius, Bonn-Endenich
+      description: Grundschule
+      start_date:
+        year: 2003
+      end_date:
+        year: 2007
   role:
     - name: Mitglied bei anywayTV
       description: Doing stuff :D
       start_date:
-        year: 2018
+        year: 2020
         month: 12
       orgs:
         - anyway
       topics:
         - video
+    - name: Schüler
+      start_date:
+        year: 2003
+      end_date:
+        year: 2007
+      orgs:
+        - Matthias-Claudius
 ...
