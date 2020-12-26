@@ -14,7 +14,6 @@ function renderRoles(docs){
 		return null
 	}
 
-		<ul>
 	return <div className={styles.infos_by_type}>
 		<h6 className={styles.headline}>
 			<div className={styles.icon}>
@@ -22,6 +21,7 @@ function renderRoles(docs){
 			</div>
 			<span>Roles {/* Roles / Titel / Positionen */}</span>
 		</h6>
+		<ul className={styles.list}>
 		{
 			docs.map(role => <li key={role.name}>{role.name}</li>)
 		}
