@@ -3,6 +3,10 @@
 	margin: 64px;
 }
 
+.month h4{
+	opacity: 0.6;
+}
+
 .month .infos_by_type{
 	position: relative;
 }
