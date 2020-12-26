@@ -1,8 +1,8 @@
 
 :root{
 	--text-color: #212121;
-	--background-color: #fff;
-	--secondary-background-color: #f5f5f5;
+	--background-color: #f5f5f5;
+	--secondary-background-color: #fff;
 	--border-color: #e0e0e0;
 	--secondary-color: #2962FF;
 	--font-family: Roboto, sans-serif;
@@ -10,8 +10,8 @@
 @media (prefers-color-scheme: dark) {
 	:root{
 		--text-color: #ECEFF1;
-		--background-color: #1e1e1e;
-		--secondary-background-color: #121212;
+		--background-color: #121212;
+		--secondary-background-color: #1e1e1e;
 		--border-color: #333;
 		--secondary-color: #2962FF;
 	}
@@ -25,7 +25,7 @@
 }
 
 body{
-	background: var(--secondary-background-color);
+	background: var(--background-color);
 	color: var(--text-color);
 	transition: color .2s ease, background .2s ease;
 }
