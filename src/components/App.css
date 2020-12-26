@@ -35,3 +35,89 @@ body{
 	display: none;
 }
 
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: lighter;
+	font-size: 109px;
+	letter-spacing: -1.5px;
+}
+h2,
+.headline2{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: lighter;
+	font-size: 68px;
+	letter-spacing: -0.5px;
+}
+h3,
+.headline3{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 55px;
+	letter-spacing: 0px;
+}
+h4,
+.headline4{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 36px;
+	letter-spacing: 0.25px;
+}
+h5,
+.headline5{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 27px;
+	letter-spacing: 0px;
+}
+h6,
+.headline6{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: medium;
+	font-size: 23px;
+	letter-spacing: 0.15px;
+}
+.subtitle1{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 18px;
+	letter-spacing: 0.15px;
+}
+.subtitle2{
+	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	letter-spacing: 0.1px;
+}
+.body1,
+body{
+	font-family: Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+}
+.body2{
+	font-family: Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 14px;
+	letter-spacing: 0.25px;
+}
+.button,
+button{
+	font-family: Ubuntu, sans-serif;
+	font-weight: medium;
+	font-size: 14px;
+	letter-spacing: 1.25px;
+	text-transform: uppercase;
+}
+.caption{
+	font-family: Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	letter-spacing: 0.4px;
+}
+.overline{
+	font-family: Ubuntu, sans-serif;
+	font-weight: normal;
+	font-size: 10px;
+	letter-spacing: 1.5px;
+}
+
