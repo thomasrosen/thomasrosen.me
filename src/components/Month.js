@@ -6,6 +6,8 @@ import {
 
 import OrgCard from './OrgCard.js'
 
+const month_names = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(',')
+
 function renderRoles(docs){
 	if (!(!!docs) || docs.length === 0) {
 		return null
@@ -43,7 +45,7 @@ function renderOrgs(docs){
 
 function Month({year, month, data}) {
 	return <div className={styles.month}>
-		<h2>{month} {year}</h2><br/>
+		<h4>{month_names[month-1]} {year}</h4><br/>
 		{renderRoles(data.role)}
 		{renderOrgs(data.org)}
 	</div>
