@@ -36,6 +36,26 @@
 	vertical-align: middle;
 }
 
-.month .infos_by_type .cards{
-	padding: 0 0 0 32px;
+.month .infos_by_type .list{
+	margin: 0 0 0 40px;
+	padding: 16px;
+}
+
+.month .infos_by_type .list{
+	list-style-type: none;
+}
+
+.month .infos_by_type .list li{
+	position: relative;
+}
+.month .infos_by_type .list li:before{
+	content: '';
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	background: var(--text-color);
+	border-radius: 100%;
+	top: 2px;
+	left: -44px;
+	z-index: 1;
 }
