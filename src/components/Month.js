@@ -23,7 +23,7 @@ function renderRoles(docs){
 		</h6>
 		<ul className={styles.list}>
 		{
-			docs.map(role => <li key={role.name}>{role.name}</li>)
+			docs.map(role => <li key={role.name}><strong>{role.name}</strong><br/>{role.orgs.join(', ')}</li>)
 		}
 		</ul>
 	</div>
