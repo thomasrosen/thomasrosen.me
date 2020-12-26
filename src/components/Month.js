@@ -14,8 +14,9 @@ function renderRoles(docs){
 	}
 
 	return <div>
-		<h2>Roles / Titel / Positionen</h2>
 		<ul>
+		<h6 className={styles.headline}>
+		</h6>
 		{
 			docs.map(role => <li key={role.name}>{role.name}</li>)
 		}
@@ -29,12 +30,10 @@ function renderOrgs(docs){
 	}
 
 	return <div className={styles.infos_by_type}>
-		<h3>
+		<h6 className={styles.headline}>
 			<div className={styles.icon}>
 				<BusinessIcon />
 			</div>
-			<span>Organisation</span>
-		</h3>
 			<span>Organisations</span>
 		</h6>
 		<ul className={styles.list}>
