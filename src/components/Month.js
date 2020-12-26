@@ -20,6 +20,7 @@ function renderRoles(docs){
 			<div className={styles.icon}>
 				<PermIdentityIcon />
 			</div>
+			<span>Roles {/* Roles / Titel / Positionen */}</span>
 		</h6>
 		{
 			docs.map(role => <li key={role.name}>{role.name}</li>)
