@@ -22,7 +22,7 @@
 	border-radius: 2px;
 }
 
-.month .infos_by_type h3 .icon{
+.month .infos_by_type .headline .icon{
 	display: inline-block;
 	background: var(--text-color);
 	color: var(--background-color);
@@ -31,8 +31,8 @@
 	font-size: 0;
 	vertical-align: middle;
 }
-.month .infos_by_type h3 span{
 	margin: 0 0 0 8px;
+.month .infos_by_type .headline span{
 	vertical-align: middle;
 }
 
