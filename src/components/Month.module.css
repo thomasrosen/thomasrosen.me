@@ -16,7 +16,7 @@
 	top: 48px;
 	bottom: 0;
 	position: absolute;
-	background: white;
+	background: var(--text-color);
 	left: 18px;
 	z-index: -1;
 	border-radius: 2px;
