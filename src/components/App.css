@@ -35,6 +35,9 @@ body{
 	display: none;
 }
 
+
+h1,
+.headline1{
 	font-family: "Ubuntu Mono", Ubuntu, sans-serif;
 	font-weight: lighter;
 	font-size: 109px;
