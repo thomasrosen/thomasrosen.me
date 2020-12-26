@@ -1,7 +1,8 @@
 import styles from './Month.module.css'
 
 import {
-	Business as BusinessIcon
+	Business as BusinessIcon,
+	PermIdentity as PermIdentityIcon,
 } from '@material-ui/icons'
 
 import OrgCard from './OrgCard.js'
@@ -16,6 +17,9 @@ function renderRoles(docs){
 		<ul>
 	return <div className={styles.infos_by_type}>
 		<h6 className={styles.headline}>
+			<div className={styles.icon}>
+				<PermIdentityIcon />
+			</div>
 		</h6>
 		{
 			docs.map(role => <li key={role.name}>{role.name}</li>)
