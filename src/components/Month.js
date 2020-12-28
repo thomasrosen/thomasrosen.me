@@ -28,7 +28,7 @@ function renderRoles(docs, hide_the_headline){
 		</h6>
 		<ul className={styles.list}>
 		{
-			docs.map(role => <li key={role.name}><strong>{role.name}</strong>{!!role.at_orgs ? <><br/>{role.at_orgs.join(', ')}</> : null}</li>)
+			docs.map(role => <li key={role.name}><strong>{role.name}</strong>{!!role.at_orgs ? <p>{role.at_orgs.join(', ')}</p> : null}</li>)
 		}
 		</ul>
 	</div>
