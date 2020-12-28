@@ -22,11 +22,22 @@ data_types:
     year: Number
     month: Number
 start_dates:
+  event: start_date
   work: published_date
   article: published_date
   role: start_date
   org: start_date
+ids:
+  work: name
+  article: name
+  role: name
+  org: shortname
+  topic: hashtag
 structure:
+  event:
+    name: String
+    description: String
+    date: Date
   work:
     name: String
     description: String
@@ -48,6 +59,8 @@ structure:
     topics: ID
     start_date: Date
     end_date: Date
+    received_money: Boolean
+    place: String
   org:
     name: String
     description: String # was more
@@ -61,44 +74,4 @@ structure:
     description: String # was more
     hashtag: String
     emoji: String
-data:
-  topic:
-    - hashtag: video
-      emoji: 🎞
-    - hashtag: lego
-      emoji: 🧱
-  org:
-    - shortname: anyway
-      name: anyway e.V.
-      description: Der anyway e.V. wurde im November 2011 gegründet und hat im Januar 2012 den Betrieb des Jugendzentrums anyway übernommen und führt seit dem alle Geschäft, Projekte und Aufgaben durch. Der anyway e.V. ist seit dem 13.12.2011 anerkannter Träger der freien Jugendhilfe gemäß §75 Sozialgesetzbuch (SGB VIII).
-      color: 
-        hex: '#ff9151'
-      website: https://anyway-koeln.de/
-      start_date:
-        year: 2020
-        month: 12
-    - shortname: Grundschule
-      name: Matthias-Claudius, Bonn-Endenich
-      description: Grundschule
-      start_date:
-        year: 2003
-      end_date:
-        year: 2007
-  role:
-    - name: Mitglied bei anywayTV
-      description: Doing stuff :D
-      start_date:
-        year: 2020
-        month: 12
-      orgs:
-        - anyway
-      topics:
-        - video
-    - name: Schüler
-      start_date:
-        year: 2003
-      end_date:
-        year: 2007
-      orgs:
-        - Matthias-Claudius
 ...

@@ -84,21 +84,55 @@ function Timeline() {
 	const [by_year_data, setByYearData] = useState(null)
 
 	useEffect(() => {
-		import('../timeline_data.yml').then(timeline_data => {
-			const flat_data = Object.keys(timeline_data.default.data)
-			.reduce((flat_data, key) => {
-				flat_data = flat_data.concat(
-					timeline_data.default.data[key]
-					.map(node => flatten({
-						...node,
-						type: key,
-					}, {safe:true}))
-				)
-				return flat_data
-			}, [])
+		let timeline_structure = {}
 
-			const start_dates = timeline_data.default.start_dates
-
+		Promise.all([
+			new Promise(resolve => import('../timeline_structure.yml')
+				.then(new_timeline_structure => {
+					timeline_structure = new_timeline_structure.default
+					resolve([])
+				})
+			),		
+			new Promise(resolve => import('../data/event.yml')
+				.then(data => resolve(data.default.docs
+					.map(doc => ({
+						...doc,
+						type: 'event',
+					}))
+				))
+			),
+			new Promise(resolve => import('../data/org.yml')
+				.then(data => resolve(data.default.docs
+					.map(doc => ({
+						...doc,
+						type: 'org',
+					}))
+				))
+			),
+			new Promise(resolve => import('../data/role.yml')
+				.then(data => resolve(data.default.docs
+					.map(doc => ({
+						...doc,
+						type: 'role',
+					}))
+				))
+			),
+			new Promise(resolve => import('../data/topic.yml')
+				.then(data => resolve(data.default.docs
+					.map(doc => ({
+						...doc,
+						type: 'topic',
+					}))
+				))
+			),
+		])
+		.then(docs => {
+			const flat_data = []
+			.concat(...docs)
+			.map(doc => flatten(doc, {safe:true}))
+		
+			const start_dates = timeline_structure.start_dates
+	
 			const new_by_month_data = {}
 			const new_by_year_data = {}
 			for (const data of flat_data) {

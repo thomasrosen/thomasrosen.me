@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+docs:
+  - hashtag: video
+    emoji: 🎞
+  - hashtag: lego
+    emoji: 🧱
+...
