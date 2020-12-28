@@ -14,7 +14,7 @@
 	content: '';
 	width: 4px;
 	top: 36px;
-	bottom: 1px;
+	bottom: 0;
 	position: absolute;
 	background: var(--text-color);
 	left: 18px;
@@ -55,7 +55,7 @@
 	width: 16px;
 	background: var(--text-color);
 	border-radius: 100%;
-	top: 2px;
+	top: 3px;
 	left: -44px;
 	z-index: 1;
 }
