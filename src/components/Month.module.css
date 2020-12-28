@@ -14,7 +14,7 @@
 	content: '';
 	width: 4px;
 	top: 36px;
-	bottom: 17px;
+	bottom: 1px;
 	position: absolute;
 	background: var(--text-color);
 	left: 18px;
@@ -38,7 +38,7 @@
 
 .month .infos_by_type .list{
 	margin: 0 0 0 40px;
-	padding: 16px;
+	padding: 0 16px 0 16px;
 }
 
 .month .infos_by_type .list{
