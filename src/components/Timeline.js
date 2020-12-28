@@ -4,88 +4,13 @@ import { useState, useEffect, useMemo } from 'react'
 import { flatten } from 'flat'
 import Month from './Month.js'
 
-// ([_\d]{4})-([_\d]{2})-([_\d]{2}).([_\d]{2}):([_\d]{2}):([_\d]{2})
-
-
-// const iso_regex = /([_\d]{4})-([_\d]{2})-([_\d]{2}).([_\d]{2}):([_\d]{2}):([_\d]{2})/
-
-// function date_part_to_number(date_part){
-// 	date_part = Number.parseInt(date_part)
-// 	if (date_part === 0 || !!date_part) {
-// 		return date_part
-// 	}
-// 	return -1
-// }
-
-// function date_string_to_object(date_string){
-// 	const date_object = {
-// 		year: -1,
-// 		month: -1,
-// 		day: -1,
-// 		// hour: -1,
-// 		// minute: -1,
-// 		// second: -1,
-// 	}
-
-// 	const matches = iso_regex.exec(date_string)
-// 	date_object.year = date_part_to_number(matches[1])
-// 	date_object.month = date_part_to_number(matches[2])
-// 	date_object.day = date_part_to_number(matches[3])
-// 	date_object.hour = date_part_to_number(matches[4])
-// 	date_object.minutes = date_part_to_number(matches[5])
-// 	date_object.seconds = date_part_to_number(matches[6])
-
-// 	return date_object
-// }
-
-// function addDataGroups(data){
-// 	data.events = data.events.map(event => {
-// 		const start = {
-// 			...event.start,
-// 			...date_string_to_object(event.start.iso || ''),
-// 		}	
-// 		const end = {
-// 			...event.end,
-// 			...date_string_to_object(event.end.iso || ''),
-// 		}	
-
-// 		return {
-// 			...event,
-// 			start,
-// 			end,
-// 		}
-// 	})
-
-// 	const years = {}
-// 	for (const event of data.events) {
-// 		if (event.start.year > -1) {
-// 			if (!(!!years[event.start.year])) {
-// 				years[event.start.year] = {
-// 					year: event.start.year,
-// 					events: [],
-// 					orgs: [],
-// 					topics: [],
-// 				}
-// 			}
-
-// 			years[event.start.year].events.push(event)
-// 			years[event.start.year].orgs.concat(event.orgs)
-// 			years[event.start.year].topics.concat(event.topics)
-// 		}
-// 	}
-
-// 	data.years = Object.values(years)
-
-// 	return data
-// }
-
 function Timeline() {
 	const [timeline_structure, setTimelineStructure] = useState(null)
 	const [flat_data, setFlatData] = useState(null)
 	const [by_month_data, setByMonthData] = useState(null)
 	const [by_year_data, setByYearData] = useState(null)
 
-	const types_to_show = useMemo(()=>['role','org'], [])
+	const types_to_show = useMemo(()=>['role'], [])
 
 	useEffect(() => {
 		let timeline_structure = {}
