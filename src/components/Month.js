@@ -51,7 +51,7 @@ function renderOrgs(docs){
 
 function Month({year, month, data}) {
 	return <div className={styles.month}>
-		<h4>{month_names[month-1]} {year}</h4><br/>
+		<h4>{month_names[month-1]} {year}</h4>
 		{renderRoles(data.role)}
 		{renderOrgs(data.org)}
 	</div>
