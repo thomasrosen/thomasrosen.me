@@ -80,6 +80,8 @@ import Month from './Month.js'
 // }
 
 function Timeline() {
+	const [timeline_structure, setTimelineStructure] = useState(null)
+	const [flat_data, setFlatData] = useState(null)
 	const [by_month_data, setByMonthData] = useState(null)
 	const [by_year_data, setByYearData] = useState(null)
 
@@ -130,42 +132,53 @@ function Timeline() {
 			const flat_data = []
 			.concat(...docs)
 			.map(doc => flatten(doc, {safe:true}))
-		
-			const start_dates = timeline_structure.start_dates
-	
-			const new_by_month_data = {}
-			const new_by_year_data = {}
-			for (const data of flat_data) {
-				if (!!start_dates[data.type]) {
-					const start_date_key = start_dates[data.type]
-					const year = data[start_date_key+'.year']
-					const month = data[start_date_key+'.month']
-		
-					if (!!year && !!month) {
-						if (!(!!new_by_month_data[year+'_'+month])) {
-							new_by_month_data[year+'_'+month] = {}
-						}
-						if (!(!!new_by_month_data[year+'_'+month][data.type])) {
-							new_by_month_data[year+'_'+month][data.type] = []
-						}
-						new_by_month_data[year+'_'+month][data.type].push(data)
-					}
-					if (!!year) {
-						if (!(!!new_by_year_data[year])) {
-							new_by_year_data[year] = {}
-						}
-						if (!(!!new_by_year_data[year][data.type])) {
-							new_by_year_data[year][data.type] = []
-						}
-						new_by_year_data[year][data.type].push(data)
-					}
-				}
-			}
 
-			setByMonthData(new_by_month_data)
-			setByYearData(new_by_year_data)
+			setTimelineStructure(timeline_structure)
+			setFlatData(flat_data)
 		})
 	}, [])
+		
+	useEffect(() => {
+		if (!(!!timeline_structure && !!flat_data)) {
+			return;
+		}
+
+		const start_dates = timeline_structure.start_dates
+
+	
+		const new_by_month_data = {}
+		const new_by_year_data = {}
+		for (const data of flat_data) {
+			if (!!start_dates[data.type]) {
+				const start_date_key = start_dates[data.type]
+				const year = data[start_date_key+'.year']
+				const month = data[start_date_key+'.month']
+		
+				if (!!year && !!month) {
+					if (!(!!new_by_month_data[year+'_'+month])) {
+						new_by_month_data[year+'_'+month] = {}
+					}
+					if (!(!!new_by_month_data[year+'_'+month][data.type])) {
+						new_by_month_data[year+'_'+month][data.type] = []
+					}
+					new_by_month_data[year+'_'+month][data.type].push(data)
+				}
+				if (!!year) {
+					if (!(!!new_by_year_data[year])) {
+						new_by_year_data[year] = {}
+					}
+					if (!(!!new_by_year_data[year][data.type])) {
+						new_by_year_data[year][data.type] = []
+					}
+					new_by_year_data[year][data.type].push(data)
+				}
+			}
+		}
+
+		setByMonthData(new_by_month_data)
+		setByYearData(new_by_year_data)
+	}, [timeline_structure, flat_data, types_to_show])
+
 
 	if (!!by_month_data && !!by_year_data) {
 		const months = []
