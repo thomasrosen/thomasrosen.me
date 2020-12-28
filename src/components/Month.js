@@ -5,7 +5,7 @@ import {
 	PermIdentity as PermIdentityIcon,
 } from '@material-ui/icons'
 
-import OrgCard from './OrgCard.js'
+// import OrgCard from './OrgCard.js'
 
 const month_names = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(',')
 
