@@ -50,7 +50,7 @@
 
 .month .infos_by_type .list li{
 	position: relative;
-	margin-top: 16px;
+	margin-top: 8px;
 }
 .month .infos_by_type .list li:before{
 	content: '';
