@@ -1,6 +1,6 @@
 // import './Timeline.css'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { flatten } from 'flat'
 import Month from './Month.js'
 
@@ -85,6 +85,8 @@ function Timeline() {
 	const [by_month_data, setByMonthData] = useState(null)
 	const [by_year_data, setByYearData] = useState(null)
 
+	const types_to_show = useMemo(()=>['role','org'], [])
+
 	useEffect(() => {
 		let timeline_structure = {}
 
@@ -149,7 +151,7 @@ function Timeline() {
 		const new_by_month_data = {}
 		const new_by_year_data = {}
 		for (const data of flat_data) {
-			if (!!start_dates[data.type]) {
+			if ((types_to_show.length === 0 || types_to_show.includes(data.type)) && !!start_dates[data.type]) {
 				const start_date_key = start_dates[data.type]
 				const year = data[start_date_key+'.year']
 				const month = data[start_date_key+'.month']
