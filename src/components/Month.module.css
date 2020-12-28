@@ -26,7 +26,7 @@
 	display: none;
 }
 .month .infos_by_type.hidden_headline:before{
-	top: 8px;
+	top: 3px;
 }
 
 .month .infos_by_type .headline{
