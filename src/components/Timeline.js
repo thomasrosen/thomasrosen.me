@@ -183,9 +183,9 @@ function Timeline() {
 				end_month = 12
 			}
 
-			if (!!by_year_data[year]) {
-				months.push(<Month key={year} year={year} month={-1} data={by_year_data[year]} />)
-			}
+			// if (!!by_year_data[year]) {
+			// 	months.push(<Month key={year} year={year} month={-1} data={by_year_data[year]} />)
+			// }
 
 			for (let month = start_month; month >= end_month; month-=1) {
 				if (!!by_month_data[year+'_'+month]) {
