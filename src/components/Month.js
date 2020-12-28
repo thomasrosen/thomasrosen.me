@@ -9,12 +9,17 @@ import OrgCard from './OrgCard.js'
 
 const month_names = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(',')
 
-function renderRoles(docs){
+function renderRoles(docs, hide_the_headline){
 	if (!(!!docs) || docs.length === 0) {
 		return null
 	}
 
-	return <div className={styles.infos_by_type}>
+	return <div className={
+		[
+			styles.infos_by_type,
+			hide_the_headline ? styles.hidden_headline : null,
+		].join(' ')
+	}>
 		<h6 className={styles.headline}>
 			<div className={styles.icon}>
 				<PermIdentityIcon />
@@ -29,12 +34,17 @@ function renderRoles(docs){
 	</div>
 }
 
-function renderOrgs(docs){
+function renderOrgs(docs, hide_the_headline){
 	if (!(!!docs) || docs.length === 0) {
 		return null
 	}
 
-	return <div className={styles.infos_by_type}>
+	return <div className={
+		[
+			styles.infos_by_type,
+			hide_the_headline ? styles.hidden_headline : null,
+		].join(' ')
+	}>
 		<h6 className={styles.headline}>
 			<div className={styles.icon}>
 				<BusinessIcon />
@@ -49,11 +59,11 @@ function renderOrgs(docs){
 	</div>
 }
 
-function Month({year, month, data}) {
+function Month({year, month, data, hide_the_headline}) {
 	return <div className={styles.month}>
 		<h4>{month_names[month-1]} {year}</h4>
-		{renderRoles(data.role)}
-		{renderOrgs(data.org)}
+		{renderRoles(data.role, hide_the_headline === true)}
+		{renderOrgs(data.org, hide_the_headline === true)}
 	</div>
 }
 
