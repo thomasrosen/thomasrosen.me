@@ -140,7 +140,7 @@ function Timeline() {
 					const start_date_key = start_dates[data.type]
 					const year = data[start_date_key+'.year']
 					const month = data[start_date_key+'.month']
-	
+		
 					if (!!year && !!month) {
 						if (!(!!new_by_month_data[year+'_'+month])) {
 							new_by_month_data[year+'_'+month] = {}
