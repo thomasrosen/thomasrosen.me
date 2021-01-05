@@ -2,6 +2,23 @@
 	"slug": "_startpage",
 	"name": "Thomas Rosen",
 	"more": "I'm on: <a target='_blank' href='https://www.instagram.com/thomasrosen/'>instagram</a>, <a target='_blank' href='https://twitter.com/thomas_roses'>twitter</a>, <a target='_blank' href='https://thomasrosen.tumblr.com/'>tumblr</a>, <a target='_blank' href='https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA'>youtube</a>, <a target='_blank' href='https://github.com/thomasrosen'>github</a>, <a target='_blank' href='https://sub.cafe/thomasrosen/'>sublevel</a>, <a href='https://www.flickr.com/photos/116207237@N03/'>flickr</a>, <a target='_blank' href='https://dribbble.com/thomasrosen/likes'>dribbble</a>, <a target='_blank' href='https://medium.com/@thomas_rosen'>medium</a>, <a rel='me' href='https://mastodon.social/@thomasrosen'>Mastodon</a> and other platforms, I forgot. Most of the time, my username is @thomasrosen. If not, it's thomasroses, thomas_rosen, thomas_roses and in seldom cases petacat or wourbe. (petacat is an insider about multiples of the unit byte.)",
+	"socials_template": [
+		["icon", "text", "link", "color"]
+	],
+	"socials": [
+		["twitter", "thomas_roses", "https://twitter.com/thomas_roses", "#1da1f2"],
+		["instagram", "thomasrosen", "https://www.instagram.com/thomasrosen/", "#ed4956"],
+		["tumblr", "thomasrosen", "https://thomasrosen.tumblr.com/", "#001935"],
+		["github", "thomasrosen", "'https://github.com/thomasrosen", "#000000"],
+		["medium", "thomas_rosen", "https://medium.com/@thomas_rosen", "#268f23"],
+		["mastodon", "thomasrosen", "https://mastodon.social/@thomasrosen", "#2f93d7"],
+		["youtube", "Thomas Rosen", "https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA", "#ff0000"],
+		["flickr", "Thomas Rosen", "https://www.flickr.com/photos/116207237@N03/", "#1067d9"],
+		["dribbble", "thomasrosen/likes", "https://dribbble.com/thomasrosen/likes", "#ea4c89"],
+		["", "", "", ""],
+		["Email", "thomas.rosen@qiekub.org", "mailto:thomas.rosen@qiekub.org", ""],
+		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"]
+	],
 	"DONT_stages": [
 		{
 			"type": "longterm_activity",

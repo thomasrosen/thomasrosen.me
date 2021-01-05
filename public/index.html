@@ -277,7 +277,51 @@
 
 			margin-bottom: 128px;
 		}
+
+
+
+
+
+		.socials{
+			/*display: block;*/
+			list-style: none;
+
+			margin: -20px -10px 0 -10px;
+			color: black;
+			padding: 30px 40px 30px 40px;
+
+			font-family: "Ubuntu Mono", Ubuntu, sans-serif;
+			font-weight: normal;
+			font-size: 18px;
+			letter-spacing: 0.15px;
+
+			/*background: white;*/
 		}
+		.socials li{
+			margin-bottom: 4px;
+		}
+		.socials li a{
+			color: inherit;
+			text-decoration: none;
+		}
+		.socials li a:hover{
+			text-decoration: underline;
+		}
+		.socials li a .icon:before{
+			display: inline-block;
+			content: attr(data-icon);
+			width: 128px;
+			text-align: right;
+		}
+		.socials li a .icon:not([data-icon=""]):after{
+			display: inline-block;
+			content: ":";
+			text-align: right;
+		}
+		.socials li a[href=""]{
+			cursor: default;
+		}
+
 	</style>
   </head>
   <body>
@@ -691,6 +735,28 @@
 			pageTitle.classList.add('pageTitle')
 			pageTitle.innerHTML = getShortName(__all_data)
 			page.appendChild(pageTitle)
+			
+
+			if (!!stage.socials && stage.socials.length > 0) {
+
+				const socials_mapped = stage.socials.map(([icon, text, link, color]) => `
+					<li>
+						<a href="${link}" target="_blank" rel="nofollow">
+							<span class="icon" data-icon="${icon}" style="color: ${color};"></span>
+							<span class="text">${text}</span>
+						</a>
+					</li>
+				`)
+
+				let socialsElement = document.createElement('ul')
+				socialsElement.classList.add('socials')
+				socialsElement.innerHTML = socials_mapped.join('')
+				page.appendChild(socialsElement)
+
+				console.log('stage', stage.socials)
+			}
+
+
 
 			let title = ''
 			let dateRangeText = getDateRangeText(stage)
