@@ -1,0 +1,72 @@
+
+.month{
+	margin: 64px;
+}
+
+.month h4{
+	opacity: 0.6;
+}
+
+.month .infos_by_type{
+	position: relative;
+}
+.month .infos_by_type:before{
+	content: '';
+	width: 4px;
+	top: 36px;
+	bottom: 0;
+	position: absolute;
+	background: var(--text-color);
+	left: 18px;
+	z-index: -1;
+	border-radius: 2px;
+}
+
+.month .infos_by_type.hidden_headline .headline{
+	display: none;
+}
+.month .infos_by_type.hidden_headline:before{
+	top: 3px;
+}
+
+.month .infos_by_type .headline{
+	margin-top: 16px;
+}
+.month .infos_by_type .headline .icon{
+	display: inline-block;
+	background: var(--text-color);
+	color: var(--background-color);
+	padding: 8px;
+	border-radius: 100%;
+	font-size: 0;
+	vertical-align: middle;
+}
+.month .infos_by_type .headline span{
+	margin: 0 0 0 16px;
+	vertical-align: middle;
+}
+
+.month .infos_by_type .list{
+	margin: 0 0 0 40px;
+	padding: 0 16px 0 16px;
+}
+
+.month .infos_by_type .list{
+	list-style-type: none;
+}
+
+.month .infos_by_type .list li{
+	position: relative;
+	margin-top: 8px;
+}
+.month .infos_by_type .list li:before{
+	content: '';
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	background: var(--text-color);
+	border-radius: 100%;
+	top: 3px;
+	left: -44px;
+	z-index: 1;
+}
