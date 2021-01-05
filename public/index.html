@@ -136,15 +136,9 @@
 
 			background: hsl(150,60%,60%);
 			border: 8px solid hsl(150,60%,60%);
-		}
-		@media (min-width: 629px) {
-			.stage_box:hover{
-				/*transform: scale(0.959);*/
-				/*opacity: 0.94;*/
-				/*filter: blur(0.2px);*/
-				transform: scale(0.959);
-				/*box-shadow: 0 0 0 10px black;*/
-			}
+
+			transform-style: preserve-3d;
+			transform: perspective(2000px);
 		}
 		.stage_box.depth_1,
 		.stage_box.depth_2,
