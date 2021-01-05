@@ -1,2 +1,0 @@
-(this.webpackJsonpthomasrosen=this.webpackJsonpthomasrosen||[]).push([[0],{4:function(t,e,s){"use strict";s.r(e);var n=s(2),o=s(0),r=s.n(o),a=s(3);s.n(a).a.render(Object(n.jsx)(r.a.StrictMode,{}),document.getElementById("root"))}},[[4,1,2]]]);
-//# sourceMappingURL=main.e4d53aa0.chunk.js.map
