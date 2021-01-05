@@ -10,6 +10,8 @@ docs:
     start_date:
       year: 2020
       month: 12
+    department:
+      - anywayTV
   - shortname: Grundschule
     name: Matthias-Claudius, Bonn-Endenich
     description: Grundschule
@@ -17,4 +19,14 @@ docs:
       year: 2003
     end_date:
       year: 2007
+    areaServed: {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bonn",
+        "addressRegion": "NRW",
+        "addressCountry": "Germany",
+      },
+      "name": "Stadt Bonn"
+    }
 ...
