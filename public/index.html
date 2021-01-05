@@ -750,24 +750,6 @@
 			pageTitle.classList.add('pageTitle')
 			pageTitle.innerHTML = getShortName(__all_data)
 			page.appendChild(pageTitle)
-			
-
-			if (!!stage.socials && stage.socials.length > 0) {
-
-				const socials_mapped = stage.socials.map(([icon, text, link, color]) => `
-					<li>
-						<a href="${link}" target="_blank" rel="nofollow">
-							<span class="icon" data-icon="${icon}" style="color: ${color};"></span>
-							<span class="text">${text}</span>
-						</a>
-					</li>
-				`)
-
-				let socialsElement = document.createElement('ul')
-				socialsElement.classList.add('socials')
-				socialsElement.innerHTML = socials_mapped.join('')
-				page.appendChild(socialsElement)
-			}
 
 
 
@@ -821,6 +803,25 @@
 				page.appendChild(infos)
 			}
 			
+			
+			
+
+			if (!!stage.socials && stage.socials.length > 0) {
+
+				const socials_mapped = stage.socials.map(([icon, text, link, color]) => `
+					<li>
+						<a href="${link}" target="_blank" rel="nofollow">
+							<span class="icon" data-icon="${icon}" style="color: ${color};"></span>
+							<span class="text">${text}</span>
+						</a>
+					</li>
+				`)
+
+				let socialsElement = document.createElement('ul')
+				socialsElement.classList.add('socials')
+				socialsElement.innerHTML = socials_mapped.join('')
+				page.appendChild(socialsElement)
+			}
 
 
 
