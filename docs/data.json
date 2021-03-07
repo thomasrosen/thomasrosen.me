@@ -115,7 +115,16 @@
 									"more": "Erhalt der Jugend Leiter Card"
 								}
 							]
-						}
+						},
+                        {
+                            "type": "point_in_time_activity",
+                            "date": "2021.03.05",
+                            "s_date": "2021.03.05",
+                            "e_date": "2021.03.07",
+                            "shortname": "VNT21 CA",
+                            "name": "Vernetzungstreffen der Civil Academy",
+                            "more": ""
+                        }
 					]
 				},
 				{
