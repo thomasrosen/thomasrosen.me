@@ -285,7 +285,7 @@
 
 
 
-		.socials{
+		.header_links{
 			/*display: block;*/
 			list-style: none;
 
@@ -300,29 +300,29 @@
 
 			/*background: white;*/
 		}
-		.socials li{
+		.header_links li{
 			margin-bottom: 4px;
 		}
-		.socials li a{
+		.header_links li a{
 			color: inherit;
 			text-decoration: none;
 		}
-		.socials li a:hover{
+		.header_links li a:hover{
 			text-decoration: underline;
 		}
-		.socials li a .icon:before{
+		.header_links li .icon:before{
 			display: inline-block;
 			content: attr(data-icon);
 			width: 128px;
 			text-align: right;
 		}
-		.socials li a .icon:not([data-icon=""]):after{
+		.header_links li .icon:not([data-icon=""]):after{
 			display: inline-block;
 			content: ":";
 			text-align: right;
 		}
-		.socials li a[href=""]{
 			cursor: default;
+		.header_links li a[href=""]{
 		}
 
 	</style>
@@ -806,9 +806,9 @@
 			
 			
 
-			if (!!stage.socials && stage.socials.length > 0) {
 
-				const socials_mapped = stage.socials.map(([icon, text, link, color]) => `
+			if (!!stage.header_links && stage.header_links.length > 0) {
+				const header_links_mapped = stage.header_links.map(([icon, text, link, color]) => `
 					<li>
 						<a href="${link}" target="_blank" rel="nofollow">
 							<span class="icon" data-icon="${icon}" style="color: ${color};"></span>
@@ -817,10 +817,10 @@
 					</li>
 				`)
 
-				let socialsElement = document.createElement('ul')
-				socialsElement.classList.add('socials')
-				socialsElement.innerHTML = socials_mapped.join('')
-				page.appendChild(socialsElement)
+				let header_links_element = document.createElement('ul')
+				header_links_element.classList.add('header_links')
+				header_links_element.innerHTML = header_links_mapped.join('')
+				page.appendChild(header_links_element)
 			}
 
 

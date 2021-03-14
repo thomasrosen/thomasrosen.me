@@ -2,10 +2,10 @@
 	"slug": "_startpage",
 	"name": "Thomas Rosen",
 	"more": "Hi 👋<br><br>Nice to meet you :D<br><a href='mailto:thomas.rosen@qiekub.org'>Send me a text</a> if you have any questions or whatever.<br><br>Best, Thomas",
-	"socials_template": [
+	"header_links_template": [
 		["icon", "text", "link", "color"]
 	],
-	"socials": [
+	"header_links": [
 		["twitter", "thomas_roses", "https://twitter.com/thomas_roses", "#1da1f2"],
 		["instagram", "thomasrosen", "https://www.instagram.com/thomasrosen/", "#ed4956"],
 		["github", "thomasrosen", "'https://github.com/thomasrosen", "#000000"],
