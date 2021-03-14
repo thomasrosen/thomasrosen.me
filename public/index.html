@@ -26,7 +26,7 @@
     -->
     <title id="websiteTitle">Thomas Rosen</title>
 
-    <script async defer data-website-id="fe447956-68a8-4bd6-a139-c218621354de" src="https://umami.qiekub.org/umami.js"></script>
+    <script async defer data-website-id="fe447956-68a8-4bd6-a139-c218621354de" src="https://umami.qiekub.org/umami.js" data-domains="thomasrosen.qiekub.org"></script>
 
 	<script src="%PUBLIC_URL%/old/moment.min.js"></script>
 
@@ -815,7 +815,7 @@
 			if (!!stage.header_links && stage.header_links.length > 0) {
 				const header_links_mapped = stage.header_links.map(([icon, text, link, color]) => `
 					<li>
-						${link.length > 0 ? `<a href="${link}" target="_blank" rel="nofollow">` : ''}
+						${link.length > 0 ? `<a href="${link}" target="_blank" rel="nofollow" class="umami--click--${icon}">` : ''}
 							<span class="icon ${text === '' ? 'bold' : ''}" data-icon="${icon}" style="color: ${color};"></span>
 							<span class="text">${text}</span>
 						${link.length > 0 ? `</a>` : ''}
