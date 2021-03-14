@@ -24,8 +24,15 @@
 		["", "", "", ""],
         ["Contact me", "", "", ""],
 		["Email", "thomas.rosen@qiekub.org", "mailto:thomas.rosen@qiekub.org", "#00695c"],
-		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"]
-	],
+		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"],
+        ["", "", "", ""],
+        ["Sponsor me", "", "", ""],
+        ["paypal", "ThomasRosen", "https://paypal.me/ThomasRosen", "#0d57aa"],
+        ["github", "thomasrosen", "https://github.com/sponsors/thomasrosen", "#000000"],
+        ["liberapay", "thomasrosen", "https://liberapay.com/thomasrosen/", "#f6c915"],
+        ["bitcoin", "3CLe3y7mMFTc7pxhqqwoapeL1p3zZw3NH9", "", "#f7931a"],
+        ["ethereum", "0x4ffe2084EfA93148f0B26EdE9261064780DFB43D", "", "#6481e7"]
+    ],
 	"DONT_stages": [
 		{
 			"type": "longterm_activity",
