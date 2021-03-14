@@ -6,6 +6,7 @@
 		["icon", "text", "link", "color"]
 	],
 	"header_links": [
+        ["Follow me", "", "", ""],
 		["twitter", "thomas_roses", "https://twitter.com/thomas_roses", "#1da1f2"],
 		["instagram", "thomasrosen", "https://www.instagram.com/thomasrosen/", "#ed4956"],
 		["github", "thomasrosen", "'https://github.com/thomasrosen", "#000000"],
@@ -21,6 +22,7 @@
 		["dribbble", "thomasrosen/likes", "https://dribbble.com/thomasrosen/likes", "#ea4c89"],
         ["openstreetmap", "thomasrosen", "https://www.openstreetmap.org/user/thomasrosen", "#7ebc6f"],
 		["", "", "", ""],
+        ["Contact me", "", "", ""],
 		["Email", "thomas.rosen@qiekub.org", "mailto:thomas.rosen@qiekub.org", "#00695c"],
 		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"]
 	],
