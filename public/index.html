@@ -809,10 +809,9 @@
 			if (!!stage.header_links && stage.header_links.length > 0) {
 				const header_links_mapped = stage.header_links.map(([icon, text, link, color]) => `
 					<li>
-						<a href="${link}" target="_blank" rel="nofollow">
-							<span class="icon" data-icon="${icon}" style="color: ${color};"></span>
+						${link.length > 0 ? `<a href="${link}" target="_blank" rel="nofollow">` : ''}
 							<span class="text">${text}</span>
-						</a>
+						${link.length > 0 ? `</a>` : ''}
 					</li>
 				`)
 
