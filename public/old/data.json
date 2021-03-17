@@ -6,6 +6,10 @@
 		["icon", "text", "link", "color"]
 	],
 	"header_links": [
+        ["Contact me", "", "", ""],
+		["Email", "thomas.rosen@qiekub.org", "mailto:thomas.rosen@qiekub.org", "#00695c"],
+		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"],
+		["", "", "", ""],
         ["Follow me", "", "", ""],
 		["twitter", "thomas_roses", "https://twitter.com/thomas_roses", "#1da1f2"],
 		["instagram", "thomasrosen", "https://www.instagram.com/thomasrosen/", "#ed4956"],
@@ -21,10 +25,6 @@
 		["flickr", "Thomas Rosen", "https://www.flickr.com/photos/116207237@N03/", "#1067d9"],
 		["dribbble", "thomasrosen/likes", "https://dribbble.com/thomasrosen/likes", "#ea4c89"],
         ["openstreetmap", "thomasrosen", "https://www.openstreetmap.org/user/thomasrosen", "#7ebc6f"],
-		["", "", "", ""],
-        ["Contact me", "", "", ""],
-		["Email", "thomas.rosen@qiekub.org", "mailto:thomas.rosen@qiekub.org", "#00695c"],
-		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"],
         ["", "", "", ""],
         ["Sponsor me", "", "", ""],
         ["paypal", "ThomasRosen", "https://paypal.me/ThomasRosen", "#0d57aa"],
