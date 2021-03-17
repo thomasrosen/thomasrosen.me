@@ -1,7 +1,7 @@
 {
 	"slug": "_startpage",
 	"name": "Thomas Rosen",
-	"more": "Hi 👋<br><br>Nice to meet you :D<br><a href='mailto:thomas.rosen@qiekub.org'>Send me a text</a> if you have any questions or whatever.<br><br>Best, Thomas",
+	"more": "Hi, nice to meet you 👋<br><br><a href='mailto:thomas.rosen@qiekub.org'>Send me a text</a> if you have any questions or whatever.",
 	"header_links_template": [
 		["icon", "text", "link", "color"]
 	],
