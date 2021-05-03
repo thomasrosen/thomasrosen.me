@@ -1,7 +1,7 @@
 {
 	"slug": "_startpage",
 	"name": "Thomas Rosen",
-	"more": "Hi, nice to meet you 👋<br><br><a href='mailto:thomas.rosen@qiekub.org'>Send me a text</a> if you have any questions or whatever.",
+	"more": "Hi, nice to meet you 👋<br><br><a href='mailto:thomas.rosen@qiekub.org'>Send me a text</a> if you have any questions or whatever.<br><br>Best, Thomas",
 	"header_links_template": [
 		["icon", "text", "link", "color"]
 	],
@@ -9,6 +9,7 @@
         ["Contact me", "", "", ""],
 		["Email", "thomas.rosen@qiekub.org", "mailto:thomas.rosen@qiekub.org", "#00695c"],
 		["Volt Email", "thomas.rosen@volteuropa.org", "mailto:thomas.rosen@volteuropa.org", "#502379"],
+		["Newsletter", "Signup to get occasional mails from me 💌", "https://mailchi.mp/59f35b198abe/thomasrosen", "#00695c"],
 		["", "", "", ""],
         ["Follow me", "", "", ""],
 		["twitter", "thomas_roses", "https://twitter.com/thomas_roses", "#1da1f2"],
