@@ -40,4 +40,4 @@ jobs:
         with:
           email: thomas.rosen@me.com
           build_dir: build
-          cname: thomasrosen.qiekub.org
+          cname: thomasrosen.me
