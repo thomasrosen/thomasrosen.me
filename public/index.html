@@ -74,6 +74,26 @@
       color: black;
     }
 
+    .headerImageOfMe {
+      display: inline-block;
+      border-radius: 100%;
+      vertical-align: middle;
+      height: 200px;
+      width: 200px;
+      background-image: url(images/me_small.jpg);
+      background-position: 50% 50%;
+      background-size: 100%;
+      filter: brightness(1.05) saturate(1.05) contrast(1.05);
+      transform: scale(1);
+      transition: background-position 0.5s ease, background-size 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+    }
+    .pageTitle:hover .headerImageOfMe {
+      background-position: 50% 40%;
+      background-size: 200%;
+      filter: brightness(1.1) saturate(1.1) contrast(1.1);
+      transform: scale(0.975);
+    }
+
     .infos {
       margin: 10px -10px;
       color: black;
@@ -369,7 +389,10 @@
 <div id="pages">
   <div class="page">
 
-    <h1 class="pageTitle">Thomas Rosen</h1>
+    <h1 class="pageTitle">
+      <div alt="Thomas Rosen eating a slice watermelon." class="headerImageOfMe"></div>
+      <span style="display: inline-block; vertical-align: middle;">Thomas Rosen</span>
+    </h1>
 
     <div class="infos">
       <p class="more">
@@ -446,6 +469,13 @@
         <a href="https://gitlab.com/thomasrosen" target="_blank" rel="nofollow" class="umami--click--gitlab">
           <span class="icon " data-icon="gitlab" style="color: #e24329;"></span>
           <span class="text">thomasrosen</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="https://gitlab.com/thomas.rosen.volt" target="_blank" rel="nofollow" class="umami--click--gitlab-volt">
+          <span class="icon " data-icon="gitlab" style="color: #e24329;"></span>
+          <span class="text">thomas.rosen.volt</span>
         </a>
       </li>
 
