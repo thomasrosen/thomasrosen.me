@@ -126,136 +126,6 @@
       margin-top: 30px;
     }
 
-
-    .bottomSpace {
-      margin: 180px 10px;
-      padding: 30px;
-      background: white;
-    }
-
-    .bottomSpace h2 {
-      font-family: "Ubuntu Mono", Ubuntu, sans-serif;
-      font-weight: lighter;
-      font-size: 68px;
-      letter-spacing: -0.5px;
-
-      color: black;
-      margin: 30px 0 10px;
-    }
-
-    .bottomSpace h2:first-of-type {
-      margin: 0 0 10px;
-    }
-
-    .bottomSpace p,
-    .bottomSpace li {
-      color: black;
-      margin: 10px 0 0 0;
-    }
-
-
-
-
-    /* stage_box */
-    .stage_box {
-      border-width: 5px 5px 5px 10px;
-      padding: 30px;
-      background: transparent;
-      color: black;
-
-      min-height: 450px;
-      max-width: calc(100vw - 64px);
-
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-
-      cursor: pointer;
-      /*transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;*/
-      /*transition: transform 0.2s ease, box-shadow 0.2s ease;*/
-      /*transition: transform 0.2s ease;*/
-
-      background: hsl(150, 60%, 60%);
-      border: 8px solid hsl(150, 60%, 60%);
-
-      transform-style: preserve-3d;
-      transform: perspective(2000px);
-    }
-
-    .stage_box.depth_1,
-    .stage_box.depth_2,
-    .stage_box.depth_3 {
-      padding: 10px;
-      margin: 10px 0;
-      border-width: 1px 1px 1px 10px;
-    }
-
-    .stage_box:first-of-type {
-      margin-top: 0;
-    }
-
-    .stage_box:last-of-type {
-      margin-bottom: 0;
-    }
-
-    .stage_box .shortname {
-      font-family: "Ubuntu Mono", Ubuntu, sans-serif;
-      font-weight: normal;
-      font-size: 55px;
-      letter-spacing: 0px;
-
-      overflow-wrap: break-word;
-      hyphens: auto;
-      margin-top: 60px;
-
-      transform: translateZ(40px);
-    }
-
-    .stage_box .main_content {
-      background: white;
-      margin: -30px -30px -30px -30px !important;
-      padding: 30px;
-      flex-grow: 2;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-
-      transform-style: preserve-3d;
-      transform: perspective(2000px);
-    }
-
-    .stage_box .teaser {
-      /*border-top: 1px dotted black;*/
-
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
-      margin: 30px -30px -30px -30px !important;
-      padding: 30px;
-      display: inline-block;
-      position: relative;
-    }
-
-    .stage_box .shortname+p {
-      margin-top: 25px;
-    }
-
-    .stage_box p+.name {
-      margin-top: 10px;
-    }
-
-    @media (max-width: 629px) {
-      .stage_box {
-        min-height: auto;
-      }
-
-      .stage_box .shortname {
-        margin-top: 0;
-      }
-    }
-
-
-
     #pages {
       position: relative;
       height: auto;
@@ -293,11 +163,6 @@
       animation: fadeIn 0.2s ease forwards;
     }
 
-    .page.fadeOut {
-      opacity: 1;
-      animation: fadeOut 0.2s ease forwards;
-    }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -308,16 +173,6 @@
       }
     }
 
-    @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-
-      to {
-        opacity: 0;
-      }
-    }
-
     .page {
       pointer-events: none;
     }
@@ -325,22 +180,6 @@
     .page:last-of-type {
       pointer-events: all;
     }
-
-    .display_as_grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      justify-items: stretch;
-      align-items: stretch;
-      /*justify-content: center;*/
-      grid-gap: 32px 32px;
-
-      margin: 16px 16px 32px 16px;
-    }
-
-
-
-
 
     .header_links {
       /*display: block;*/
