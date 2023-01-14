@@ -3,18 +3,18 @@
   "name": "Thomas Rosen",
   "icons": [
     {
-      "src": "",
+      "src": "logo64.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/jpg"
     },
     {
-      "src": "",
-      "type": "image/png",
+      "src": "logo192.jpg",
+      "type": "image/jpg",
       "sizes": "192x192"
     },
     {
-      "src": "",
-      "type": "image/png",
+      "src": "logo512.jpg",
+      "type": "image/jpg",
       "sizes": "512x512"
     }
   ],
