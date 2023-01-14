@@ -109,3 +109,10 @@ a:hover,
   /* text-decoration-style: double; */
   text-decoration-color: currentColor;
 }
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--text-color);
+  margin: 0;
+}

@@ -45,6 +45,8 @@ export default function Projects() {
         <p>QR-Code generator with some default colors for Volt Europa.</p>
       </div>
 
+      <div></div><hr />
+      
       <div>🤖</div>
       <div>
         <h3>
