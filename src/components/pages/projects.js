@@ -45,6 +45,16 @@ export default function Projects() {
         <p>QR-Code generator with some default colors for Volt Europa.</p>
       </div>
 
+      <div>🤖</div>
+      <div>
+        <h3>
+          <a href="https://github.com/thomasrosen/thomasrosen.me" target="_blank" rel="noreferrer" className="umami--click--sourcecode">
+            Source Code of this Website
+          </a>
+        </h3>
+        <p>Click here to view the sourcecode of thomasrosen.me</p>
+      </div>
+
     </div>
 
   </div>
