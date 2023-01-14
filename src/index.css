@@ -12,6 +12,8 @@ body {
   --text-color: #00150f;
   --background-color: #fff;
   --primary-color: #00d095;
+
+  --content-box-width: 620px;
   
   --font-family-headline: "Ubuntu Mono", Ubuntu, sans-serif;
   --font-family-text: Ubuntu, sans-serif;

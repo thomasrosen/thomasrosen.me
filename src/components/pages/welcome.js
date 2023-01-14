@@ -1,5 +1,5 @@
 export default function Welcome() {
-  return <div class="tab_content">
+  return <div className="tab_content">
     <p style={{ maxWidth: '300px' }}>
       Hi, nice to meet you 👋<br />
       <br />

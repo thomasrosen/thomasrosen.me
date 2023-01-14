@@ -23,14 +23,6 @@ export default function Contact() {
         thomas.rosen@volteuropa.org
       </a>
 
-      <h3>
-        <Dot />
-        Newsletter
-      </h3>
-      <a href="https://mailchi.mp/59f35b198abe/thomasrosen" target="_blank" rel="noreferrer" class="umami--click--Newsletter">
-        Signup to get occasional mails from me 💌
-      </a>
-
     </div>
 
   </div>    

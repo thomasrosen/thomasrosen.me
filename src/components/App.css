@@ -48,7 +48,7 @@ nav a.active {
 .tab_content {
 	display: block;
 	text-align: start;
-	width: 620px; /* same as header text */
+	width: var(--content-box-width); /* same as header text */
 	max-width: 100%;
 }
 
@@ -74,4 +74,29 @@ nav a.active {
 	.links_grid :nth-child(even) {
 		margin-block-end: 30px;
 	}
+}
+
+a.newsletter_box {
+	display: block;
+
+	background: var(--text-color);
+	color: var(--background-color);
+
+	border-radius: 10px;
+
+	width: var(--content-box-width);
+	max-width: 100%;
+	padding: 40px;
+	margin-top: 40px;
+
+	transition: box-shadow 0.2s ease;
+}
+a.newsletter_box h2 {
+	margin-bottom: 10px;
+}
+a.newsletter_box:hover {
+	background: var(--text-color);
+	color: var(--background-color);
+	box-shadow: 0 0 0 10px var(--primary-color);
+	text-decoration: none;
 }
