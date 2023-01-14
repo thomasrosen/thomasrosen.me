@@ -72,36 +72,6 @@
 			opacity: 0.6;
 		}*/
 
-    .pageTitle,
-    .infos .name {
-      font-family: "Ubuntu Mono", Ubuntu, sans-serif;
-      font-weight: bold;
-      font-size: 10rem;
-      letter-spacing: -1.5px;
-
-      margin: 60px 30px;
-    }
-
-    .headerImageOfMe {
-      display: inline-block;
-      border-radius: 100%;
-      vertical-align: middle;
-      height: 200px;
-      width: 200px;
-      background-image: url(images/me_small.jpg);
-      background-position: 50% 50%;
-      background-size: 100%;
-      filter: brightness(1.05) saturate(1.05) contrast(1.05);
-      transform: scale(1);
-      transition: background-position 0.5s ease, background-size 0.5s ease, filter 0.5s ease, transform 0.5s ease;
-    }
-    .pageTitle:hover .headerImageOfMe {
-      background-position: 50% 40%;
-      background-size: 200%;
-      filter: brightness(1.1) saturate(1.1) contrast(1.1);
-      transform: scale(0.975);
-    }
-
     nav {
       margin: 10px -10px;
       margin: 20px 30px;
@@ -242,13 +212,10 @@
 </head>
 <body>
 
+<div id="root"></div>
+
 <div id="pages">
   <div class="page">
-
-    <h1 class="pageTitle">
-      <div alt="Thomas Rosen eating a slice watermelon." class="headerImageOfMe"></div>
-      <span style="display: inline-block; vertical-align: middle;">Thomas Rosen</span>
-    </h1>
 
     <nav>
       <a href="#contact">Contact</a> • 
@@ -257,13 +224,6 @@
       <a href="#sponsor_me">Sponsor</a> • 
       <a href="#articles">Articles/Videos</a>
     </nav>
-
-    <div class="infos">
-      <p class="more">
-        Hi, nice to meet you 👋<br><br><a href="mailto:hello@thomasrosen.me">Send me a text</a> if you
-        have any questions or whatever else.<br>I'd love to hear from you!<br><br>Best, Thomas
-      </p>
-    </div>
 
     <ul class="header_links">
       <li>
@@ -557,7 +517,5 @@
   </div>
 </div>
 
-
 </body>
-
 </html>
