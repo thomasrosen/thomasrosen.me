@@ -38,7 +38,7 @@ export default function App() {
 
     <a href="https://mailchi.mp/59f35b198abe/thomasrosen" target="_blank" rel="noreferrer" className="newsletter_box umami--click--Newsletter">
       <h2>💌 Newsletter</h2>
-      <p>Signup to get occasional mails from me…</p>
+      <p>Signup to get occasional emails from me…</p>
     </a>
   </div>
 }
