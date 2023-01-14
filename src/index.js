@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
+
+import { router } from './components/router.js';
+import {
+  RouterProvider,
+} from 'react-router-dom'
+
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider
+      router={router}
+      fallbackElement="Loading…"
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );
