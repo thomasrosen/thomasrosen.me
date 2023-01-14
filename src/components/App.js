@@ -33,6 +33,7 @@ export default function App() {
 
     <br />
     <br />
+
     <Outlet />
 
     <a href="https://mailchi.mp/59f35b198abe/thomasrosen" target="_blank" rel="noreferrer" className="newsletter_box umami--click--Newsletter">
