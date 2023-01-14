@@ -83,7 +83,7 @@ nav a.active {
 	}
 }
 
-a.newsletter_box {
+a.link_box {
 	display: block;
 
 	background: var(--text-color);
@@ -98,10 +98,10 @@ a.newsletter_box {
 
 	transition: box-shadow 0.2s ease;
 }
-a.newsletter_box h2 {
+a.link_box h2 {
 	margin-bottom: 10px;
 }
-a.newsletter_box:hover {
+a.link_box:hover {
 	background: var(--text-color);
 	color: var(--background-color);
 	box-shadow: 0 0 0 10px var(--primary-color);
