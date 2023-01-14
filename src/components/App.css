@@ -34,8 +34,15 @@ nav a {
 	fill: var(--background-color);
 	background: var(--text-color);
 	font-weight: bold;
+	transition: box-shadow 0.2s ease;
 }
-nav a:hover,
+nav a:hover {
+	box-shadow: 0 0 0 10px var(--primary-color);
+	color: var(--background-color);
+	fill: var(--background-color);
+	background: var(--text-color);
+	text-decoration: none;
+}
 nav a:active,
 nav a:focus,
 nav a.active {
