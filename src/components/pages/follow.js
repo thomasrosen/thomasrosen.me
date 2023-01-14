@@ -89,6 +89,11 @@ export default function Contact() {
         thomasrosen
       </a>
 
+      <h3><Dot color="#000000" />dev.to</h3>
+      <a href="https://dev.to/thomasrosen" target="_blank" rel="noreferrer" className="umami--click--dev-to">
+        thomasrosen
+      </a>
+
     </div>
 
   </div>
