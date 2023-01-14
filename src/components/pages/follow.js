@@ -17,6 +17,11 @@ export default function Contact() {
         thomas_roses
       </a>
 
+      <h3><Dot color="#00f2ea" />TikTok</h3> {/* #ff0050 #00f2ea */}
+      <a href="https://www.tiktok.com/@thomasroses" target="_blank" rel="noreferrer" className="umami--click--tiktok">
+        thomasroses
+      </a>
+
       <h3><Dot color="#ff0000" />YouTube</h3>
       <a href="https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA" target="_blank" rel="noreferrer" className="umami--click--youtube">
         Thomas Rosen
