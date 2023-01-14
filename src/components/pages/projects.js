@@ -1,14 +1,14 @@
 export default function Projects() {
-  return <div class="tab_content">
+  return <div className="tab_content">
 
     <h2>Projects</h2>
 
-    <div class="links_grid">
+    <div className="links_grid">
 
       <div>🏳️‍🌈🗺❤️</div>
       <div>
         <h3>
-          <a href="https://map.qiekub.org/" target="_blank" rel="noreferrer" class="umami--click--project-queermap">
+          <a href="https://map.qiekub.org/" target="_blank" rel="noreferrer" className="umami--click--project-queermap">
             map.qiekub.org
           </a>
         </h3>
@@ -18,7 +18,7 @@ export default function Projects() {
       <div>🔗💜🇪🇺</div>
       <div>
         <h3>
-          <a href="https://github.com/voltbonn/volt.link" target="_blank" rel="noreferrer" class="umami--click--project-volt-link">
+          <a href="https://github.com/voltbonn/volt.link" target="_blank" rel="noreferrer" className="umami--click--project-volt-link">
             volt.link
           </a>
         </h3>
@@ -28,7 +28,7 @@ export default function Projects() {
       <div>🖼💜🇪🇺</div>
       <div>
         <h3>
-          <a href="https://www.profile-volt.org/" target="_blank" rel="noreferrer" class="umami--click--project-volt-profile-picture">
+          <a href="https://www.profile-volt.org/" target="_blank" rel="noreferrer" className="umami--click--project-volt-profile-picture">
             profile-volt.org
           </a>
         </h3>
@@ -38,7 +38,7 @@ export default function Projects() {
       <div>🖼🤳🔗</div>
       <div>
         <h3>
-          <a href="https://qrcode.volt.link/" target="_blank" rel="noreferrer" class="umami--click--project-volt-qr-code">
+          <a href="https://qrcode.volt.link/" target="_blank" rel="noreferrer" className="umami--click--project-volt-qr-code">
             qrcode.volt.link
           </a>
         </h3>

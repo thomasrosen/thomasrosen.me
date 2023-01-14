@@ -17,7 +17,7 @@ export default function App() {
     padding: '80px 40px',
   }}>
 
-    <div alt="Thomas Rosen eating a slice watermelon." class="headerImageOfMe"></div>
+    <div alt="Thomas Rosen eating a slice watermelon." className="headerImageOfMe"></div>
     <h1 style={{ textAlign: 'center' }}>Thomas Rosen</h1>
 
     <br />
