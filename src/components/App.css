@@ -94,7 +94,7 @@ a.link_box {
 	width: var(--content-box-width);
 	max-width: 100%;
 	padding: 40px;
-	margin-top: 40px;
+	margin-top: 80px;
 
 	transition: box-shadow 0.2s ease;
 }
