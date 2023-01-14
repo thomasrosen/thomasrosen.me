@@ -8,7 +8,7 @@ export default function Contact() {
     <div className="links_grid">
 
       <h3>
-        <Dot />
+        <Dot color="var(--primary-color)" />
         Email
       </h3>
       <a href="mailto:hello@thomasrosen.me" target="_blank" rel="noreferrer" className="umami--click--Email">
