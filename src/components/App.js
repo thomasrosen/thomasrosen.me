@@ -28,7 +28,7 @@ export default function App() {
       <NavLink to="follow">Follow</NavLink>
       <NavLink to="projects">Projects</NavLink>
       <NavLink to="sponsor">Sponsor</NavLink>
-      <NavLink to="articles">Articles/Videos</NavLink>
+      <NavLink to="articles">In the Press</NavLink>
     </nav>
 
     <br />
