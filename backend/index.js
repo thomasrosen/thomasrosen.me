@@ -1,3 +1,5 @@
+// const fs = require('fs')
+// const path = require('path') 
 const express = require('express')
 
 function checkOrigin(origin) {
@@ -42,8 +44,20 @@ app.use(function (req, res, next) {
   next()
 })
 
-// app.get('/', (req, res) => {
-//   res.sendFile('index.html', { root: '../build/' })
+// app.get('/:slug', (req, res, next) => {
+
+//   const staticFiles = []
+//   // get all filenames and foldernames in build
+//   const directoryPath = path.join(__dirname, '../build')
+//   fs.readdirSync(directoryPath).forEach(file => {
+//     staticFiles.push(file)
+//   })
+
+//   if (staticFiles.includes(req.params.slug)) {
+//     next()
+//   } else {
+//     res.sendFile('index.html', { root: '../build/' })
+//   }
 // })
 
 app.use('/', express.static('../build/', { fallthrough: true }))
