@@ -65,6 +65,10 @@ h3 {
   font-size: 20px;
   letter-spacing: 0px;
 }
+h3.big {
+  font-size: 30px;
+  letter-spacing: 0.5px;
+}
 h3+p {
   margin-top: 0.5rem;
 }

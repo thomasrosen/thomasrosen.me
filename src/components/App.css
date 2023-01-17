@@ -84,3 +84,15 @@ a.link_box:hover {
 	box-shadow: 0 0 0 10px var(--primary-color);
 	text-decoration: none;
 }
+
+.tab_content.article h2 {
+	margin-block-end: 10px;
+}
+.tab_content.article h2 + p {
+	margin-block-end: 40px;
+}
+.tab_content.article h3 {
+	font-size: 30px;
+	letter-spacing: 0.5px;
+	margin-block-start: 40px;
+}
