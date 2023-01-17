@@ -60,7 +60,7 @@ export function Articles() {
           </Link>
         </h3>
         <p><strong>
-          {article.date} — {article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}
+          {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
         </strong></p>
       </div>)}
     </div>
@@ -98,7 +98,7 @@ export function Article() {
         ? <>
           <h2>{article.title}</h2>
           <p><strong>
-            {article.date} — {article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}
+            {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
           <div dangerouslySetInnerHTML={{ __html: article.html }} />
         </>
