@@ -54,4 +54,3 @@ app.listen(port, host, () => {
   const url = `http://${host}:${port}`
   console.info(`Server listening at ${url}`)
 })
-
