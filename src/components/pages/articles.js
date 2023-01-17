@@ -94,7 +94,7 @@ export function Article() {
       })
   }, [])
 
-  return <div className="tab_content article">
+  return <div className="tab_content article serif_font">
     {loading && <p>Loading article...</p>}
     {error && <p>Error loading article: {error.message}</p>}
 
@@ -105,7 +105,7 @@ export function Article() {
           <p><strong>
             {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
-          <div className="font_family_story" dangerouslySetInnerHTML={{ __html: article.html }} />
+          <div dangerouslySetInnerHTML={{ __html: article.html }} />
           <Dot />
         </>
         : null
