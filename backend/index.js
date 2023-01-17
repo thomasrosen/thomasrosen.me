@@ -48,6 +48,10 @@ app.use(function (req, res, next) {
 
 app.use('/', express.static('../build/'))
 
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: '../build/' })
+})
+
 const port = 19814 // thomas = 19 8 14 12 18
 const host = '0.0.0.0' // Uberspace wants 0.0.0.0
 app.listen(port, host, () => {
