@@ -1,0 +1,12 @@
+{
+  "name": "queer-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
