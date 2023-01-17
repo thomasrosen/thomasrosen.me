@@ -58,7 +58,10 @@ export function Articles() {
     {error && <p>Error loading articles: {error.message}</p>}
 
     <div className="links_grid">
-      {articles.length > 0 && articles.map(article => <div key={article.slug}>
+      {articles.length > 0 && articles.map(article => <div
+        key={article.slug}
+        className={!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}
+      >
         <h3 className="big">
           <Link to={'/articles/' + article.slug}>
             {article.title}
@@ -94,7 +97,7 @@ export function Article() {
       })
   }, [])
 
-  return <div className="tab_content article serif_font">
+  return <div className={`tab_content article ${!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font' }`}>
     {loading && <p>Loading article...</p>}
     {error && <p>Error loading article: {error.message}</p>}
 
