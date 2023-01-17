@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.65bfc898.chunk.css",
-    "main.js": "/static/js/main.3e5924f6.chunk.js",
-    "main.js.map": "/static/js/main.3e5924f6.chunk.js.map",
+    "main.css": "/static/css/main.9733c33d.chunk.css",
+    "main.js": "/static/js/main.34fc3fa1.chunk.js",
+    "main.js.map": "/static/js/main.34fc3fa1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.1b63772e.js",
     "runtime-main.js.map": "/static/js/runtime-main.1b63772e.js.map",
     "static/js/2.18c274ed.chunk.js": "/static/js/2.18c274ed.chunk.js",
     "static/js/2.18c274ed.chunk.js.map": "/static/js/2.18c274ed.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.65bfc898.chunk.css.map": "/static/css/main.65bfc898.chunk.css.map",
+    "static/css/main.9733c33d.chunk.css.map": "/static/css/main.9733c33d.chunk.css.map",
     "static/js/2.18c274ed.chunk.js.LICENSE.txt": "/static/js/2.18c274ed.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/me_small.47278a52.jpg",
-    "static/media/index.css": "/static/media/ubuntu-v15-latin-regular.3525fd90.woff2"
+    "static/media/index.css": "/static/media/ubuntu-v20-latin-regular.f00252d5.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.1b63772e.js",
     "static/js/2.18c274ed.chunk.js",
-    "static/css/main.65bfc898.chunk.css",
-    "static/js/main.3e5924f6.chunk.js"
+    "static/css/main.9733c33d.chunk.css",
+    "static/js/main.34fc3fa1.chunk.js"
   ]
 }

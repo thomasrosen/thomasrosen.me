@@ -1,7 +1,7 @@
 import './App.css'
 
-import '../fonts/ubuntu-v15-latin/index.css'
-import '../fonts/ubuntu-mono-v10-latin/index.css'
+import '../fonts/ubuntu-v20-latin/index.css'
+import '../fonts/ubuntu-mono-v15-latin/index.css'
 
 import { NavLink, Outlet } from 'react-router-dom'
 
