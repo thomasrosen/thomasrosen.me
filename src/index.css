@@ -18,6 +18,7 @@ body {
   --font-family-headline: "Ubuntu Mono", Ubuntu, sans-serif;
   --font-family-text: Ubuntu, sans-serif;
   --font-family-code: Ubuntu Mono, source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-family-story: Petrona, Ubuntu, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,6 +27,11 @@ body {
     --background-color: #00150f;
     --primary-color: #00d095;
   }
+}
+
+.font_family_story {
+  --font-family-headline: "Petrona", serif;
+  --font-family-text: "Petrona", serif;
 }
 
 * {

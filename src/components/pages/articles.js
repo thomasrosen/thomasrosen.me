@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import '../../fonts/petrona-v28-latin/index.css'
+
 import { Link } from 'react-router-dom'
 import Dot from '../dot.js'
 
@@ -103,7 +105,7 @@ export function Article() {
           <p><strong>
             {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
-          <div dangerouslySetInnerHTML={{ __html: article.html }} />
+          <div className="font_family_story" dangerouslySetInnerHTML={{ __html: article.html }} />
           <Dot />
         </>
         : null
