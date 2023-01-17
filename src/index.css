@@ -73,11 +73,12 @@ h3+p {
   margin-top: 0.5rem;
 }
 
-body {
+body, p {
   font-family: var(--font-family-text);
   font-weight: normal;
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
 .body2 {
@@ -163,4 +164,8 @@ hr {
   height: 1px;
   background-color: var(--text-color);
   margin: 0;
+}
+
+p {
+  margin-block-end: 20px;
 }

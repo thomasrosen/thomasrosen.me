@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
+import Dot from '../dot.js'
 
 const units = {
     year: 24 * 60 * 60 * 1000 * 365,
@@ -60,7 +61,7 @@ export function Articles() {
           </Link>
         </h3>
         <p><strong>
-          {article.date} — {article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}
+          {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
         </strong></p>
       </div>)}
     </div>
@@ -98,9 +99,10 @@ export function Article() {
         ? <>
           <h2>{article.title}</h2>
           <p><strong>
-            {article.date} — {article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}
+            {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
           <div dangerouslySetInnerHTML={{ __html: article.html }} />
+          <Dot />
         </>
         : null
     }
