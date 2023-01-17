@@ -42,10 +42,6 @@ app.use(function (req, res, next) {
   next()
 })
 
-// app.get('/', (req, res) => {
-//   res.sendFile('index.html', { root: '../build/' })
-// })
-
 app.use('/', express.static('../build/', { fallthrough: true }))
 
 app.get('*', (req, res) => {
