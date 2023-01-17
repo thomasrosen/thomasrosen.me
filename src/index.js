@@ -9,12 +9,12 @@ import {
 
 // import reportWebVitals from './reportWebVitals';
 
-// send pageviews to Umami when the url changes
-window.addEventListener('popstate', () => {
-  if (window.umami) {
-    window.umami.trackView(window.location.pathname);
-  }
-});
+// // send pageviews to Umami when the url changes
+// window.addEventListener('popstate', () => {
+//   if (window.umami) {
+//     window.umami.trackView(window.location.pathname + window.location.search + window.location.hash);
+//   }
+// });
 
 ReactDOM.render(
   <React.StrictMode>
