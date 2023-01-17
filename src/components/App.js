@@ -23,12 +23,13 @@ export default function App() {
     <br />
     
     <nav>
-      <NavLink to="/">Hi!</NavLink>
-      <NavLink to="contact">Contact</NavLink>
-      <NavLink to="follow">Follow</NavLink>
-      <NavLink to="projects">Projects</NavLink>
-      <NavLink to="press">In the Press</NavLink>
-      <NavLink to="sponsor">Sponsor</NavLink>
+      <NavLink to="/"><button>Hi!</button></NavLink>
+      <NavLink to="contact"><button>Contact</button></NavLink>
+      <NavLink to="follow"><button>Follow</button></NavLink>
+      <NavLink to="projects"><button>Projects</button></NavLink>
+      <NavLink to="press"><button>In the Press</button></NavLink>
+      <NavLink to="articles"><button>Blog</button></NavLink>
+      <NavLink to="sponsor"><button>Sponsor</button></NavLink>
     </nav>
 
     <br />
