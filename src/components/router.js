@@ -1,5 +1,5 @@
 import {
-  createHashRouter,
+  createBrowserRouter,
 } from 'react-router-dom'
 
 import App from './App.js'
@@ -10,7 +10,7 @@ import Projects from './pages/projects.js'
 import Press from './pages/press.js'
 import Sponsor from './pages/sponsor.js'
 
-export const router = createHashRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
