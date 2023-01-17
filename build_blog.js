@@ -112,6 +112,23 @@ buildBlog()
 
 
 
+    const public_blog_dir = './public/blog/'
+    // delete blog_build_dir
+    if (fs.existsSync(public_blog_dir)) {
+      fs.rmdirSync(public_blog_dir, { recursive: true })
+    }
+
+    // check if build directory exists and create it, if not
+    if (!fs.existsSync(public_blog_dir)) {
+      // create each directory in the path
+      fs.mkdirSync(public_blog_dir, { recursive: true })
+    }
+
+    // copy blog_build_dir to ./public/blog
+    fs.cpSync(blog_build_dir, public_blog_dir, { recursive: true, overwrite: true });
+
+
+
     console.info('✅ Blog build complete.')
 
     // end node process
