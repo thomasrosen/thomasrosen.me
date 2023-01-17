@@ -14,13 +14,7 @@ body {
   --primary-color: #00845E;
 
   --content-box-width: 620px;
-  
-  --font-family-headline: "Ubuntu Mono", Ubuntu, sans-serif;
-  --font-family-text: Ubuntu, sans-serif;
-  --font-family-code: Ubuntu Mono, source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  --font-family-story: Petrona, Ubuntu, sans-serif;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #fff;
@@ -29,9 +23,19 @@ body {
   }
 }
 
-.font_family_story {
-  --font-family-headline: "Petrona", serif;
-  --font-family-text: "Petrona", serif;
+:root,
+.sans_serif_font {
+  --font-family-website-title: "Ubuntu Mono", Ubuntu, sans-serif;
+  --font-family-headline: Ubuntu, sans-serif;
+  --font-family-text: Ubuntu, sans-serif;
+  --font-family-button: Ubuntu, sans-serif;
+  --font-family-code: "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+.serif_font {
+  --font-family-headline: Petrona, Ubuntu, serif;
+  --font-family-text: Petrona, Ubuntu, serif;
+  --font-family-button: Ubuntu, Ubuntu, serif;
+  --font-family-code: "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 * {
@@ -52,21 +56,21 @@ body {
 }
 
 h1 {
-  font-family: var(--font-family-headline);
+  font-family: var(--font-family-website-title);
   font-weight: bold;
   font-size: 110px;
   letter-spacing: -1.5px;
 }
 
 h2 {
-  font-family: var(--font-family-text);
+  font-family: var(--font-family-headline);
   font-weight: bold;
   font-size: 40px;
   margin-bottom: 40px;
 }
 
 h3 {
-  font-family: var(--font-family-text);
+  font-family: var(--font-family-headline);
   font-weight: bold;
   font-size: 20px;
   letter-spacing: 0px;
@@ -95,7 +99,7 @@ body, p {
 }
 
 button {
-  font-family: var(--font-family-text);
+  font-family: var(--font-family-button);
   text-decoration: none;
 
   font-weight: inherit;
