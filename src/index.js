@@ -12,7 +12,7 @@ import {
 // send pageviews to Umami when the url changes
 window.addEventListener('popstate', () => {
   if (window.umami) {
-    window.umami.trackView(window.location.pathname + window.location.search + window.location.hash);
+    window.umami.trackView(window.location.pathname);
   }
 });
 
