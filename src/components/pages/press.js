@@ -1,4 +1,4 @@
-export default function Articles() {
+export default function Press() {
   return <div className="tab_content" style={{ wwidth: '800px' }}>
 
     <h2>Articles about me and my projects</h2>

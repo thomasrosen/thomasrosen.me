@@ -7,7 +7,7 @@ import Welcome from './pages/welcome.js'
 import Contact from './pages/contact.js'
 import Follow from './pages/follow.js'
 import Projects from './pages/projects.js'
-import Articles from './pages/articles.js'
+import Press from './pages/press.js'
 import Sponsor from './pages/sponsor.js'
 
 export const router = createHashRouter([
@@ -32,8 +32,8 @@ export const router = createHashRouter([
         element: <Projects />,
       },
       {
-        path: 'articles',
-        element: <Articles />,
+        path: 'press',
+        element: <Press />,
       },
       {
         path: 'sponsor',
