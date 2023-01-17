@@ -164,3 +164,7 @@ hr {
   background-color: var(--text-color);
   margin: 0;
 }
+
+p {
+  margin-block-end: 20px;
+}
