@@ -9,6 +9,7 @@ import Follow from './pages/follow.js'
 import Projects from './pages/projects.js'
 import Press from './pages/press.js'
 import Sponsor from './pages/sponsor.js'
+import { Articles, Article } from './pages/articles.js'
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ export const router = createBrowserRouter([
       {
         path: 'sponsor',
         element: <Sponsor />,
+      },
+      {
+        path: 'articles',
+        element: <Articles />,
+      },
+      {
+        path: 'articles/:slug',
+        element: <Article />,
       },
       {
         path: '*',

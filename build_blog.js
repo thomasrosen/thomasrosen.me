@@ -89,7 +89,7 @@ buildBlog()
     }
 
     // write blog summary to file
-    fs.writeFileSync(blog_build_dir + 'articles.json', JSON.stringify(summary_list))
+    fs.writeFileSync(blog_build_dir + 'articles.json', JSON.stringify({ articles: summary_list }))
 
 
 
@@ -102,11 +102,20 @@ buildBlog()
     // write each blog articles to its own file
     articles.forEach(article => {
       if (
-          article.data.hasOwnProperty('slug')
-          && typeof article.data.slug === 'string'
-          && article.data.slug.length > 0
-        ) {
-        fs.writeFileSync(articles_build_dir + article.data.slug + '.json', JSON.stringify(article))
+        article.data.hasOwnProperty('slug')
+        && typeof article.data.slug === 'string'
+        && article.data.slug.length > 0
+      ) {
+        const slug = article.data.slug
+
+        const new_article = {
+          article: {
+            ...article.data,
+            html: article.html,
+          }
+        }
+
+        fs.writeFileSync(articles_build_dir + slug + '.json', JSON.stringify(new_article))
       }
     })
 
