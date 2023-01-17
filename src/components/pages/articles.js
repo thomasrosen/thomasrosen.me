@@ -34,10 +34,12 @@ export function Articles() {
     fetch('/blog/articles.json')
       .then(response => response.json())
       .then(data => {
-        data.articles = data.articles.map(article => {
-          article.date = getRelativeTime(new Date(article.date))
-          return article
-        })
+        data.articles = data.articles
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .map(article => {
+            article.date = getRelativeTime(new Date(article.date))
+            return article
+          })
         setArticles(data.articles)
         setLoading(false)
       })
