@@ -85,10 +85,54 @@ body {
 
 button {
   font-family: var(--font-family-text);
-  font-weight: medium;
+  text-decoration: none;
+
+  font-weight: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+
+  /* text-transform: uppercase; */
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+
+	padding: 10px 20px;
+	border-radius: 100px;
+	color: var(--background-color);
+	fill: var(--background-color);
+	background: var(--text-color);
+	font-weight: bold;
+	transition: box-shadow 0.2s ease;
+}
+button.small {
+  padding: 5px 10px;
   font-size: 14px;
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
+}
+button[data-selected="true"] {
+  box-shadow: 0 0 0 5px var(--text-color);
+}
+button:not(:disabled):hover {
+	box-shadow: 0 0 0 10px var(--primary-color);
+	color: var(--background-color);
+	fill: var(--background-color);
+	background: var(--text-color);
+	text-decoration: none;
+}
+button.small:not(:disabled):hover {
+  box-shadow: 0 0 0 5px var(--primary-color);
+}
+button:not(:disabled):active,
+button:not(:disabled):focus,
+button:not(:disabled).active,
+a.active button:not(:disabled) {
+	color: var(--background-color);
+	fill: var(--background-color);
+	background: var(--primary-color);
+	text-decoration: none;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 code {

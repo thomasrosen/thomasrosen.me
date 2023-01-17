@@ -28,30 +28,6 @@ nav {
 	gap: 20px;
 	margin: 20px 0;
 }
-nav a {
-	padding: 10px 20px;
-	border-radius: 100px;
-	color: var(--background-color);
-	fill: var(--background-color);
-	background: var(--text-color);
-	font-weight: bold;
-	transition: box-shadow 0.2s ease;
-}
-nav a:hover {
-	box-shadow: 0 0 0 10px var(--primary-color);
-	color: var(--background-color);
-	fill: var(--background-color);
-	background: var(--text-color);
-	text-decoration: none;
-}
-nav a:active,
-nav a:focus,
-nav a.active {
-	color: var(--background-color);
-	fill: var(--background-color);
-	background: var(--primary-color);
-	text-decoration: none;
-}
 
 .tab_content {
 	display: block;
