@@ -1,12 +1,10 @@
 ---
 date: 2023-01-17
-title: Article 1
+title: This is a title
 slug: article-1
 tags:
   - story
 ---
-
-# This is a title
 
 This is the content of the article 1
 
