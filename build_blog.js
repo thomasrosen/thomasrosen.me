@@ -72,6 +72,7 @@ buildBlog()
           date: article.data.date,
           title: article.data.title,
           slug: article.data.slug,
+          font: article.data.font,
           tags: article.data.tags,
         }
       })
