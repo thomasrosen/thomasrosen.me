@@ -1,3 +1,5 @@
+import React, { Suspense } from 'react'
+
 import {
   createBrowserRouter,
 } from 'react-router-dom'
@@ -9,7 +11,18 @@ import Follow from './pages/follow.js'
 import Projects from './pages/projects.js'
 import Press from './pages/press.js'
 import Sponsor from './pages/sponsor.js'
-import { Articles, Article } from './pages/articles.js'
+// const Contact = React.lazy(() => import('./pages/contact.js'));
+// const Follow = React.lazy(() => import('./pages/follow.js'));
+// const Projects = React.lazy(() => import('./pages/projects.js'));
+// const Press = React.lazy(() => import('./pages/press.js'));
+// const Sponsor = React.lazy(() => import('./pages/sponsor.js'));
+const Articles = React.lazy(() => import('./pages/articles.js'));
+const Article = React.lazy(() => import('./pages/article.js'));
+
+function Loading() {
+  return null
+  // return <div>Loading...</div>
+}
 
 export const router = createBrowserRouter([
   {
@@ -22,31 +35,31 @@ export const router = createBrowserRouter([
       },
       {
         path: 'contact',
-        element: <Contact />,
+        element: <Suspense fallback={<Loading />}><Contact /></Suspense>,
       },
       {
         path: 'follow',
-        element: <Follow />,
+        element: <Suspense fallback={<Loading />}><Follow /></Suspense>,
       },
       {
         path: 'projects',
-        element: <Projects />,
+        element: <Suspense fallback={<Loading />}><Projects /></Suspense>,
       },
       {
         path: 'press',
-        element: <Press />,
+        element: <Suspense fallback={<Loading />}><Press /></Suspense>,
       },
       {
         path: 'sponsor',
-        element: <Sponsor />,
+        element: <Suspense fallback={<Loading />}><Sponsor /></Suspense>,
       },
       {
         path: 'articles',
-        element: <Articles />,
+        element: <Suspense fallback={<Loading />}><Articles /></Suspense>,
       },
       {
         path: 'articles/:slug',
-        element: <Article />,
+        element: <Suspense fallback={<Loading />}><Article /></Suspense>,
       },
       {
         path: '*',

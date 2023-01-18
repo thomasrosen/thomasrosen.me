@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import '../../fonts/petrona-v28-latin/index.css'
 
 import { Link } from 'react-router-dom'
-import Dot from '../dot.js'
+// import Dot from '../dot.js'
 
 const units = {
     year: 24 * 60 * 60 * 1000 * 365,
@@ -16,7 +16,7 @@ const units = {
 
 const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-export const getRelativeTime = (d1, d2 = new Date()) => {
+const getRelativeTime = (d1, d2 = new Date()) => {
     const elapsed = d1.getTime() - d2.getTime();
 
     // "Math.abs" accounts for both "past" & "future" scenarios
@@ -27,7 +27,7 @@ export const getRelativeTime = (d1, d2 = new Date()) => {
     }
 };
 
-export function Articles() {
+export default function Articles() {
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -76,6 +76,7 @@ export function Articles() {
   </div>
 }
 
+/*
 export function Article() {
   const [article, setArticle] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -115,3 +116,4 @@ export function Article() {
     }
   </div>
 }
+*/
