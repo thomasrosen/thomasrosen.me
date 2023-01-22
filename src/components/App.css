@@ -1,3 +1,18 @@
+.app_wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+	min-height: 100vh;
+	height: auto;
+	padding: 60px 40px;
+}
+@media (min-height: 800px) {
+	.app_wrapper {
+		padding: 80px 40px;
+	}
+}
 
 .headerImageOfMe {
 	display: inline-block;

@@ -6,16 +6,7 @@ import '../fonts/ubuntu-mono-v15-latin/index.css'
 import { NavLink, Outlet } from 'react-router-dom'
 
 export default function App() {
-  return <div style={{
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    gap: '20px',
-    minHeight: '100vh',
-    height: 'auto',
-    padding: '80px 40px',
-  }}>
+  return <div className="app_wrapper">
 
     <div alt="Thomas Rosen eating a slice watermelon." className="headerImageOfMe"></div>
     <h1 style={{ textAlign: 'center' }}>Thomas Rosen</h1>
