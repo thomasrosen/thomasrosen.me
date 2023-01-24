@@ -5,6 +5,16 @@ export default function Projects() {
 
     <div className="links_grid">
 
+      <div>🏳️‍🌈</div>
+      <div>
+        <h3>
+          <a href="https://queer.thomasrosen.me/" target="_blank" rel="noreferrer" className="umami--click--project-queer-thomasrosen">
+            queer.thomasrosen.me
+          </a>
+        </h3>
+        <p>A list of websites with information about queer places and living as a queer person. You can filter by some tags and your location.</p>
+      </div>
+
       <div>🏳️‍🌈🗺❤️</div>
       <div>
         <h3>
