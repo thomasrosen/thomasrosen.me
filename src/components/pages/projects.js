@@ -32,7 +32,7 @@ export default function Projects() {
             volt.link
           </a>
         </h3>
-        <p>Linktr.ee and bit.ly for Volt Europa.</p>
+        <p>Linktr.ee and bit.ly alternatives for Volt Europa.</p>
       </div>
 
       <div>🖼💜🇪🇺</div>
