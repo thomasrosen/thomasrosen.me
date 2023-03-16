@@ -118,4 +118,5 @@ a.link_box p:last-child {
 	display: inline-flex;
 	flex-wrap: wrap;
 	gap: 5px;
+	align-items: center;
 }
