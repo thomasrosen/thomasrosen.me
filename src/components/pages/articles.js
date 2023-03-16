@@ -57,7 +57,9 @@ export default function Articles() {
     {loading && <p>Loading articles...</p>}
     {error && <p>Error loading articles: {error.message}</p>}
 
-    <div className="links_grid">
+    <div className="links_grid" style={{
+      gridTemplateColumns: 'auto'
+    }}>
       {articles.length > 0 && articles.map(article => <div
         key={article.slug}
         className={!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}

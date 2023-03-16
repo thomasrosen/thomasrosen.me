@@ -2,9 +2,9 @@
 date: 2023-03-16T16:13
 title: Frühlingssonne
 slug: spring-sun
+lang: de
 font: serif
 tags:
-  - short
   - story
   - nature
 ---
