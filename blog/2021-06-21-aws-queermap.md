@@ -8,20 +8,20 @@ tags:
   - AWS
   - queer
 stichpunkte: |
-Schreibe einen kurzen Bericht wie AWS einen Artikel über die QueerMap von Thomas Rosen geschrieben hat. Alle Informationen bekommst du aus den Stichpunkten.
-Variere die Länge der Absätze. Schreib in der Ich-Perspektive als Thomas Rosen.
-
-Unsortierte Stichpunkte:
-- Titel des Artikel von AWS: "Mapping safe places for people in the LGBTQ+ community"
-- Link zum Artikel: <https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community>
-- Der Artikel geht über die QueerMap by qiekub.
-- QueerMap wurde von Thomas Rosen entwickelt/programmiert.
-- Auf der Karte werden queere Orte angezeigt.
-- AWS wollte Thomas interviewen. Obwohl das zum Teil natürlich pink-washing ist, hat Thomas gerne angenommen.
-- Das Interview wurde in Englisch per Video Call durchgeführt.
-- Im Artikel werden auch Marena Brinkhurst von Mapbox über die Technik (Vector-Tiles, OpenStreetMap) hinter QueerMap interviewt.
-- Die Daten in der Karte basieren auf OpenStreetMap. Man kann über einen einfachen Q&A-Editor auch eigene Orte hinzufügen.
-- Link zur QueerMap: https://map.qiekub.org/
+  Schreibe einen kurzen Bericht wie AWS einen Artikel über die QueerMap von Thomas Rosen geschrieben hat. Alle Informationen bekommst du aus den Stichpunkten.
+  Variere die Länge der Absätze. Schreib in der Ich-Perspektive als Thomas Rosen.
+  
+  Unsortierte Stichpunkte:
+  - Titel des Artikel von AWS: "Mapping safe places for people in the LGBTQ+ community"
+  - Link zum Artikel: <https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community>
+  - Der Artikel geht über die QueerMap by qiekub.
+  - QueerMap wurde von Thomas Rosen entwickelt/programmiert.
+  - Auf der Karte werden queere Orte angezeigt.
+  - AWS wollte Thomas interviewen. Obwohl das zum Teil natürlich pink-washing ist, hat Thomas gerne angenommen.
+  - Das Interview wurde in Englisch per Video Call durchgeführt.
+  - Im Artikel werden auch Marena Brinkhurst von Mapbox über die Technik (Vector-Tiles, OpenStreetMap) hinter QueerMap interviewt.
+  - Die Daten in der Karte basieren auf OpenStreetMap. Man kann über einen einfachen Q&A-Editor auch eigene Orte hinzufügen.
+  - Link zur QueerMap: https://map.qiekub.org/
 ---
 
 Amazon Web Services wollte mich interviewen!
