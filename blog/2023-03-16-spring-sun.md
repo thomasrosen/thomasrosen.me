@@ -4,7 +4,6 @@ title: Frühlingssonne
 slug: spring-sun
 font: serif
 tags:
-  - short
   - story
   - nature
 ---
