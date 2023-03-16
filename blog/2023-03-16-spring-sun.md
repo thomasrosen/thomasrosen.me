@@ -5,8 +5,8 @@ slug: spring-sun
 lang: de
 font: serif
 tags:
-  - story
-  - nature
+  - Story
+  - Nature
 ---
 
 Ein zügiger Schritt und ich bin draußen. Die kalte Luft wallt um mich.
