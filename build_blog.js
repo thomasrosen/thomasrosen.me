@@ -49,7 +49,10 @@ function buildBlog() {
               const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
               const data = matter(filecontent)
 
-              data.html = converter.makeHtml(data.content)
+              const markdown_img_regex = /!\[[^[\]]+\]\((([^()]+)\.[^()]*?)\)/gmi;
+              const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
+
+              data.html = converter.makeHtml(text)
               delete data.content
 
               return data
@@ -142,8 +145,8 @@ buildBlog()
       fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
 
       // Generate smaller versions of the images
-      const imageSizes = [100, 500];
-      const imageFormats = ['jpg', 'webp'];
+      const imageSizes = [1000] // 100, ...
+      const imageFormats = ['jpg'] // webp, jpg, png
 
       const files = fs.readdirSync(dir_images)
         
