@@ -74,6 +74,7 @@ buildBlog()
           date: article.data.date,
           title: article.data.title,
           slug: article.data.slug,
+          coverphoto: article.data.coverphoto,
           font: article.data.font,
           tags: article.data.tags,
         }

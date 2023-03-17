@@ -3,6 +3,7 @@ date: 2021-06-21T00:00
 title: |
   Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community
 slug: aws-queermap
+coverphoto: /images/blog/Screenshot_2023-03-16_at_22.47.12.png
 lang: de
 font: serif
 tags:
