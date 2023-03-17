@@ -99,6 +99,10 @@ body, p {
   letter-spacing: 0.25px;
 }
 
+img {
+  max-width: 100%;
+}
+
 button {
   font-family: var(--font-family-button);
   text-decoration: none;

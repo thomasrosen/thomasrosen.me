@@ -4,9 +4,12 @@ const matter = require('gray-matter');
 const fs = require('fs')
 
 // directory path
-const dir = './blog/'
+const dir_articles = './blog/articles/'
+const dir_images = './blog/images/'
 const blog_build_dir = './build/blog/'
 const articles_build_dir = './build/blog/articles/'
+const images_build_dir = './build/blog/images/'
+const public_blog_dir = './public/blog/'
 
 
 const showdown  = require('showdown')
@@ -27,7 +30,7 @@ const converter = new showdown.Converter({
 function buildBlog() {
   return new Promise((resolve, reject) => {
     // list all files in the directory
-    fs.readdir(dir, (error, files) => {
+    fs.readdir(dir_articles, (error, files) => {
       let articles = []
 
       try {
@@ -41,7 +44,7 @@ function buildBlog() {
           .map(filename => {
             if (filename.endsWith('.md')) {
 
-              const filecontent = fs.readFileSync(dir + filename, { encoding: 'utf8', flag: 'r' });
+              const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
               const data = matter(filecontent)
 
               // data.markdown = data.content
@@ -125,7 +128,24 @@ buildBlog()
 
 
 
-    const public_blog_dir = './public/blog/'
+    // START images
+
+    // check if build directory exists and create it, if not
+    if (fs.existsSync(dir_images)) {
+      if (!fs.existsSync(images_build_dir)) {
+        // create each directory in the path
+        fs.mkdirSync(images_build_dir, { recursive: true })
+      }
+
+      // copy images folder to ./public/blog/images
+      fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
+    }
+
+    // END images
+
+
+
+
     // delete blog_build_dir
     if (fs.existsSync(public_blog_dir)) {
       fs.rmdirSync(public_blog_dir, { recursive: true })
@@ -139,7 +159,6 @@ buildBlog()
 
     // copy blog_build_dir to ./public/blog
     fs.cpSync(blog_build_dir, public_blog_dir, { recursive: true, overwrite: true });
-
 
 
     console.info('✅ Blog build complete.')
