@@ -1,6 +1,8 @@
 console.info('➡️  Started building blog...') 
 
 const matter = require('gray-matter');
+const path = require('path')
+const sharp = require('sharp')
 const fs = require('fs')
 
 // directory path
@@ -67,7 +69,7 @@ function buildBlog() {
 }
 
 buildBlog()
-  .then(articles => {
+  .then(async articles => {
     console.info('✅ Loaded articles.')
 
     const summary_list = articles
@@ -138,8 +140,34 @@ buildBlog()
 
       // copy images folder to ./public/blog/images
       fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
-    }
 
+      // Generate smaller versions of the images
+      const imageSizes = [100, 500];
+      const imageFormats = ['jpg', 'webp'];
+
+      const files = fs.readdirSync(dir_images)
+        
+      for (const file of files) {
+        const filePath = path.join(dir_images, file)
+        const fileExtension = path.extname(filePath).toLowerCase()
+        const fileName = path.basename(filePath, fileExtension)
+
+        if (fileExtension === '.jpg' || fileExtension === '.jpeg' || fileExtension === '.png' || fileExtension === '.webp') {
+          const image = sharp(filePath);
+
+          for (const format of imageFormats) {
+            for (const size of imageSizes) {
+              const resizedImagePath = path.join(images_build_dir, `${fileName}_${size}.${format}`)
+              await image
+                .resize({ width: size })
+                .toFormat(format)
+                .toFile(resizedImagePath)
+            }
+          }
+        }
+      }
+
+    }
     // END images
 
 
