@@ -47,7 +47,6 @@ function buildBlog() {
               const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
               const data = matter(filecontent)
 
-              // data.markdown = data.content
               data.html = converter.makeHtml(data.content)
               delete data.content
 
