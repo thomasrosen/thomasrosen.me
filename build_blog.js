@@ -10,6 +10,7 @@ const articles_build_dir = './build/blog/articles/'
 
 
 const showdown  = require('showdown')
+showdown.setFlavor('github')
 const converter = new showdown.Converter({
   noHeaderId: true,
   headerLevelStart: 2,
@@ -20,6 +21,7 @@ const converter = new showdown.Converter({
   tasklists: true,
   simpleLineBreaks: true,
   openLinksInNewWindow: true,
+  ghCodeBlocks: true,
 })
 
 function buildBlog() {
