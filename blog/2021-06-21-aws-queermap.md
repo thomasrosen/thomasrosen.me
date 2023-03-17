@@ -6,9 +6,9 @@ slug: aws-queermap
 lang: de
 font: serif
 tags:
-  - AWS
+  - Amazon
   - queer
-stichpunkte: |
+notes: |
   Schreibe einen kurzen Bericht wie AWS einen Artikel über die QueerMap von Thomas Rosen geschrieben hat. Alle Informationen bekommst du aus den Stichpunkten.
   Variere die Länge der Absätze. Schreib in der Ich-Perspektive als Thomas Rosen.
 
