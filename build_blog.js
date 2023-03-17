@@ -85,7 +85,7 @@ buildBlog()
 
     // delete blog_build_dir
     if (fs.existsSync(blog_build_dir)) {
-      fs.rmdirSync(blog_build_dir, { recursive: true })
+      fs.rmSync(blog_build_dir, { recursive: true })
     }
 
     // check if build directory exists and create it, if not
