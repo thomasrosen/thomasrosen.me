@@ -50,7 +50,7 @@ function buildBlog() {
               const data = matter(filecontent)
 
               const markdown_img_regex = /!\[[^[\]]+\]\((([^()]+)\.[^()]*?)\)/gmi;
-              const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_800.jpg`))
+              const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
               data.html = converter.makeHtml(text)
               delete data.content
@@ -145,7 +145,7 @@ buildBlog()
       fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
 
       // Generate smaller versions of the images
-      const imageSizes = [800] // 100, ...
+      const imageSizes = [1000] // 100, ...
       const imageFormats = ['jpg'] // webp, jpg, png
 
       const files = fs.readdirSync(dir_images)
