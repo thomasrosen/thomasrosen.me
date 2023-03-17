@@ -115,7 +115,7 @@ buildBlog()
         const new_article = {
           article: {
             ...article.data,
-            html: article.html,
+            html: article.html || '',
           }
         }
 
