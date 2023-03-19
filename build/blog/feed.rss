@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 19 Mar 2023 21:55:45 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 19 Mar 2023 22:02:14 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Sun, 19 Mar 2023 21:55:45 GMT</pubDate>
+        <pubDate>Sun, 19 Mar 2023 22:02:14 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -57,6 +57,7 @@
             <category><![CDATA[queer]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
             <pubDate>Mon, 21 Jun 2021 00:00:00 GMT</pubDate>
+            <enclosure url="https://thomasrosen.me/media/Empty_Podcast_Audio.m4a" length="88636" type="audio/mp4"/>
             <itunes:explicit>False</itunes:explicit>
             <itunes:episodeType>Full</itunes:episodeType>
             <itunes:episode>1</itunes:episode>
@@ -74,6 +75,7 @@
             <category><![CDATA[Travel]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
             <pubDate>Fri, 06 Jan 2023 02:01:00 GMT</pubDate>
+            <enclosure url="https://thomasrosen.me/media/Empty_Podcast_Audio.m4a" length="88636" type="audio/mp4"/>
             <itunes:explicit>False</itunes:explicit>
             <itunes:episodeType>Full</itunes:episodeType>
             <itunes:episode>2</itunes:episode>
@@ -90,6 +92,7 @@
             <category><![CDATA[Nature]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
             <pubDate>Thu, 16 Mar 2023 16:13:00 GMT</pubDate>
+            <enclosure url="https://thomasrosen.me/media/Empty_Podcast_Audio.m4a" length="88636" type="audio/mp4"/>
             <itunes:explicit>False</itunes:explicit>
             <itunes:episodeType>Full</itunes:episodeType>
             <itunes:episode>3</itunes:episode>
