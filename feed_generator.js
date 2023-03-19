@@ -158,7 +158,7 @@ function generate_rss_feed(options) {
             href: coverphoto_url
           }
         }},
-        // {'itunes:duration': '7:04'}
+        {'itunes:duration': '0:10'}
       ]
     })
   }
