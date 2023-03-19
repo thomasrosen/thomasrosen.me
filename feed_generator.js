@@ -45,8 +45,8 @@ function generate_rss_feed(options) {
       'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
     },
     custom_elements: [
-      { 'itunes:type': 'Episodic' },
       { 'itunes:explicit': 'no' },
+      { 'itunes:type': 'episodic' },
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
