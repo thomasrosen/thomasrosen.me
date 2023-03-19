@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 19 Mar 2023 21:49:57 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 19 Mar 2023 21:55:45 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Sun, 19 Mar 2023 21:49:57 GMT</pubDate>
+        <pubDate>Sun, 19 Mar 2023 21:55:45 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -52,7 +52,7 @@
             <title><![CDATA[Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community
 ]]></title>
             <link>https://thomasrosen.me/articles/aws-queermap</link>
-            <guid isPermaLink="false">aws-queermap</guid>
+            <guid isPermaLink="false">77466582-4947-4ac4-84f2-a16b2b1f979a</guid>
             <category><![CDATA[Amazon]]></category>
             <category><![CDATA[queer]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
@@ -69,7 +69,7 @@
         <item>
             <title><![CDATA[Susan.]]></title>
             <link>https://thomasrosen.me/articles/susan</link>
-            <guid isPermaLink="false">susan</guid>
+            <guid isPermaLink="false">d15b4825-a205-47f0-a91f-844fa824791f</guid>
             <category><![CDATA[Story]]></category>
             <category><![CDATA[Travel]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
@@ -85,7 +85,7 @@
         <item>
             <title><![CDATA[Frühlingssonne]]></title>
             <link>https://thomasrosen.me/articles/spring-sun</link>
-            <guid isPermaLink="false">spring-sun</guid>
+            <guid isPermaLink="false">5bf76119-02e5-4c60-b8fd-1999545f4088</guid>
             <category><![CDATA[Story]]></category>
             <category><![CDATA[Nature]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
