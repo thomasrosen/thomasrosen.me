@@ -115,7 +115,7 @@ function generate_rss_feed(options) {
     managingEditor: email,
     webMaster: email,
     copyright: `${current_year} ${author}`,
-    // language: 'en',
+    language: 'en',
     categories: all_tags,
     pubDate: new Date().toISOString(),
     // ttl: '60',
