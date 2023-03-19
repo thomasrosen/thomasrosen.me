@@ -2,13 +2,97 @@ const RSS = require('rss')
 
 const author = 'Thomas Rosen'
 
+/*
+const categories = {
+  'Arts': [
+    'Design',
+    'Fashion & Beauty',
+    'Food',
+    'Literature',
+    'Performing Arts',
+    'Visual Arts',
+  ],
+  'Business': [
+    'Business News',
+    'Careers',
+    'Investing',
+    'Management & Marketing',
+    'Shopping',
+  ],
+  'Comedy': [],
+  'Education': [
+    'Education Technology',
+    'Higher Education',
+    'K-12',
+    'Language Courses',
+    'Training',
+  ],
+  'Games & Hobbies': [
+    'Automotive',
+    'Aviation',
+    'Hobbies',
+    'Other Games',
+    'Video Games',
+  ],
+  'Government & Organizations': [
+    'Local',
+    'National',
+    'Non-Profit',
+    'Regional',
+  ],
+  'Health': [
+    'Alternative Health',
+    'Fitness & Nutrition',
+    'Self-Help',
+    'Sexuality',
+  ],
+  'Kids & Family': [],
+  'Music': [],
+  'News & Politics': [],
+  'Religion & Spirituality': [
+    'Buddhism',
+    'Christianity',
+    'Hinduism',
+    'Islam',
+    'Judaism',
+    'Other',
+    'Spirituality',
+  ],
+  'Science & Medicine': [
+    'Medicine',
+    'Natural Sciences',
+    'Social Sciences',
+  ],
+  'Society & Culture': [
+    'History',
+    'Personal Journals',
+    'Philosophy',
+    'Places & Travel',
+  ],
+  'Sports & Recreation': [
+    'Amateur',
+    'College & High School',
+    'Outdoor',
+    'Professional',
+  ],
+  'Technology': [
+    'Gadgets',
+    'Podcasting',
+    'Software How-To',
+    'Tech News',
+  ],
+  'TV & Film': [],
+}
+*/
+
 function generate_rss_feed(options) {
 
   const {
     articles = []
   } = options || {}
 
-  const all_tags = [...new Set(articles.flatMap(article => article.data.tags || []))]
+  const all_tags = [...new Set(articles.flatMap(article => article.data.tags || []))]
+  const all_itunes_tags = [...new Set(articles.flatMap(article => article.data.itunes_tags || []))]
 
   const current_year = new Date().getFullYear()
 
@@ -51,7 +135,7 @@ function generate_rss_feed(options) {
           href: feed_image_url
         }
       }},
-      ...all_tags.map(tag => ({
+      ...all_itunes_tags.map(tag => ({
         'itunes:category': {
           _attr: {
             text: tag
