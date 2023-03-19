@@ -1,4 +1,5 @@
 ---
+id: 77466582-4947-4ac4-84f2-a16b2b1f979a
 date: 2021-06-21T00:00
 title: |
   Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community

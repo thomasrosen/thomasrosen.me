@@ -136,7 +136,7 @@ function generate_rss_feed(options) {
       title: article.data.title,
       description: article.data.markdown,
       url: `https://thomasrosen.me/articles/${article.data.slug}`, // link to the item
-      guid: article.data.slug, // optional - defaults to url
+      guid: article.data.id || undefined, // optional - defaults to url
       categories: article.data.tags, // optional - array of item categories
       author: author, // optional - defaults to feed author property
       date: article.data.date, // any format that js Date can parse.

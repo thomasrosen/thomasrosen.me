@@ -17,9 +17,11 @@
     "rss": "^1.2.2",
     "sharp": "^0.31.3",
     "showdown": "^2.1.0",
+    "uuid": "^9.0.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "uuid": "node new_uuid.js",
     "start_server": "node ./backend/index.js",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
