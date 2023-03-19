@@ -115,7 +115,7 @@ function generate_rss_feed(options) {
     managingEditor: email,
     webMaster: email,
     copyright: `${current_year} ${author}`,
-    // language: 'en',
+    language: 'en',
     categories: all_tags,
     pubDate: new Date().toISOString(),
     // ttl: '60',
@@ -123,6 +123,7 @@ function generate_rss_feed(options) {
       'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
     },
     custom_elements: [
+      { 'itunes:explicit': 'no' },
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
