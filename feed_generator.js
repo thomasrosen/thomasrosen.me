@@ -25,7 +25,7 @@ function generate_rss_feed(options) {
 
   /* lets create an rss feed */
   const feed = new RSS({
-    title: 'Thomas Rosen',
+    title: 'Thomas Rosen - Blog',
     description: description,
     feed_url: 'https://thomasrosen.me/blog/feed.rss',
     site_url: 'https://thomasrosen.me',
