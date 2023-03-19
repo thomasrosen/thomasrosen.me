@@ -142,10 +142,10 @@ function generate_rss_feed(options) {
       date: article.data.date, // any format that js Date can parse.
       // lat: 33.417974, //optional latitude field for GeoRSS
       // long: -111.933231, //optional longitude field for GeoRSS
-      // enclosure: {
-      //   url: '...',
-      //   file: 'path-to-file',
-      // }, // optional enclosure
+      enclosure: {
+        url: 'https://thomasrosen.me/media/Empty_Podcast_Audio.m4a',
+        file: './public/media/Empty_Podcast_Audio.m4a',
+      }, // optional enclosure
       custom_elements: [
         { 'itunes:explicit': 'False' },
         { 'itunes:episodeType': 'Full' }, // Full / Trailer / Bonus
