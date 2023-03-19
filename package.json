@@ -20,6 +20,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "start_server": "node ./backend/index.js",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "build_blog": "node ./build_blog.js",
