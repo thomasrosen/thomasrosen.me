@@ -5,6 +5,8 @@ const path = require('path')
 const sharp = require('sharp')
 const fs = require('fs')
 
+const { generate_rss_feed } = require('./feed_generator.js')
+
 // directory path
 const dir_articles = './blog/articles/'
 const dir_images = './blog/images/'
@@ -52,6 +54,7 @@ function buildBlog() {
               const markdown_img_regex = /!\[[^[\]]+\]\((([^()]+)\.[^()]*?)\)/gmi;
               const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
+              data.markdown = data.content
               data.html = converter.makeHtml(text)
               delete data.content
 
@@ -102,6 +105,9 @@ buildBlog()
     // write blog summary to file
     fs.writeFileSync(blog_build_dir + 'articles.json', JSON.stringify({ articles: summary_list }))
 
+    // write rss feed file (RSS2)
+    const xml = generate_rss_feed({ articles })
+    fs.writeFileSync(blog_build_dir + 'feed.rss', xml)
 
 
     // check if build directory exists and create it, if not
