@@ -7,6 +7,8 @@ font: serif
 tags:
   - Story
   - Nature
+itunes_tags:
+  - Literature
 ---
 
 Ein zügiger Schritt und ich bin draußen. Die kalte Luft wallt um mich.

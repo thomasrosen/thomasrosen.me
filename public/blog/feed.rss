@@ -9,13 +9,13 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 19 Mar 2023 21:10:47 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 19 Mar 2023 21:23:07 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Sun, 19 Mar 2023 21:10:47 GMT</pubDate>
+        <pubDate>Sun, 19 Mar 2023 21:23:07 GMT</pubDate>
         <copyright><![CDATA[2023 Thomas Rosen]]></copyright>
-        <managingEditor><![CDATA[Thomas Rosen]]></managingEditor>
-        <webMaster><![CDATA[Thomas Rosen]]></webMaster>
+        <managingEditor><![CDATA[hello@thomasrosen.me]]></managingEditor>
+        <webMaster><![CDATA[hello@thomasrosen.me]]></webMaster>
         <category><![CDATA[Amazon]]></category>
         <category><![CDATA[queer]]></category>
         <category><![CDATA[Story]]></category>
@@ -29,11 +29,12 @@
             <itunes:email>hello@thomasrosen.me</itunes:email>
         </itunes:owner>
         <itunes:image href="https://thomasrosen.me/logo512.jpg"/>
-        <itunes:category text="Amazon"/>
-        <itunes:category text="queer"/>
-        <itunes:category text="Story"/>
-        <itunes:category text="Travel"/>
-        <itunes:category text="Nature"/>
+        <itunes:category text="Non-Profit"/>
+        <itunes:category text="Self-Help"/>
+        <itunes:category text="Sexuality"/>
+        <itunes:category text="Places &amp; Travel"/>
+        <itunes:category text="Technology"/>
+        <itunes:category text="Literature"/>
         <item>
             <title><![CDATA[Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community
 ]]></title>
