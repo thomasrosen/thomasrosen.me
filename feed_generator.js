@@ -35,7 +35,7 @@ function generate_rss_feed(options) {
     author: author,
     managingEditor: `${email} (${author})`,
     webMaster: `${email} (${author})`,
-    copyright: `${current_year} ${author}`,
+    copyright: `Copyright ${current_year} ${author}`,
     language: 'en',
     categories: all_tags,
     pubDate: new Date().toISOString(),
