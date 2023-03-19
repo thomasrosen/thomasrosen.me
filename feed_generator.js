@@ -45,8 +45,8 @@ function generate_rss_feed(options) {
       'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
     },
     custom_elements: [
-      { 'itunes:explicit': 'False' },
-      { 'itunes:type': 'Episodic' },
+      { 'itunes:explicit': 'no' },
+      { 'itunes:type': 'episodic' },
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
@@ -147,8 +147,8 @@ function generate_rss_feed(options) {
         file: './public/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
       }, // optional enclosure
       custom_elements: [
-        { 'itunes:explicit': 'False' },
-        { 'itunes:episodeType': 'Full' }, // Full / Trailer / Bonus
+        { 'itunes:explicit': 'no' },
+        { 'itunes:episodeType': 'full' }, // full / trailer / bonus
         { 'itunes:episode': episode_number },
         { 'itunes:season': 1 },
         { 'itunes:author': author },
