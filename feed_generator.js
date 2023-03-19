@@ -45,6 +45,7 @@ function generate_rss_feed(options) {
     },
     custom_elements: [
       { 'itunes:explicit': 'False' },
+      { 'itunes:type': 'Episodic' },
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
@@ -118,6 +119,8 @@ function generate_rss_feed(options) {
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i]
 
+    const episode_number = i + 1
+
     let coverphoto_url = feed_image_url
     const coverphoto = article.data.coverphoto
     if (
@@ -143,6 +146,10 @@ function generate_rss_feed(options) {
       //   file: 'path-to-file',
       // }, // optional enclosure
       custom_elements: [
+        { 'itunes:explicit': 'False' },
+        { 'itunes:episodeType': 'Full' }, // Full / Trailer / Bonus
+        { 'itunes:episode': episode_number },
+        { 'itunes:season': 1 },
         { 'itunes:author': author },
         { 'itunes:subtitle': article.data.title },
         { 'itunes:image': {
