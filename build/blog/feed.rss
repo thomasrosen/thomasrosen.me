@@ -4,15 +4,15 @@
         <description><![CDATA[This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.]]></description>
         <link>https://thomasrosen.me</link>
         <image>
-            <url>https://thomasrosen.me/logo512.jpg</url>
+            <url>https://thomasrosen.me/DSC03214_square_3000.jpg</url>
             <title>Thomas Rosen - Blog</title>
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 19 Mar 2023 22:08:02 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 19 Mar 2023 22:26:51 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Sun, 19 Mar 2023 22:08:02 GMT</pubDate>
+        <pubDate>Sun, 19 Mar 2023 22:26:51 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -31,7 +31,7 @@
             <itunes:name>Thomas Rosen</itunes:name>
             <itunes:email>hello@thomasrosen.me</itunes:email>
         </itunes:owner>
-        <itunes:image href="https://thomasrosen.me/logo512.jpg"/>
+        <itunes:image href="https://thomasrosen.me/DSC03214_square_3000.jpg"/>
         <itunes:category text="Society &amp; Culture">
             <itunes:category text="Personal Journals"/>
             <itunes:category text="Places &amp; Travel"/>
@@ -83,7 +83,7 @@
             <itunes:season>1</itunes:season>
             <itunes:author>Thomas Rosen</itunes:author>
             <itunes:subtitle>Susan.</itunes:subtitle>
-            <itunes:image href="https://thomasrosen.me/logo512.jpg"/>
+            <itunes:image href="https://thomasrosen.me/DSC03214_square_3000.jpg"/>
             <itunes:duration>0:10</itunes:duration>
         </item>
         <item>
@@ -101,7 +101,7 @@
             <itunes:season>1</itunes:season>
             <itunes:author>Thomas Rosen</itunes:author>
             <itunes:subtitle>Frühlingssonne</itunes:subtitle>
-            <itunes:image href="https://thomasrosen.me/logo512.jpg"/>
+            <itunes:image href="https://thomasrosen.me/DSC03214_square_3000.jpg"/>
             <itunes:duration>0:10</itunes:duration>
         </item>
     </channel>
