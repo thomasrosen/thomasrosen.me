@@ -147,8 +147,8 @@ function generate_rss_feed(options) {
         file: './public/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
       }, // optional enclosure
       custom_elements: [
-        { 'itunes:episodeType': 'Full' }, // Full / Trailer / Bonus
         { 'itunes:explicit': 'no' },
+        { 'itunes:episodeType': 'full' }, // full / trailer / bonus
         { 'itunes:episode': episode_number },
         { 'itunes:season': 1 },
         { 'itunes:author': author },
