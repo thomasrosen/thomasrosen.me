@@ -1,89 +1,11 @@
 const RSS = require('rss')
 
-const author = 'Thomas Rosen'
-
 /*
-const categories = {
-  'Arts': [
-    'Design',
-    'Fashion & Beauty',
-    'Food',
-    'Literature',
-    'Performing Arts',
-    'Visual Arts',
-  ],
-  'Business': [
-    'Business News',
-    'Careers',
-    'Investing',
-    'Management & Marketing',
-    'Shopping',
-  ],
-  'Comedy': [],
-  'Education': [
-    'Education Technology',
-    'Higher Education',
-    'K-12',
-    'Language Courses',
-    'Training',
-  ],
-  'Games & Hobbies': [
-    'Automotive',
-    'Aviation',
-    'Hobbies',
-    'Other Games',
-    'Video Games',
-  ],
-  'Government & Organizations': [
-    'Local',
-    'National',
-    'Non-Profit',
-    'Regional',
-  ],
-  'Health': [
-    'Alternative Health',
-    'Fitness & Nutrition',
-    'Self-Help',
-    'Sexuality',
-  ],
-  'Kids & Family': [],
-  'Music': [],
-  'News & Politics': [],
-  'Religion & Spirituality': [
-    'Buddhism',
-    'Christianity',
-    'Hinduism',
-    'Islam',
-    'Judaism',
-    'Other',
-    'Spirituality',
-  ],
-  'Science & Medicine': [
-    'Medicine',
-    'Natural Sciences',
-    'Social Sciences',
-  ],
-  'Society & Culture': [
-    'History',
-    'Personal Journals',
-    'Philosophy',
-    'Places & Travel',
-  ],
-  'Sports & Recreation': [
-    'Amateur',
-    'College & High School',
-    'Outdoor',
-    'Professional',
-  ],
-  'Technology': [
-    'Gadgets',
-    'Podcasting',
-    'Software How-To',
-    'Tech News',
-  ],
-  'TV & Film': [],
-}
+https://help.apple.com/itc/podcasts_connect/#/itcb54353390
+https://podcasters.apple.com/support/1691-apple-podcasts-categories
 */
+
+const author = 'Thomas Rosen'
 
 function generate_rss_feed(options) {
 
@@ -92,7 +14,6 @@ function generate_rss_feed(options) {
   } = options || {}
 
   const all_tags = [...new Set(articles.flatMap(article => article.data.tags || []))]
-  const all_itunes_tags = [...new Set(articles.flatMap(article => article.data.itunes_tags || []))]
 
   const current_year = new Date().getFullYear()
 
@@ -104,7 +25,7 @@ function generate_rss_feed(options) {
 
   /* lets create an rss feed */
   const feed = new RSS({
-    title: 'Thomas Rosen',
+    title: 'Thomas Rosen - Blog',
     description: description,
     feed_url: 'https://thomasrosen.me/blog/feed.rss',
     site_url: 'https://thomasrosen.me',
@@ -123,7 +44,8 @@ function generate_rss_feed(options) {
       'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
     },
     custom_elements: [
-      { 'itunes:explicit': 'no' },
+      { 'itunes:explicit': 'False' },
+      { 'itunes:type': 'Episodic' },
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
@@ -136,18 +58,68 @@ function generate_rss_feed(options) {
           href: feed_image_url
         }
       }},
-      ...all_itunes_tags.map(tag => ({
-        'itunes:category': {
+      {'itunes:category': [
+        {_attr: {
+          text: 'Society & Culture'
+        }},
+        {'itunes:category': {
           _attr: {
-            text: tag
+            text: 'Personal Journals'
           }
-        }
-      }))
+        }},
+        {'itunes:category': {
+          _attr: {
+            text: 'Places & Travel'
+          }
+        }},
+      ]},
+      {'itunes:category': [
+        {_attr: {
+          text: 'Technology'
+        }},
+      ]},
+      {'itunes:category': [
+        {_attr: {
+          text: 'Arts'
+        }},
+        {'itunes:category': {
+          _attr: {
+            text: 'Books'
+          }
+        }},
+      ]},
+      {'itunes:category': [
+        {_attr: {
+          text: 'Business'
+        }},
+        {'itunes:category': {
+          _attr: {
+            text: 'Non-Profit'
+          }
+        }},
+      ]},
+      {'itunes:category': [
+        {_attr: {
+          text: 'Health & Fitness'
+        }},
+        {'itunes:category': {
+          _attr: {
+            text: 'Mental Health'
+          }
+        }},
+        {'itunes:category': {
+          _attr: {
+            text: 'Sexuality'
+          }
+        }},
+      ]},
     ]
   })
 
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i]
+
+    const episode_number = i + 1
 
     let coverphoto_url = feed_image_url
     const coverphoto = article.data.coverphoto
@@ -174,6 +146,10 @@ function generate_rss_feed(options) {
       //   file: 'path-to-file',
       // }, // optional enclosure
       custom_elements: [
+        { 'itunes:explicit': 'False' },
+        { 'itunes:episodeType': 'Full' }, // Full / Trailer / Bonus
+        { 'itunes:episode': episode_number },
+        { 'itunes:season': 1 },
         { 'itunes:author': author },
         { 'itunes:subtitle': article.data.title },
         { 'itunes:image': {
