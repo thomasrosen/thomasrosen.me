@@ -1,6 +1,8 @@
 const RSS = require('rss')
 
 /*
+https://help.apple.com/itc/podcasts_connect/#/itcb54353390
+https://podcasters.apple.com/support/1691-apple-podcasts-categories
 */
 
 const author = 'Thomas Rosen'
