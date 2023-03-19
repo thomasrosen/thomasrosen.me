@@ -9,12 +9,6 @@ font: serif
 tags:
   - Amazon
   - queer
-itunes_tags:
-  - Non-Profit
-  - Self-Help
-  - Sexuality
-  - Places & Travel
-  - Technology
 notes: |
   Schreibe einen kurzen Bericht wie AWS einen Artikel über die QueerMap von Thomas Rosen geschrieben hat. Alle Informationen bekommst du aus den Stichpunkten.
   Variere die Länge der Absätze. Schreib in der Ich-Perspektive als Thomas Rosen.
