@@ -1,6 +1,7 @@
 const RSS = require('rss')
 
 /*
+https://podcasters.apple.com/support/823-podcast-requirements
 https://help.apple.com/itc/podcasts_connect/#/itcb54353390
 https://podcasters.apple.com/support/1691-apple-podcasts-categories
 */
