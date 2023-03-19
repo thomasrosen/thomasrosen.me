@@ -143,8 +143,8 @@ function generate_rss_feed(options) {
       // lat: 33.417974, //optional latitude field for GeoRSS
       // long: -111.933231, //optional longitude field for GeoRSS
       enclosure: {
-        url: 'https://thomasrosen.me/media/Empty_Podcast_Audio.m4a',
-        file: './public/media/Empty_Podcast_Audio.m4a',
+        url: 'https://thomasrosen.me/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
+        file: './public/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
       }, // optional enclosure
       custom_elements: [
         { 'itunes:explicit': 'False' },
