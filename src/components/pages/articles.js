@@ -54,6 +54,14 @@ export default function Articles() {
   return <div className="tab_content">
     <h2>Blog</h2>
 
+    <a target="_blank" href="/blog/feed.rss">
+      <button>RSS-Feed</button>
+    </a>
+
+    <br />
+    <br />
+    <br />
+
     {loading && <p>Loading articles...</p>}
     {error && <p>Error loading articles: {error.message}</p>}
 
