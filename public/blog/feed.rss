@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 20 Mar 2023 05:38:23 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Mar 2023 05:38:48 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Mon, 20 Mar 2023 05:38:23 GMT</pubDate>
+        <pubDate>Mon, 20 Mar 2023 05:38:48 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -122,7 +122,7 @@
             <itunes:author>Thomas Rosen</itunes:author>
             <itunes:subtitle></itunes:subtitle>
             <itunes:summary></itunes:summary>
-            <itunes:image href="https://thomasrosen.me/DSC03214_square_3000.jpg"/>
+            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot 2023-03-20 at 06.25.10.png"/>
             <itunes:duration>0:10</itunes:duration>
         </item>
     </channel>
