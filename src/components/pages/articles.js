@@ -81,7 +81,8 @@ export default function Articles() {
         <p><strong style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '15px',
+          gap: '5px 15px',
+          flexWrap: 'wrap',
         }}>
           {
             [
