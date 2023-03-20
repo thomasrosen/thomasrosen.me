@@ -54,7 +54,7 @@ function buildBlog() {
               const markdown_img_regex = /!\[[^[\]]+\]\((([^()]+)\.[^()]*?)\)/gmi;
               const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
-              data.markdown = data.content
+              data.plaintext = `${data.content}`
               data.html = converter.makeHtml(text)
               delete data.content
 
@@ -128,6 +128,7 @@ buildBlog()
         const new_article = {
           article: {
             ...article.data,
+            plaintext: article.plaintext || '',
             html: article.html || '',
           }
         }
