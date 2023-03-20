@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 20 Mar 2023 05:48:36 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Mar 2023 06:50:03 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Mon, 20 Mar 2023 05:48:36 GMT</pubDate>
+        <pubDate>Mon, 20 Mar 2023 06:50:03 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -68,7 +68,7 @@ Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap
 
 Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier's mal aus, und wenn du coole queere Orte kennst, dann füg sie doch einfach hinzu!
 
-Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden. 
+Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden.
 ]]></description>
             <link>https://thomasrosen.me/articles/aws-queermap</link>
             <guid isPermaLink="false">77466582-4947-4ac4-84f2-a16b2b1f979a</guid>
@@ -99,7 +99,7 @@ Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap
 
 Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier&apos;s mal aus, und wenn du coole queere Orte kennst, dann füg sie doch einfach hinzu!
 
-Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden. 
+Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden.
 </itunes:subtitle>
             <itunes:summary>
 ![Screenshot of the article](&lt;/blog/images/Screenshot 2023-03-16 at 22.47.12.png&gt;)
@@ -118,7 +118,7 @@ Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap
 
 Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier&apos;s mal aus, und wenn du coole queere Orte kennst, dann füg sie doch einfach hinzu!
 
-Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden. 
+Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden.
 </itunes:summary>
             <itunes:image href="https://thomasrosen.me/blog/images/Screenshot 2023-03-16 at 22.47.12.png"/>
             <itunes:duration>0:10</itunes:duration>
@@ -252,7 +252,7 @@ As a member of the queer community, I understand how challenging it can be to fi
 
 The idea for Queer Resources came to me while developing the QueerMap, a project aimed at identifying queer-friendly places worldwide, particularly for queer youth. During the development process, I realized that there were already many excellent websites and resources available. However, these resources were scattered, making it challenging for users to find the information they needed. As a result, I decided to compile these links into one searchable database, making it easier for users to access the information they need.
 
-![Screenshot of the website](</blog/images/Screenshot 2023-03-20 at 06.25.32.png>)
+![Screenshot of the website](</blog/images/Screenshot 2023-03-20 at 06.25.10.png>)
 
 Queer Resources contains over 60 links covering various topics such as events, health, news, historical knowledge, places, trans, gay groups, and youth. Users can filter the links by location and tags, making it easier to find relevant resources.
 
@@ -278,7 +278,7 @@ As a member of the queer community, I understand how challenging it can be to fi
 
 The idea for Queer Resources came to me while developing the QueerMap, a project aimed at identifying queer-friendly places worldwide, particularly for queer youth. During the development process, I realized that there were already many excellent websites and resources available. However, these resources were scattered, making it challenging for users to find the information they needed. As a result, I decided to compile these links into one searchable database, making it easier for users to access the information they need.
 
-![Screenshot of the website](&lt;/blog/images/Screenshot 2023-03-20 at 06.25.32.png&gt;)
+![Screenshot of the website](&lt;/blog/images/Screenshot 2023-03-20 at 06.25.10.png&gt;)
 
 Queer Resources contains over 60 links covering various topics such as events, health, news, historical knowledge, places, trans, gay groups, and youth. Users can filter the links by location and tags, making it easier to find relevant resources.
 
@@ -293,7 +293,7 @@ As a member of the queer community, I understand how challenging it can be to fi
 
 The idea for Queer Resources came to me while developing the QueerMap, a project aimed at identifying queer-friendly places worldwide, particularly for queer youth. During the development process, I realized that there were already many excellent websites and resources available. However, these resources were scattered, making it challenging for users to find the information they needed. As a result, I decided to compile these links into one searchable database, making it easier for users to access the information they need.
 
-![Screenshot of the website](&lt;/blog/images/Screenshot 2023-03-20 at 06.25.32.png&gt;)
+![Screenshot of the website](&lt;/blog/images/Screenshot 2023-03-20 at 06.25.10.png&gt;)
 
 Queer Resources contains over 60 links covering various topics such as events, health, news, historical knowledge, places, trans, gay groups, and youth. Users can filter the links by location and tags, making it easier to find relevant resources.
 

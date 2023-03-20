@@ -10,9 +10,11 @@ const { generate_rss_feed } = require('./feed_generator.js')
 // directory path
 const dir_articles = './blog/articles/'
 const dir_images = './blog/images/'
+const dir_audio = './blog/audio/'
 const blog_build_dir = './build/blog/'
 const articles_build_dir = './build/blog/articles/'
 const images_build_dir = './build/blog/images/'
+const audio_build_dir = './build/blog/audio/'
 const public_blog_dir = './public/blog/'
 
 
@@ -178,8 +180,21 @@ buildBlog()
       }
 
     }
+    
     // END images
 
+
+
+    // START audio
+    // check if build directory exists and create it, if not
+    if (fs.existsSync(dir_audio)) {
+      if (!fs.existsSync(audio_build_dir)) {
+        // create each directory in the path
+        fs.mkdirSync(audio_build_dir, { recursive: true })
+      }
+      fs.cpSync(dir_audio, audio_build_dir, { recursive: true, overwrite: true });
+    }
+    // END audio
 
 
 

@@ -3,13 +3,13 @@
     "main.css": "/static/css/main.41f481a8.chunk.css",
     "main.js": "/static/js/main.c1b39d7d.chunk.js",
     "main.js.map": "/static/js/main.c1b39d7d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.ab822339.js",
-    "runtime-main.js.map": "/static/js/runtime-main.ab822339.js.map",
+    "runtime-main.js": "/static/js/runtime-main.16026158.js",
+    "runtime-main.js.map": "/static/js/runtime-main.16026158.js.map",
     "static/js/2.4b956ec9.chunk.js": "/static/js/2.4b956ec9.chunk.js",
     "static/js/2.4b956ec9.chunk.js.map": "/static/js/2.4b956ec9.chunk.js.map",
     "static/css/3.42be4eb0.chunk.css": "/static/css/3.42be4eb0.chunk.css",
-    "static/js/3.b97988a4.chunk.js": "/static/js/3.b97988a4.chunk.js",
-    "static/js/3.b97988a4.chunk.js.map": "/static/js/3.b97988a4.chunk.js.map",
+    "static/js/3.9db9572e.chunk.js": "/static/js/3.9db9572e.chunk.js",
+    "static/js/3.9db9572e.chunk.js.map": "/static/js/3.9db9572e.chunk.js.map",
     "static/css/4.42be4eb0.chunk.css": "/static/css/4.42be4eb0.chunk.css",
     "static/js/4.17e6d616.chunk.js": "/static/js/4.17e6d616.chunk.js",
     "static/js/4.17e6d616.chunk.js.map": "/static/js/4.17e6d616.chunk.js.map",
@@ -22,7 +22,7 @@
     "static/media/index.css": "/static/media/ubuntu-v20-latin-regular.f00252d5.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ab822339.js",
+    "static/js/runtime-main.16026158.js",
     "static/js/2.4b956ec9.chunk.js",
     "static/css/main.41f481a8.chunk.css",
     "static/js/main.c1b39d7d.chunk.js"

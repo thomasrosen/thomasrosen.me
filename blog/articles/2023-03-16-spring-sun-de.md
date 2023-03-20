@@ -3,6 +3,8 @@ id: 5bf76119-02e5-4c60-b8fd-1999545f4088
 date: 2023-03-16T16:13
 title: Frühlingssonne
 slug: spring-sun
+audio: /blog/audio/2023-03-16-spring-sun-de.mp3
+audio_length: 00:46
 lang: de
 font: serif
 tags:
