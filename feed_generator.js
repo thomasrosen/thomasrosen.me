@@ -26,7 +26,7 @@ function generate_rss_feed(options) {
 
   const description = 'This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.'
 
-  const feed_image_url = 'https://thomasrosen.me/DSC03214_square_3000.jpg'
+  const feed_image_url = 'https://thomasrosen.me/DSC03214_square_2000.jpg'
 
   const email = 'hello@thomasrosen.me'
 
