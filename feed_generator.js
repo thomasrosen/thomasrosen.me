@@ -140,7 +140,7 @@ function generate_rss_feed(options) {
 
     feed.item({
       title: article.data.title,
-      description: article.data.markdown,
+      description: article.data.plaintext,
       url: `https://thomasrosen.me/articles/${article.data.slug}`, // link to the item
       guid: article.data.id || undefined, // optional - defaults to url
       categories: article.data.tags, // optional - array of item categories
@@ -158,7 +158,8 @@ function generate_rss_feed(options) {
         { 'itunes:episode': episode_number },
         { 'itunes:season': 1 },
         { 'itunes:author': author },
-        { 'itunes:subtitle': article.data.title },
+        { 'itunes:subtitle': article.data.plaintext },
+        { 'itunes:summary': article.data.plaintext },
         { 'itunes:image': {
           _attr: {
             href: coverphoto_url
