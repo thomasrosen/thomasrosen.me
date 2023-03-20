@@ -80,6 +80,7 @@ export default function Articles() {
         <p><strong>
           {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
         </strong></p>
+        <p>{article.summary}</p>
       </div>)}
     </div>
 
