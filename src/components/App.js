@@ -8,8 +8,10 @@ import { NavLink, Outlet } from 'react-router-dom'
 export default function App() {
   return <div className="app_wrapper">
 
-    <div alt="Thomas Rosen eating a slice watermelon." className="headerImageOfMe"></div>
-    <h1 style={{ textAlign: 'center' }}>Thomas Rosen</h1>
+    <header>
+      <div alt="Thomas Rosen eating a slice watermelon." className="headerImageOfMe"></div>
+      <h1 style={{ textAlign: 'center' }}>Thomas Rosen</h1>
+    </header>
 
     <br />
     
