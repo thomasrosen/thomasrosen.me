@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 20 Mar 2023 01:08:43 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Mar 2023 05:25:28 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Mon, 20 Mar 2023 01:08:43 GMT</pubDate>
+        <pubDate>Mon, 20 Mar 2023 05:25:28 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -105,7 +105,7 @@
             <itunes:duration>0:10</itunes:duration>
         </item>
         <item>
-            <title><![CDATA[Queer Resources: A Helpful Collection of Resources for the Queer Community
+            <title><![CDATA[Queer Resources: A Collection of Links for the Queer Community
 ]]></title>
             <link>https://thomasrosen.me/articles/queer-resources</link>
             <guid isPermaLink="false">0ef88ae0-bb34-4a3e-b936-280020bff3c3</guid>
@@ -118,7 +118,7 @@
             <itunes:episode>4</itunes:episode>
             <itunes:season>1</itunes:season>
             <itunes:author>Thomas Rosen</itunes:author>
-            <itunes:subtitle>Queer Resources: A Helpful Collection of Resources for the Queer Community
+            <itunes:subtitle>Queer Resources: A Collection of Links for the Queer Community
 </itunes:subtitle>
             <itunes:image href="https://thomasrosen.me/DSC03214_square_3000.jpg"/>
             <itunes:duration>0:10</itunes:duration>
