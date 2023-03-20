@@ -40,6 +40,7 @@ export default function Articles() {
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .map(article => {
             article.date = getRelativeTime(new Date(article.date))
+            article.has_tags = !!article.tags && Array.isArray(article.tags) && article.tags.length > 0
             return article
           })
         setArticles(data.articles)
@@ -77,8 +78,20 @@ export default function Articles() {
             {article.title}
           </Link>
         </h3>
-        <p><strong>
-          {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
+        <p><strong style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '15px',
+        }}>
+          {
+            [
+              <span>{article.date}</span>,
+              (article.has_tags ? <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span> : null),
+              (article.has_audio ? <span>🔊</span> : null)
+            ]
+            .filter(Boolean)
+            .map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>)
+          }
         </strong></p>
         <p>{article.summary}</p>
       </div>)}

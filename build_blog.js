@@ -104,6 +104,7 @@ buildBlog()
           font: article.data.font,
           tags: article.data.tags,
           summary: article.summary,
+          has_audio: !!article.data.audio && typeof article.data.audio === 'string' && article.data.audio.length > 0,
         }
       })
 
