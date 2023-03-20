@@ -1,12 +1,12 @@
 ---
 id: 0ef88ae0-bb34-4a3e-b936-280020bff3c3
 date: 2023-03-20T01:52
-title: Queer Resources: A Helpful Collection of Resources for the Queer Community
+title: |
+  Queer Resources: A Helpful Collection of Resources for the Queer Community
 slug: queer-resources
 lang: de
 font: serif
-tags:
-  - queer
+tags: ["queer"]
 ---
 
 As a member of the queer community, I understand how challenging it can be to find reliable resources that cater to our unique needs. That’s why I created Queer Resources, a website that brings together valuable information for the queer community and allies.
