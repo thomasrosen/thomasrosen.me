@@ -34,9 +34,12 @@ const converter = new showdown.Converter({
 })
 
 function buildBlog() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
+    const { remark } = await import('remark');
+    const { default: strip } = await import('strip-markdown');
+
     // list all files in the directory
-    fs.readdir(dir_articles, (error, files) => {
+    await fs.readdir(dir_articles, async (error, files) => {
       let articles = []
 
       try {
@@ -46,8 +49,9 @@ function buildBlog() {
 
         // files object contains all files names
         // log them on console
-        articles = files
-          .map(filename => {
+        articles = await Promise.all(
+          files
+          .map(async filename => {
             if (filename.endsWith('.md')) {
 
               const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
@@ -56,7 +60,12 @@ function buildBlog() {
               const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.[^()]*?)>?\)/gmi;
               const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
-              data.plaintext = `${data.content}`
+              const plaintext = await remark()
+                .use(strip)
+                .process(data.content)
+                .then(file => String(file))
+
+              data.plaintext = plaintext
               data.html = converter.makeHtml(text)
               delete data.content
 
@@ -66,6 +75,7 @@ function buildBlog() {
             return null
           })
           .filter(Boolean)
+        )
 
       } catch (error) {
         reject(error)
