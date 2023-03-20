@@ -61,7 +61,7 @@ function buildBlog() {
               const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
               let plaintext = `${data.content}`
-                .replace(markdown_img_regex, (match, g1, g2) => '')
+                .replace(markdown_img_regex, () => '') // replace all images with empty string (only in the plaintext version)
 
               plaintext = await remark()
                 .use(strip)
