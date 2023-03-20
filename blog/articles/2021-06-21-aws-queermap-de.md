@@ -4,6 +4,8 @@ date: 2021-06-21T00:00
 title: |
   Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community
 slug: aws-queermap
+audio: /blog/audio/2021-06-21-aws-queermap-de.mp3
+audio_length: 01:33
 coverphoto: /blog/images/Screenshot 2023-03-16 at 22.47.12.png
 lang: de
 font: serif
@@ -16,7 +18,7 @@ notes: |
 
   Unsortierte Stichpunkte:
   - Titel des Artikel von AWS: "Mapping safe places for people in the LGBTQ+ community"
-  - Link zum Artikel: <https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community>
+  - Link zum Artikel: [aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community](https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community)
   - Der Artikel geht über die QueerMap by qiekub.
   - QueerMap wurde von Thomas Rosen entwickelt/programmiert.
   - Auf der Karte werden queere Orte angezeigt.
@@ -41,6 +43,6 @@ Für mich war ungewohnt mit Personen in einer 9 Stunden entfernten Zeitzone zu s
 In dem Artikel kommt auch Marena Brinkhurst von Mapbox zu Wort. Sie erzählt was über die Technik hinter der QueerMap, wie zum Beispiel Vector-Tiles und OpenStreetMap. Die Daten für die Karte kommen übrigens von OpenStreetMap, und mit einem einfachen Q&A-Editor kann man sogar selbst Orte hinzufügen.
 Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap macht.
 
-Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier's mal aus, und wenn du coole queere Orte kennst, dann füg sie doch einfach hinzu!
+Du kannst die QueerMap hier anschauen: [map.qiekub.org](https://map.qiekub.org/). Probier's mal aus, und wenn du coole queere Orte kennst, dann füg sie doch einfach hinzu!
 
 Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden.
