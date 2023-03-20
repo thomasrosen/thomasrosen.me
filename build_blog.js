@@ -51,7 +51,7 @@ function buildBlog() {
               const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
               const data = matter(filecontent)
 
-              const markdown_img_regex = /!\[[^[\]]+\]\((([^()]+)\.[^()]*?)\)/gmi;
+              const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.[^()]*?)>?\)/gmi;
               const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
               data.plaintext = `${data.content}`
