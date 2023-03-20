@@ -151,7 +151,7 @@ function generate_rss_feed(options) {
       enclosure: {
         url: 'https://thomasrosen.me/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
         file: './public/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
-      }, // optional enclosure
+      },
       custom_elements: [
         { 'itunes:explicit': 'no' },
         { 'itunes:episodeType': 'full' }, // full / trailer / bonus
