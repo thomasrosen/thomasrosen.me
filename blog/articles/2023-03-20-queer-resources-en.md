@@ -5,7 +5,7 @@ title: |
   Queer Resources: A Collection of Links for the Queer Community
 slug: queer-resources
 coverphoto: /blog/images/Screenshot 2023-03-20 at 06.25.10.png
-lang: de
+lang: en
 font: serif
 tags:
   - queer
