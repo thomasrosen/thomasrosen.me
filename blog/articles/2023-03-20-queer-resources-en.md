@@ -4,6 +4,8 @@ date: 2023-03-20T01:52
 title: |
   Queer Resources: A Collection of Links for the Queer Community
 slug: queer-resources
+audio: /blog/audio/2023-03-20-queer-resources-en.mp3
+audio_length: 02:02
 coverphoto: /blog/images/Screenshot 2023-03-20 at 06.25.10.png
 lang: en
 font: serif
