@@ -2,7 +2,7 @@
 id: 0ef88ae0-bb34-4a3e-b936-280020bff3c3
 date: 2023-03-20T01:52
 title: |
-  Queer Resources: A Helpful Collection of Resources for the Queer Community
+  Queer Resources: A Collection of Links for the Queer Community
 slug: queer-resources
 lang: de
 font: serif
