@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 20 Mar 2023 05:42:07 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Mar 2023 05:48:36 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Mon, 20 Mar 2023 05:42:07 GMT</pubDate>
+        <pubDate>Mon, 20 Mar 2023 05:48:36 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -52,7 +52,7 @@
             <title><![CDATA[Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community
 ]]></title>
             <description><![CDATA[
-![Screenshot of the article](/blog/images/Screenshot_2023-03-16_at_22.47.12.png)
+![Screenshot of the article](</blog/images/Screenshot 2023-03-16 at 22.47.12.png>)
 
 Amazon Web Services hat mich interviewt!
 
@@ -61,7 +61,7 @@ Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Arti
 AWS hat mich gefragt, ob ich mit ihnen über das Projekt sprechen möchte. Klar, das ist ziemlich sicher auch pink-washing, aber ich dachte, es ist eine gute Chance, um die QueerMap bekannter zu machen. Das Interview haben wir dann auf Englisch per Videoanruf gemacht.
 Für mich war ungewohnt mit Personen in einer 9 Stunden entfernten Zeitzone zu sprechen. Aber ich fands es auch ein tolles Erlebniss.
 
-![Screenshot of the editor](/blog/images/Screenshot_2023-03-16_at_22.50.15.png)
+![Screenshot of the editor](</blog/images/Screenshot 2023-03-16 at 22.50.15.png>)
 
 In dem Artikel kommt auch Marena Brinkhurst von Mapbox zu Wort. Sie erzählt was über die Technik hinter der QueerMap, wie zum Beispiel Vector-Tiles und OpenStreetMap. Die Daten für die Karte kommen übrigens von OpenStreetMap, und mit einem einfachen Q&A-Editor kann man sogar selbst Orte hinzufügen.
 Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap macht.
@@ -83,7 +83,7 @@ Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu 
             <itunes:season>1</itunes:season>
             <itunes:author>Thomas Rosen</itunes:author>
             <itunes:subtitle>
-![Screenshot of the article](/blog/images/Screenshot_2023-03-16_at_22.47.12.png)
+![Screenshot of the article](&lt;/blog/images/Screenshot 2023-03-16 at 22.47.12.png&gt;)
 
 Amazon Web Services hat mich interviewt!
 
@@ -92,7 +92,7 @@ Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Arti
 AWS hat mich gefragt, ob ich mit ihnen über das Projekt sprechen möchte. Klar, das ist ziemlich sicher auch pink-washing, aber ich dachte, es ist eine gute Chance, um die QueerMap bekannter zu machen. Das Interview haben wir dann auf Englisch per Videoanruf gemacht.
 Für mich war ungewohnt mit Personen in einer 9 Stunden entfernten Zeitzone zu sprechen. Aber ich fands es auch ein tolles Erlebniss.
 
-![Screenshot of the editor](/blog/images/Screenshot_2023-03-16_at_22.50.15.png)
+![Screenshot of the editor](&lt;/blog/images/Screenshot 2023-03-16 at 22.50.15.png&gt;)
 
 In dem Artikel kommt auch Marena Brinkhurst von Mapbox zu Wort. Sie erzählt was über die Technik hinter der QueerMap, wie zum Beispiel Vector-Tiles und OpenStreetMap. Die Daten für die Karte kommen übrigens von OpenStreetMap, und mit einem einfachen Q&amp;A-Editor kann man sogar selbst Orte hinzufügen.
 Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap macht.
@@ -102,7 +102,7 @@ Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier&apos;s m
 Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden. 
 </itunes:subtitle>
             <itunes:summary>
-![Screenshot of the article](/blog/images/Screenshot_2023-03-16_at_22.47.12.png)
+![Screenshot of the article](&lt;/blog/images/Screenshot 2023-03-16 at 22.47.12.png&gt;)
 
 Amazon Web Services hat mich interviewt!
 
@@ -111,7 +111,7 @@ Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Arti
 AWS hat mich gefragt, ob ich mit ihnen über das Projekt sprechen möchte. Klar, das ist ziemlich sicher auch pink-washing, aber ich dachte, es ist eine gute Chance, um die QueerMap bekannter zu machen. Das Interview haben wir dann auf Englisch per Videoanruf gemacht.
 Für mich war ungewohnt mit Personen in einer 9 Stunden entfernten Zeitzone zu sprechen. Aber ich fands es auch ein tolles Erlebniss.
 
-![Screenshot of the editor](/blog/images/Screenshot_2023-03-16_at_22.50.15.png)
+![Screenshot of the editor](&lt;/blog/images/Screenshot 2023-03-16 at 22.50.15.png&gt;)
 
 In dem Artikel kommt auch Marena Brinkhurst von Mapbox zu Wort. Sie erzählt was über die Technik hinter der QueerMap, wie zum Beispiel Vector-Tiles und OpenStreetMap. Die Daten für die Karte kommen übrigens von OpenStreetMap, und mit einem einfachen Q&amp;A-Editor kann man sogar selbst Orte hinzufügen.
 Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap macht.
@@ -120,7 +120,7 @@ Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier&apos;s m
 
 Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden. 
 </itunes:summary>
-            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot_2023-03-16_at_22.47.12.png"/>
+            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot 2023-03-16 at 22.47.12.png"/>
             <itunes:duration>0:10</itunes:duration>
         </item>
         <item>
