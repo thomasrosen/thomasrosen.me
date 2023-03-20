@@ -65,7 +65,7 @@ function buildBlog() {
                 .process(data.content)
                 .then(file => String(file))
 
-              data.summary = plaintext.substring(0, 200) + '…'
+              data.summary = plaintext.substring(0, 100).trim() + '…'
               data.plaintext = plaintext
               data.html = converter.makeHtml(text)
               delete data.content
@@ -100,6 +100,7 @@ buildBlog()
           coverphoto: article.data.coverphoto,
           font: article.data.font,
           tags: article.data.tags,
+          summary: article.summary,
         }
       })
 
