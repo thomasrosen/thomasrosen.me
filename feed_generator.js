@@ -159,6 +159,7 @@ function generate_rss_feed(options) {
         { 'itunes:season': 1 },
         { 'itunes:author': author },
         { 'itunes:subtitle': article.data.markdown },
+        { 'itunes:summary': article.data.markdown },
         { 'itunes:image': {
           _attr: {
             href: coverphoto_url
