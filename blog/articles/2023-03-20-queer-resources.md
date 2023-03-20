@@ -6,7 +6,8 @@ title: |
 slug: queer-resources
 lang: de
 font: serif
-tags: ["queer"]
+tags:
+  - queer
 ---
 
 As a member of the queer community, I understand how challenging it can be to find reliable resources that cater to our unique needs. That’s why I created Queer Resources, a website that brings together valuable information for the queer community and allies.
