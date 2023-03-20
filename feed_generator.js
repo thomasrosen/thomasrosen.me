@@ -183,8 +183,8 @@ function generate_rss_feed(options) {
         { 'itunes:episode': episode_number },
         { 'itunes:season': 1 },
         { 'itunes:author': author },
-        { 'itunes:subtitle': article.plaintext },
-        { 'itunes:summary': article.plaintext },
+        { 'itunes:subtitle': article.summary },
+        { 'itunes:summary': article.summary },
         { 'itunes:image': {
           _attr: {
             href: coverphoto_url
