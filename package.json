@@ -14,9 +14,11 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^6.6.2",
     "react-scripts": "4.0.1",
+    "remark": "^14.0.2",
     "rss": "^1.2.2",
     "sharp": "^0.31.3",
     "showdown": "^2.1.0",
+    "strip-markdown": "^5.0.0",
     "uuid": "^9.0.0",
     "web-vitals": "^0.2.4"
   },
