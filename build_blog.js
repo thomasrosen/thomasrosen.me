@@ -1,6 +1,6 @@
 console.info('➡️  Started building blog...') 
 
-const matter = require('gray-matter');
+const matter = require('gray-matter')
 const path = require('path')
 const sharp = require('sharp')
 const fs = require('fs')
