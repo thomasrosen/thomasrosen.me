@@ -138,6 +138,30 @@ function generate_rss_feed(options) {
       coverphoto_url = `https://thomasrosen.me${coverphoto}`
     }
 
+
+
+    let audio_url = 'https://thomasrosen.me/blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
+    let audio_file = './public/blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
+    const audio = article.data.audio
+    if (
+      !!audio
+      && typeof audio === 'string'
+      && audio.length > 0
+    ) {
+      audio_url = `https://thomasrosen.me${audio}`
+      audio_file = `.${audio}`
+    }
+
+    let audio_length = '00:10' // length of the empty default enclosure
+    const audio_length_tmp = article.data.audio_length
+    if (
+      !!audio_length_tmp
+      && typeof audio_length_tmp === 'string'
+      && audio_length_tmp.length > 0
+    ) {
+      audio_length = audio_length_tmp
+    }
+
     feed.item({
       title: article.data.title,
       description: article.plaintext,
@@ -149,10 +173,11 @@ function generate_rss_feed(options) {
       // lat: 33.417974, //optional latitude field for GeoRSS
       // long: -111.933231, //optional longitude field for GeoRSS
       enclosure: {
-        url: 'https://thomasrosen.me/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
-        file: './public/media/Empty_Podcast_Audio.m4a', // empty fake enclosure
-      }, // optional enclosure
+        url: audio_url,
+        file: audio_file,
+      },
       custom_elements: [
+        { 'itunes:duration': audio_length }, // '00:10'
         { 'itunes:explicit': 'no' },
         { 'itunes:episodeType': 'full' }, // full / trailer / bonus
         { 'itunes:episode': episode_number },
@@ -165,7 +190,6 @@ function generate_rss_feed(options) {
             href: coverphoto_url
           }
         }},
-        {'itunes:duration': '0:10'}
       ]
     })
   }

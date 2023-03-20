@@ -61,9 +61,23 @@ export default function Article() {
             {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
 
-          <audio controls style={{ width: '100%', marginBlockEnd: '20px' }}>
-            <source src={article.audio} type="audio/mpeg" />
-          </audio>
+          {
+            !!article.audio && typeof article.audio === 'string' && article.audio.length > 0
+            ? <audio
+                controls
+                preload="metadata"
+                style={{ width: '100%', marginBlockEnd: '20px' }}
+                src={article.audio}
+              >
+                <source src={article.audio} type="audio/mpeg" />
+                <p>
+                  <a href={article.audio}>
+                    <button>Download audio of the article.</button>
+                  </a>
+                </p>
+              </audio>
+            : null
+          }
 
           <div dangerouslySetInnerHTML={{ __html: article.html }} />
           <Dot />
