@@ -60,9 +60,12 @@ function buildBlog() {
               const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.[^()]*?)>?\)/gmi;
               const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
 
-              const plaintext = await remark()
+              let plaintext = `${data.content}`
+                .replace(markdown_img_regex, (match, g1, g2) => '')
+
+              plaintext = await remark()
                 .use(strip)
-                .process(data.content)
+                .process(plaintext)
                 .then(file => String(file))
 
               data.summary = plaintext.substring(0, 100).trim() + '…'
