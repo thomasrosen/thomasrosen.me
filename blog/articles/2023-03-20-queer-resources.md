@@ -4,6 +4,7 @@ date: 2023-03-20T01:52
 title: |
   Queer Resources: A Collection of Links for the Queer Community
 slug: queer-resources
+coverphoto: /blog/images/Screenshot 2023-03-20 at 06.25.10.png
 lang: de
 font: serif
 tags:
@@ -13,6 +14,8 @@ tags:
 As a member of the queer community, I understand how challenging it can be to find reliable resources that cater to our unique needs. That’s why I created Queer Resources, a website that brings together valuable information for the queer community and allies.
 
 The idea for Queer Resources came to me while developing the QueerMap, a project aimed at identifying queer-friendly places worldwide, particularly for queer youth. During the development process, I realized that there were already many excellent websites and resources available. However, these resources were scattered, making it challenging for users to find the information they needed. As a result, I decided to compile these links into one searchable database, making it easier for users to access the information they need.
+
+![Screenshot of the website](</blog/images/Screenshot 2023-03-20 at 06.25.32.png>)
 
 Queer Resources contains over 60 links covering various topics such as events, health, news, historical knowledge, places, trans, gay groups, and youth. Users can filter the links by location and tags, making it easier to find relevant resources.
 
