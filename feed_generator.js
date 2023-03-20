@@ -3,7 +3,13 @@ const RSS = require('rss')
 /*
 https://podcasters.apple.com/support/823-podcast-requirements
 https://help.apple.com/itc/podcasts_connect/#/itcb54353390
+https://help.apple.com/itc/podcasts_connect/#/itcbaf351599
 https://podcasters.apple.com/support/1691-apple-podcasts-categories
+
+validators:
+https://podba.se/validate/?url=https://thomasrosen.me/blog/feed.rss
+https://www.castfeedvalidator.com/validate.php?url=https://thomasrosen.me/blog/feed.rss
+https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fthomasrosen.me%2Fblog%2Ffeed.rss
 */
 
 const author = 'Thomas Rosen'
