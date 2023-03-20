@@ -43,4 +43,4 @@ Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap
 
 Du kannst die QueerMap hier anschauen: https://map.qiekub.org/. Probier's mal aus, und wenn du coole queere Orte kennst, dann füg sie doch einfach hinzu!
 
-Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden. 
+Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu sprechen und hoffe, dass durch den Artikel noch mehr Leute davon erfahren und sichere und queer-freundliche Orte finden.
