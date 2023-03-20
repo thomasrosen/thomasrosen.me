@@ -65,6 +65,7 @@ function buildBlog() {
                 .process(data.content)
                 .then(file => String(file))
 
+              data.summary = plaintext.substring(0, 200) + '…'
               data.plaintext = plaintext
               data.html = converter.makeHtml(text)
               delete data.content
