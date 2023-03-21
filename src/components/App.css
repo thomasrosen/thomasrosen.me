@@ -101,15 +101,25 @@ nav {
 .links_grid h3.no_flex {
 	display: block;
 }
+.links_grid div p {
+	margin-block-end: 0;
+}
+.links_grid div p+p {
+	margin-block-start: 6px;
+}
+.links_grid div p+a button {
+	margin-block-start: 10px;
+}
 @media (max-width: 600px) {
 	.links_grid {
 		grid-template-columns: auto;
 		grid-gap: 10px;
 	}
-	.links_grid :nth-child(even) p {
+	.links_grid > :nth-child(even) {
 		margin-block-end: 30px;
 	}
 }
+
 
 a.link_box {
 	display: block;

@@ -2,6 +2,8 @@ import React, { Suspense } from 'react'
 
 import {
   createBrowserRouter,
+  Navigate,
+  useParams,
 } from 'react-router-dom'
 
 import App from './App.js'
@@ -24,6 +26,11 @@ function Loading() {
   // return <div>Loading...</div>
 }
 
+function ForwardBlogWithSlug() {
+  const { slug } = useParams()
+  return <Navigate to={`/articles/${slug}`} replace />
+}
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -33,6 +40,7 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Welcome />,
       },
+      
       {
         path: 'contact',
         element: <Suspense fallback={<Loading />}><Contact /></Suspense>,
@@ -53,6 +61,7 @@ export const router = createBrowserRouter([
         path: 'sponsor',
         element: <Suspense fallback={<Loading />}><Sponsor /></Suspense>,
       },
+      
       {
         path: 'articles',
         element: <Suspense fallback={<Loading />}><Articles /></Suspense>,
@@ -61,6 +70,18 @@ export const router = createBrowserRouter([
         path: 'articles/:slug',
         element: <Suspense fallback={<Loading />}><Article /></Suspense>,
       },
+
+      // redirects for when ppl think the blog is under /blog
+      {
+        path: 'blog',
+        element: <Navigate to="/articles" replace />,
+      },
+      {
+        path: 'blog/:slug',
+        element: <ForwardBlogWithSlug />,
+      },
+      // end of blog redirects
+
       {
         path: '*',
         element: <Welcome />,

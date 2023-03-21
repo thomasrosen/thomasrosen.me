@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Projects() {
   return <div className="tab_content">
 
@@ -13,6 +15,9 @@ export default function Projects() {
           </a>
         </h3>
         <p>A list of websites with information about queer places and living as a queer person. You can filter by some tags and your location.</p>
+        <Link to="/articles/queer-resources">
+          <button className="small">more infos</button>
+        </Link>
       </div>
 
       <div>🏳️‍🌈🗺❤️</div>
@@ -23,6 +28,9 @@ export default function Projects() {
           </a>
         </h3>
         <p>Find LGBTIAQ+ safe-spaces on the global QueerMap.</p>
+        <Link to="/articles/aws-queermap">
+          <button className="small">more infos</button>
+        </Link>
       </div>
 
       <div>🔗💜🇪🇺</div>
