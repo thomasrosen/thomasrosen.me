@@ -55,9 +55,19 @@ export default function Articles() {
   return <div className="tab_content">
     <h2>Blog</h2>
 
-    <a target="_blank" href="/blog/feed.rss">
-      <button>RSS-Feed</button>
-    </a>
+    <div style={{
+      display: 'inline-flex',
+      flexWrap: 'wrap',
+      gap: '10px',
+    }}>
+      <a target="_blank" href="/blog/feed.rss">
+        <button>RSS-Feed</button>
+      </a>
+
+      <a target="_blank" rel="noreferrer" href="https://open.spotify.com/show/4tdSfXGtc96XrdmYR7NlMk">
+        <button>Listen on Spotify</button>
+      </a>
+    </div>
 
     <br />
     <br />
