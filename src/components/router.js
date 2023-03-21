@@ -3,7 +3,6 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter,
   Navigate,
-  useParams,
 } from 'react-router-dom'
 
 import App from './App.js'
@@ -24,11 +23,6 @@ const Article = React.lazy(() => import('./pages/article.js'));
 function Loading() {
   return null
   // return <div>Loading...</div>
-}
-
-function ForwardBlogWithSlug() {
-  const { slug } = useParams()
-  return <Navigate to={`/articles/${slug}`} replace />
 }
 
 export const router = createBrowserRouter([
@@ -75,10 +69,6 @@ export const router = createBrowserRouter([
       {
         path: 'blog',
         element: <Navigate to="/articles" replace />,
-      },
-      {
-        path: 'blog/:slug',
-        element: <ForwardBlogWithSlug />,
       },
       // end of blog redirects
 
