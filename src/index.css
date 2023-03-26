@@ -50,9 +50,23 @@ body {
 body {
   background: var(--background-color);
   color: var(--text-color);
-  font-family: var(--font-family-text);
   transition: color .2s ease, background .2s ease;
   padding-block-end: 25vh;
+}
+
+body, p, h4, h5, h6 {
+  font-family: var(--font-family-text);
+  font-weight: normal;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.body2 {
+  font-family: var(--font-family-text);
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.25px;
 }
 
 h1 {
@@ -81,31 +95,21 @@ h3.big {
   letter-spacing: 0.5px;
 }
 h3+p,
-h3+h4 {
+h4+p,
+h5+p,
+h6+p,
+h3+h4,
+h3+h5,
+h3+h6,
+h4+h5,
+h4+h6,
+h5+h6 {
   margin-top: 0.5rem;
 }
 
-h4 {
+h4, h5, h6 {
   font-family: var(--font-family-headline);
   font-weight: bold;
-  font-size: 22px;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
-
-body, p {
-  font-family: var(--font-family-text);
-  font-weight: normal;
-  font-size: 22px;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
-
-.body2 {
-  font-family: var(--font-family-text);
-  font-weight: normal;
-  font-size: 16px;
-  letter-spacing: 0.25px;
 }
 
 img {
