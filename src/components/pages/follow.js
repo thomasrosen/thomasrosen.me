@@ -37,7 +37,7 @@ export default function Contact() {
         thomasrosen
       </a>
 
-      <div></div><hr />
+      <div></div><hr class="small" />
 
       <h3><Dot color="#d60017" />Apple Music</h3>
       <a href="https://music.apple.com/profile/thomasrosen" target="_blank" rel="noreferrer" className="umami--click--apple-music">

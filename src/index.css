@@ -80,8 +80,17 @@ h3.big {
   font-size: 30px;
   letter-spacing: 0.5px;
 }
-h3+p {
+h3+p,
+h3+h4 {
   margin-top: 0.5rem;
+}
+
+h4 {
+  font-family: var(--font-family-headline);
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
 body, p {
@@ -175,6 +184,13 @@ a:hover,
 }
 
 hr {
+  border: 0;
+  height: 0.8rem;
+  background-color: var(--text-color);
+  margin: 40px 0;
+  border-radius: 0.8rem;
+}
+hr.small {
   border: 0;
   height: 1px;
   background-color: var(--text-color);
