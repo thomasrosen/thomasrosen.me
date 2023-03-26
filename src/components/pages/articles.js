@@ -55,6 +55,17 @@ export default function Articles() {
   return <div className="tab_content">
     <h2>Blog</h2>
 
+    <div>
+    <p>
+      I occasionally write some articles. These can be short and are about any topic that currently interests me.
+    </p>
+    <p>
+      You can read the articles here or listen to them on the various podcast platforms. But don't ecpect the to be an hour long lecture, it's just the article in audio form.
+    </p>
+    </div>
+
+    <br />
+
     <div style={{
       display: 'inline-flex',
       flexWrap: 'wrap',
@@ -65,7 +76,10 @@ export default function Articles() {
       </a>
 
       <a target="_blank" rel="noreferrer" href="https://open.spotify.com/show/4tdSfXGtc96XrdmYR7NlMk">
-        <button>Listen on Spotify</button>
+        <button>Spotify</button>
+      </a>
+      <a target="_blank" rel="noreferrer" href="https://podcasts.google.com/feed/aHR0cHM6Ly90aG9tYXNyb3Nlbi5tZS9ibG9nL2ZlZWQucnNz">
+        <button>Google Podcasts</button>
       </a>
     </div>
 
