@@ -9,16 +9,17 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 21 Mar 2023 14:55:01 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 26 Mar 2023 19:07:13 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Tue, 21 Mar 2023 14:55:01 GMT</pubDate>
+        <pubDate>Sun, 26 Mar 2023 19:07:13 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
         <webMaster><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></webMaster>
         <category><![CDATA[Amazon]]></category>
         <category><![CDATA[queer]]></category>
+        <category><![CDATA[Interview]]></category>
         <category><![CDATA[Story]]></category>
         <category><![CDATA[Travel]]></category>
         <category><![CDATA[Nature]]></category>
@@ -69,6 +70,7 @@ Ich finde es großartig, dass ich die Möglichkeit hatte, über die QueerMap zu 
             <guid isPermaLink="false">77466582-4947-4ac4-84f2-a16b2b1f979a</guid>
             <category><![CDATA[Amazon]]></category>
             <category><![CDATA[queer]]></category>
+            <category><![CDATA[Interview]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
             <pubDate>Mon, 21 Jun 2021 00:00:00 GMT</pubDate>
             <enclosure url="https://thomasrosen.me/blog/audio/2021-06-21-aws-queermap-de.mp3" length="1488367" type="audio/mpeg"/>
