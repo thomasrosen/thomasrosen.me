@@ -3,8 +3,8 @@ id: f69e7dc7-3a71-46b3-a36f-febe50b3933a
 date: 2014-07-23T00:00
 title: Simple Desktops
 slug: simpledesktops
-_audio: /blog/audio/2014-07-23-simpledesktops-en.mp3
-_audio_length: 00:00
+audio: /blog/audio/2014-07-23-simpledesktops-en.mp3
+audio_length: 01:09
 coverphoto: /blog/images/2014-07-23-simpledesktops/Screenshot 2023-03-26 at 20.28.35.png
 lang: en
 font: serif
