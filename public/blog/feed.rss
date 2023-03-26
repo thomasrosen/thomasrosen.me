@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 26 Mar 2023 20:02:26 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 26 Mar 2023 20:08:46 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Sun, 26 Mar 2023 20:02:26 GMT</pubDate>
+        <pubDate>Sun, 26 Mar 2023 20:08:46 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
