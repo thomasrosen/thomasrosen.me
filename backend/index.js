@@ -51,6 +51,5 @@ app.get('*', (req, res) => {
 const port = 19814 // thomas = 19 8 14 12 18
 const host = '0.0.0.0' // Uberspace wants 0.0.0.0
 app.listen(port, host, () => {
-  const url = `http://${host}:${port}`
-  console.info(`Server listening at ${url}`)
+  console.info(`Server listening \n at http://${host}:${port} \n and http://localhost:${port}`)
 })
