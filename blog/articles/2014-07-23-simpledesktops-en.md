@@ -27,11 +27,13 @@ Keeping my desk tidy is still hard. But over the years I changed my digital desk
 
 ## The Wallpapers
 
-Diamond Heart from 2014-05-27.
+### Diamond Heart from 2014-05-27.
+
 [![Diamantenherz](</blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png>)](</blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png>)
 
-Dandelion from 2014-07-23.
-[![Pusteblume](</blog/images/2014-07-23-simpledesktops/Pusteblume_2880x1800.png>)](</blog/images/2014-07-23-simpledesktops/Pusteblume_2880x1800.png>)
+### Dandelion from 2014-07-23.
+
+[![Pusteblume](</blog/images/2014-07-23-simpledesktops/Pusteblume.png>)](</blog/images/2014-07-23-simpledesktops/Pusteblume.png>)
 
 ---
 
