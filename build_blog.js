@@ -4,6 +4,8 @@ const matter = require('gray-matter')
 const path = require('path')
 const sharp = require('sharp')
 const fs = require('fs')
+const { readdir } = require('fs').promises;
+
 
 const { generate_rss_feed } = require('./feed_generator.js')
 
@@ -32,6 +34,24 @@ const converter = new showdown.Converter({
   openLinksInNewWindow: true,
   ghCodeBlocks: true,
 })
+
+async function* getFilesRecursive(dir, root = dir) {
+  // source: https://stackoverflow.com/a/45130990/2387277
+  // source: https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
+  // I added the part with the root_path variable, because I wanted to get the relative path of the files.
+
+  const root_path = path.resolve(root) + '/'
+
+  const dirents = await readdir(dir, { withFileTypes: true });
+  for (const dirent of dirents) {
+    const res = path.resolve(dir, dirent.name);
+    if (dirent.isDirectory()) {
+      yield* getFilesRecursive(res, dir);
+    } else {
+      yield res.replace(root_path, '');
+    }
+  }
+}
 
 function buildBlog() {
   return new Promise(async (resolve, reject) => {
@@ -173,19 +193,18 @@ buildBlog()
       const imageSizes = [1000] // 100, ...
       const imageFormats = ['jpg'] // webp, jpg, png
 
-      const files = fs.readdirSync(dir_images)
-        
-      for (const file of files) {
-        const filePath = path.join(dir_images, file)
-        const fileExtension = path.extname(filePath).toLowerCase()
-        const fileName = path.basename(filePath, fileExtension)
+      for await (const relative_filepath of getFilesRecursive(dir_images)) {
+        const absolute_filepath = path.join(dir_images, relative_filepath)
+        const fileExtension = path.extname(absolute_filepath).toLowerCase()
+        // const fileName = path.basename(absolute_filepath, fileExtension)
 
         if (fileExtension === '.jpg' || fileExtension === '.jpeg' || fileExtension === '.png' || fileExtension === '.webp') {
-          const image = sharp(filePath);
+          const image = sharp(absolute_filepath);
 
           for (const format of imageFormats) {
             for (const size of imageSizes) {
-              const resizedImagePath = path.join(images_build_dir, `${fileName}_${size}.${format}`)
+              let new_relative_filepath = relative_filepath.replace(fileExtension, `_${size}.${format}`)
+              const resizedImagePath = path.join(images_build_dir, new_relative_filepath)
               await image
                 .resize({ width: size })
                 .toFormat(format)
