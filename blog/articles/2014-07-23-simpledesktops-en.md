@@ -36,4 +36,3 @@ Dandelion from 2014-07-23.
 ---
 
 ![Screenshot of the Simple Desktops website](</blog/images/2014-07-23-simpledesktops/Screenshot 2023-03-26 at 20-27-24 Browse — Simple Desktops.png>)
-![Screenshot of the Simple Desktops website](</blog/images/Screenshot 2023-03-16 at 22.47.12.png>)
