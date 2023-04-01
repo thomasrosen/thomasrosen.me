@@ -78,13 +78,11 @@ Wie kann man sich freuen, von der eigenen Katze durch einen verwunschenen Wald g
 
 Waaait, meint sie etwa …? "Du willst mir erklären, dass deine Kresse uns in eine magische Welt teleportiert hat und unsere Katze jetzt sowas wie die böse Hexe ist?"
 
-"Naja, eher das wir einfach nur kleiner geworden sind. Deine Kresse erfüllt deine Wünsche", erläuterte sie mit leuchtenden Augen. "Idk vielleicht hast du dir irgendwas gewünscht als du in mich und die Kresse gestolpert bist."
+"Naja, eher das wir einfach nur kleiner geworden sind. Meine Kresse erfüllt Wünsche", erläuterte sie mit leuchtenden Augen. "Idk vielleicht hast du dir irgendwas gewünscht als du in mich und die Kresse gestolpert bist."
 
 "Und das erzählst du mir jetzt erst?! Aber okay, das ergibt langsam wenigstens Sinn", sagte ich, während ich versuchte, die ganze Situation zu verarbeiten. "Wie kommen wir jetzt wieder zurück?"
 
 Lara zuckte mit den Schultern. "Ich bin mir nicht sicher. Meistens muss ich einfach nur einen Stück Kresse essen, einen Wunsch aussprechen und die Kresse wird es erfüllen."
-
-Lara zuckte mit den Schultern. "Bisher hat immer geklappt, von einem der Blätter abzubeißen."
 
 "Von einem der Blätter, die eine Milliarde Meter hoch über uns wachsen?", entfuhr es mir empört.
 
