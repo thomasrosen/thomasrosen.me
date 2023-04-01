@@ -120,7 +120,7 @@ buildBlog()
           date: article.data.date,
           title: article.data.title,
           slug: article.data.slug,
-          coverphoto: article.data.coverphoto,
+          coverphoto: article.data.coverphoto || false,
           font: article.data.font,
           tags: article.data.tags,
           summary: article.summary,
