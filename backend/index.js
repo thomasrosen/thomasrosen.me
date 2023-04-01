@@ -27,6 +27,7 @@ function checkOrigin(origin) {
 
 const app = express()
 app.use(function (req, res, next) {
+  console.log('app.use')
 
   // const origin = req.get('origin')
   const origin = req.header('Origin')
@@ -45,6 +46,7 @@ app.use(function (req, res, next) {
 app.use('/', express.static('../build/', { fallthrough: true }))
 
 app.get('*', (req, res) => {
+  console.log('index.html fallcack')
   res.sendFile('index.html', { root: '../build/' })
 })
 
