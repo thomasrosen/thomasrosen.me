@@ -81,6 +81,9 @@ export default function Articles() {
       <a target="_blank" rel="noreferrer" href="https://podcasts.google.com/feed/aHR0cHM6Ly90aG9tYXNyb3Nlbi5tZS9ibG9nL2ZlZWQucnNz">
         <button>Google Podcasts</button>
       </a>
+      <a target="_blank" rel="noreferrer" href="https://podcasts.apple.com/de/podcast/thomas-rosen-blog/id1678064365">
+        <button>Apple Podcasts</button>
+      </a>
     </div>
 
     <br />
