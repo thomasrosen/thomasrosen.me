@@ -3,8 +3,8 @@ id: 4056d6f2-60e7-4c18-839d-0a54be8f716e
 date: 2023-04-01T12:44
 title: Laras Geheimnis!
 slug: laras-secret
-_audio: /blog/audio/2023-04-01-laras-secret-de.mp3
-_audio_length: 00:00
+audio: /blog/audio/2023-04-01-laras-secret-de.mp3
+audio_length: 06:42
 coverphoto: /blog/images/2023-04-01-laras-secret/IMG_4588_cropped.jpg
 lang: de
 font: serif
