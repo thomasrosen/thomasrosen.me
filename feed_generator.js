@@ -141,7 +141,7 @@ function generate_rss_feed(options) {
 
 
     let audio_url = 'https://thomasrosen.me/blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
-    let audio_file = './public/blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
+    let audio_file = './blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
     const audio = article.data.audio
     if (
       !!audio
