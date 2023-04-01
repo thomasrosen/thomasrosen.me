@@ -11,9 +11,9 @@ font: serif
 tags:
   - Story
   - Nature
-  - Abenteuer
 notes: |
   Why kann sowas nicht endlich mal echt sein? Immer muss so ne Geschichte als Traum enttarnt werden. Hhhhrmmmnnnneee
+  - Adventure
 ---
 
 Liam! Jetzt komm schon!!!
