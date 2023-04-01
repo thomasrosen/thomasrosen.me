@@ -5,6 +5,7 @@ title: Laras Geheimnis!
 slug: laras-secret
 _audio: /blog/audio/2023-04-01-laras-secret-de.mp3
 _audio_length: 00:00
+coverphoto: /blog/images/2023-04-01-laras-secret/IMG_4588_cropped.jpg
 lang: de
 font: serif
 tags:
