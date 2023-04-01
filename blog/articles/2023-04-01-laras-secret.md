@@ -11,9 +11,9 @@ font: serif
 tags:
   - Story
   - Nature
-notes: |
-  Why kann sowas nicht endlich mal echt sein? Immer muss so ne Geschichte als Traum enttarnt werden. Hhhhrmmmnnnneee
   - Adventure
+notes: |-
+  Alternatives Ende: Liam wacht aus einem Traum auf… "Why kann sowas nicht endlich mal echt sein? Immer muss so ne Geschichte als Traum enttarnt werden. Hhhhrmmmnnnneee"
 ---
 
 Liam! Jetzt komm schon!!!
