@@ -30,7 +30,7 @@ export default function App() {
 
     <Outlet />
 
-    <a href="https://mailchi.mp/59f35b198abe/thomasrosen" target="_blank" rel="noreferrer" className="link_box umami--click--Newsletter">
+    <a href="https://mailchi.mp/59f35b198abe/thomasrosen" target="_blank" rel="noreferrer" className="link_box" data-umami-event="Newsletter">
       <h2>💌 Newsletter</h2>
       <p>Signup to get occasional emails from me…</p>
     </a>

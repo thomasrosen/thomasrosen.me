@@ -12,7 +12,9 @@ import {
 // send pageviews to Umami when the url changes
 window.addEventListener('popstate', () => {
   if (window.umami) {
-    window.umami.trackView(window.location.pathname + window.location.search + window.location.hash);
+    window.umami.track()
+    // const url = window.location.pathname + window.location.search + window.location.hash
+    // window.umami.track(props => ({ ...props, url }))
   }
 });
 

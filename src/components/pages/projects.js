@@ -10,7 +10,7 @@ export default function Projects() {
       <div>🏳️‍🌈</div>
       <div>
         <h3>
-          <a href="https://queer.thomasrosen.me/" target="_blank" rel="noreferrer" className="umami--click--project-queer-thomasrosen">
+          <a href="https://queer.thomasrosen.me/" target="_blank" rel="noreferrer" data-umami-event="project-queer-thomasrosen">
             queer.thomasrosen.me
           </a>
         </h3>
@@ -23,7 +23,7 @@ export default function Projects() {
       <div>🏳️‍🌈🗺❤️</div>
       <div>
         <h3>
-          <a href="https://map.qiekub.org/" target="_blank" rel="noreferrer" className="umami--click--project-queermap">
+          <a href="https://map.qiekub.org/" target="_blank" rel="noreferrer" data-umami-event="project-queermap">
             map.qiekub.org
           </a>
         </h3>
@@ -36,7 +36,7 @@ export default function Projects() {
       <div>🔗💜🇪🇺</div>
       <div>
         <h3>
-          <a href="https://github.com/voltbonn/volt.link" target="_blank" rel="noreferrer" className="umami--click--project-volt-link">
+          <a href="https://github.com/voltbonn/volt.link" target="_blank" rel="noreferrer" data-umami-event="project-volt-link">
             volt.link
           </a>
         </h3>
@@ -46,7 +46,7 @@ export default function Projects() {
       <div>🖼💜🇪🇺</div>
       <div>
         <h3>
-          <a href="https://www.profile-volt.org/" target="_blank" rel="noreferrer" className="umami--click--project-volt-profile-picture">
+          <a href="https://www.profile-volt.org/" target="_blank" rel="noreferrer" data-umami-event="project-volt-profile-picture">
             profile-volt.org
           </a>
         </h3>
@@ -56,7 +56,7 @@ export default function Projects() {
       <div>🖼🤳🔗</div>
       <div>
         <h3>
-          <a href="https://qrcode.volt.link/" target="_blank" rel="noreferrer" className="umami--click--project-volt-qr-code">
+          <a href="https://qrcode.volt.link/" target="_blank" rel="noreferrer" data-umami-event="project-volt-qr-code">
             qrcode.volt.link
           </a>
         </h3>
@@ -64,11 +64,11 @@ export default function Projects() {
       </div>
 
       <div></div><hr class="small" />
-      
+
       <div>🤖</div>
       <div>
         <h3>
-          <a href="https://github.com/thomasrosen/thomasrosen.me" target="_blank" rel="noreferrer" className="umami--click--sourcecode">
+          <a href="https://github.com/thomasrosen/thomasrosen.me" target="_blank" rel="noreferrer" data-umami-event="sourcecode">
             Source Code of this Website
           </a>
         </h3>
