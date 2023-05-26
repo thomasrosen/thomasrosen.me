@@ -98,8 +98,22 @@ export default function Articles() {
     }}>
       {articles.length > 0 && articles.map(article => <div
         key={article.slug}
-        className={!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}
+        className={`
+          links_grid_item
+          ${!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}
+        `}
       >
+        {
+          typeof article.coverphoto === 'string' && article.coverphoto.length > 0
+            ? <div className="image_container">
+                <Link to={'/articles/' + article.slug}>
+                  <img src={article.coverphoto} alt={article.title} />
+                </Link>
+              </div>
+            : null
+        }
+
+        <div>
         <h3 className="big">
           <Link to={'/articles/' + article.slug}>
             {article.title}
@@ -122,6 +136,7 @@ export default function Articles() {
           }
         </strong></p>
         <p>{article.summary}</p>
+        </div>
       </div>)}
     </div>
 
