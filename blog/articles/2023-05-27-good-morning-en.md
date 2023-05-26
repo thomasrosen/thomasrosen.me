@@ -1,11 +1,12 @@
 ---
 id: 244ad488-d4a4-4f6d-b5ef-c1dbb9db562d
-date: 2023-05-21T02:07
+date: 2023-05-27T02:07
+date_written: 2023-05-21T02:07
 title: Good morning to me.
 slug: good-morning
-audio: /blog/audio/2023-05-21-good-morning-en.mp3
+audio: /blog/audio/2023-05-27-good-morning-en.mp3
 audio_length: 01:40
-coverphoto: /blog/images/2023-05-21-good-morning/0A75508D-70EF-4915-AD74-024DF1585853.JPG
+coverphoto: /blog/images/2023-05-27-good-morning/0A75508D-70EF-4915-AD74-024DF1585853.JPG
 lang: en
 font: serif
 tags: [Story, Summer, Good Morning, Orange Juice, Self]
