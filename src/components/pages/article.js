@@ -49,7 +49,7 @@ export default function Article() {
   }, [])
 
   let images = null
-  if (typeof article.coverphoto === 'string' && article.coverphoto.length > 0) {
+  if (!!article && typeof article.coverphoto === 'string' && article.coverphoto.length > 0) {
     images = [`https://thomasrosen.me/${article.coverphoto}`]
   }
 
