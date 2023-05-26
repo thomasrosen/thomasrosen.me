@@ -87,6 +87,20 @@ export default function Article() {
           <div dangerouslySetInnerHTML={{ __html: article.html }} itemprop="articleBody" />
           <Dot />
 
+          {
+            (!!article && typeof article.coverphoto === 'string' && article.coverphoto.length > 0)
+              ? <>
+                <br />
+                <br />
+                <meta itemprop="image" content={`https://thomasrosen.me/${article.coverphoto}`} />
+                <img src={article.coverphoto} alt={article.title} style={{
+                  width: '200px',
+                  maxWidth: '100%',
+                }} />
+              </>
+              : null
+          }
+
           <script type="application/ld+json">
             {JSON.stringify({
               "@context": "https://schema.org",
