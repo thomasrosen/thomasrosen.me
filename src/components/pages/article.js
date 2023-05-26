@@ -48,6 +48,11 @@ export default function Article() {
       })
   }, [])
 
+  let images = null
+  if (typeof article.coverphoto === 'string' && article.coverphoto.length > 0) {
+    images = [`https://thomasrosen.me/${article.coverphoto}`]
+  }
+
   return <div className={`tab_content article ${!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}`}>
     {loading && <p>Loading article...</p>}
     {error && <p>Error loading article: {error.message}</p>}
@@ -81,6 +86,37 @@ export default function Article() {
 
           <div dangerouslySetInnerHTML={{ __html: article.html }} itemprop="articleBody" />
           <Dot />
+
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://thomasrosen.me/articles/${article.slug}`
+              },
+              "headline": article.title,
+              "image": images,
+              "datePublished": article.date,
+              "dateModified": article.date,
+              "author": {
+                "@type": "Person",
+                "name": "Thomas Rosen"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Thomas Rosen",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://thomasrosen.me/images/me_small.jpg",
+                  "width": 800,
+                  "height": 800,
+                }
+              },
+              // "description": "Brief description of the blog article.",
+              "articleBody": article.html,
+            })}
+          </script>
         </>
         : null
     }
