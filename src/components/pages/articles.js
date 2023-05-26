@@ -39,7 +39,7 @@ export default function Articles() {
         data.articles = data.articles
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .map(article => {
-            article.date = getRelativeTime(new Date(article.date))
+            article.relative_date = getRelativeTime(new Date(article.date))
             article.has_tags = !!article.tags && Array.isArray(article.tags) && article.tags.length > 0
             return article
           })
@@ -98,8 +98,22 @@ export default function Articles() {
     }}>
       {articles.length > 0 && articles.map(article => <div
         key={article.slug}
-        className={!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}
+        className={`
+          links_grid_item
+          ${!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}
+        `}
       >
+        {
+          typeof article.coverphoto === 'string' && article.coverphoto.length > 0
+            ? <div className="image_container">
+                <Link to={'/articles/' + article.slug}>
+                  <img src={article.coverphoto} alt={article.title} />
+                </Link>
+              </div>
+            : null
+        }
+
+        <div>
         <h3 className="big">
           <Link to={'/articles/' + article.slug}>
             {article.title}
@@ -113,7 +127,7 @@ export default function Articles() {
         }}>
           {
             [
-              <span>{article.date}</span>,
+              <time datetime={article.date} title={article.date}>{article.relative_date}</time>,
               (article.has_tags ? <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span> : null),
               (article.has_audio ? <span>🔊</span> : null)
             ]
@@ -122,6 +136,7 @@ export default function Articles() {
           }
         </strong></p>
         <p>{article.summary}</p>
+        </div>
       </div>)}
     </div>
 

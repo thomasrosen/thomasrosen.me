@@ -37,7 +37,7 @@ export default function Article() {
     fetch('/blog/articles/' + window.location.pathname.split('/').pop() + '.json')
       .then(response => response.json())
       .then(data => {
-        data.article.date = getRelativeTime(new Date(data.article.date))
+        data.article.relative_date = getRelativeTime(new Date(data.article.date))
 
         setArticle(data.article)
         setLoading(false)
@@ -55,10 +55,10 @@ export default function Article() {
     {
       !!article
         ? <>
-          <h2>{article.title}</h2>
-    
+          <h2 itemprop="headline">{article.title}</h2>
+
           <p><strong>
-            {article.date} — <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
+            <time datetime={article.date} title={article.date} itemprop="datePublished">{article.relative_date}</time> — <span className="tag_row" itemprop="keywords">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
 
           {
@@ -79,7 +79,7 @@ export default function Article() {
             : null
           }
 
-          <div dangerouslySetInnerHTML={{ __html: article.html }} />
+          <div dangerouslySetInnerHTML={{ __html: article.html }} itemprop="articleBody" />
           <Dot />
         </>
         : null

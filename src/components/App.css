@@ -166,3 +166,24 @@ a.link_box p:last-child {
 	gap: 5px;
 	align-items: center;
 }
+
+
+.links_grid_item {
+	display: flex;
+	gap: 20px;
+}
+.links_grid_item .image_container img {
+	width: 200px;
+	margin-block-start: 5px;
+	border-radius: 2px;
+}
+@media (max-width: 600px) {
+	.links_grid_item {
+		flex-direction: column;
+		gap: 10px;
+		margin-block-end: 40px;
+	}
+	.links_grid_item .image_container img {
+		width: 100px;
+	}
+}
