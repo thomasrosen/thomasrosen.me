@@ -1,5 +1,7 @@
 # Ideas
 
+## Unsorted Ideas
+
 * How I came to Volt?!
 * Icon of Love
 * Frühschichten Plakate (+ andere Plakate fürs CoJoBo?)
@@ -12,3 +14,8 @@
 * Jugendarbeit im JaP
 * Messdiener in der Kirche
 * Software on my MacBook
+
+## Stories
+
+* ne radio sendung in geschrieben. wie welcome to night vale
+* beschreibung von waffel/pfannkuchen duft am morgen
