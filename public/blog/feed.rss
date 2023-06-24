@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 24 Jun 2023 09:07:33 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 24 Jun 2023 12:46:39 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Sat, 24 Jun 2023 09:07:33 GMT</pubDate>
+        <pubDate>Sat, 24 Jun 2023 12:46:39 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -31,6 +31,8 @@
         <category><![CDATA[Good Morning]]></category>
         <category><![CDATA[Orange Juice]]></category>
         <category><![CDATA[Self]]></category>
+        <category><![CDATA[Politics]]></category>
+        <category><![CDATA[Trains]]></category>
         <itunes:explicit>no</itunes:explicit>
         <itunes:type>episodic</itunes:type>
         <itunes:subtitle>This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.</itunes:subtitle>
@@ -387,6 +389,52 @@ PS: this was written at 2am on a train ride back home. on my way to my bed
             <itunes:subtitle>It was an early morning. The sun was still cold and the windows wet from the night. It wasn’t a stea…</itunes:subtitle>
             <itunes:summary>It was an early morning. The sun was still cold and the windows wet from the night. It wasn’t a stea…</itunes:summary>
             <itunes:image href="https://thomasrosen.me/blog/images/2023-05-27-good-morning/0A75508D-70EF-4915-AD74-024DF1585853.JPG"/>
+        </item>
+        <item>
+            <title><![CDATA[🚂 Eine noch typische Bahnfahrt]]></title>
+            <description><![CDATA[Oder: Unser Weg zum Bundesparteitag von Volt Deutschland
+
+Offiziell war der Zug vollkommen ausgebucht. Jedenfalls die zweite Klasse. Also haben wir uns erstmal ins noch unaufgeräumte Bord Bistro.
+
+Paradoxerweise fand ich dort eine Ausgabe des Stern Magazins über die Probleme der deutschen Bahn. War tatsächlich ziemlich interessant. (Wobei ich den Stern wohl nicht gekauft hätte, aber wenn es schon so rumliegt.)
+
+Benji hat dann doch noch Sitzplätze gefunden. Sind wohl doch nicht alle eingestiegen die einen Platz gebucht hatten. Ich fand es waren auch wirklich schöne Plätze. Wobei eigentlich ganz normale Plätze.
+
+Schnell ärgerte ich mich über mein fehlendes Buch. Zuhause hab ich noch überlegt: "Möchte ich wirklich einen so schweren Schinken mitnehmen? Lese den doch eh nicht weiter. Und hab ja auch meinen Laptop dabei.".
+Aber falsch gedacht. Heutzutage braucht fast alles Internet. Und was funktioniert in der Bahn nicht so super? Richtig: das Wlan.
+
+Ich langweilte mich also. Ich aß ein paar meiner vorher gekochten Tortellini. Es gab Paprikastücke. Und bei Benji hab ich ein bisschen was ausm ZDF mitgeschaut. Benji hat wohl vorgeplant und ein paar Sendungen runtergeladen.
+
+In Magdeburg die nächste Trauermeldung für meine Langeweile: Ein Baum liegt auf den Gleisen. Es geht nicht direkt nach Hannover, sondern mit 90 Minuten über Wolfsburg.
+
+Meine Langeweile war ein bisschen am verzweifeln. Kein Ahnung wie ich die Zeit überstanden habe. Irgendwann kamen wir endlich an und wurden am Bahnhof abgeholt.
+
+Ich fände schön, wenn die Kritik an der Bahn nicht mehr nur in der Bahn rumliegt, sondern auch endlich beachtet wird.
+Dann ist vielleicht wenigstens meine Langeweile in der Bahn weniger. Aber vielleicht haben dann auch mehr Personen Interesse mit der Bahn zu fahren.
+
+\#voltbpt #deutschebahn #pünktlichankommen #bundesparteitag #stern #wlanprobleme
+]]></description>
+            <link>https://thomasrosen.me/articles/typische-bahnfahrt</link>
+            <guid isPermaLink="false">2378878e-d263-487a-b588-6dea99812e10</guid>
+            <category><![CDATA[Travel]]></category>
+            <category><![CDATA[Politics]]></category>
+            <category><![CDATA[Trains]]></category>
+            <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
+            <pubDate>Sat, 24 Jun 2023 11:39:00 GMT</pubDate>
+            <enclosure url="https://thomasrosen.me/blog/audio/Empty_Podcast_Audio.m4a" length="88636" type="audio/mp4"/>
+            <itunes:duration>00:00</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:episode>8</itunes:episode>
+            <itunes:season>1</itunes:season>
+            <itunes:author>Thomas Rosen</itunes:author>
+            <itunes:subtitle>Oder: Unser Weg zum Bundesparteitag von Volt Deutschland
+
+Offiziell war der Zug vollkommen ausgebuch…</itunes:subtitle>
+            <itunes:summary>Oder: Unser Weg zum Bundesparteitag von Volt Deutschland
+
+Offiziell war der Zug vollkommen ausgebuch…</itunes:summary>
+            <itunes:image href="https://thomasrosen.me/blog/images/2023-06-24-zug-fahrt/thomas-beim-lesen-in-der-bahn.png"/>
         </item>
     </channel>
 </rss>
