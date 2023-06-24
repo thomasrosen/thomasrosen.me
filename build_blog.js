@@ -110,17 +110,32 @@ function buildBlog() {
   })
 }
 
+function get_img_src_path (image_path) {
+  const markdown_img_src_regex = /([^()]+)\.[^()]*?/;
+  const coverphoto_w1000_match = image_path.match(markdown_img_src_regex)
+  const coverphoto_w1000 = (
+    coverphoto_w1000_match !== null
+      ? coverphoto_w1000_match[1] + '_1000.jpg'
+      : image_path
+  )
+
+  return coverphoto_w1000
+}
+
 buildBlog()
   .then(async articles => {
     console.info('✅ Loaded articles.')
 
     const summary_list = articles
       .map(article => {
+
+        const coverphoto_w1000 = get_img_src_path(article.data.coverphoto || '', '1000')
+
         return {
           date: article.data.date,
           title: article.data.title,
           slug: article.data.slug,
-          coverphoto: article.data.coverphoto || false,
+          coverphoto: coverphoto_w1000,
           font: article.data.font,
           tags: article.data.tags,
           summary: article.summary,
@@ -162,6 +177,7 @@ buildBlog()
         && article.data.slug.length > 0
       ) {
         const slug = article.data.slug
+
 
         const new_article = {
           article: {
