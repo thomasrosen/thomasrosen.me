@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
 })
 
 app.get('/zenris', function (req, res) {
-  res.redirect('/articles/zenris', 302)
+  res.redirect(302, '/articles/zenris')
 });
 
 app.use('/', express.static('../build/', { fallthrough: true }))
