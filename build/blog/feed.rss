@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 11 Jul 2023 16:11:19 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 17 Jul 2023 13:31:42 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Tue, 11 Jul 2023 16:11:19 GMT</pubDate>
+        <pubDate>Mon, 17 Jul 2023 13:31:42 GMT</pubDate>
         <copyright><![CDATA[Copyright 2023 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -33,6 +33,9 @@
         <category><![CDATA[Self]]></category>
         <category><![CDATA[Politics]]></category>
         <category><![CDATA[Trains]]></category>
+        <category><![CDATA[Video]]></category>
+        <category><![CDATA[Stop-Motion]]></category>
+        <category><![CDATA[Animation]]></category>
         <itunes:explicit>no</itunes:explicit>
         <itunes:type>episodic</itunes:type>
         <itunes:subtitle>This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.</itunes:subtitle>
@@ -421,8 +424,8 @@ Dann ist vielleicht wenigstens meine Langeweile in der Bahn weniger. Aber vielle
             <category><![CDATA[Trains]]></category>
             <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
             <pubDate>Sat, 24 Jun 2023 11:39:00 GMT</pubDate>
-            <enclosure url="https://thomasrosen.me/blog/audio/Empty_Podcast_Audio.m4a" length="88636" type="audio/mp4"/>
-            <itunes:duration>00:00</itunes:duration>
+            <enclosure url="https://thomasrosen.me/blog/audio/2023-06-24-zug-fahrt.mp3" length="1589356" type="audio/mpeg"/>
+            <itunes:duration>01:39</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
             <itunes:episode>8</itunes:episode>
@@ -435,6 +438,40 @@ Offiziell war der Zug vollkommen ausgebuch…</itunes:subtitle>
 
 Offiziell war der Zug vollkommen ausgebuch…</itunes:summary>
             <itunes:image href="https://thomasrosen.me/blog/images/2023-06-24-zug-fahrt/thomas-beim-lesen-in-der-bahn.png"/>
+        </item>
+        <item>
+            <title><![CDATA[Zenris, mein erster Werbespot! Aber nur durch viel Kreativität und Improvisation.]]></title>
+            <description><![CDATA[Okay, for real. Ich hab sowas noch nie gemacht!Hier und da hab ich mal ein Video geschnitten. Ich hab mal einen Lego Stop-Motion film animiert. Und für Design hab ich wohl auch ein gutes Auge. Aber das hier ist was anderes. Es sind nur 10 Sekunden. Aber diese zwei Hände voll Sekunden brauchen alles was ich zu dem Zeitpunkt an Animation und Videoschnitt konnte. (Maybe übertreibe ich etwas. Ich musste noch nicht Blender auspacken.)Worum gehts überhaupt?Ich wurde gefragt zu einem bestehenden Radiospot für Zenris ein Video zu produzieren.
+Hier schonmal der Radiospot. Dann wisst ihr genauer worum es geht:Einzige Wünsche:Ne Schraubenpackung soll gezeigt werden. Einmal voll und einmal nur halb voll.Der Ton soll genau der des Radiospots sein.Bis auf die beiden Wünsche… kreative Freiheit!
+Wobei noch ein Wunsch:Bitte bis vorgestern. Genau genommen würden die es gerne genau in dieser Woche ausstrahlen. Wir haben Dienstag. Das find ich ein bisschen knapp. Aber I guess ich brauch ne Challenge. Und es sind doch nur fucking 10 Sekunden. Was soll schon schief gehen.(Spoiler ich habs bis Freitag Mittag geschafft.)Durch den Zeitdruck muss ich spätestens morgen anfangen. Also keine Zeit eine Original Packung mit Schrauben von denen aus Bayern nach Berlin schicken zu lassen. Erste ToDo also: Zum nächsten Baumarkt und eine photogene Schraubenpackung kaufen.Die Schraubenpackungen glänzten alle! Entweder waren sie auf Plastik und so eh nicht zu gebrauchen oder die waren beschichtet bedruckt und wären so mega viel Arbeit im Video gewesen. Ich hatte nicht vor mich aus jedem Frame aus der Spiegelung rauszubearbeiten. Das glänzen sieht auch nicht so nachhaltig aus, wie deren Original-Verpackungen.
+Ich zweifelte schon langsam an dem Projekt. Aber nach ewigem Suchen hab ich wohl die zwei letzten Packungen gefunden, die matt bedruck waren. Durch ein zufälliges Gespräch mit dem Marktleiter hab ich erfahren, dass letztens der Lieferrand gewechselt wurde. Also noch gerade rechtzeitig.Mein Plan: Zuhause schnell drehen, schneiden und heute fertig werden. (Es ist Mittwoch um 18 Uhr.)Zuhause hab ich erstmal Storyboards gezeichnet. Das macht man so doch beim Film?Ich hatte zwei Ideen:Erste: Die Schrauben-Schachtel liegt auf dem Untergrund. Passend zum Ton wird sie in der Mitte geteilt und die Schrauben fallen raus.
+In hind-sight klingt die Idee etwas blutig und bringt den Gedanken von weniger Schrauben nicht ganz rüber. Zu dem Zeitpunkt wusste ich das noch nicht. Zum Glück musste ich die zweite Idee ausprobieren, bevor ich die Schachtel zerschneiden würde.Zweite: Die Schachtel steht und durch das Guckfenster sieht man wie die Schrauben weniger werden.
+Das klingt einfach :) Ich stell die Box hin, lass Frame für Frame eine Schraube reinfallen und in Post dreh ich das Video um… tada!Wie erwartet war es nicht so einfach. Die Idee der Umsetzung war zwar gut.
+Aber bis ich eine Stop-Motion App fürs Handy gefunden hatte, die Onion-Skinning hat (daher mit dem Handy und keine echte Kamera) und die Manuellen-Fokus anbietet, damit dieser nicht ständig wechselt. Nach 5 Apps und na gefühlten Stunde suchen hab ich eine App gefunden, die kostenlos ist und die Bilder sogar in voller Qualität speichert. Falls wer sucht, hier: Stop Motion FactoryZweite Möglichkeit für Kreativität: Zu wenig Schrauben!Die Anzahl war genau was auf der Packung drauf steht. Aber damit war die Packung halt nur halb so voll.
+Ich so: “Easy, dann fahr ich halt kurz eine zweite Packung hohlen.”
+Zeit so: “Der Laden hat noch 3 Minuten auf.” (Mittwoch 19:57 Uhr)
+Funny.Gut dass ich Lego da habe! 😍
+Mega schnell war der Boden höher und die Rückwand näher am Guck-Fenster. Ich hatte mehr Schrauben als in die Packung passten. :D (So funktionieren also Wunder ha ha 🥁)Ich hab noch versucht das Schütteln der Schachtel vom Anfang und Ende des Radiospots aufzunehmen, das das hat nicht so gut geklappt. Hier dennoch beide Aufnahmen unbearbeitet.Der Analoge Teil war damit fertig! 🎉Wir haben Donnerstag Nachmittag. Endlich konnte ich Zeit zum Schneiden finden.Erstes Vorhaben: Alles um die Schraubenpackung weiß machen um schön einfach auf die Schachtel zu fokussieren.
+Wahrscheinlich geht sowas viel einfacher. Aber meine Variante beinhaltet etwas Handarbeit: Da die Schachtel sich nur minimal bewegt (das Onion-Skinning war damit wohl doch nicht benötigt), konnte ich mit einer einfachen Maske die Box freistellen und mit einem weiß-grauen Farbverlauf das 3D des DIN-A4 Blattes nachahmen. Die Maske war mehr fidel-Arbeit als gedacht. Hat aber gut genug funktioniert. Fyi Photoshop ist mir Welten zu teuer. Daher hab ich Affinity Photo hierfür verwendet. (Langsam könnte man meinen ich würde hier Produkt-Placing machen, aber für keine der erwähnten Apps bekomm ich Geld.)It’s DaVinci Resolve Time!Die Grundsätze von Videoschnitt kann ich. Und DR ist mir nicht vollkommen unbekannt. Aber mit Fusion (quasi After Effects) musst ich noch nie arbeiten und bisher handelte sich mein Videoschnitt eher um wortwörtliches Schneiden und aneinanderhängen. Heißt… It’s also Google Time!Der Schnitt ist wohl ziemlich boring… hier in Kurzform:
+Die Tonspur war das Fix-Element, also hab ich die reingeladen, das Logo ans Ende gepackt, die gesprochenen Sätze zum Ton passend angezeigt (zum Orientieren), den weiß-grauen Hintergrund auf die unterste Videospur, das Schraubenvideo an den Anfang und reversed, die Blätter Bilder mit Fusion animiert und fertig. Also sehr stark verkürzt fertig. Das alles hat mehrere Stunden gedauert.Interessanter fand ich die Probleme auf dem Weg, die nicht einfach durch stundenlange Monotone Arbeit gelöst werden konnten:Das Startup hat keine Lizenz die Schriftart aus deren Logo woanders als im Logo zu verwenden. Die 140€ wären für das kleine Video auch ein bisschen zuviel gewesen. Zur Graphik im Logo konnte ich, mit doch wieder stupidem Durchscrollen durch alle im System Installierten Fonts, eine passende finden. Als Kontrast zur Eckigkeit der Logo-Schrift und passend zur Rundheit der Logo-Grapfik hab ich eine San Francisco Variante gewählt. (Die Schriftart des Logos wäre btw Brothers von Emigre)Für die Blätter hab ich nur ein paar Bilder auf Unsplash gefunden. Mein Wunsch war eher Laubbaum und das hab ich ganze einmal gefunden. Um mehr Laubbaum Blätter und Äste auf weißem Hintergrund zu bekommen, hat ein Freund mir Adobe Firefly empfohlen. Ich hatte nur einmal kurz das Text-Generierungs-Tool davon ausprobiert, und war so semi begeistert. Mit dem ganzen AI-Hype hatte ich mehr erwartet. Bilder von Text generieren funktionierte auch nicht perfekt aber gut genug für das kurze Video.Den weißen Hintergrund bei den Laubbaum-Ast-Bildern brauchte ich btw um die ganz einfach mit dem Blend-Mode "Darken" in den grau-weiß-Farbverlauf des Hintergrund einzufügen.One weird Quirk von Adobe Firefly: Scheint so als wäre der Zufall doch nicht ganz so zufällig. Die Äste hatten die Blätter oft an exakt den gleichen Stellen.Das Schütteln des Logos am Anfang und Ende ist zwei Mal ein einfaches zur Seite und leicht rotiert und zur anderen Seite und in die andere Richtung rotiert. Beides mal die gleichen Werte. Und mit ein bisschen Easying per Hand die Animation nicht ganz so linear verlaufen lassen.Jetzt hab ich viel geschrieben und ihr noch nicht viel gesehen. Hier der fertige Werbespot:Stellt gern Fragen zum Video in den YouTube Kommentaren oder mir per Mail an hello@thomasrosen.me.FazitDas Photographieren für den Stop-Motion Teil und das Compositing und Schneiden hat mir mehr Spaß gemacht als erwartet. So lange ich Kreativen Einfluss habe, hoffe ich also öfter Animieren und Schneiden zu dürfen.Anzumerken hätte ich noch, dass ich das Video kostenlos produziert habe. Das ist in unserem kapitalistischen Wirtschaftssystem eigentlich nie eine gute Idee. (Siehe dieses Flussdiagramm von Jessica Hische.) Hierbei kannte ich die Person aber sehr gut und wichtigster Faktor: Ich wusste nicht mal ob ich das hinbekomme. Ich wollte nicht für was bezahlt werden, dass ich selbst lieber in den Müll werfen würde. Nobel aber für das nächste mal weiß ich, dass ich anscheinend nicht Nichts kann und werde mich entsprechend bezahlen lassen.Weiter Anzumerken: Viele Ideen und auch ein/zwei Mini-Wünsche konnte ich nicht umsetzten. ZB sollte das Logo des Startups auf die Pappbox gephotoshopped werden. Untern den Blättern hätte eine Vinget noch gut ausgesehen. Das Schütteln der Box am Anfang um schneller zu catchen. uswIch hoffe so einen kleinen Einblick in das Behind the Scenes des kleinen Werbespots geboten haben zu können.
+]]></description>
+            <link>https://thomasrosen.me/articles/zenris</link>
+            <guid isPermaLink="false">e0920f22-a380-4e0e-9a34-e9c275083c52</guid>
+            <category><![CDATA[Video]]></category>
+            <category><![CDATA[Stop-Motion]]></category>
+            <category><![CDATA[Animation]]></category>
+            <dc:creator><![CDATA[Thomas Rosen]]></dc:creator>
+            <pubDate>Mon, 17 Jul 2023 12:00:00 GMT</pubDate>
+            <enclosure url="https://thomasrosen.me/blog/audio/2023-07-17-zenris-de.mp3" length="8523980" type="audio/mpeg"/>
+            <itunes:duration>08:53</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:episode>9</itunes:episode>
+            <itunes:season>1</itunes:season>
+            <itunes:author>Thomas Rosen</itunes:author>
+            <itunes:subtitle>Okay, for real. Ich hab sowas noch nie gemacht!Hier und da hab ich mal ein Video geschnitten. Ich ha…</itunes:subtitle>
+            <itunes:summary>Okay, for real. Ich hab sowas noch nie gemacht!Hier und da hab ich mal ein Video geschnitten. Ich ha…</itunes:summary>
+            <itunes:image href="https://thomasrosen.me/blog/images/2023-07-17-zenris/IMG_0576-cropped.JPG"/>
         </item>
     </channel>
 </rss>

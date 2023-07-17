@@ -160,6 +160,12 @@ a.link_box p:last-child {
 	letter-spacing: 0.5px;
 	margin-block-start: 40px;
 }
+.tab_content.article audio,
+.tab_content.article video,
+.tab_content.article iframe {
+	width: 100%;
+	margin-block-end: 20px;
+}
 .tag_row {
 	display: inline-flex;
 	flex-wrap: wrap;

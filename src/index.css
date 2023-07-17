@@ -54,7 +54,7 @@ body {
   padding-block-end: 25vh;
 }
 
-body, p, h4, h5, h6 {
+body, p, h4, h5, h6, li {
   font-family: var(--font-family-text);
   font-weight: normal;
   font-size: 22px;
@@ -201,6 +201,10 @@ hr.small {
   margin: 0;
 }
 
-p {
+p, ul, ol {
   margin-block-end: 20px;
+}
+
+ul, ol {
+  margin-inline-start: 1.5rem;
 }

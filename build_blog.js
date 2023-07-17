@@ -77,8 +77,23 @@ function buildBlog() {
               const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
               const data = matter(filecontent)
 
-              const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.[^()]*?)>?\)/gmi;
-              const text = data.content.replace(markdown_img_regex, (match, g1, g2) => match.replace(g1, `${g2}_1000.jpg`))
+              const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.([^()]*?))>?\)/gmi;
+              const text = data.content.replace(markdown_img_regex, (match, g1, g2, g3) => {
+                const fileextension_lowercase = g3.toLowerCase()
+
+                if (
+                  fileextension_lowercase === 'jpg'
+                  || fileextension_lowercase === 'jpeg'
+                  || fileextension_lowercase === 'png'
+                ) {
+                  return match.replace(g1, `${g2}_1000.jpg`)
+                }
+                // if (fileextension_lowercase === 'png') {
+                //   return match.replace(g1, `${g2}_1000.${fileextension_lowercase}`)
+                // }
+
+                return String(match)
+              })
 
               let plaintext = `${data.content}`
                 .replace(markdown_img_regex, () => '') // replace all images with empty string (only in the plaintext version)
@@ -211,7 +226,8 @@ buildBlog()
 
       for await (const relative_filepath of getFilesRecursive(dir_images)) {
         const absolute_filepath = path.join(dir_images, relative_filepath)
-        const fileExtension = path.extname(absolute_filepath).toLowerCase()
+        const fileExtension_original = path.extname(absolute_filepath)
+        const fileExtension = fileExtension_original.toLowerCase()
         // const fileName = path.basename(absolute_filepath, fileExtension)
 
         if (fileExtension === '.jpg' || fileExtension === '.jpeg' || fileExtension === '.png' || fileExtension === '.webp') {
@@ -219,7 +235,7 @@ buildBlog()
 
           for (const format of imageFormats) {
             for (const size of imageSizes) {
-              let new_relative_filepath = relative_filepath.replace(fileExtension, `_${size}.${format}`)
+              let new_relative_filepath = relative_filepath.replace(fileExtension_original, `_${size}.${format}`)
               const resizedImagePath = path.join(images_build_dir, new_relative_filepath)
               await image
                 .resize({ width: size })
