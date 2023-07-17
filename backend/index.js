@@ -43,6 +43,10 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.get('/zenris', function (req, res) {
+  res.redirect('/articles/zenris', 302)
+});
+
 app.use('/', express.static('../build/', { fallthrough: true }))
 
 app.get('*', (req, res) => {
