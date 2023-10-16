@@ -3,7 +3,6 @@ const fs = require('fs')
 const { readdir } = require('fs').promises
 
 const sharp = require('sharp')
-const { joinImages } = require('join-images')
 
 const empty_transparent_png = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
 
