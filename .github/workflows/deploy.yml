@@ -33,6 +33,8 @@ jobs:
         run: yarn add --dev gh-pages
       - name: Build ReactJS App
         run: yarn build
+      - name: Get Music Data
+        run: yarn get_music_data
       - name: Convert blog articles to JSON
         run: yarn build_blog
       - name: Remove node_modules folder

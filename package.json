@@ -28,6 +28,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "build_blog": "node ./build_blog.js",
+    "get_music_data": "sh ./get_music_data.sh",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

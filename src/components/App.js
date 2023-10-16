@@ -20,6 +20,7 @@ export default function App() {
       <NavLink to="articles"><button>Blog</button></NavLink>
       <NavLink to="projects"><button>Projects</button></NavLink>
       <NavLink to="press"><button>In the Press</button></NavLink>
+      <NavLink to="playlists"><button><span aria-hidden="true">🎸</span> Playlists</button></NavLink>
       <NavLink to="follow"><button>Follow</button></NavLink>
       <NavLink to="contact"><button>Contact</button></NavLink>
       <NavLink to="sponsor"><button>Sponsor</button></NavLink>

@@ -178,6 +178,9 @@ a.link_box p:last-child {
 	display: flex;
 	gap: 20px;
 }
+.links_grid_item .image_container {
+	flex-shrink: 0;
+}
 .links_grid_item .image_container img {
 	width: 200px;
 	margin-block-start: 5px;

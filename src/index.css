@@ -201,6 +201,11 @@ a:hover,
   text-decoration-color: currentColor;
 }
 
+a.inherit_color {
+  color: inherit;
+  text-decoration-color: inherit;
+}
+
 hr {
   border: 0;
   height: 0.8rem;
