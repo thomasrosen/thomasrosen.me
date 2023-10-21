@@ -20,10 +20,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Configure git
-      env:
-        TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+
+      - name: Add Private Key
+        run: |-
+          eval `ssh-agent -s`
+          ssh-add - <<< '${{ secrets.DATA_ABOUT_THOMASROSEN_PRIVATE_KEY }}'
+
+    # - name: Configure git
+    #   env:
+    #     TOKEN: ${{ secrets.DATA_ABOUT_THOMASROSEN_PRIVATE_KEY }}
+    #   run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
