@@ -3,8 +3,8 @@
     "main.css": "/static/css/main.ba721768.chunk.css",
     "main.js": "/static/js/main.2015f9d2.chunk.js",
     "main.js.map": "/static/js/main.2015f9d2.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.680ae277.js",
-    "runtime-main.js.map": "/static/js/runtime-main.680ae277.js.map",
+    "runtime-main.js": "/static/js/runtime-main.199a7635.js",
+    "runtime-main.js.map": "/static/js/runtime-main.199a7635.js.map",
     "static/js/2.a7760bc2.chunk.js": "/static/js/2.a7760bc2.chunk.js",
     "static/js/2.a7760bc2.chunk.js.map": "/static/js/2.a7760bc2.chunk.js.map",
     "static/css/3.42be4eb0.chunk.css": "/static/css/3.42be4eb0.chunk.css",
@@ -14,8 +14,8 @@
     "static/js/4.9093ba40.chunk.js": "/static/js/4.9093ba40.chunk.js",
     "static/js/4.9093ba40.chunk.js.map": "/static/js/4.9093ba40.chunk.js.map",
     "static/css/5.42be4eb0.chunk.css": "/static/css/5.42be4eb0.chunk.css",
-    "static/js/5.5aa2ab6a.chunk.js": "/static/js/5.5aa2ab6a.chunk.js",
-    "static/js/5.5aa2ab6a.chunk.js.map": "/static/js/5.5aa2ab6a.chunk.js.map",
+    "static/js/5.c076ea33.chunk.js": "/static/js/5.c076ea33.chunk.js",
+    "static/js/5.c076ea33.chunk.js.map": "/static/js/5.c076ea33.chunk.js.map",
     "static/js/6.80ed4a2d.chunk.js": "/static/js/6.80ed4a2d.chunk.js",
     "static/js/6.80ed4a2d.chunk.js.map": "/static/js/6.80ed4a2d.chunk.js.map",
     "index.html": "/index.html",
@@ -28,7 +28,7 @@
     "static/media/index.css": "/static/media/ubuntu-v20-latin-regular.f00252d5.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.680ae277.js",
+    "static/js/runtime-main.199a7635.js",
     "static/js/2.a7760bc2.chunk.js",
     "static/css/main.ba721768.chunk.css",
     "static/js/main.2015f9d2.chunk.js"
