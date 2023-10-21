@@ -23,6 +23,10 @@ echo "✅ done coping playlists to build";
 mkdir -p ./public/music/playlists
 cp ./data_about_thomasrosen/music/playlists/* ./public/music/playlists
 
+# for development
+mkdir -p ./public/static/music/playlists
+cp ./data_about_thomasrosen/music/playlists/* ./public/static/music/playlists
+
 echo "✅ done coping playlists to public";
 
 node ./build_music_metadata.js

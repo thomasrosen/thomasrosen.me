@@ -11,7 +11,7 @@ export default function Playlists() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch('/music/playlists.json')
+    fetch('/static/music/playlists.json')
       .then(response => response.json())
       .then(data => {
         setPlaylists(data.playlists.reverse())
