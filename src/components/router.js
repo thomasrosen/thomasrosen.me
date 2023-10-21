@@ -19,6 +19,8 @@ import Sponsor from './pages/sponsor.js'
 // const Sponsor = React.lazy(() => import('./pages/sponsor.js'));
 const Articles = React.lazy(() => import('./pages/articles.js'));
 const Article = React.lazy(() => import('./pages/article.js'));
+const Playlists = React.lazy(() => import('./pages/playlists.js'));
+const Playlist = React.lazy(() => import('./pages/playlist.js'));
 
 function Loading() {
   return null
@@ -55,7 +57,7 @@ export const router = createBrowserRouter([
         path: 'sponsor',
         element: <Suspense fallback={<Loading />}><Sponsor /></Suspense>,
       },
-      
+
       {
         path: 'articles',
         element: <Suspense fallback={<Loading />}><Articles /></Suspense>,
@@ -63,6 +65,15 @@ export const router = createBrowserRouter([
       {
         path: 'articles/:slug',
         element: <Suspense fallback={<Loading />}><Article /></Suspense>,
+      },
+
+      {
+        path: 'playlists',
+        element: <Suspense fallback={<Loading />}><Playlists /></Suspense>,
+      },
+      {
+        path: 'playlists/:slug',
+        element: <Suspense fallback={<Loading />}><Playlist /></Suspense>,
       },
 
       // redirects for when ppl think the blog is under /blog

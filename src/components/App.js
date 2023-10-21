@@ -14,15 +14,18 @@ export default function App() {
     </header>
 
     <br />
-    
+
     <nav>
       <NavLink to="/"><button>Hi!</button></NavLink>
-      <NavLink to="articles"><button>Blog</button></NavLink>
-      <NavLink to="projects"><button>Projects</button></NavLink>
-      <NavLink to="press"><button>In the Press</button></NavLink>
+      <div />
+      <NavLink to="articles"><button><span aria-hidden="true">📝</span> Blog</button></NavLink>
+      <NavLink to="projects"><button><span aria-hidden="true">🚀</span> Projects</button></NavLink>
+      <NavLink to="playlists"><button><span aria-hidden="true">🎸</span> Playlists</button></NavLink>
+      <NavLink to="press"><button><span aria-hidden="true">📰</span> In the Press</button></NavLink>
+      <div />
       <NavLink to="follow"><button>Follow</button></NavLink>
       <NavLink to="contact"><button>Contact</button></NavLink>
-      <NavLink to="sponsor"><button>Sponsor</button></NavLink>
+      {/* <NavLink to="sponsor"><button>Sponsor</button></NavLink> */}
     </nav>
 
     <br />
