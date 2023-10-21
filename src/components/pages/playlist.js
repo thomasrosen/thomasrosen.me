@@ -33,7 +33,7 @@ export default function Playlist() {
 
   useEffect(() => {
     // fetch the article from /music/playlists/{slug}.json
-    fetch('/music/playlists/' + window.location.pathname.split('/').pop() + '.json')
+    fetch('/static/music/playlists/' + window.location.pathname.split('/').pop() + '.json')
       .then(response => response.json())
       .then(data => {
         setPlaylist(data)
