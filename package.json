@@ -2,7 +2,6 @@
   "name": "thomasrosen",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://thomasrosen.qiekub.org/",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
@@ -22,6 +21,7 @@
     "uuid": "^9.0.0",
     "web-vitals": "^0.2.4"
   },
+  "homepage": "https://thomasrosen.me/",
   "scripts": {
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
