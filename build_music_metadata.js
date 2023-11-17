@@ -181,8 +181,6 @@ async function build_music_metadata() {
     })
   }
 
-  // console.log(playlists)
-
   const playlists_metadata = {
     playlists,
   }

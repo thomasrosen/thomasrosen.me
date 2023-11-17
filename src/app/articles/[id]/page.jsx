@@ -6,7 +6,6 @@ import fs from 'fs';
 // Return a list of `params` to populate the [slug] dynamic segment
 export function generateStaticParams() {
   const articles = loadArticles()
-  console.log('articles', articles)
 
   return articles.map(article => ({
     id: article.slug,
