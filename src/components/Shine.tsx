@@ -17,8 +17,8 @@ const Shine = ({
   const filterRef = React.useRef<SVGFilterElement>(null);
   const childrenWrapperRef = React.useRef<HTMLDivElement>(null);
   const mouse = React.useRef({
-    x: 0,
-    y: 0,
+    x: -9999,
+    y: -9999,
   });
 
   React.useEffect(() => {
@@ -99,7 +99,7 @@ const Shine = ({
             specularExponent="120"
             lightingColor={lightColor}
           >
-            <fePointLight x="60" y="69" z="300" />
+            <fePointLight x={mouse.current.x} y={mouse.current.y} z="300" />
           </feSpecularLighting>
           <feComposite
             result="reflections"
