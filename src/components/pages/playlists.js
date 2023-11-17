@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import '../../fonts/petrona-v28-latin/index.css'
+import { Shine } from '../Shine'
 
 import { Link } from 'react-router-dom'
 // import Dot from '../dot.js'
@@ -67,9 +68,11 @@ export default function Playlists() {
               maxHeight: '128px',
             }}>
               <Link to={'/playlists/' + playlist.name}>
-                <img src={playlist.coverphoto} alt={playlist.name} style={{
-                  filter: 'contrast(1.1) saturate(1.2)',
-                }} />
+                <Shine puffyness="2">
+                  <img src={playlist.coverphoto} alt={playlist.name} style={{
+                    filter: 'contrast(1.1) saturate(1.2)',
+                  }} />
+                </Shine>
               </Link>
             </div>
             : null

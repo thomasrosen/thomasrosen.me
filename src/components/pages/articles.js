@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import '../../fonts/petrona-v28-latin/index.css'
 
 import { Link } from 'react-router-dom'
+import { Shine } from '../Shine'
 // import Dot from '../dot.js'
 
 const units = {
@@ -107,7 +108,9 @@ export default function Articles() {
           typeof article.coverphoto === 'string' && article.coverphoto.length > 0
             ? <div className="image_container">
                 <Link to={'/articles/' + article.slug}>
-                  <img src={article.coverphoto} alt={article.title} />
+                  <Shine puffyness="2">
+                    <img src={article.coverphoto} alt={article.title} />
+                  </Shine>
                 </Link>
               </div>
             : null

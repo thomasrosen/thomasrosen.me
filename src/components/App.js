@@ -4,12 +4,15 @@ import '../fonts/ubuntu-v20-latin/index.css'
 import '../fonts/ubuntu-mono-v15-latin/index.css'
 
 import { NavLink, Outlet } from 'react-router-dom'
+import { Shine } from './Shine'
 
 export default function App() {
   return <div className="app_wrapper">
 
     <header>
-      <div alt="Thomas Rosen eating a slice watermelon." className="headerImageOfMe"></div>
+      <Shine puffyness="3">
+        <div alt="Thomas Rosen eating a slice watermelon." className="headerImageOfMe"></div>
+      </Shine>
       <h1 style={{ textAlign: 'center' }}>Thomas Rosen</h1>
     </header>
 
