@@ -43,6 +43,9 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.get('/blog', function (req, res) {
+  res.redirect(302, '/articles')
+});
 app.get('/zenris', function (req, res) {
   res.redirect(302, '/articles/zenris')
 });
