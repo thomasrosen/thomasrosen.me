@@ -1,6 +1,6 @@
-import Dot from '../dot.js'
+import { Dot } from '@/components/Dot'
 
-export default function Contact() {
+export default function Page() {
   return <div className="tab_content">
 
     <h2>Follow</h2>
@@ -37,7 +37,7 @@ export default function Contact() {
         thomasrosen
       </a>
 
-      <div></div><hr class="small" />
+      <div></div><hr className="small" />
 
       <h3><Dot color="#d60017" />Apple Music</h3>
       <a href="https://music.apple.com/profile/thomasrosen" target="_blank" rel="noreferrer" data-umami-event="apple-music">

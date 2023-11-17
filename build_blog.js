@@ -13,10 +13,10 @@ const { generate_rss_feed } = require('./feed_generator.js')
 const dir_articles = './blog/articles/'
 const dir_images = './blog/images/'
 const dir_audio = './blog/audio/'
-const blog_build_dir = './build/blog/'
-const articles_build_dir = './build/blog/articles/'
-const images_build_dir = './build/blog/images/'
-const audio_build_dir = './build/blog/audio/'
+const blog_build_dir = './.tmp/build_blog/blog/'
+const articles_build_dir = './.tmp/build_blog/blog/articles/'
+const images_build_dir = './.tmp/build_blog/blog/images/'
+const audio_build_dir = './.tmp/build_blog/blog/audio/'
 const public_blog_dir = './public/blog/'
 
 
@@ -279,10 +279,14 @@ buildBlog()
     // copy blog_build_dir to ./public/blog
     fs.cpSync(blog_build_dir, public_blog_dir, { recursive: true, overwrite: true });
 
+    // delete tmp blog_build_dir
+    if (fs.existsSync(blog_build_dir)) {
+      fs.rmdirSync(blog_build_dir, { recursive: true });
+    }
 
-    console.info('✅ Blog build complete.')
+    console.info('✅ Blog build complete.');
 
     // end node process
-    process.exit(0)
+    process.exit(0);
   })
   .catch(console.error)

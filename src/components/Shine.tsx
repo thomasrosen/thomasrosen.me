@@ -1,9 +1,11 @@
+'use client'
+
 // source: https://twitter.com/artur_bien/status/1714744102070231413
 // source: https://codesandbox.io/p/sandbox/shine-effect-pvyr2j?file=%2Fsrc%2FShine.tsx%3A1%2C1
 
 import React from "react";
 
-const Shine = ({
+export function Shine ({
   children,
   lightColor = "#666666",
   puffyness = "1",
@@ -12,7 +14,7 @@ const Shine = ({
   children: React.ReactNode
   lightColor?: `#${string}`
   puffyness?: "0" | "0.5" | "0.75" | "1" | "1.25" | "1.5" | "1.75" | "2" | "3"
-} & React.ComponentProps<"div">) => {
+} & React.ComponentProps<"div">) {
   const filterId = React.useId();
   const filterRef = React.useRef<SVGFilterElement>(null);
   const childrenWrapperRef = React.useRef<HTMLDivElement>(null);
@@ -126,6 +128,4 @@ const Shine = ({
       </div>
     </div>
   );
-};
-
-export { Shine };
+}

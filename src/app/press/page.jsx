@@ -1,6 +1,6 @@
-import { Shine } from '../Shine'
+import { Shine } from '@/components/Shine'
 
-export default function Press() {
+export default function Page() {
   return <div className="tab_content" style={{ wwidth: '800px' }}>
 
     <h2>Articles about me and my projects</h2>

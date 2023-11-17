@@ -1,52 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import { Dot } from '@/components/Dot';
+import '@/fonts/petrona-v28-latin/index.css';
+import { getRelativeTime, loadArticles } from '@/utils/loadArticles';
+import fs from 'fs';
 
-import '../../fonts/petrona-v28-latin/index.css'
+// Return a list of `params` to populate the [slug] dynamic segment
+export function generateStaticParams() {
+  const articles = loadArticles()
+  console.log('articles', articles)
 
-// import { Link } from 'react-router-dom'
-import Dot from '../dot.js'
+  return articles.map(article => ({
+    id: article.slug,
+  }))
+}
 
-const units = {
-  year: 24 * 60 * 60 * 1000 * 365,
-  month: (24 * 60 * 60 * 1000 * 365) / 12,
-  day: 24 * 60 * 60 * 1000,
-  hour: 60 * 60 * 1000,
-  minute: 60 * 1000,
-  second: 1000
-};
+export default function Page({ params }) {
+  let { id } = params || {}
 
-const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
-
-const getRelativeTime = (d1, d2 = new Date()) => {
-  const elapsed = d1.getTime() - d2.getTime();
-
-  // "Math.abs" accounts for both "past" & "future" scenarios
-  for (const u in units) {
-    if (Math.abs(elapsed) > units[u] || u === 'second') {
-      return rtf.format(Math.round(elapsed / units[u]), u);
-    }
+  if (!id) {
+    throw new Error('No article id provided.')
   }
-};
 
-export default function Article() {
-  const [article, setArticle] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  id = decodeURIComponent(id)
 
-  useEffect(() => {
-    // fetch the article from /blog/articles/{slug}.json
-    fetch('/blog/articles/' + window.location.pathname.split('/').pop() + '.json')
-      .then(response => response.json())
-      .then(data => {
-        data.article.relative_date = getRelativeTime(new Date(data.article.date))
+  let article = null
 
-        setArticle(data.article)
-        setLoading(false)
-      })
-      .catch(error => {
-        setError(error)
-        setLoading(false)
-      })
-  }, [])
+  try {
+    let data = fs.readFileSync(`./public/blog/articles/${id}.json`, 'utf8')
+    data = JSON.parse(data)
+    article = data.article
+    article.relative_date = getRelativeTime(new Date(article.date))
+  } catch (error) {
+    throw new Error(`Could not load the article: ${error.message}`)
+  }
 
   let images = null
   if (!!article && typeof article.coverphoto === 'string' && article.coverphoto.length > 0) {
@@ -54,16 +39,14 @@ export default function Article() {
   }
 
   return <div className={`tab_content article ${!!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'}`}>
-    {loading && <p>Loading article...</p>}
-    {error && <p>Error loading article: {error.message}</p>}
 
     {
       !!article
         ? <>
-          <h2 itemprop="headline">{article.title}</h2>
+          <h2 itemProp="headline">{article.title}</h2>
 
           <p><strong>
-            <time datetime={article.date} title={article.date} itemprop="datePublished">{article.relative_date}</time> — <span className="tag_row" itemprop="keywords">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
+            <time dateTime={article.date} title={article.date} itemProp="datePublished">{article.relative_date}</time> — <span className="tag_row" itemProp="keywords">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span>
           </strong></p>
 
           {
@@ -84,7 +67,7 @@ export default function Article() {
             : null
           }
 
-          <div dangerouslySetInnerHTML={{ __html: article.html }} itemprop="articleBody" />
+          <div dangerouslySetInnerHTML={{ __html: article.html }} itemProp="articleBody" />
           <Dot />
 
           {
@@ -92,7 +75,7 @@ export default function Article() {
               ? <>
                 <br />
                 <br />
-                <meta itemprop="image" content={`https://thomasrosen.me/${article.coverphoto}`} />
+                <meta itemProp="image" content={`https://thomasrosen.me/${article.coverphoto}`} />
                 <img src={article.coverphoto} alt={article.title} style={{
                   width: '200px',
                   maxWidth: '100%',
@@ -101,8 +84,9 @@ export default function Article() {
               : null
           }
 
-          <script type="application/ld+json">
-            {JSON.stringify({
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "BlogPosting",
               "mainEntityOfPage": {
@@ -129,8 +113,8 @@ export default function Article() {
               },
               // "description": "Brief description of the blog article.",
               "articleBody": article.html,
-            })}
-          </script>
+            }) }}
+          />
         </>
         : null
     }

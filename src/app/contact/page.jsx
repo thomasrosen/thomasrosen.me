@@ -1,6 +1,6 @@
-import Dot from '../dot.js'
+import { Dot } from '@/components/Dot'
 
-export default function Contact() {
+export default function Page() {
   return <div className="tab_content">
 
     <h2>Contact</h2>
