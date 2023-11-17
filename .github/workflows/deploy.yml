@@ -35,19 +35,19 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           check-latest: true
           cache: 'npm'
       - name: Install Dependencies
         run: yarn
       - name: Add gh-pages as a dev-dependency
         run: yarn add --dev gh-pages
-      - name: Build ReactJS App
-        run: yarn build
       - name: Get Music Data
         run: yarn get_music_data
       - name: Convert blog articles to JSON
         run: yarn build_blog
+      - name: Build ReactJS App
+        run: yarn build
       - name: Remove node_modules folder
         run: rm -rf node_modules
       - name: Deploy to GitHub Pages

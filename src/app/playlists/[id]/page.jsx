@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react'
-
-import Dot from '../dot.js'
+import { Dot } from '@/components/Dot';
+import { loadPlaylists } from '@/utils/loadPlaylists';
+import fs from 'fs';
+import React from 'react';
 
 function get_genres(playlist) {
+  if (!playlist || !playlist.Songs || Array.isArray(playlist.Songs) === false) {
+    return []
+  }
+
   let genres = playlist.Songs
     // sort the genres by count with reduce
     .reduce((acc, song) => {
@@ -22,49 +27,49 @@ function get_genres(playlist) {
   return genres
 }
 
-export default function Playlist() {
-  const [playlist, setPlaylist] = useState({
-    Songs: [],
-    Name: '',
-    Date: '',
-  })
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+// Return a list of `params` to populate the [slug] dynamic segment
+export function generateStaticParams() {
+  const playlists = loadPlaylists()
 
-  useEffect(() => {
-    // fetch the article from /music/playlists/{slug}.json
-    fetch('/static/music/playlists/' + window.location.pathname.split('/').pop() + '.json')
-      .then(response => response.json())
-      .then(data => {
-        setPlaylist(data)
-        setLoading(false)
-      })
-      .catch(error => {
-        setError(error)
-        setLoading(false)
-      })
-  }, [])
+  return playlists.map(playlist => ({
+    id: playlist.name,
+  }))
+}
+
+export default function Page({ params }) {
+  let { id } = params || {}
+
+  if (!id) {
+    throw new Error('No playlist id provided.')
+  }
+
+  id = decodeURIComponent(id)
+
+  let playlist = null
+
+  try {
+    playlist = fs.readFileSync(`./public/music/playlists/${id}.json`, 'utf8')
+    playlist = JSON.parse(playlist)
+  } catch (error) {
+    throw new Error(`Could not load the playlist: ${error.message}`)
+  }
 
   const date_month = ''
-
   const genres = get_genres(playlist)
-
-  const song_count = playlist.Songs.length
+  const song_count = playlist?.Songs?.length
 
   return <div className={`tab_content article ${!!playlist && playlist.font === 'serif' ? 'serif_font' : 'sans_serif_font'}`}>
-    {loading && <p>Loading article...</p>}
-    {error && <p>Error loading article: {error.message}</p>}
 
     {
       !!playlist
         ? <>
 
-          <h2 itemprop="headline">
-            <time datetime={date_month} title={date_month} itemprop="datePublished">{playlist.Name}</time>
+          <h2 itemProp="headline">
+            <time dateTime={date_month} title={date_month} itemProp="datePublished">{playlist.Name}</time>
           </h2>
 
           <p><strong>
-            <span className="tag_row" itemprop="keywords">
+            <span className="tag_row" itemProp="keywords">
               {genres.map(genre => <button className="small" disabled key={genre}>{genre}</button>)}
               <br />
               <span>{song_count === 1 ? 'One Song' : `${song_count} Songs`}</span>
@@ -102,7 +107,7 @@ export default function Playlist() {
                     {
                       typeof album_artwork === 'string' && album_artwork.length > 0
                         ? <img src={album_artwork} alt={title} style={{
-                            filter: 'contrast(1.1) saturate(1.2)',
+                          filter: 'contrast(1.1) saturate(1.2)',
                         }} />
                         : <div></div>
                     }
@@ -152,14 +157,14 @@ export default function Playlist() {
                               <button className="small" disabled key={genre}>{genre}</button>
                             </span>
                             : null
-                          ),
-                          <time title={`Duration: ${song.Duration} min`}>{song.Duration} min</time>,
-                          (
-                            play_count > 0
-                              ? <span title={`Play Count: ${play_count}`}>🔄 {play_count}</span>
-                              : null
-                          ),
-                          song['Is Explicit'] === '1' ? <span title="Song is Explicit" alt="Song is Explicit">🔥</span> : null,
+                        ),
+                        <time title={`Duration: ${song.Duration} min`}>{song.Duration} min</time>,
+                        (
+                          play_count > 0
+                            ? <span title={`Play Count: ${play_count}`}>🔄 {play_count}</span>
+                            : null
+                        ),
+                        song['Is Explicit'] === '1' ? <span title="Song is Explicit" alt="Song is Explicit">🔥</span> : null,
                       ]
                         .filter(Boolean)
                         .map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>)
@@ -175,7 +180,7 @@ export default function Playlist() {
           <center>
             <Dot />
           </center>
-          
+
         </>
         : null
     }

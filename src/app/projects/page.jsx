@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { Shine } from '../Shine'
+import { Shine } from '@/components/Shine'
+import Link from 'next/link'
 
-export default function Projects() {
+export default function Page() {
   return <div className="tab_content">
 
     <h2>Projects</h2>
@@ -16,7 +16,7 @@ export default function Projects() {
           </a>
         </h3>
         <p>A list of websites with information about queer places and living as a queer person. You can filter by some tags and your location.</p>
-        <Link to="/articles/queer-resources">
+        <Link href="/articles/queer-resources">
           <button className="small">more infos</button>
         </Link>
       </div>
@@ -29,7 +29,7 @@ export default function Projects() {
           </a>
         </h3>
         <p>Find LGBTIAQ+ safe-spaces on the global QueerMap.</p>
-        <Link to="/articles/aws-queermap">
+        <Link href="/articles/aws-queermap">
           <button className="small">more infos</button>
         </Link>
       </div>
@@ -64,7 +64,7 @@ export default function Projects() {
         <p>QR-Code generator with some default colors for Volt Europa.</p>
       </div>
 
-      <div></div><hr class="small" />
+      <div></div><hr className="small" />
 
       <Shine>🤖</Shine>
       <div>

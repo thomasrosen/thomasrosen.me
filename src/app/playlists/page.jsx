@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import { Shine } from '@/components/Shine'
+import '@/fonts/petrona-v28-latin/index.css'
+import { loadPlaylists } from '@/utils/loadPlaylists'
+import Link from 'next/link'
+import React from 'react'
 
-import '../../fonts/petrona-v28-latin/index.css'
-import { Shine } from '../Shine'
+export default function Page() {
+  let playlists = null
 
-import { Link } from 'react-router-dom'
-// import Dot from '../dot.js'
-
-export default function Playlists() {
-  const [playlists, setPlaylists] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    fetch('/static/music/playlists.json')
-      .then(response => response.json())
-      .then(data => {
-        setPlaylists(data.playlists.reverse())
-        setLoading(false)
-      })
-      .catch(error => {
-        setError(error)
-        setLoading(false)
-      })
-  }, [])
+  try {
+    playlists = loadPlaylists()
+  } catch (error) {
+    throw new Error(`Could not load the playlists: ${error.message}`)
+  }
 
   return <div className="tab_content">
     <h2>Playlists</h2>
@@ -51,9 +40,6 @@ export default function Playlists() {
     <br />
     <br />
 
-    {loading && <p>Loading playlists...</p>}
-    {error && <p>Error loading playlists: {error.message}</p>}
-
     <div className="links_grid" style={{
       gridTemplateColumns: 'auto'
     }}>
@@ -67,7 +53,7 @@ export default function Playlists() {
               maxWidth: '128px',
               maxHeight: '128px',
             }}>
-              <Link to={'/playlists/' + playlist.name}>
+              <Link href={'/playlists/' + playlist.name}>
                 <Shine puffyness="2">
                   <img src={playlist.coverphoto} alt={playlist.name} style={{
                     filter: 'contrast(1.1) saturate(1.2)',
@@ -80,8 +66,8 @@ export default function Playlists() {
 
         <div>
           <h3 className="big">
-            <Link to={'/playlists/' + playlist.name}>
-              <time datetime={playlist.date_month} title={playlist.date_month}>
+            <Link href={'/playlists/' + playlist.name}>
+              <time dateTime={playlist.date_month} title={playlist.date_month}>
                 {playlist.name}
               </time>
             </Link>

@@ -187,7 +187,7 @@ async function build_music_metadata() {
     playlists,
   }
 
-  fs.writeFileSync('./public/static/music/playlists.json', JSON.stringify(playlists_metadata))
-  fs.writeFileSync('./build/static/music/playlists.json', JSON.stringify(playlists_metadata))
+  fs.writeFileSync('./public/music/playlists.json', JSON.stringify(playlists_metadata))
+  // fs.writeFileSync('./build/music/playlists.json', JSON.stringify(playlists_metadata))
 }
 build_music_metadata()

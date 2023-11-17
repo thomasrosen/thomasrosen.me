@@ -1,4 +1,6 @@
-export default function Welcome() {
+// import reportWebVitals from '@/app/reportWebVitals';
+
+export default function App() {
   return <div className="tab_content">
     <p>
       Hi, nice to meet you 👋<br />

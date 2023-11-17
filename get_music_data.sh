@@ -13,19 +13,9 @@ fi
 
 echo "✅ done cloneing";
 
-# for production
-mkdir -p ./build/static/music/playlists
-cp ./data_about_thomasrosen/music/playlists/* ./build/static/music/playlists
-
-echo "✅ done coping playlists to build";
-
 # for development
 mkdir -p ./public/music/playlists
 cp ./data_about_thomasrosen/music/playlists/* ./public/music/playlists
-
-# for development
-mkdir -p ./public/static/music/playlists
-cp ./data_about_thomasrosen/music/playlists/* ./public/static/music/playlists
 
 echo "✅ done coping playlists to public";
 

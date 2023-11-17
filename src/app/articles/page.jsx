@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
-
-import '../../fonts/petrona-v28-latin/index.css'
-
-import { Link } from 'react-router-dom'
-import { Shine } from '../Shine'
-// import Dot from '../dot.js'
+import { Shine } from '@/components/Shine';
+import '@/fonts/petrona-v28-latin/index.css';
+import { loadArticles } from '@/utils/loadArticles';
+import Link from 'next/link';
+import React from 'react';
 
 const units = {
     year: 24 * 60 * 60 * 1000 * 365,
@@ -28,30 +26,14 @@ const getRelativeTime = (d1, d2 = new Date()) => {
     }
 };
 
-export default function Articles() {
-  const [articles, setArticles] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+export default function Page() {
+  let articles = null
 
-  useEffect(() => {
-    fetch('/blog/articles.json')
-      .then(response => response.json())
-      .then(data => {
-        data.articles = data.articles
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .map(article => {
-            article.relative_date = getRelativeTime(new Date(article.date))
-            article.has_tags = !!article.tags && Array.isArray(article.tags) && article.tags.length > 0
-            return article
-          })
-        setArticles(data.articles)
-        setLoading(false)
-      })
-      .catch(error => {
-        setError(error)
-        setLoading(false)
-      })
-  }, [])
+  try {
+    articles = loadArticles()
+  } catch (error) {
+    throw new Error(`Could not load the articles: ${error.message}`)
+  }
 
   return <div className="tab_content">
     <h2>Blog</h2>
@@ -91,9 +73,6 @@ export default function Articles() {
     <br />
     <br />
 
-    {loading && <p>Loading articles...</p>}
-    {error && <p>Error loading articles: {error.message}</p>}
-
     <div className="links_grid" style={{
       gridTemplateColumns: 'auto'
     }}>
@@ -107,7 +86,7 @@ export default function Articles() {
         {
           typeof article.coverphoto === 'string' && article.coverphoto.length > 0
             ? <div className="image_container">
-                <Link to={'/articles/' + article.slug}>
+                <Link href={'/articles/' + article.slug}>
                   <Shine puffyness="2">
                     <img src={article.coverphoto} alt={article.title} />
                   </Shine>
@@ -118,7 +97,7 @@ export default function Articles() {
 
         <div>
         <h3 className="big">
-          <Link to={'/articles/' + article.slug}>
+            <Link href={'/articles/' + article.slug}>
             {article.title}
           </Link>
         </h3>
@@ -130,7 +109,7 @@ export default function Articles() {
         }}>
           {
             [
-              <time datetime={article.date} title={article.date}>{article.relative_date}</time>,
+              <time dateTime={article.date} title={article.date}>{article.relative_date}</time>,
               (article.has_tags ? <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span> : null),
               (article.has_audio ? <span>🔊</span> : null)
             ]

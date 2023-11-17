@@ -1,4 +1,4 @@
-export default function Dot({
+export function Dot({
   color = 'var(--text-color)',
 }) {
   return <div style={{
