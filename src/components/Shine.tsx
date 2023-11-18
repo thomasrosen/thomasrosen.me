@@ -77,6 +77,7 @@ export function Shine ({
   return (
     <div
       style={{
+        display: "inline-block",
         position: "relative",
         userSelect: "none",
       }}
@@ -129,7 +130,11 @@ export function Shine ({
         </filter>
       </svg>
       <div
-        style={{ filter: `url(#${filterId})`, isolation: "isolate" }}
+        style={{
+          display: "inline-block",
+          filter: `url(#${filterId})`,
+          isolation: "isolate",
+        }}
         ref={childrenWrapperRef}
       >
         {children}
