@@ -8,9 +8,10 @@ import fs from 'fs';
 export function generateStaticParams() {
   const articles = loadArticles()
 
-  return articles.map(article => ({
-    id: article.slug,
-  }))
+  return articles.flatMap(article => ([
+    {id: article.slug},
+    // {id: encodeURIComponent(article.slug)}, // this is needed for dev
+  ]))
 }
 
 export default function Page({ params }) {

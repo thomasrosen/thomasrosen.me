@@ -33,9 +33,10 @@ function get_genres(playlist) {
 export function generateStaticParams() {
   const playlists = loadPlaylists()
 
-  return playlists.map(playlist => ({
-    id: playlist.name,
-  }))
+  return playlists.flatMap(playlist => ([
+    {id: playlist.name},
+    // {id: encodeURIComponent(playlist.name)}, // this is needed for dev
+  ]))
 }
 
 export default function Page({ params }) {
@@ -54,6 +55,14 @@ export default function Page({ params }) {
     playlist = JSON.parse(playlist)
   } catch (error) {
     throw new Error(`Could not load the playlist: ${error.message}`)
+  }
+
+  if (
+    typeof playlist.Songs === 'object'
+    && playlist.Songs !== null
+    && !Array.isArray(playlist.Songs)
+  ) {
+    playlist.Songs = [playlist.Songs]
   }
 
   const date_month = (
