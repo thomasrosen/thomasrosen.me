@@ -33,9 +33,10 @@ function get_genres(playlist) {
 export function generateStaticParams() {
   const playlists = loadPlaylists()
 
-  return playlists.map(playlist => ({
-    id: playlist.name,
-  }))
+  return playlists.flatMap(playlist => ([
+    {id: playlist.name},
+    // {id: encodeURIComponent(playlist.name)}, // this is needed for dev
+  ]))
 }
 
 export default function Page({ params }) {
