@@ -75,7 +75,7 @@ export function Shine ({
   }, [])
 
   return (
-    <div
+    <span
       style={{
         display: "inline-block",
         position: "relative",
@@ -129,7 +129,7 @@ export function Shine ({
           />
         </filter>
       </svg>
-      <div
+      <span
         style={{
           display: "inline-block",
           filter: `url(#${filterId})`,
@@ -138,7 +138,7 @@ export function Shine ({
         ref={childrenWrapperRef}
       >
         {children}
-      </div>
-    </div>
+      </span>
+    </span>
   );
 }
