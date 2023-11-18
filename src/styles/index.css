@@ -25,7 +25,7 @@ body {
 
 :root,
 .sans_serif_font {
-  --font-family-website-title: "Ubuntu Mono", Ubuntu, sans-serif;
+  --font-family-website-title: "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   --font-family-headline: Ubuntu, sans-serif;
   --font-family-text: Ubuntu, sans-serif;
   --font-family-button: Ubuntu, sans-serif;

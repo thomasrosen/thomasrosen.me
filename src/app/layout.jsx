@@ -1,5 +1,4 @@
 import { Shine } from '@/components/Shine';
-import '@/fonts/petrona-v28-latin/index.css';
 import '@/fonts/ubuntu-mono-v15-latin/index.css';
 import '@/fonts/ubuntu-v20-latin/index.css';
 import '@/styles/App.css';

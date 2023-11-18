@@ -1,7 +1,9 @@
 import { Dot } from '@/components/Dot';
+import { Shine } from '@/components/Shine';
 import '@/fonts/petrona-v28-latin/index.css';
 import { getRelativeTime, loadArticles } from '@/utils/loadArticles';
 import fs from 'fs';
+import Image from 'next/image';
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export function generateStaticParams() {
@@ -75,10 +77,12 @@ export default function Page({ params }) {
                 <br />
                 <br />
                 <meta itemProp="image" content={`https://thomasrosen.me/${article.coverphoto}`} />
-                <img src={article.coverphoto} alt={article.title} style={{
-                  width: '200px',
-                  maxWidth: '100%',
-                }} />
+                <Shine puffyness="2">
+                  <Image width={200} height={200} src={article.coverphoto} alt={article.title} style={{
+                    width: '200px',
+                    maxWidth: '100%',
+                  }} />
+                </Shine>
               </>
               : null
           }

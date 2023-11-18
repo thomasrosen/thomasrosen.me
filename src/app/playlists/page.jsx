@@ -1,6 +1,7 @@
 import { Shine } from '@/components/Shine'
 import '@/fonts/petrona-v28-latin/index.css'
 import { loadPlaylists } from '@/utils/loadPlaylists'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -55,7 +56,7 @@ export default function Page() {
             }}>
               <Link href={'/playlists/' + playlist.name}>
                 <Shine puffyness="2">
-                  <img src={playlist.coverphoto} alt={playlist.name} style={{
+                  <Image width={128} height={128} src={playlist.coverphoto} alt={playlist.name} style={{
                     filter: 'contrast(1.1) saturate(1.2)',
                   }} />
                 </Shine>
