@@ -1,4 +1,4 @@
-import { Shine } from '@/components/Shine'
+import { Emoji } from '@/components/Emoji'
 import Link from 'next/link'
 
 export default function Page() {
@@ -8,7 +8,7 @@ export default function Page() {
 
     <div className="links_grid">
 
-      <Shine>🏳️‍🌈</Shine>
+      <Emoji>🏳️‍🌈</Emoji>
       <div>
         <h3>
           <a href="https://queer.thomasrosen.me/" target="_blank" rel="noreferrer" data-umami-event="project-queer-thomasrosen">
@@ -21,7 +21,7 @@ export default function Page() {
         </Link>
       </div>
 
-      <Shine>🏳️‍🌈🗺❤️</Shine>
+      <Emoji>🏳️‍🌈🗺❤️</Emoji>
       <div>
         <h3>
           <a href="https://map.qiekub.org/" target="_blank" rel="noreferrer" data-umami-event="project-queermap">
@@ -34,7 +34,7 @@ export default function Page() {
         </Link>
       </div>
 
-      <Shine>🔗💜🇪🇺</Shine>
+      <Emoji>🔗💜🇪🇺</Emoji>
       <div>
         <h3>
           <a href="https://github.com/voltbonn/volt.link" target="_blank" rel="noreferrer" data-umami-event="project-volt-link">
@@ -44,7 +44,7 @@ export default function Page() {
         <p>Linktr.ee and bit.ly alternatives for Volt Europa.</p>
       </div>
 
-      <Shine>🖼💜🇪🇺</Shine>
+      <Emoji>🖼💜🇪🇺</Emoji>
       <div>
         <h3>
           <a href="https://www.profile-volt.org/" target="_blank" rel="noreferrer" data-umami-event="project-volt-profile-picture">
@@ -54,7 +54,7 @@ export default function Page() {
         <p>Create your own Volt Europa Profile Picture Frame.</p>
       </div>
 
-      <Shine>🖼🤳🔗</Shine>
+      <Emoji>🖼🤳🔗</Emoji>
       <div>
         <h3>
           <a href="https://qrcode.volt.link/" target="_blank" rel="noreferrer" data-umami-event="project-volt-qr-code">
@@ -66,7 +66,7 @@ export default function Page() {
 
       <div></div><hr className="small" />
 
-      <Shine>🤖</Shine>
+      <Emoji>🤖</Emoji>
       <div>
         <h3>
           <a href="https://github.com/thomasrosen/thomasrosen.me" target="_blank" rel="noreferrer" data-umami-event="sourcecode">

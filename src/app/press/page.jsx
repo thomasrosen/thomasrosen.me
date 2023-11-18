@@ -1,4 +1,4 @@
-import { Shine } from '@/components/Shine'
+import { Emoji } from '@/components/Emoji'
 
 export default function Page() {
   return <div className="tab_content" style={{ wwidth: '800px' }}>
@@ -7,7 +7,7 @@ export default function Page() {
 
     <div className="links_grid">
 
-      <Shine>🎞</Shine>
+      <Emoji>🎞</Emoji>
       <div>
         <h3 className="no_flex">
           YouTube Video in German with Benjamin Körner: <a href="https://www.youtube.com/watch?v=8IbdHXZV7sE" target="_blank" rel="noreferrer" data-umami-event="article">
@@ -19,7 +19,7 @@ export default function Page() {
         </p>
       </div>
 
-      <Shine>📄</Shine>
+      <Emoji>📄</Emoji>
       <div>
         <h3 className="no_flex">
           Article with 🎶 Audio Version: <a href="https://www.esquiremag.ph/culture/tech/mapbeks-lgbtq-a00225-20210720" target="_blank" rel="noreferrer" data-umami-event="article">
@@ -31,7 +31,7 @@ export default function Page() {
         </p>
       </div>
 
-      <Shine>📄</Shine>
+      <Emoji>📄</Emoji>
       <div>
         <h3 className="no_flex">
           Article: <a href="https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community" target="_blank" rel="noreferrer" data-umami-event="article">
@@ -43,7 +43,7 @@ export default function Page() {
         </p>
       </div>
 
-      <Shine>📄</Shine>
+      <Emoji>📄</Emoji>
       <div>
         <h3 className="no_flex">
           PDF: <a href="https://www.qiekub.org/files/Ausarbeitung_Freimanis_Mueller_Reitmann­_Weidinger.pdf" target="_blank" rel="noreferrer" data-umami-event="article">
@@ -55,7 +55,7 @@ export default function Page() {
         </p>
       </div>
 
-      <Shine>📄</Shine>
+      <Emoji>📄</Emoji>
       <div>
         <h3 className="no_flex">
           Article: <a href="https://wonder.ph/life/tech/how-you-can-put-lgbtqia-safe-spaces-on-the-map/" target="_blank" rel="noreferrer" data-umami-event="article">
@@ -67,7 +67,7 @@ export default function Page() {
         </p>
       </div>
 
-      <Shine>🎞</Shine>
+      <Emoji>🎞</Emoji>
       <div>
         <h3 className="no_flex">
           Live Workshop on Facebook: <a href="https://www.facebook.com/mapbeks/videos/239256370717457" target="_blank" rel="noreferrer" data-umami-event="article">

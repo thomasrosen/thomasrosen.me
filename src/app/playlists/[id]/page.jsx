@@ -1,8 +1,8 @@
 import { Dot } from '@/components/Dot';
+import { Emoji } from '@/components/Emoji';
 import { Shine } from '@/components/Shine';
 import { loadPlaylists } from '@/utils/loadPlaylists';
 import fs from 'fs';
-import Image from 'next/image';
 import React from 'react';
 
 function get_genres(playlist) {
@@ -113,7 +113,7 @@ export default function Page({ params }) {
                     {
                       typeof album_artwork === 'string' && album_artwork.length > 0
                         ? <Shine puffyness="2">
-                            <Image placeholder="blur" width={64} height={64} src={album_artwork} alt={title} style={{
+                            <img src={album_artwork} alt={title} style={{
                               filter: 'contrast(1.1) saturate(1.2)',
                             }} />
                           </Shine>
@@ -169,10 +169,10 @@ export default function Page({ params }) {
                         <time title={`Duration: ${song.Duration} min`}>{song.Duration} min</time>,
                         (
                           play_count > 0
-                            ? <span title={`Play Count: ${play_count}`}>🔄 {play_count}</span>
+                            ? <Emoji title={`Play Count: ${play_count}`}>🔄 {play_count}</Emoji>
                             : null
                         ),
-                        song['Is Explicit'] === '1' ? <span title="Song is Explicit" alt="Song is Explicit">🔥</span> : null,
+                        song['Is Explicit'] === '1' ? <Emoji title="Song is Explicit" alt="Song is Explicit">🔥</Emoji> : null,
                       ]
                         .filter(Boolean)
                         .map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>)
