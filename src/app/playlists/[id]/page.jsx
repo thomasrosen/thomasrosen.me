@@ -1,4 +1,5 @@
 import { Dot } from '@/components/Dot';
+import { Emoji } from '@/components/Emoji';
 import { Shine } from '@/components/Shine';
 import { loadPlaylists } from '@/utils/loadPlaylists';
 import fs from 'fs';
