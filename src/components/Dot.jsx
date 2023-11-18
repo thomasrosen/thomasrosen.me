@@ -1,7 +1,10 @@
+
+import { Shine } from '@/components/Shine';
+
 export function Dot({
   color = 'var(--text-color)',
 }) {
-  return <div style={{
+  return <Shine><div style={{
     display: 'inline-block',
     width: '0.8rem',
     height: '0.8rem',
@@ -9,5 +12,5 @@ export function Dot({
     verticalAlign: 'middle',
     marginInlineEnd: '0.8rem',
     backgroundColor: color,
-  }}></div>
+  }} /></Shine>
 }

@@ -106,9 +106,9 @@ export default function Page({ params }) {
                   }}>
                     {
                       typeof album_artwork === 'string' && album_artwork.length > 0
-                        ? <img src={album_artwork} alt={title} style={{
                           filter: 'contrast(1.1) saturate(1.2)',
-                        }} />
+                        ? <Shine puffyness="2">
+                          </Shine>
                         : <div></div>
                     }
                   </div>

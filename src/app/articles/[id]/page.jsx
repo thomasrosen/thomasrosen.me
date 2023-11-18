@@ -1,4 +1,5 @@
 import { Dot } from '@/components/Dot';
+import { Shine } from '@/components/Shine';
 import '@/fonts/petrona-v28-latin/index.css';
 import { getRelativeTime, loadArticles } from '@/utils/loadArticles';
 import fs from 'fs';
@@ -79,6 +80,8 @@ export default function Page({ params }) {
                   width: '200px',
                   maxWidth: '100%',
                 }} />
+                <Shine puffyness="2">
+                </Shine>
               </>
               : null
           }
