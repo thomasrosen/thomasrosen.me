@@ -89,7 +89,7 @@ export default function Page() {
             ? <div className="image_container">
                 <Link href={'/articles/' + article.slug}>
                   <Shine puffyness="2">
-                    <Image width={200} height={200} src={article.coverphoto} alt={article.title} />
+                  <Image placeholder="blur" width={200} height={200} src={article.coverphoto} alt={article.title} />
                   </Shine>
                 </Link>
               </div>
