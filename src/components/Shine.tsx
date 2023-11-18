@@ -5,6 +5,24 @@
 
 import React from "react";
 
+function getBounds(children: HTMLDivElement) {
+  return new Promise<IntersectionObserverEntry["boundingClientRect"]>((resolve) => {
+    const observer = new IntersectionObserver((entries) => {
+      // Loop through all `entries` returned by the observer
+      for (const entry of entries) {
+        // The `entry.boundingClientRect` is where all the dimensions are stored
+        resolve(entry.boundingClientRect)
+        observer.disconnect();
+        break;
+      }
+    }, {
+      threshold: [],
+    });
+
+    observer.observe(children as Element);
+  })
+}
+
 export function Shine ({
   children,
   lightColor = "#666666",
@@ -29,33 +47,23 @@ export function Shine ({
     const lightElement = filterElement?.querySelector("fePointLight");
     if (!filterElement || !children || !lightElement) return;
 
+    const setPos = async () => {
+      // const childrenBox = children.getBoundingClientRect();
+      const childrenBox = await getBounds(children);
+
+      lightElement.setAttribute('y', String(mouse.current.y - childrenBox.top));
+      lightElement.setAttribute('x', String(mouse.current.x - childrenBox.left));
+    }
+
     const onPointerMove = (event: PointerEvent) => {
-      const childrenBox = children.getBoundingClientRect();
       mouse.current = {
         x: event.pageX - window.scrollX,
         y: event.pageY - window.scrollY,
       };
-      lightElement.setAttribute(
-        "y",
-        (mouse.current.y - childrenBox.top).toString(),
-      );
-      lightElement.setAttribute(
-        "x",
-        (mouse.current.x - childrenBox.left).toString(),
-      );
+      setPos();
     };
 
-    const onScroll = () => {
-      const childrenBox = children.getBoundingClientRect();
-      lightElement.setAttribute(
-        "y",
-        (mouse.current.y - childrenBox.top).toString(),
-      );
-      lightElement.setAttribute(
-        "x",
-        (mouse.current.x - childrenBox.left).toString(),
-      );
-    };
+    const onScroll = () => setPos()
 
     document.addEventListener("pointermove", onPointerMove);
     document.addEventListener("scroll", onScroll);
