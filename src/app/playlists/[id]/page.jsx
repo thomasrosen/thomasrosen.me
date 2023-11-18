@@ -168,10 +168,10 @@ export default function Page({ params }) {
                         <time title={`Duration: ${song.Duration} min`}>{song.Duration} min</time>,
                         (
                           play_count > 0
-                            ? <span title={`Play Count: ${play_count}`}>🔄 {play_count}</span>
+                            ? <Emoji title={`Play Count: ${play_count}`}>🔄 {play_count}</Emoji>
                             : null
                         ),
-                        song['Is Explicit'] === '1' ? <span title="Song is Explicit" alt="Song is Explicit">🔥</span> : null,
+                        song['Is Explicit'] === '1' ? <Emoji title="Song is Explicit" alt="Song is Explicit">🔥</Emoji> : null,
                       ]
                         .filter(Boolean)
                         .map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>)

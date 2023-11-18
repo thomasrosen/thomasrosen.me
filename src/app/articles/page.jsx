@@ -1,3 +1,4 @@
+import { Emoji } from '@/components/Emoji';
 import { Shine } from '@/components/Shine';
 import '@/fonts/petrona-v28-latin/index.css';
 import { loadArticles } from '@/utils/loadArticles';
@@ -89,7 +90,7 @@ export default function Page() {
             [
               <time dateTime={article.date} title={article.date}>{article.relative_date}</time>,
               (article.has_tags ? <span className="tag_row">{article.tags.map(tag => <button className="small" disabled key={tag}>{tag}</button>)}</span> : null),
-              (article.has_audio ? <span>🔊</span> : null)
+              (article.has_audio ? <Emoji>🔊</Emoji> : null)
             ]
             .filter(Boolean)
             .map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>)

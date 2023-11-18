@@ -1,3 +1,4 @@
+import { Emoji } from '@/components/Emoji';
 import { Shine } from '@/components/Shine';
 import '@/fonts/ubuntu-mono-v15-latin/index.css';
 import '@/fonts/ubuntu-v20-latin/index.css';
@@ -49,10 +50,10 @@ export default function RootLayout({
           <nav>
             <Link href="/"><button>Hi!</button></Link>
             <div />
-            <Link href="/articles"><button><span aria-hidden="true">📝</span> Blog</button></Link>
-            <Link href="/projects"><button><span aria-hidden="true">🚀</span> Projects</button></Link>
-            <Link href="/playlists"><button><span aria-hidden="true">🎸</span> Playlists</button></Link>
-            <Link href="/press"><button><span aria-hidden="true">📰</span> In the Press</button></Link>
+            <Link href="/articles"><button><Emoji aria-hidden="true">📝</Emoji> Blog</button></Link>
+            <Link href="/projects"><button><Emoji aria-hidden="true">🚀</Emoji> Projects</button></Link>
+            <Link href="/playlists"><button><Emoji aria-hidden="true">🎸</Emoji> Playlists</button></Link>
+            <Link href="/press"><button><Emoji aria-hidden="true">📰</Emoji> In the Press</button></Link>
             <div />
             <Link href="/follow"><button>Follow</button></Link>
             <Link href="/contact"><button>Contact</button></Link>
@@ -65,7 +66,7 @@ export default function RootLayout({
           {children}
 
           <a href="https://mailchi.mp/59f35b198abe/thomasrosen" target="_blank" rel="noreferrer" className="link_box" data-umami-event="Newsletter">
-            <h2>💌 Newsletter</h2>
+            <h2><Emoji>💌</Emoji> Newsletter</h2>
             <p>Signup to get occasional emails from me…</p>
           </a>
 
