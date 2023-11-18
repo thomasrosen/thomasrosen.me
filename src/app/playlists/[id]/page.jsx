@@ -56,7 +56,11 @@ export default function Page({ params }) {
     throw new Error(`Could not load the playlist: ${error.message}`)
   }
 
-  const date_month = ''
+  const date_month = (
+    typeof playlist?.Date === 'string' && playlist?.Date?.length > 0
+      ? playlist?.Date
+      : ''
+  )
   const genres = get_genres(playlist)
   const song_count = playlist?.Songs?.length
 
