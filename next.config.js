@@ -13,6 +13,8 @@ const nextConfig = {
   // Optional: Change the output directory `out` -> `dist`
   distDir: 'build',
 
+  images: { unoptimized: true },
+
   async redirects() {
     return [
       {

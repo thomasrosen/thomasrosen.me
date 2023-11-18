@@ -1,6 +1,7 @@
 import { Shine } from '@/components/Shine';
 import '@/fonts/petrona-v28-latin/index.css';
 import { loadArticles } from '@/utils/loadArticles';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -88,7 +89,7 @@ export default function Page() {
             ? <div className="image_container">
                 <Link href={'/articles/' + article.slug}>
                   <Shine puffyness="2">
-                    <img src={article.coverphoto} alt={article.title} />
+                    <Image width={200} height={200} src={article.coverphoto} alt={article.title} />
                   </Shine>
                 </Link>
               </div>

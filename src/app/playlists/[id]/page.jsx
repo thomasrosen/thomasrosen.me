@@ -1,6 +1,8 @@
 import { Dot } from '@/components/Dot';
+import { Shine } from '@/components/Shine';
 import { loadPlaylists } from '@/utils/loadPlaylists';
 import fs from 'fs';
+import Image from 'next/image';
 import React from 'react';
 
 function get_genres(playlist) {
@@ -106,8 +108,10 @@ export default function Page({ params }) {
                   }}>
                     {
                       typeof album_artwork === 'string' && album_artwork.length > 0
-                          filter: 'contrast(1.1) saturate(1.2)',
                         ? <Shine puffyness="2">
+                            <Image width={64} height={64} src={album_artwork} alt={title} style={{
+                              filter: 'contrast(1.1) saturate(1.2)',
+                            }} />
                           </Shine>
                         : <div></div>
                     }
