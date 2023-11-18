@@ -56,6 +56,14 @@ export default function Page({ params }) {
     throw new Error(`Could not load the playlist: ${error.message}`)
   }
 
+  if (
+    typeof playlist.Songs === 'object'
+    && playlist.Songs !== null
+    && !Array.isArray(playlist.Songs)
+  ) {
+    playlist.Songs = [playlist.Songs]
+  }
+
   const date_month = (
     typeof playlist?.Date === 'string' && playlist?.Date?.length > 0
       ? playlist?.Date
