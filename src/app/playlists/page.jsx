@@ -56,7 +56,7 @@ export default function Page() {
             }}>
               <Link href={'/playlists/' + playlist.name}>
                 <Shine puffyness="2">
-                  <Image width={128} height={128} src={playlist.coverphoto} alt={playlist.name} style={{
+                  <Image placeholder="blur" width={128} height={128} src={playlist.coverphoto} alt={playlist.name} style={{
                     filter: 'contrast(1.1) saturate(1.2)',
                   }} />
                 </Shine>

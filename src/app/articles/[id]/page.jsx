@@ -78,7 +78,7 @@ export default function Page({ params }) {
                 <br />
                 <meta itemProp="image" content={`https://thomasrosen.me/${article.coverphoto}`} />
                 <Shine puffyness="2">
-                  <Image width={200} height={200} src={article.coverphoto} alt={article.title} style={{
+                  <Image placeholder="blur" width={200} height={200} src={article.coverphoto} alt={article.title} style={{
                     width: '200px',
                     maxWidth: '100%',
                   }} />
