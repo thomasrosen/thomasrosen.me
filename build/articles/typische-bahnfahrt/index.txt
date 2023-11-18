@@ -1,12 +1,12 @@
 1:HL["/_next/static/css/e2f1e37308cde838.css","style",{"crossOrigin":""}]
-0:["SmxHkWhQl4NqEsh0AiXX3",[[["",{"children":["articles",{"children":[["id","typische-bahnfahrt","d"],{"children":["__PAGE__?{\"id\":\"typische-bahnfahrt\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e2f1e37308cde838.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+0:["jTkYH9UfMxPmYWE7XRq2q",[[["",{"children":["articles",{"children":[["id","typische-bahnfahrt","d"],{"children":["__PAGE__?{\"id\":\"typische-bahnfahrt\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e2f1e37308cde838.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:HL["/_next/static/css/13a574825b4fc40f.css","style",{"crossOrigin":""}]
-5:I[131,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-9ac1f5acbb79182e.js"],"Shine"]
-6:I[8326,["326","static/chunks/326-a516097dc7803fd5.js","868","static/chunks/868-e75353d5ef0e59db.js","222","static/chunks/app/articles/page-a3bc22da5fbea5a4.js"],""]
+5:I[131,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-e37fc291f332998e.js"],"Shine"]
+6:I[8326,["326","static/chunks/326-48bbea62f728fea6.js","868","static/chunks/868-e75353d5ef0e59db.js","222","static/chunks/app/articles/page-cc1ee9c40d5bc04b.js"],""]
 7:I[6954,[],""]
 8:I[988,["601","static/chunks/app/error-bb84c7031a27c83b.js"],""]
 9:I[7264,[],""]
-c:I[413,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-9ac1f5acbb79182e.js"],"Image"]
+c:I[413,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-e37fc291f332998e.js"],"Image"]
 b:T85e,<p>Oder: Unser Weg zum Bundesparteitag von <a href="https://voltdeutschland.org/" rel="noopener noreferrer" target="_blank">Volt Deutschland</a></p>
 <p>Offiziell war der Zug vollkommen ausgebucht. Jedenfalls die zweite Klasse. Also haben wir uns erstmal ins noch unaufgeräumte Bord Bistro.</p>
 <p>Paradoxerweise fand ich dort eine Ausgabe des Stern Magazins über die Probleme der deutschen Bahn. War tatsächlich ziemlich interessant. (Wobei ich den Stern wohl nicht gekauft hätte, aber wenn es schon so rumliegt.)</p>

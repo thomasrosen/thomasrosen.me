@@ -1,12 +1,12 @@
 1:HL["/_next/static/css/e2f1e37308cde838.css","style",{"crossOrigin":""}]
-0:["SmxHkWhQl4NqEsh0AiXX3",[[["",{"children":["articles",{"children":[["id","queer-resources","d"],{"children":["__PAGE__?{\"id\":\"queer-resources\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e2f1e37308cde838.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+0:["jTkYH9UfMxPmYWE7XRq2q",[[["",{"children":["articles",{"children":[["id","queer-resources","d"],{"children":["__PAGE__?{\"id\":\"queer-resources\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e2f1e37308cde838.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:HL["/_next/static/css/13a574825b4fc40f.css","style",{"crossOrigin":""}]
-5:I[131,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-9ac1f5acbb79182e.js"],"Shine"]
-6:I[8326,["326","static/chunks/326-a516097dc7803fd5.js","868","static/chunks/868-e75353d5ef0e59db.js","222","static/chunks/app/articles/page-a3bc22da5fbea5a4.js"],""]
+5:I[131,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-e37fc291f332998e.js"],"Shine"]
+6:I[8326,["326","static/chunks/326-48bbea62f728fea6.js","868","static/chunks/868-e75353d5ef0e59db.js","222","static/chunks/app/articles/page-cc1ee9c40d5bc04b.js"],""]
 7:I[6954,[],""]
 8:I[988,["601","static/chunks/app/error-bb84c7031a27c83b.js"],""]
 9:I[7264,[],""]
-c:I[413,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-9ac1f5acbb79182e.js"],"Image"]
+c:I[413,["868","static/chunks/868-e75353d5ef0e59db.js","422","static/chunks/app/articles/%5Bid%5D/page-e37fc291f332998e.js"],"Image"]
 b:T85b,<p>As a member of the queer community, I understand how challenging it can be to find reliable resources that cater to our unique needs. That’s why I created Queer Resources, a website that brings together valuable information for the queer community and allies.</p>
 <p>The idea for Queer Resources came to me while developing the QueerMap, a project aimed at identifying queer-friendly places worldwide, particularly for queer youth. During the development process, I realized that there were already many excellent websites and resources available. However, these resources were scattered, making it challenging for users to find the information they needed. As a result, I decided to compile these links into one searchable database, making it easier for users to access the information they need.</p>
 <p><img src="/blog/images/Screenshot 2023-03-20 at 06.25.10_1000.jpg" alt="Screenshot of the website" /></p>

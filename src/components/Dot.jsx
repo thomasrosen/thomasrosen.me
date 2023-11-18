@@ -1,4 +1,3 @@
-
 import { Shine } from '@/components/Shine';
 
 export function Dot({
