@@ -1,5 +1,4 @@
 import { Emoji } from '@/components/Emoji';
-import { Shine } from '@/components/Shine';
 import '@/fonts/petrona-v28-latin/index.css';
 import { loadArticles } from '@/utils/loadArticles';
 import Link from 'next/link';
@@ -66,9 +65,7 @@ export default function Page() {
           typeof article.coverphoto === 'string' && article.coverphoto.length > 0
             ? <div className="image_container">
                 <Link href={'/articles/' + article.slug}>
-                  <Shine puffyness="2">
                     <img src={article.coverphoto} alt={article.title} />
-                  </Shine>
                 </Link>
               </div>
             : null
