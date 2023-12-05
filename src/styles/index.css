@@ -56,7 +56,7 @@ body {
 
 body, p, h4, h5, h6, li {
   font-family: var(--font-family-text);
-  font-weight: normal;
+  font-weight: 300;
   font-size: 22px;
   letter-spacing: 0.5px;
   line-height: 1.2;
@@ -64,7 +64,7 @@ body, p, h4, h5, h6, li {
 
 .body2 {
   font-family: var(--font-family-text);
-  font-weight: normal;
+  font-weight: 300;
   font-size: 16px;
   letter-spacing: 0.25px;
 }
@@ -120,7 +120,6 @@ button {
   font-family: var(--font-family-button);
   text-decoration: none;
 
-  font-weight: inherit;
   font-size: inherit;
   letter-spacing: inherit;
 
