@@ -1,5 +1,5 @@
 1:HL["/_next/static/css/5162bc37af1cfc71.css","style",{"crossOrigin":""}]
-0:["94ytzcaHzSTTNmSsESeX8",[[["",{"children":["articles",{"children":[["id","laras-secret","d"],{"children":["__PAGE__?{\"id\":\"laras-secret\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/5162bc37af1cfc71.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+0:["Mmv_IRa0fzURHaSfj0x-4",[[["",{"children":["articles",{"children":[["id","laras-secret","d"],{"children":["__PAGE__?{\"id\":\"laras-secret\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/5162bc37af1cfc71.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:HL["/_next/static/css/13a574825b4fc40f.css","style",{"crossOrigin":""}]
 5:I[131,["422","static/chunks/app/articles/%5Bid%5D/page-6b1167d42f5aaf07.js"],"Shine"]
 6:I[8326,["326","static/chunks/326-48bbea62f728fea6.js","222","static/chunks/app/articles/page-da9dffdaa9abb5fd.js"],""]
