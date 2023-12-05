@@ -1,6 +1,5 @@
 import { Dot } from '@/components/Dot';
 import { Emoji } from '@/components/Emoji';
-import { Shine } from '@/components/Shine';
 import { loadPlaylists } from '@/utils/loadPlaylists';
 import fs from 'fs';
 import React from 'react';
@@ -121,11 +120,9 @@ export default function Page({ params }) {
                   }}>
                     {
                       typeof album_artwork === 'string' && album_artwork.length > 0
-                        ? <Shine puffyness="2">
-                            <img src={album_artwork} alt={title} style={{
+                        ? <img src={album_artwork} alt={title} style={{
                               filter: 'contrast(1.1) saturate(1.2)',
                             }} />
-                          </Shine>
                         : <div></div>
                     }
                   </div>
