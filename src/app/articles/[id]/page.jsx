@@ -1,7 +1,6 @@
 import { Dot } from '@/components/Dot'
 import '@/fonts/petrona-v28-latin/index.css'
-import { getRelativeTime, loadArticles } from '@/utils/loadArticles'
-import fs from 'fs'
+import { getRelativeTime, loadArticles } from '@/lib/loadArticles'
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export function generateStaticParams() {
@@ -29,21 +28,21 @@ export default async function PageArticle({ params }) {
   let article = null
 
   try {
-    let data = fs.readFileSync(`./public/blog/articles/${id}.json`, 'utf8')
-    data = JSON.parse(data)
-    article = data.article
+    const articleData = await import(`@/data/blog/articles/${id}.json`)
+    article = articleData.article
     article.relative_date = getRelativeTime(new Date(article.date))
   } catch (error) {
     throw new Error(`Could not load the article: ${error.message}`)
   }
 
-  let images = null
+  let coverphoto = null
   if (
     !!article &&
     typeof article.coverphoto === 'string' &&
     article.coverphoto.length > 0
   ) {
-    images = [`https://thomasrosen.me/${article.coverphoto}`]
+    const imagePath = await import(`@/data${article.coverphoto}`)
+    coverphoto = imagePath.default.src
   }
 
   return (
@@ -101,17 +100,14 @@ export default async function PageArticle({ params }) {
           <Dot />
 
           {!!article &&
-          typeof article.coverphoto === 'string' &&
-          article.coverphoto.length > 0 ? (
+          typeof coverphoto === 'string' &&
+          coverphoto.length > 0 ? (
             <>
               <br />
               <br />
-              <meta
-                itemProp='image'
-                content={`https://thomasrosen.me/${article.coverphoto}`}
-              />
+              <meta itemProp='image' content={coverphoto} />
               <img
-                src={article.coverphoto}
+                src={coverphoto}
                 alt={article.title}
                 style={{
                   width: '200px',
@@ -132,7 +128,7 @@ export default async function PageArticle({ params }) {
                   '@id': `https://thomasrosen.me/articles/${article.slug}`,
                 },
                 headline: article.title,
-                image: images,
+                image: coverphoto,
                 datePublished: article.date,
                 dateModified: article.date,
                 author: {

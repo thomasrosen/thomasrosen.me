@@ -1,9 +1,13 @@
-console.info('➡️  Started building entries...')
+const fs = require('fs');
+const matter = require('gray-matter');
 
-// directory path
-const dir_entries = './data_about_thomasrosen/entries/'
-const dir_files = './data_about_thomasrosen/entries-files/'
-const entries_build_dir = './.tmp/build_entries/entries/'
-const files_build_dir = './.tmp/build_entries/entries-files/'
-const public_entries_dir = './public/entries/'
+// Read YAML file
+const yamlContent = fs.readFileSync('./data_about_thomasrosen/entries.yml', 'utf8');
+const { data: entries } = matter(`---
+${yamlContent}
+---`);
 
+// Write JSON file
+fs.writeFileSync('./src/data/entries.json', JSON.stringify(entries, null, 2));
+
+console.log('✅ Successfully converted entries.yml to entries.json'); 

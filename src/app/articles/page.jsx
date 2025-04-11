@@ -1,9 +1,88 @@
 import { Emoji } from '@/components/Emoji'
 import '@/fonts/petrona-v28-latin/index.css'
-import { loadArticles } from '@/utils/loadArticles'
+import { loadArticles } from '@/lib/loadArticles'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+
+async function ArticleCard({ article }) {
+  let coverphoto = null
+  if (
+    !!article &&
+    typeof article.coverphoto === 'string' &&
+    article.coverphoto.length > 0
+  ) {
+    const imagePath = await import(`@/data${article.coverphoto}`)
+    coverphoto = imagePath.default.src
+  }
+
+  return (
+    <div
+      className={`
+          links_grid_item
+          ${
+            !!article && article.font === 'serif'
+              ? 'serif_font'
+              : 'sans_serif_font'
+          }
+        `}
+    >
+      {typeof coverphoto === 'string' && coverphoto.length > 0 ? (
+        <div className='image_container'>
+          <Link href={'/articles/' + article.slug}>
+            <Image
+              src={coverphoto}
+              alt={article.title}
+              width={200}
+              height={200}
+              style={{
+                objectFit: 'cover',
+                height: 'auto',
+              }}
+            />
+          </Link>
+        </div>
+      ) : null}
+
+      <div>
+        <h3 className='big'>
+          <Link href={'/articles/' + article.slug}>{article.title}</Link>
+        </h3>
+        <p>
+          <strong
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px 15px',
+              flexWrap: 'wrap',
+            }}
+          >
+            {[
+              <time dateTime={article.date} title={article.date}>
+                {article.relative_date}
+              </time>,
+              article.has_tags ? (
+                <span className='tag_row'>
+                  {article.tags.map((tag) => (
+                    <button className='small' disabled key={tag}>
+                      {tag}
+                    </button>
+                  ))}
+                </span>
+              ) : null,
+              article.has_audio ? <Emoji>🔊</Emoji> : null,
+            ]
+              .filter(Boolean)
+              .map((item, index) => (
+                <React.Fragment key={index}>{item}</React.Fragment>
+              ))}
+          </strong>
+        </p>
+        <p>{article.summary}</p>
+      </div>
+    </div>
+  )
+}
 
 export default function PageArticles() {
   let articles = null
@@ -76,77 +155,9 @@ export default function PageArticles() {
           gridTemplateColumns: 'auto',
         }}
       >
-        {articles.length > 0 &&
-          articles.map((article) => (
-            <div
-              key={article.slug}
-              className={`
-          links_grid_item
-          ${
-            !!article && article.font === 'serif'
-              ? 'serif_font'
-              : 'sans_serif_font'
-          }
-        `}
-            >
-              {typeof article.coverphoto === 'string' &&
-              article.coverphoto.length > 0 ? (
-                <div className='image_container'>
-                  <Link href={'/articles/' + article.slug}>
-                    <Image
-                      src={article.coverphoto}
-                      alt={article.title}
-                      width={200}
-                      height={200}
-                      style={{
-                        objectFit: 'cover',
-                        height: 'auto',
-                      }}
-                    />
-                  </Link>
-                </div>
-              ) : null}
-
-              <div>
-                <h3 className='big'>
-                  <Link href={'/articles/' + article.slug}>
-                    {article.title}
-                  </Link>
-                </h3>
-                <p>
-                  <strong
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px 15px',
-                      flexWrap: 'wrap',
-                    }}
-                  >
-                    {[
-                      <time dateTime={article.date} title={article.date}>
-                        {article.relative_date}
-                      </time>,
-                      article.has_tags ? (
-                        <span className='tag_row'>
-                          {article.tags.map((tag) => (
-                            <button className='small' disabled key={tag}>
-                              {tag}
-                            </button>
-                          ))}
-                        </span>
-                      ) : null,
-                      article.has_audio ? <Emoji>🔊</Emoji> : null,
-                    ]
-                      .filter(Boolean)
-                      .map((item, index) => (
-                        <React.Fragment key={index}>{item}</React.Fragment>
-                      ))}
-                  </strong>
-                </p>
-                <p>{article.summary}</p>
-              </div>
-            </div>
-          ))}
+        {(articles || []).map((article) => (
+          <ArticleCard key={article.slug} article={article} />
+        ))}
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import articlesData from '@/data/blog/articles.json';
 
 const units = {
   year: 24 * 60 * 60 * 1000 * 365,
@@ -24,10 +24,7 @@ export const getRelativeTime = (d1, d2 = new Date()) => {
 
 export function loadArticles() {
   try {
-    let data = fs.readFileSync(`./public/blog/articles.json`, 'utf8')
-    data = JSON.parse(data)
-
-    const articles = data.articles
+    const articles = articlesData.articles
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map(article => {
         article.relative_date = getRelativeTime(new Date(article.date))

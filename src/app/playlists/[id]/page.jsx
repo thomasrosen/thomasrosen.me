@@ -1,7 +1,7 @@
 import { Dot } from '@/components/Dot'
 import { Emoji } from '@/components/Emoji'
-import { getRandomVars } from '@/utils/getRandomVars'
-import { loadPlaylists } from '@/utils/loadPlaylists'
+import { getRandomVars } from '@/lib/getRandomVars'
+import { loadPlaylists } from '@/lib/loadPlaylists'
 import fs from 'fs'
 import React from 'react'
 
@@ -55,7 +55,7 @@ export default async function PagePlaylist({ params }) {
   let playlist = null
 
   try {
-    playlist = fs.readFileSync(`./public/music/playlists/${id}.json`, 'utf8')
+    playlist = fs.readFileSync(`./src/data/music/playlists/${id}.json`, 'utf8')
     playlist = JSON.parse(playlist)
   } catch (error) {
     throw new Error(`Could not load the playlist: ${error.message}`)

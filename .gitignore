@@ -1,8 +1,7 @@
 .tmp
 data_about_thomasrosen/
-public/music/
-public/static/music/
-public/blog/
+public/data/
+src/data/
 
 # Logs
 logs

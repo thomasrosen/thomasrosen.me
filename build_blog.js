@@ -17,7 +17,8 @@ const blog_build_dir = './.tmp/build_blog/blog/'
 const articles_build_dir = './.tmp/build_blog/blog/articles/'
 const images_build_dir = './.tmp/build_blog/blog/images/'
 const audio_build_dir = './.tmp/build_blog/blog/audio/'
-const public_blog_dir = './public/blog/'
+const public_data_blog_dir = './public/data/blog/'
+const data_blog_dir = './src/data/blog/'
 
 
 const showdown = require('showdown')
@@ -217,7 +218,7 @@ buildBlog()
         fs.mkdirSync(images_build_dir, { recursive: true })
       }
 
-      // copy images folder to ./public/blog/images
+      // copy images folder to ./src/data/blog/images
       fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
 
       // Generate smaller versions of the images
@@ -266,18 +267,38 @@ buildBlog()
 
 
     // delete blog_build_dir
-    if (fs.existsSync(public_blog_dir)) {
-      fs.rmdirSync(public_blog_dir, { recursive: true })
+    if (fs.existsSync(public_data_blog_dir)) {
+      fs.rmdirSync(public_data_blog_dir, { recursive: true })
     }
 
     // check if build directory exists and create it, if not
-    if (!fs.existsSync(public_blog_dir)) {
+    if (!fs.existsSync(public_data_blog_dir)) {
       // create each directory in the path
-      fs.mkdirSync(public_blog_dir, { recursive: true })
+      fs.mkdirSync(public_data_blog_dir, { recursive: true })
     }
 
-    // copy blog_build_dir to ./public/blog
-    fs.cpSync(blog_build_dir, public_blog_dir, { recursive: true, overwrite: true });
+    // copy blog_build_dir to ./src/data/blog
+    fs.cpSync(blog_build_dir, public_data_blog_dir, { recursive: true, overwrite: true });
+
+
+
+
+    // delete blog_build_dir
+    if (fs.existsSync(src_data_blog_dir)) {
+      fs.rmdirSync(src_data_blog_dir, { recursive: true })
+    }
+
+    // check if build directory exists and create it, if not
+    if (!fs.existsSync(src_data_blog_dir)) {
+      // create each directory in the path
+      fs.mkdirSync(src_data_blog_dir, { recursive: true })
+    }
+
+    // copy blog_build_dir to ./src/data/blog
+    fs.cpSync(blog_build_dir, src_data_blog_dir, { recursive: true, overwrite: true });
+
+
+
 
     // delete tmp blog_build_dir
     if (fs.existsSync(blog_build_dir)) {

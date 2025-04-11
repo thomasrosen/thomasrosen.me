@@ -73,18 +73,18 @@ async function combineImages(imageURIs, options = {}) {
 
   const images = []
 
-    // Loop through the image URIs and composite them onto the canvas
-    for (let i = 0; i < imageURIs.length; i++) {
-      const x = i % 2 * (canvasWidth / 2); // Calculate x position based on column
-      const y = Math.floor(i / 2) * (canvasHeight / 2); // Calculate y position based on row
+  // Loop through the image URIs and composite them onto the canvas
+  for (let i = 0; i < imageURIs.length; i++) {
+    const x = i % 2 * (canvasWidth / 2); // Calculate x position based on column
+    const y = Math.floor(i / 2) * (canvasHeight / 2); // Calculate y position based on row
 
-      // Composite the image onto the canvas
-      images.push({
-        input: Buffer.from(imageURIs[i].split(',')[1], 'base64'), // Extract image data from data URI
-        top: y,
-        left: x
-      })
-    }
+    // Composite the image onto the canvas
+    images.push({
+      input: Buffer.from(imageURIs[i].split(',')[1], 'base64'), // Extract image data from data URI
+      top: y,
+      left: x
+    })
+  }
 
 
   // Create a new canvas with the specified width and height
@@ -185,7 +185,7 @@ async function build_music_metadata() {
     playlists,
   }
 
-  fs.writeFileSync('./public/music/playlists.json', JSON.stringify(playlists_metadata))
+  fs.writeFileSync('./src/data/music/playlists.json', JSON.stringify(playlists_metadata))
   // fs.writeFileSync('./build/music/playlists.json', JSON.stringify(playlists_metadata))
 }
 build_music_metadata()
