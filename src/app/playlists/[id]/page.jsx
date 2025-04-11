@@ -1,5 +1,6 @@
 import { Dot } from '@/components/Dot'
 import { Emoji } from '@/components/Emoji'
+import { getRandomVars } from '@/utils/getRandomVars'
 import { loadPlaylists } from '@/utils/loadPlaylists'
 import fs from 'fs'
 import React from 'react'
@@ -154,6 +155,7 @@ export default async function Page({ params }) {
                       className='image_backdrop_glow'
                       style={{
                         '--background-image': `url(${album_artwork})`,
+                        ...getRandomVars(),
                       }}
                     />
                   </div>
