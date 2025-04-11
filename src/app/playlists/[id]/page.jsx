@@ -43,7 +43,7 @@ export function generateStaticParams() {
   ])
 }
 
-export default async function Page({ params }) {
+export default async function PagePlaylist({ params }) {
   let { id } = (await params) || {}
 
   if (!id) {

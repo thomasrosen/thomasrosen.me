@@ -4,7 +4,7 @@ import { loadPlaylists } from '@/utils/loadPlaylists'
 import Link from 'next/link'
 import React from 'react'
 
-export default function Page() {
+export default function PagePlaylists() {
   let playlists = null
 
   try {

@@ -1,31 +1,39 @@
 import { Dot } from '@/components/Dot'
 
-export default function Page() {
-  return <div className="tab_content">
+export default function PageContact() {
+  return (
+    <div className='tab_content'>
+      <h2>Contact</h2>
 
-    <h2>Contact</h2>
+      <div className='links_grid'>
+        <h3>
+          <Dot color='var(--primary-color)' />
+          Email
+        </h3>
+        <a
+          href='mailto:hello@thomasrosen.me'
+          target='_blank'
+          rel='noreferrer'
+          data-umami-event='Email'
+        >
+          hello@thomasrosen.me
+        </a>
 
-    <div className="links_grid">
-
-      <h3>
-        <Dot color="var(--primary-color)" />
-        Email
-      </h3>
-      <a href="mailto:hello@thomasrosen.me" target="_blank" rel="noreferrer" data-umami-event="Email">
-        hello@thomasrosen.me
-      </a>
-
-      <h3>
-        <Dot color="#502379" />
-        Volt Email
-      </h3>
-      <a href="mailto:thomas.rosen@volteuropa.org" target="_blank" rel="noreferrer" data-umami-event="Volt Email">
-        thomas.rosen@volteuropa.org
-      </a>
-
+        <h3>
+          <Dot color='#502379' />
+          Volt Email
+        </h3>
+        <a
+          href='mailto:thomas.rosen@volteuropa.org'
+          target='_blank'
+          rel='noreferrer'
+          data-umami-event='Volt Email'
+        >
+          thomas.rosen@volteuropa.org
+        </a>
+      </div>
     </div>
-
-  </div>    
+  )
 }
 
 /*

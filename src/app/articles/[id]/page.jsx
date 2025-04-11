@@ -17,7 +17,7 @@ export function generateStaticParams() {
   ])
 }
 
-export default async function Page({ params }) {
+export default async function PageArticle({ params }) {
   let { id } = (await params) || {}
 
   if (!id) {
