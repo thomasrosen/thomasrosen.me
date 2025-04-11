@@ -4,15 +4,68 @@ import { loadArticles } from '@/utils/loadArticles'
 import Link from 'next/link'
 import React from 'react'
 
-export default function Page() {
-  let articles = null
+function ArticleItem({ article }) {
+  return (
+    <div
+      className={`
+          links_grid_item
+          ${
+            !!article && article.font === 'serif'
+              ? 'serif_font'
+              : 'sans_serif_font'
+          }
+        `}
+    >
+      {typeof article.coverphoto === 'string' &&
+      article.coverphoto.length > 0 ? (
+        <div className='image_container'>
+          <Link href={'/articles/' + article.slug}>
+            <img src={article.coverphoto} alt={article.title} />
+          </Link>
+        </div>
+      ) : null}
 
-  try {
-    articles = loadArticles()
-  } catch (error) {
-    throw new Error(`Could not load the articles: ${error.message}`)
-  }
+      <div>
+        <h3 className='big'>
+          <Link href={'/articles/' + article.slug}>{article.title}</Link>
+        </h3>
+        <p>
+          <strong
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px 15px',
+              flexWrap: 'wrap',
+            }}
+          >
+            {[
+              <time dateTime={article.date} title={article.date}>
+                {article.relative_date}
+              </time>,
+              article.has_tags ? (
+                <span className='tag_row'>
+                  {article.tags.map((tag) => (
+                    <button className='small' disabled key={tag}>
+                      {tag}
+                    </button>
+                  ))}
+                </span>
+              ) : null,
+              article.has_audio ? <Emoji>🔊</Emoji> : null,
+            ]
+              .filter(Boolean)
+              .map((item, index) => (
+                <React.Fragment key={index}>{item}</React.Fragment>
+              ))}
+          </strong>
+        </p>
+        <p>{article.summary}</p>
+      </div>
+    </div>
+  )
+}
 
+function ArticlePageContent({ articles }) {
   return (
     <div className='tab_content'>
       <h2>Blog</h2>
@@ -75,69 +128,22 @@ export default function Page() {
           gridTemplateColumns: 'auto',
         }}
       >
-        {articles.length > 0 &&
-          articles.map((article) => (
-            <div
-              key={article.slug}
-              className={`
-          links_grid_item
-          ${
-            !!article && article.font === 'serif'
-              ? 'serif_font'
-              : 'sans_serif_font'
-          }
-        `}
-            >
-              {typeof article.coverphoto === 'string' &&
-              article.coverphoto.length > 0 ? (
-                <div className='image_container'>
-                  <Link href={'/articles/' + article.slug}>
-                    <img src={article.coverphoto} alt={article.title} />
-                  </Link>
-                </div>
-              ) : null}
-
-              <div>
-                <h3 className='big'>
-                  <Link href={'/articles/' + article.slug}>
-                    {article.title}
-                  </Link>
-                </h3>
-                <p>
-                  <strong
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px 15px',
-                      flexWrap: 'wrap',
-                    }}
-                  >
-                    {[
-                      <time dateTime={article.date} title={article.date}>
-                        {article.relative_date}
-                      </time>,
-                      article.has_tags ? (
-                        <span className='tag_row'>
-                          {article.tags.map((tag) => (
-                            <button className='small' disabled key={tag}>
-                              {tag}
-                            </button>
-                          ))}
-                        </span>
-                      ) : null,
-                      article.has_audio ? <Emoji>🔊</Emoji> : null,
-                    ]
-                      .filter(Boolean)
-                      .map((item, index) => (
-                        <React.Fragment key={index}>{item}</React.Fragment>
-                      ))}
-                  </strong>
-                </p>
-                <p>{article.summary}</p>
-              </div>
-            </div>
-          ))}
+        {(articles || []).map((article) => (
+          <ArticleItem key={article.slug} article={article} />
+        ))}
       </div>
     </div>
   )
+}
+
+export default function Page() {
+  let articles = null
+
+  try {
+    articles = loadArticles()
+  } catch (error) {
+    throw new Error(`Could not load the articles: ${error.message}`)
+  }
+
+  return <ArticlePageContent articles={articles} />
 }
