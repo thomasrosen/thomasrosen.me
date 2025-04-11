@@ -1,6 +1,5 @@
 'use client'
 
-import '@/fonts/petrona-v28-latin/index.css'
 import { getRandomVars } from '@/utils/getRandomVars'
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
