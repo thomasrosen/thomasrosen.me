@@ -1,6 +1,7 @@
 import { Emoji } from '@/components/Emoji'
 import '@/fonts/petrona-v28-latin/index.css'
 import { loadArticles } from '@/utils/loadArticles'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -92,7 +93,16 @@ export default function PageArticles() {
               article.coverphoto.length > 0 ? (
                 <div className='image_container'>
                   <Link href={'/articles/' + article.slug}>
-                    <img src={article.coverphoto} alt={article.title} />
+                    <Image
+                      src={article.coverphoto}
+                      alt={article.title}
+                      width={200}
+                      height={200}
+                      style={{
+                        objectFit: 'cover',
+                        height: 'auto',
+                      }}
+                    />
                   </Link>
                 </div>
               ) : null}

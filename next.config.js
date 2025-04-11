@@ -14,9 +14,11 @@ const nextConfig = {
   distDir: 'build',
 
   images: {
-    unoptimized: true,
-    formats: ['image/avif', 'image/webp'],
-},
+    loader: 'custom',
+    loaderFile: './src/utils/imageLoader.js',
+    // deviceSizes: [100, 200, 400], // only allow 100px and 200px variants
+    // imageSizes: [200], // optional: for images with 'sizes' attribute
+  },
 
   async redirects() {
     return [
@@ -33,6 +35,5 @@ const nextConfig = {
     ]
   },
 }
-
 
 module.exports = nextConfig

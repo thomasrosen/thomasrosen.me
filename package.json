@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@types/node": "20.9.1",
-    "@types/react": "18.2.37"
+    "@types/react": "18.2.37",
+    "express": "^5.1.0"
   }
 }

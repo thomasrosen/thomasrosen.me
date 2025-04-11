@@ -1,4 +1,4 @@
-console.info('➡️  Started building blog...')
+console.info('➡️  Started building entries...')
 
 const matter = require('gray-matter')
 const path = require('path')
@@ -6,18 +6,12 @@ const sharp = require('sharp')
 const fs = require('fs')
 const { readdir } = require('fs').promises;
 
-
-const { generate_rss_feed } = require('./feed_generator.js')
-
 // directory path
-const dir_articles = './blog/articles/'
-const dir_images = './blog/images/'
-const dir_audio = './blog/audio/'
-const blog_build_dir = './.tmp/build_blog/blog/'
-const articles_build_dir = './.tmp/build_blog/blog/articles/'
-const images_build_dir = './.tmp/build_blog/blog/images/'
-const audio_build_dir = './.tmp/build_blog/blog/audio/'
-const public_blog_dir = './public/blog/'
+const dir_entries = './data_about_thomasrosen/entries/'
+const dir_files = './data_about_thomasrosen/entries-files/'
+const entries_build_dir = './.tmp/build_entries/entries/'
+const files_build_dir = './.tmp/build_entries/entries-files/'
+const public_entries_dir = './public/entries/'
 
 
 const showdown = require('showdown')
@@ -53,14 +47,14 @@ async function* getFilesRecursive(dir, root = dir) {
   }
 }
 
-function buildBlog() {
+function buildEntries() {
   return new Promise(async (resolve, reject) => {
     const { remark } = await import('remark');
     const { default: strip } = await import('strip-markdown');
 
     // list all files in the directory
-    await fs.readdir(dir_articles, async (error, files) => {
-      let articles = []
+    await fs.readdir(dir_entries, async (error, files) => {
+      let entries = []
 
       try {
         if (error) {
@@ -69,12 +63,12 @@ function buildBlog() {
 
         // files object contains all files names
         // log them on console
-        articles = await Promise.all(
+        entries = await Promise.all(
           files
             .map(async filename => {
               if (filename.endsWith('.md')) {
 
-                const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
+                const filecontent = fs.readFileSync(dir_entries + filename, { encoding: 'utf8', flag: 'r' });
                 const data = matter(filecontent)
 
                 const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.([^()]*?))>?\)/gmi;
@@ -120,7 +114,7 @@ function buildBlog() {
         reject(error)
       }
 
-      resolve(articles)
+      resolve(entries)
     })
   })
 }
@@ -137,45 +131,41 @@ function get_img_src_path(image_path) {
   return coverphoto_w1000
 }
 
-buildBlog()
-  .then(async articles => {
-    console.info('✅ Loaded articles.')
+buildEntries()
+  .then(async entries => {
+    console.info('✅ Loaded entries.')
 
-    const summary_list = articles
-      .map(article => {
+    const summary_list = entries
+      .map(entry => {
 
-        const coverphoto_w1000 = get_img_src_path(article.data.coverphoto || '', '1000')
+        const coverphoto_w1000 = get_img_src_path(entry.data.coverphoto || '', '1000')
 
         return {
-          date: article.data.date,
-          title: article.data.title,
-          slug: article.data.slug,
-          coverphoto: coverphoto_w1000,
-          font: article.data.font,
-          tags: article.data.tags,
-          summary: article.summary,
-          has_audio: !!article.data.audio && typeof article.data.audio === 'string' && article.data.audio.length > 0,
+          date: entry.data.date,
+          title: entry.data.title,
+          tags: entry.data.tags,
+          images: entry.data.images,
         }
       })
 
 
-    // delete blog_build_dir
-    if (fs.existsSync(blog_build_dir)) {
-      fs.rmSync(blog_build_dir, { recursive: true })
+    // delete entries_build_dir
+    if (fs.existsSync(entries_build_dir)) {
+      fs.rmSync(entries_build_dir, { recursive: true })
     }
 
     // check if build directory exists and create it, if not
-    if (!fs.existsSync(blog_build_dir)) {
+    if (!fs.existsSync(entries_build_dir)) {
       // create each directory in the path
-      fs.mkdirSync(blog_build_dir, { recursive: true })
+      fs.mkdirSync(entries_build_dir, { recursive: true })
     }
 
-    // write blog summary to file
-    fs.writeFileSync(blog_build_dir + 'articles.json', JSON.stringify({ articles: summary_list }))
+    // write entries summary to file
+    fs.writeFileSync(entries_build_dir + 'entries.json', JSON.stringify({ entries: summary_list }))
 
     // write rss feed file (RSS2)
     const xml = generate_rss_feed({ articles })
-    fs.writeFileSync(blog_build_dir + 'feed.rss', xml)
+    fs.writeFileSync(entries_build_dir + 'feed.rss', xml)
 
 
     // check if build directory exists and create it, if not
@@ -184,25 +174,25 @@ buildBlog()
       fs.mkdirSync(articles_build_dir, { recursive: true })
     }
 
-    // write each blog articles to its own file
-    articles.forEach(article => {
+    // write each entry to its own file
+    entries.forEach(entry => {
       if (
-        article.data.hasOwnProperty('slug')
+        entry.data.hasOwnProperty('slug')
         && typeof article.data.slug === 'string'
         && article.data.slug.length > 0
       ) {
         const slug = article.data.slug
 
 
-        const new_article = {
-          article: {
-            ...article.data,
-            plaintext: article.plaintext || '',
-            html: article.html || '',
+        const new_entry = {
+          entry: {
+            ...entry.data,
+            plaintext: entry.plaintext || '',
+            html: entry.html || '',
           }
         }
 
-        fs.writeFileSync(articles_build_dir + slug + '.json', JSON.stringify(new_article))
+        fs.writeFileSync(entries_build_dir + slug + '.json', JSON.stringify(new_entry))
       }
     })
 
@@ -211,21 +201,21 @@ buildBlog()
     // START images
 
     // check if build directory exists and create it, if not
-    if (fs.existsSync(dir_images)) {
-      if (!fs.existsSync(images_build_dir)) {
+    if (fs.existsSync(dir_files)) {
+      if (!fs.existsSync(files_build_dir)) {
         // create each directory in the path
-        fs.mkdirSync(images_build_dir, { recursive: true })
+        fs.mkdirSync(files_build_dir, { recursive: true })
       }
 
-      // copy images folder to ./public/blog/images
-      fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
+      // copy files folder to ./public/entries-files
+      fs.cpSync(dir_files, files_build_dir, { recursive: true, overwrite: true });
 
       // Generate smaller versions of the images
       const imageSizes = [1000] // 100, ...
       const imageFormats = ['jpg'] // webp, jpg, png
 
-      for await (const relative_filepath of getFilesRecursive(dir_images)) {
-        const absolute_filepath = path.join(dir_images, relative_filepath)
+      for await (const relative_filepath of getFilesRecursive(dir_files)) {
+        const absolute_filepath = path.join(dir_files, relative_filepath)
         const fileExtension_original = path.extname(absolute_filepath)
         const fileExtension = fileExtension_original.toLowerCase()
         // const fileName = path.basename(absolute_filepath, fileExtension)
@@ -236,7 +226,7 @@ buildBlog()
           for (const format of imageFormats) {
             for (const size of imageSizes) {
               let new_relative_filepath = relative_filepath.replace(fileExtension_original, `_${size}.${format}`)
-              const resizedImagePath = path.join(images_build_dir, new_relative_filepath)
+              const resizedImagePath = path.join(files_build_dir, new_relative_filepath)
               await image
                 .resize({ width: size })
                 .toFormat(format)
@@ -252,39 +242,26 @@ buildBlog()
 
 
 
-    // START audio
-    // check if build directory exists and create it, if not
-    if (fs.existsSync(dir_audio)) {
-      if (!fs.existsSync(audio_build_dir)) {
-        // create each directory in the path
-        fs.mkdirSync(audio_build_dir, { recursive: true })
-      }
-      fs.cpSync(dir_audio, audio_build_dir, { recursive: true, overwrite: true });
-    }
-    // END audio
-
-
-
-    // delete blog_build_dir
-    if (fs.existsSync(public_blog_dir)) {
-      fs.rmdirSync(public_blog_dir, { recursive: true })
+    // delete entries_build_dir
+    if (fs.existsSync(public_entries_dir)) {
+      fs.rmdirSync(public_entries_dir, { recursive: true })
     }
 
     // check if build directory exists and create it, if not
-    if (!fs.existsSync(public_blog_dir)) {
+    if (!fs.existsSync(public_entries_dir)) {
       // create each directory in the path
-      fs.mkdirSync(public_blog_dir, { recursive: true })
+      fs.mkdirSync(public_entries_dir, { recursive: true })
     }
 
-    // copy blog_build_dir to ./public/blog
-    fs.cpSync(blog_build_dir, public_blog_dir, { recursive: true, overwrite: true });
+    // copy entries_build_dir to ./public/entries
+    fs.cpSync(entries_build_dir, public_entries_dir, { recursive: true, overwrite: true });
 
-    // delete tmp blog_build_dir
-    if (fs.existsSync(blog_build_dir)) {
-      fs.rmdirSync(blog_build_dir, { recursive: true });
+    // delete tmp entries_build_dir
+    if (fs.existsSync(entries_build_dir)) {
+      fs.rmdirSync(entries_build_dir, { recursive: true });
     }
 
-    console.info('✅ Blog build complete.');
+    console.info('✅ Entries build complete.');
 
     // end node process
     process.exit(0);

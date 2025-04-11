@@ -23,16 +23,22 @@ export const getRelativeTime = (d1, d2 = new Date()) => {
 };
 
 export function loadArticles() {
-  let data = fs.readFileSync(`./public/blog/articles.json`, 'utf8')
-  data = JSON.parse(data)
+  try {
+    let data = fs.readFileSync(`./public/blog/articles.json`, 'utf8')
+    data = JSON.parse(data)
 
-  const articles = data.articles
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .map(article => {
-      article.relative_date = getRelativeTime(new Date(article.date))
-      article.has_tags = !!article.tags && Array.isArray(article.tags) && article.tags.length > 0
-      return article
-    })
+    const articles = data.articles
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map(article => {
+        article.relative_date = getRelativeTime(new Date(article.date))
+        article.has_tags = !!article.tags && Array.isArray(article.tags) && article.tags.length > 0
+        return article
+      })
 
-  return articles
+    return articles
+  } catch (error) {
+    console.error('ERROR_0zVGI26W', error)
+  }
+
+  return []
 }
