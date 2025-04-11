@@ -103,7 +103,7 @@ export default function Page() {
                     </time>
                   </Link>
                 </h3>
-                <p>
+                <p style={{ marginTop: '0.25rem' }}>
                   <strong>
                     {playlist.count === 1
                       ? 'One Song'
