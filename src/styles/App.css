@@ -196,3 +196,20 @@ a.link_box p:last-child {
 		width: 100px;
 	}
 }
+
+.image_backdrop_glow {
+	z-index: -10;
+	pointer-events: none;
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400%;
+	height: 200%;
+	transform: translate(-50%, -50%);
+	background-image: var(--background-image);
+	background-size: cover;
+	background-position: center;
+	filter: blur(100px) contrast(500) saturate(500);
+	opacity: 0.25;
+}
