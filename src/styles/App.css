@@ -245,3 +245,10 @@ a.link_box p:last-child {
 		opacity: var(--opacity-start, 1);
 	}
 }
+
+/* Safari-only hack */
+_::-webkit-full-page-media,
+.image_backdrop_glow,
+.image_backdrop_glow:before {
+  display: none;
+}
