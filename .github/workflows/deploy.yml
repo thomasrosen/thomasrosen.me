@@ -39,15 +39,15 @@ jobs:
           check-latest: true
           cache: 'npm'
       - name: Install Dependencies
-        run: yarn
+        run: npm i
       - name: Add gh-pages as a dev-dependency
-        run: yarn add --dev gh-pages
+        run: npm run add --dev gh-pages
       - name: Get Music Data
-        run: yarn get_music_data
+        run: npm run get_music_data
       - name: Convert blog articles to JSON
-        run: yarn build_blog
+        run: npm run build_blog
       - name: Build ReactJS App
-        run: yarn build
+        run: npm run build
       - name: Remove node_modules folder
         run: rm -rf node_modules
       - name: Deploy to GitHub Pages
