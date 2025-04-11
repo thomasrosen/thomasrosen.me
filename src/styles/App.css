@@ -184,7 +184,7 @@ a.link_box p:last-child {
 .links_grid_item .image_container img {
 	width: 200px;
 	margin-block-start: 5px;
-	border-radius: 2px;
+	border-radius: 5px;
 }
 @media (max-width: 600px) {
 	.links_grid_item {
