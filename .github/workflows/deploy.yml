@@ -41,7 +41,7 @@ jobs:
       - name: Install Dependencies
         run: npm i
       - name: Add gh-pages as a dev-dependency
-        run: npm run add --dev gh-pages
+        run: npm i --save-dev gh-pages
       - name: Get Music Data
         run: npm run get_music_data
       - name: Convert blog articles to JSON
