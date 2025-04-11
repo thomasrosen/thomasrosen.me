@@ -227,8 +227,9 @@ a.link_box p:last-child {
 	background-image: var(--background-image);
 	background-size: cover;
 	background-position: center;
+	mix-blend-mode: hard-light;
 	filter: blur(50px) contrast(100) saturate(1);
-	animation: scaleGlow var(--duration, 20s) ease-in-out infinite;
+	/* animation: scaleGlow var(--duration, 20s) ease-in-out infinite; */
 }
 @keyframes scaleGlow {
 	0% {

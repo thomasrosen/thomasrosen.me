@@ -1,6 +1,6 @@
 export function getRandomVars() {
   return {
-    '--rotate': `${Math.random() * 40 - 20}deg`, // -20 to 20
+    '--rotate': `${Math.random() * 16 - 8}deg`, // -20 to 20
     '--scale-start': `${Math.random() * 1 + 1}`, // 1 to 2
     '--scale-end': `${Math.random() * 1 + 2}`, // 2 to 3
     '--opacity-start': `${Math.random() * 0.5 + 0.5}`, // 0.5 to 1
