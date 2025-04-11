@@ -11,6 +11,7 @@
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
     "build_blog": "node ./build_blog.js",
+    "build_entries": "node ./build_entries.js",
     "get_music_data": "sh ./get_music_data.sh"
   },
   "browserslist": {
