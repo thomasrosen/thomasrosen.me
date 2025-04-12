@@ -7,6 +7,7 @@
     "dev": "concurrently \"npm run start_load_images_server\" \"next dev\"",
     "prebuild": "npm run build_more_data && npm run build_blog",
     "build": "next build",
+    "build_on_server": "concurrently \"npm run start_load_images_server\" \"next dev\" \"next build\"",
     "start": "next start",
     "lint": "next lint",
     "uuid": "node new_uuid.js",

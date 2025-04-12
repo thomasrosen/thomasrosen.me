@@ -13,7 +13,7 @@ export default function collectingImageLoader({ src, width = 100, quality = 100 
       handleDevImage({ src, width, quality, newPath })
     }).catch(console.error)
   } catch (error) {
-    console.error('Error optimizing image:', error)
+    console.error('ERROR_pkLkGQ2w Error optimizing image:', error)
   }
 
   return newPath

@@ -21,8 +21,8 @@ app.use(function (req, res, next) {
 app.get('/load_image', async function (req, res) {
   try {
     console.log('req.query', req.query)
-    const { src, w: width, h: height, q: quality, f: format, p: savepath } = req.query
-    console.log('src', src)
+    let { src, w: width, h: height, q: quality, f: format, p: savepath } = req.query
+    console.log('1-src', src)
     console.log('width', width)
     console.log('height', height)
     console.log('quality', quality)
@@ -42,14 +42,30 @@ app.get('/load_image', async function (req, res) {
       ? format.toLowerCase()
       : 'webp'
 
+    src = src.replace('/_next/', '../build/')
+
     // Fetch the image
-    const response = await fetch(src)
-    if (!response.ok) {
-      throw new Error(`Failed to fetch image: ${response.statusText}`)
+    let imageBuffer = null
+    console.log('3-src', src)
+    if (src.startsWith('http')) {
+      console.log('IF')
+      // load from url
+      const response = await fetch(src)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch image: ${response.statusText}`)
+      }
+      // Get the image buffer
+      imageBuffer = await response.buffer()
+    } else {
+      console.log('ELSE')
+      console.log('4-src', src)
+      // load from file
+      imageBuffer = fs.readFileSync(src)
     }
 
-    // Get the image buffer
-    const imageBuffer = await response.buffer()
+    if (!imageBuffer) {
+      throw new Error('Failed to load image')
+    }
 
     // Process image with Sharp
     const image = sharp(imageBuffer)
