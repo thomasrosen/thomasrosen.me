@@ -1,3 +1,5 @@
+import { getRelativeTime } from '@/lib/getRelativeTime';
+
 export async function loadArticles() {
   try {
     const articlesData = await import('@/data/blog/articles.json');
