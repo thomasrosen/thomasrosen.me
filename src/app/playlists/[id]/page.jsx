@@ -53,8 +53,8 @@ export default async function PagePlaylist({ params }) {
   let playlist = null
   try {
     id = decodeURIComponent(id)
-    playlist = await import(`@/data/music/playlists/${id}.json`)
-    console.log('playlist', playlist)
+    const playlistAsModule = await import(`@/data/music/playlists/${id}.json`)
+    playlist = { ...playlistAsModule }
   } catch (error) {
     throw new Error(`Could not load the playlist: ${error.message}`)
   }
