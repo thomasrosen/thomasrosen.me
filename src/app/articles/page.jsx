@@ -124,9 +124,9 @@ function ArticlesPageContent({ articles }) {
         <a
           target='_blank'
           rel='noreferrer'
-          href='https://podcasts.google.com/feed/aHR0cHM6Ly90aG9tYXNyb3Nlbi5tZS9ibG9nL2ZlZWQucnNz'
+          href='https://www.youtube.com/playlist?list=PLLImRvwJvhwmueAA0cY4qCScBsjpKP5T2'
         >
-          <button>Google Podcasts</button>
+          <button>YouTube Podcasts</button>
         </a>
         <a
           target='_blank'
