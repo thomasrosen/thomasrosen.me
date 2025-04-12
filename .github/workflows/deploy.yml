@@ -5,7 +5,7 @@ name: Deploy to Uberspace via GitHub Pages
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ "main" ]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +20,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
       - name: Add Private Key
         run: |-
           eval `ssh-agent -s`
@@ -62,7 +61,7 @@ jobs:
       - name: run deploy commands on uberspace
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ~/thomasrosen.me/ && git checkout deployment && git pull && cd ./backend/ && yarn && supervisorctl restart thomasrosen.me;
+          command: cd ~/thomasrosen.me/ && git checkout deployment && git pull && cd ./backend/ && npm i && supervisorctl restart thomasrosen.me;
           host: giclas.uberspace.de
           username: qiekub
           password: ${{ secrets.UBERSPACE_PASSWORD_QIEKUB }}

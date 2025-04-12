@@ -14,8 +14,8 @@ fi
 echo "✅ done cloneing";
 
 # for development
-mkdir -p ./public/music/playlists
-cp ./data_about_thomasrosen/music/playlists/* ./public/music/playlists
+mkdir -p ./src/data/music/playlists
+cp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
 
 echo "✅ done coping playlists to public";
 

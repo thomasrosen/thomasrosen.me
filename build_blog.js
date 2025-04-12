@@ -1,4 +1,4 @@
-console.info('➡️  Started building blog...') 
+console.info('➡️  Started building blog...')
 
 const matter = require('gray-matter')
 const path = require('path')
@@ -17,23 +17,7 @@ const blog_build_dir = './.tmp/build_blog/blog/'
 const articles_build_dir = './.tmp/build_blog/blog/articles/'
 const images_build_dir = './.tmp/build_blog/blog/images/'
 const audio_build_dir = './.tmp/build_blog/blog/audio/'
-const public_blog_dir = './public/blog/'
-
-
-const showdown  = require('showdown')
-showdown.setFlavor('github')
-const converter = new showdown.Converter({
-  noHeaderId: true,
-  headerLevelStart: 2,
-  simplifiedAutoLink: true,
-  excludeTrailingPunctuationFromURLs: true,
-  strikethrough: true,
-  tables: true,
-  tasklists: true,
-  simpleLineBreaks: true,
-  openLinksInNewWindow: true,
-  ghCodeBlocks: true,
-})
+const src_data_blog_dir = './src/data/blog/'
 
 async function* getFilesRecursive(dir, root = dir) {
   // source: https://stackoverflow.com/a/45130990/2387277
@@ -71,49 +55,49 @@ function buildBlog() {
         // log them on console
         articles = await Promise.all(
           files
-          .map(async filename => {
-            if (filename.endsWith('.md')) {
+            .map(async filename => {
+              if (filename.endsWith('.md')) {
 
-              const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
-              const data = matter(filecontent)
+                const filecontent = fs.readFileSync(dir_articles + filename, { encoding: 'utf8', flag: 'r' });
+                const data = matter(filecontent)
 
-              const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.([^()]*?))>?\)/gmi;
-              const text = data.content.replace(markdown_img_regex, (match, g1, g2, g3) => {
-                const fileextension_lowercase = g3.toLowerCase()
+                const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.([^()]*?))>?\)/gmi;
+                const text = data.content.replace(markdown_img_regex, (match, g1, g2, g3) => {
+                  const fileextension_lowercase = g3.toLowerCase()
 
-                if (
-                  fileextension_lowercase === 'jpg'
-                  || fileextension_lowercase === 'jpeg'
-                  || fileextension_lowercase === 'png'
-                ) {
-                  return match.replace(g1, `${g2}_1000.jpg`)
-                }
-                // if (fileextension_lowercase === 'png') {
-                //   return match.replace(g1, `${g2}_1000.${fileextension_lowercase}`)
-                // }
+                  if (
+                    fileextension_lowercase === 'jpg'
+                    || fileextension_lowercase === 'jpeg'
+                    || fileextension_lowercase === 'png'
+                  ) {
+                    return match.replace(g1, `${g2}_1000.jpg`)
+                  }
+                  // if (fileextension_lowercase === 'png') {
+                  //   return match.replace(g1, `${g2}_1000.${fileextension_lowercase}`)
+                  // }
 
-                return String(match)
-              })
+                  return String(match)
+                })
 
-              let plaintext = `${data.content}`
-                .replace(markdown_img_regex, () => '') // replace all images with empty string (only in the plaintext version)
+                let plaintext = `${data.content}`
+                  .replace(markdown_img_regex, () => '') // replace all images with empty string (only in the plaintext version)
 
-              plaintext = await remark()
-                .use(strip)
-                .process(plaintext)
-                .then(file => String(file))
+                plaintext = await remark()
+                  .use(strip)
+                  .process(plaintext)
+                  .then(file => String(file))
 
-              data.summary = plaintext.substring(0, 100).trim() + '…'
-              data.plaintext = plaintext
-              data.html = converter.makeHtml(text)
-              delete data.content
+                data.summary = plaintext.substring(0, 100).trim() + '…'
+                data.plaintext = plaintext
+                data.md = `${data.content}`
+                delete data.content
 
-              return data
-            }
+                return data
+              }
 
-            return null
-          })
-          .filter(Boolean)
+              return null
+            })
+            .filter(Boolean)
         )
 
       } catch (error) {
@@ -125,7 +109,7 @@ function buildBlog() {
   })
 }
 
-function get_img_src_path (image_path) {
+function get_img_src_path(image_path) {
   const markdown_img_src_regex = /([^()]+)\.[^()]*?/;
   const coverphoto_w1000_match = image_path.match(markdown_img_src_regex)
   const coverphoto_w1000 = (
@@ -198,7 +182,7 @@ buildBlog()
           article: {
             ...article.data,
             plaintext: article.plaintext || '',
-            html: article.html || '',
+            md: article.md || '',
           }
         }
 
@@ -217,7 +201,7 @@ buildBlog()
         fs.mkdirSync(images_build_dir, { recursive: true })
       }
 
-      // copy images folder to ./public/blog/images
+      // copy images folder to ./src/data/blog/images
       fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
 
       // Generate smaller versions of the images
@@ -247,7 +231,7 @@ buildBlog()
       }
 
     }
-    
+
     // END images
 
 
@@ -265,19 +249,23 @@ buildBlog()
 
 
 
+
     // delete blog_build_dir
-    if (fs.existsSync(public_blog_dir)) {
-      fs.rmdirSync(public_blog_dir, { recursive: true })
+    if (fs.existsSync(src_data_blog_dir)) {
+      fs.rmdirSync(src_data_blog_dir, { recursive: true })
     }
 
     // check if build directory exists and create it, if not
-    if (!fs.existsSync(public_blog_dir)) {
+    if (!fs.existsSync(src_data_blog_dir)) {
       // create each directory in the path
-      fs.mkdirSync(public_blog_dir, { recursive: true })
+      fs.mkdirSync(src_data_blog_dir, { recursive: true })
     }
 
-    // copy blog_build_dir to ./public/blog
-    fs.cpSync(blog_build_dir, public_blog_dir, { recursive: true, overwrite: true });
+    // copy blog_build_dir to ./src/data/blog
+    fs.cpSync(blog_build_dir, src_data_blog_dir, { recursive: true, overwrite: true });
+
+
+
 
     // delete tmp blog_build_dir
     if (fs.existsSync(blog_build_dir)) {

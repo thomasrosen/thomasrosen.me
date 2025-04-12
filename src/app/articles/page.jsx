@@ -1,10 +1,21 @@
 import { Emoji } from '@/components/Emoji'
 import '@/fonts/petrona-v28-latin/index.css'
-import { loadArticles } from '@/utils/loadArticles'
+import { loadArticles } from '@/lib/loadArticles'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-function ArticleItem({ article }) {
+async function ArticleCard({ article }) {
+  let coverphoto = null
+  if (
+    !!article &&
+    typeof article.coverphoto === 'string' &&
+    article.coverphoto.length > 0
+  ) {
+    const imagePath = await import(`@/data${article.coverphoto}`)
+    coverphoto = imagePath.default.src
+  }
+
   return (
     <div
       className={`
@@ -16,11 +27,19 @@ function ArticleItem({ article }) {
           }
         `}
     >
-      {typeof article.coverphoto === 'string' &&
-      article.coverphoto.length > 0 ? (
+      {typeof coverphoto === 'string' && coverphoto.length > 0 ? (
         <div className='image_container'>
           <Link href={'/articles/' + article.slug}>
-            <img src={article.coverphoto} alt={article.title} />
+            <Image
+              src={coverphoto}
+              alt={article.title}
+              width={200}
+              height={200}
+              style={{
+                objectFit: 'cover',
+                height: 'auto',
+              }}
+            />
           </Link>
         </div>
       ) : null}
@@ -129,14 +148,14 @@ function ArticlePageContent({ articles }) {
         }}
       >
         {(articles || []).map((article) => (
-          <ArticleItem key={article.slug} article={article} />
+          <ArticleCard key={article.slug} article={article} />
         ))}
       </div>
     </div>
   )
 }
 
-export default function Page() {
+export default function PageArticles() {
   let articles = null
 
   try {

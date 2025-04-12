@@ -1,6 +1,6 @@
 import '@/fonts/petrona-v28-latin/index.css'
-import { getRandomVars } from '@/utils/getRandomVars'
-import { loadPlaylists } from '@/utils/loadPlaylists'
+import { getRandomVars } from '@/lib/getRandomVars'
+import { loadPlaylists } from '@/lib/loadPlaylists'
 import Link from 'next/link'
 import React from 'react'
 
