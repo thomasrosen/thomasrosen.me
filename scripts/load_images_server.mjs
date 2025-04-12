@@ -84,9 +84,10 @@ app.get('/load_image', async function (req, res) {
 
       // check if the file already exists
       if (fs.existsSync(savepath_full)) {
-        console.log('file already exists, skipping')
+        console.log(`file already exists, skipping: ${src}`)
       } else {
         await sharp(buffer).toFile(savepath_full)
+        console.log(`saved file: ${src}`)
       }
     }
   } catch (error) {

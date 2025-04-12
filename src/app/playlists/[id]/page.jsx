@@ -2,7 +2,7 @@ import { Dot } from '@/components/Dot'
 import { Emoji } from '@/components/Emoji'
 import { getRandomVars } from '@/lib/getRandomVars'
 import { loadPlaylists } from '@/lib/loadPlaylists'
-import fs from 'fs'
+import Image from 'next/image'
 import React from 'react'
 
 function get_genres(playlist) {
@@ -30,8 +30,8 @@ function get_genres(playlist) {
 }
 
 // Return a list of `params` to populate the [slug] dynamic segment
-export function generateStaticParams() {
-  const playlists = loadPlaylists()
+export async function generateStaticParams() {
+  const playlists = await loadPlaylists()
 
   return playlists.flatMap((playlist) => [
     {
@@ -50,15 +50,17 @@ export default async function PagePlaylist({ params }) {
     throw new Error('No playlist id provided.')
   }
 
-  id = decodeURIComponent(id)
-
   let playlist = null
-
   try {
-    playlist = fs.readFileSync(`./src/data/music/playlists/${id}.json`, 'utf8')
-    playlist = JSON.parse(playlist)
+    id = decodeURIComponent(id)
+    playlist = await import(`@/data/music/playlists/${id}.json`)
+    console.log('playlist', playlist)
   } catch (error) {
     throw new Error(`Could not load the playlist: ${error.message}`)
+  }
+
+  if (!playlist) {
+    throw new Error('No playlist found.')
   }
 
   if (
@@ -139,9 +141,11 @@ export default async function PagePlaylist({ params }) {
                   >
                     {typeof album_artwork === 'string' &&
                     album_artwork.length > 0 ? (
-                      <img
+                      <Image
                         src={album_artwork}
                         alt={title}
+                        width={64}
+                        height={64}
                         style={{
                           filter: 'contrast(1.1) saturate(1.2)',
                           margin: '0',

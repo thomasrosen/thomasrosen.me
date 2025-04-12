@@ -77,11 +77,10 @@ const nextConfig = {
   },
 
   images: {
-    // unoptimized: true,
     loader: 'custom',
     loaderFile: './src/lib/imageLoader.js',
-    // // deviceSizes: [100, 200, 400], // only allow 100px and 200px variants
-    // // imageSizes: [200], // optional: for images with 'sizes' attribute
+    deviceSizes: [64, 128, 200, 400, 600, 1200], // only allow some specific sizes
+    imageSizes: [64, 128, 200, 400, 600, 1200], // optional: for images with 'sizes' attribute
   },
 
   async redirects() {

@@ -19,7 +19,7 @@ cp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
 
 echo "✅ done coping playlists to public";
 
-node ./build_music_metadata.js
+node ./scripts/build_music_metadata.js
 
 echo "✅ done running build_music_metadata.js";
 

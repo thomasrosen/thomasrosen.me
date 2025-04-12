@@ -25,11 +25,9 @@ export default async function PageArticle({ params }) {
     throw new Error('No article id provided.')
   }
 
-  id = decodeURIComponent(id)
-
   let article = null
-
   try {
+    id = decodeURIComponent(id)
     const articleData = await import(`@/data/blog/articles/${id}.json`)
     article = articleData.default.article
     article.relative_date = getRelativeTime(new Date(article.date))

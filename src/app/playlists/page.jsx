@@ -1,6 +1,7 @@
 import '@/fonts/petrona-v28-latin/index.css'
 import { getRandomVars } from '@/lib/getRandomVars'
 import { loadPlaylists } from '@/lib/loadPlaylists'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -23,9 +24,11 @@ function PlaylistItem({ playlist }) {
               display: 'block',
             }}
           >
-            <img
+            <Image
               src={playlist.coverphoto}
               alt={playlist.name}
+              width={128}
+              height={128}
               style={{
                 filter: 'contrast(1.1) saturate(1.2)',
                 margin: 0,
@@ -128,7 +131,7 @@ function PlaylistPageContent({ playlists }) {
           gridTemplateColumns: 'auto',
         }}
       >
-        {(playlists || []).map((playlist) => (
+        {(playlists.length ? playlists : []).map((playlist) => (
           <PlaylistItem key={playlist.name} playlist={playlist} />
         ))}
       </div>
@@ -136,11 +139,11 @@ function PlaylistPageContent({ playlists }) {
   )
 }
 
-export default function Page() {
+export default async function Page() {
   let playlists = null
 
   try {
-    playlists = loadPlaylists()
+    playlists = await loadPlaylists()
   } catch (error) {
     throw new Error(`Could not load the playlists: ${error.message}`)
   }

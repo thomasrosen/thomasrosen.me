@@ -9,6 +9,7 @@ import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhit
 import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
 import { cn } from '@/lib/utils'
 import { sanitizeUrl } from '@braintree/sanitize-url'
+import Image from 'next/image'
 import Link from 'next/link'
 import { BlockMath } from 'react-katex'
 import * as prod from 'react/jsx-runtime'
@@ -396,11 +397,12 @@ export function markdownToReact(markdown: string) {
           const src = imagePath.default.src
 
           return (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               {...props}
+              width={600}
+              height={600}
               src={src}
-              className={cn('w-full rounded-xl', props.className)}
+              className={cn('w-full h-auto rounded-xl', props.className)}
             />
           )
         },
