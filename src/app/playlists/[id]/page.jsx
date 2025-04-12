@@ -1,7 +1,7 @@
 import { Dot } from '@/components/Dot'
 import { Emoji } from '@/components/Emoji'
 import { getRandomVars } from '@/lib/getRandomVars'
-import { loadPlaylists } from '@/lib/loadPlaylists'
+import { loadPlaylist, loadPlaylists } from '@/lib/loadPlaylists'
 import Image from 'next/image'
 import React from 'react'
 

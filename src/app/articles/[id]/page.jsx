@@ -1,9 +1,10 @@
 import { Dot } from '@/components/Dot'
 import '@/fonts/petrona-v28-latin/index.css'
 import { getRelativeTime } from '@/lib/getRelativeTime'
-import { loadArticles } from '@/lib/loadArticles'
+import { loadArticle, loadArticles } from '@/lib/loadArticles'
 import { markdownToReact } from '@/lib/markdownToReact'
 import Image from 'next/image'
+
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   const articles = await loadArticles()
