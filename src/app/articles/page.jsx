@@ -84,15 +84,7 @@ async function ArticleCard({ article }) {
   )
 }
 
-export default function PageArticles() {
-  let articles = null
-
-  try {
-    articles = loadArticles()
-  } catch (error) {
-    throw new Error(`Could not load the articles: ${error.message}`)
-  }
-
+function ArticlePageContent({ articles }) {
   return (
     <div className='tab_content'>
       <h2>Blog</h2>
@@ -161,4 +153,16 @@ export default function PageArticles() {
       </div>
     </div>
   )
+}
+
+export default function PageArticles() {
+  let articles = null
+
+  try {
+    articles = loadArticles()
+  } catch (error) {
+    throw new Error(`Could not load the articles: ${error.message}`)
+  }
+
+  return <ArticlePageContent articles={articles} />
 }

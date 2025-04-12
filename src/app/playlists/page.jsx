@@ -4,15 +4,89 @@ import { loadPlaylists } from '@/lib/loadPlaylists'
 import Link from 'next/link'
 import React from 'react'
 
-export default function PagePlaylists() {
-  let playlists = null
+function PlaylistItem({ playlist }) {
+  return (
+    <div className='links_grid_item'>
+      {typeof playlist.coverphoto === 'string' &&
+      playlist.coverphoto.length > 0 ? (
+        <div
+          className='image_container'
+          style={{
+            maxWidth: '128px',
+            maxHeight: '128px',
+          }}
+        >
+          <Link
+            href={'/playlists/' + playlist.name}
+            style={{
+              position: 'relative',
+              display: 'block',
+            }}
+          >
+            <img
+              src={playlist.coverphoto}
+              alt={playlist.name}
+              style={{
+                filter: 'contrast(1.1) saturate(1.2)',
+                margin: 0,
+              }}
+            />
+            <div
+              className='image_backdrop_glow'
+              style={{
+                '--background-image': `url(${playlist.coverphoto})`,
+                ...getRandomVars(),
+              }}
+            />
+          </Link>
+        </div>
+      ) : null}
 
-  try {
-    playlists = loadPlaylists()
-  } catch (error) {
-    throw new Error(`Could not load the playlists: ${error.message}`)
-  }
+      <div>
+        <h3 className='big'>
+          <Link href={'/playlists/' + playlist.name}>
+            <time dateTime={playlist.date_month} title={playlist.date_month}>
+              {playlist.name}
+            </time>
+          </Link>
+        </h3>
+        <p>
+          <strong>
+            {playlist.count === 1 ? 'One Song' : playlist.count + ' Songs'}
+          </strong>
+        </p>
+        <p>
+          <strong
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px 15px',
+              flexWrap: 'wrap',
+            }}
+          >
+            {[
+              Array.isArray(playlist.genres) && playlist.genres.length > 0 ? (
+                <span className='tag_row'>
+                  {playlist.genres.map((genre) => (
+                    <button className='small' disabled key={genre}>
+                      {genre}
+                    </button>
+                  ))}
+                </span>
+              ) : null,
+            ]
+              .filter(Boolean)
+              .map((item, index) => (
+                <React.Fragment key={index}>{item}</React.Fragment>
+              ))}
+          </strong>
+        </p>
+      </div>
+    </div>
+  )
+}
 
+function PlaylistPageContent({ playlists }) {
   return (
     <div className='tab_content'>
       <h2>Playlists</h2>
@@ -54,93 +128,22 @@ export default function PagePlaylists() {
           gridTemplateColumns: 'auto',
         }}
       >
-        {playlists.length > 0 &&
-          playlists.map((playlist) => (
-            <div key={playlist.name} className='links_grid_item'>
-              {typeof playlist.coverphoto === 'string' &&
-              playlist.coverphoto.length > 0 ? (
-                <div
-                  className='image_container'
-                  style={{
-                    maxWidth: '128px',
-                    maxHeight: '128px',
-                  }}
-                >
-                  <Link
-                    href={'/playlists/' + playlist.name}
-                    style={{
-                      position: 'relative',
-                      display: 'block',
-                    }}
-                  >
-                    <img
-                      src={playlist.coverphoto}
-                      alt={playlist.name}
-                      style={{
-                        filter: 'contrast(1.1) saturate(1.2)',
-                        margin: 0,
-                      }}
-                    />
-                    <div
-                      className='image_backdrop_glow'
-                      style={{
-                        '--background-image': `url(${playlist.coverphoto})`,
-                        ...getRandomVars(),
-                      }}
-                    />
-                  </Link>
-                </div>
-              ) : null}
-
-              <div>
-                <h3 className='big'>
-                  <Link href={'/playlists/' + playlist.name}>
-                    <time
-                      dateTime={playlist.date_month}
-                      title={playlist.date_month}
-                    >
-                      {playlist.name}
-                    </time>
-                  </Link>
-                </h3>
-                <p style={{ marginTop: '0.25rem' }}>
-                  <strong>
-                    {playlist.count === 1
-                      ? 'One Song'
-                      : playlist.count + ' Songs'}
-                  </strong>
-                </p>
-                <p>
-                  <strong
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px 15px',
-                      flexWrap: 'wrap',
-                    }}
-                  >
-                    {[
-                      Array.isArray(playlist.genres) &&
-                      playlist.genres.length > 0 ? (
-                        <span className='tag_row'>
-                          {playlist.genres.map((genre) => (
-                            <button className='small' disabled key={genre}>
-                              {genre}
-                            </button>
-                          ))}
-                        </span>
-                      ) : null,
-                    ]
-                      .filter(Boolean)
-                      .map((item, index) => (
-                        <React.Fragment key={index}>{item}</React.Fragment>
-                      ))}
-                  </strong>
-                </p>
-              </div>
-            </div>
-          ))}
+        {(playlists || []).map((playlist) => (
+          <PlaylistItem key={playlist.name} playlist={playlist} />
+        ))}
       </div>
     </div>
   )
+}
+
+export default function Page() {
+  let playlists = null
+
+  try {
+    playlists = loadPlaylists()
+  } catch (error) {
+    throw new Error(`Could not load the playlists: ${error.message}`)
+  }
+
+  return <PlaylistPageContent playlists={playlists} />
 }
