@@ -45,6 +45,8 @@ jobs:
         run: npm run get_music_data
       - name: Convert blog articles to JSON
         run: npm run build_blog
+      - name: Convert entries to JSON
+        run: npm run build_entries
       - name: Build ReactJS App
         run: npm run build
       - name: Remove node_modules folder
