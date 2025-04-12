@@ -10,8 +10,10 @@ const app = express()
 app.use(function (req, res, next) {
   // allow all origins as this server is only run during dev or build
   const origin = req.header('Origin')
-  res.setHeader('Access-Control-Allow-Origin', origin)
-  res.setHeader('Access-Control-Allow-Credentials', true)
+  if (origin && origin !== 'undefined') {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  }
 
   next()
 })
@@ -97,7 +99,7 @@ app.get('/load_image', async function (req, res) {
 })
 
 const port = 4000
-const host = '0.0.0.0'
+const host = 'localhost'
 app.listen(port, host, () => {
-  console.info(`Server listening \n at http://${host}:${port} \n and http://localhost:${port}`)
+  console.info(`Server listening at http://${host}:${port}`)
 })

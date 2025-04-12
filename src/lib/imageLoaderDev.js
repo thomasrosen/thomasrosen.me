@@ -5,8 +5,14 @@ export async function handleDevImage({ src, width, quality, newPath }) {
   try {
     const full_url_src = `http://localhost:3000/${src}`
     const url = `http://localhost:4000/load_image?src=${encodeURIComponent(full_url_src)}&w=${width}&q=${quality}&p=${encodeURIComponent(newPath)}`
+    console.log('url', url)
 
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      headers: {
+        'Origin': 'http://localhost:3000'
+      },
+      credentials: 'include'
+    })
     if (!response.ok) {
       throw new Error(`Failed to optimize image: ${response.statusText}`)
     }
