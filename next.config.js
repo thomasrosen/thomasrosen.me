@@ -21,6 +21,15 @@ const nextConfig = {
       '@': path.resolve(__dirname, 'src'),
     }
 
+    // Add rule for JSON files
+    config.module.rules.push({
+      test: /\.json$/,
+      type: 'javascript/auto',
+      use: {
+        loader: 'json-loader',
+      },
+    })
+
     // Add rule for audio files
     config.module.rules.push({
       test: /\.(mp3|m4a|mp4|wav|ogg)$/,

@@ -127,8 +127,6 @@ a.link_box {
 	background: var(--text-color);
 	color: var(--background-color);
 
-	border-radius: 10px;
-
 	width: var(--content-box-width);
 	max-width: 100%;
 	padding: 40px;

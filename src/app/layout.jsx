@@ -112,7 +112,7 @@ export default function RootLayout({ children }) {
             href='https://mailchi.mp/59f35b198abe/thomasrosen'
             target='_blank'
             rel='noreferrer'
-            className='link_box'
+            className='link_box rounded-xl'
             data-umami-event='Newsletter'
           >
             <h2>

@@ -1,11 +1,12 @@
 import { Dot } from '@/components/Dot'
 import '@/fonts/petrona-v28-latin/index.css'
-import { getRelativeTime, loadArticles } from '@/lib/loadArticles'
+import { getRelativeTime } from '@/lib/getRelativeTime'
+import { loadArticles } from '@/lib/loadArticles'
 import { markdownToReact } from '@/lib/markdownToReact'
 
 // Return a list of `params` to populate the [slug] dynamic segment
-export function generateStaticParams() {
-  const articles = loadArticles()
+export async function generateStaticParams() {
+  const articles = await loadArticles()
 
   return articles.flatMap((article) => [
     {
@@ -30,7 +31,7 @@ export default async function PageArticle({ params }) {
 
   try {
     const articleData = await import(`@/data/blog/articles/${id}.json`)
-    article = articleData.article
+    article = articleData.default.article
     article.relative_date = getRelativeTime(new Date(article.date))
   } catch (error) {
     throw new Error(`Could not load the article: ${error.message}`)
@@ -63,7 +64,7 @@ export default async function PageArticle({ params }) {
                 title={article.date}
                 itemProp='datePublished'
               >
-                {article.relative_date}
+                {getRelativeTime(new Date(article.date))}
               </time>{' '}
               — 
               <span className='tag_row' itemProp='keywords'>
@@ -110,10 +111,7 @@ export default async function PageArticle({ params }) {
               <img
                 src={coverphoto}
                 alt={article.title}
-                style={{
-                  width: '200px',
-                  maxWidth: '100%',
-                }}
+                className='rounded-xl w-[200px] max-w-full'
               />
             </>
           ) : null}

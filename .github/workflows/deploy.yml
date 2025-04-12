@@ -41,12 +41,8 @@ jobs:
         run: npm i
       - name: Add gh-pages as a dev-dependency
         run: npm i --save-dev gh-pages
-      - name: Get Music Data
-        run: npm run get_music_data
-      - name: Convert blog articles to JSON
-        run: npm run build_blog
-      - name: Convert entries to JSON
-        run: npm run build_entries
+      - name: Start Pre-Build
+        run: npm run prebuild
       - name: Build ReactJS App
         run: npm run build
       - name: Remove node_modules folder

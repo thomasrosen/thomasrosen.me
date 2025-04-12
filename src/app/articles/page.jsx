@@ -84,7 +84,7 @@ async function ArticleCard({ article }) {
   )
 }
 
-function ArticlePageContent({ articles }) {
+function ArticlesPageContent({ articles }) {
   return (
     <div className='tab_content'>
       <h2>Blog</h2>
@@ -147,7 +147,7 @@ function ArticlePageContent({ articles }) {
           gridTemplateColumns: 'auto',
         }}
       >
-        {(articles || []).map((article) => (
+        {(articles.length ? articles : []).map((article) => (
           <ArticleCard key={article.slug} article={article} />
         ))}
       </div>
@@ -155,14 +155,7 @@ function ArticlePageContent({ articles }) {
   )
 }
 
-export default function PageArticles() {
-  let articles = null
-
-  try {
-    articles = loadArticles()
-  } catch (error) {
-    throw new Error(`Could not load the articles: ${error.message}`)
-  }
-
-  return <ArticlePageContent articles={articles} />
+export default async function PageArticles() {
+  const articles = await loadArticles()
+  return <ArticlesPageContent articles={articles} />
 }

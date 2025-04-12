@@ -5,6 +5,7 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run build_blog && npm run build_entries && npm run get_music_data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -79,6 +80,7 @@
     "express": "^5.1.0",
     "file-loader": "^6.2.0",
     "ignore-loader": "^0.1.2",
+    "json-loader": "^0.5.7",
     "postcss": "^8.5.3",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^4.1.3"

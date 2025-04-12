@@ -18,6 +18,8 @@ const articles_build_dir = './.tmp/build_blog/blog/articles/'
 const images_build_dir = './.tmp/build_blog/blog/images/'
 const audio_build_dir = './.tmp/build_blog/blog/audio/'
 const src_data_blog_dir = './src/data/blog/'
+const public_blog_dir = './public/blog/'
+
 
 async function* getFilesRecursive(dir, root = dir) {
   // source: https://stackoverflow.com/a/45130990/2387277
@@ -154,12 +156,19 @@ buildBlog()
       fs.mkdirSync(blog_build_dir, { recursive: true })
     }
 
+    // check if public directory exists and create it, if not
+    if (!fs.existsSync(public_blog_dir)) {
+      // create each directory in the path
+      fs.mkdirSync(public_blog_dir, { recursive: true })
+    }
+
     // write blog summary to file
     fs.writeFileSync(blog_build_dir + 'articles.json', JSON.stringify({ articles: summary_list }))
 
     // write rss feed file (RSS2)
     const xml = generate_rss_feed({ articles })
     fs.writeFileSync(blog_build_dir + 'feed.rss', xml)
+    fs.writeFileSync(public_blog_dir + 'feed.rss', xml)
 
 
     // check if build directory exists and create it, if not
