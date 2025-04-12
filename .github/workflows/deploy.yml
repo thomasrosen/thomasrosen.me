@@ -45,6 +45,8 @@ jobs:
         run: npm run build
       - name: remove node_modules folder
         run: rm -rf node_modules
+      - name: remove data_about_thomasrosen folder
+        run: rm -rf data_about_thomasrosen
       - name: deploy to github pages
         uses: Cecilapp/GitHub-Pages-deploy@3.1.0
         env:
