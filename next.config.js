@@ -46,7 +46,7 @@ const nextConfig = {
 
     // Add rule for XML/RSS files
     config.module.rules.push({
-      test: /\.(xml|rss)$/,
+      test: /\.(xml|rss|yml)$/,
       use: {
         loader: 'raw-loader',
       },
