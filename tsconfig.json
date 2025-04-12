@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -24,7 +24,9 @@
     "baseUrl": "src/",
     "paths": {
       "@/*": ["*"]
-    }
+    },
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["src", "build/types/**/*.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
