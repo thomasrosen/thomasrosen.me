@@ -6,7 +6,7 @@ title: |
 slug: aws-queermap
 audio: /blog/audio/2021-06-21-aws-queermap-de.mp3
 audio_length: 01:33
-coverphoto: /blog/images/Screenshot 2023-03-16 at 22.47.12.png
+coverphoto: /blog/images/Screenshot_2023-03-16_22-47-12.png
 lang: de
 font: serif
 tags:
@@ -30,16 +30,16 @@ notes: |
   - Link zur QueerMap: https://map.qiekub.org/
 ---
 
-![Screenshot of the article](</blog/images/Screenshot 2023-03-16 at 22.47.12.png>)
+![Screenshot of the article](</blog/images/Screenshot_2023-03-16_22-47-12.png>)
 
 Amazon Web Services hat mich interviewt!
 
-Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Artikel findest du unter folgendem Link: https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community. Der Titel des Artikels ist "Mapping safe places for people in the LGBTQ+ community", und er dreht sich um die QueerMap, die ich entwickelt habe. Die Karte zeigt queere Orte, damit Leute aus der LGBTQ+-Community sichere und unterstützende Umgebungen finden können.
+Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Artikel findest du unter folgendem Link: <https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community>. Der Titel des Artikels ist "Mapping safe places for people in the LGBTQ+ community", und er dreht sich um die QueerMap, die ich entwickelt habe. Die Karte zeigt queere Orte, damit Leute aus der LGBTQ+-Community sichere und unterstützende Umgebungen finden können.
 
 AWS hat mich gefragt, ob ich mit ihnen über das Projekt sprechen möchte. Klar, das ist ziemlich sicher auch pink-washing, aber ich dachte, es ist eine gute Chance, um die QueerMap bekannter zu machen. Das Interview haben wir dann auf Englisch per Videoanruf gemacht.
 Für mich war ungewohnt mit Personen in einer 9 Stunden entfernten Zeitzone zu sprechen. Aber ich fands es auch ein tolles Erlebniss.
 
-![Screenshot of the editor](</blog/images/Screenshot 2023-03-16 at 22.50.15.png>)
+![Screenshot of the editor](</blog/images/Screenshot_2023-03-16_22-50-15.png>)
 
 In dem Artikel kommt auch Marena Brinkhurst von Mapbox zu Wort. Sie erzählt was über die Technik hinter der QueerMap, wie zum Beispiel Vector-Tiles und OpenStreetMap. Die Daten für die Karte kommen übrigens von OpenStreetMap, und mit einem einfachen Q&A-Editor kann man sogar selbst Orte hinzufügen.
 Der Editor soll es einfacher machen, die Orte zu bearbeiten, als es OpenSteetMap macht.

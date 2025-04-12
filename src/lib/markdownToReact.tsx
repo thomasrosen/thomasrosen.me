@@ -38,7 +38,11 @@ refractor.alias({
   markup: ['atom', 'html', 'mathml', 'rss', 'ssml', 'svg', 'xml', 'vue'],
 })
 
-const production = { Fragment: prod.Fragment, jsx: prod.jsx, jsxs: prod.jsxs }
+const production = {
+  Fragment: (prod as any).Fragment,
+  jsx: (prod as any).jsx,
+  jsxs: (prod as any).jsxs,
+}
 
 function findFirstNodeWithType(node: any, nodeType: string): any | null {
   if (node.type === nodeType) {

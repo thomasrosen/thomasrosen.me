@@ -3,7 +3,7 @@ import '@/fonts/petrona-v28-latin/index.css'
 import { getRelativeTime } from '@/lib/getRelativeTime'
 import { loadArticles } from '@/lib/loadArticles'
 import { markdownToReact } from '@/lib/markdownToReact'
-
+import Image from 'next/image'
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   const articles = await loadArticles()
@@ -37,14 +37,23 @@ export default async function PageArticle({ params }) {
     throw new Error(`Could not load the article: ${error.message}`)
   }
 
-  let coverphoto = null
+  let coverphoto_src = null
+  let coverphoto_blurDataURL = null
   if (
     !!article &&
     typeof article.coverphoto === 'string' &&
     article.coverphoto.length > 0
   ) {
-    const imagePath = await import(`@/data${article.coverphoto}`)
-    coverphoto = imagePath.default.src
+    try {
+      // Remove any URL encoding from the path
+      const cleanPath = decodeURIComponent(article.coverphoto)
+      const imagePath = await import(`@/data${cleanPath}`)
+      coverphoto_src = imagePath.default.src
+      coverphoto_blurDataURL = imagePath.default.blurDataURL
+    } catch (error) {
+      console.error('Error loading cover photo:', error)
+      // Continue without the cover photo rather than failing the build
+    }
   }
 
   return (
@@ -102,16 +111,19 @@ export default async function PageArticle({ params }) {
           <Dot />
 
           {!!article &&
-          typeof coverphoto === 'string' &&
-          coverphoto.length > 0 ? (
+          typeof coverphoto_src === 'string' &&
+          coverphoto_src.length > 0 ? (
             <>
               <br />
               <br />
-              <meta itemProp='image' content={coverphoto} />
-              <img
-                src={coverphoto}
+              <meta itemProp='image' content={coverphoto_src} />
+              <Image
+                src={coverphoto_src}
+                blurDataURL={coverphoto_blurDataURL}
                 alt={article.title}
-                className='rounded-xl w-[200px] max-w-full'
+                className='rounded-xl w-[200px] h-auto max-w-full'
+                width={200}
+                height={200}
               />
             </>
           ) : null}
@@ -127,7 +139,7 @@ export default async function PageArticle({ params }) {
                   '@id': `https://thomasrosen.me/articles/${article.slug}`,
                 },
                 headline: article.title,
-                image: coverphoto,
+                image: coverphoto_src,
                 datePublished: article.date,
                 dateModified: article.date,
                 author: {

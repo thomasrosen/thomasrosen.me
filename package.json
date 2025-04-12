@@ -4,16 +4,17 @@
   "private": false,
   "homepage": "https://thomasrosen.me/",
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"npm run start_load_images_server\" \"next dev\"",
     "prebuild": "npm run build_blog && npm run build_entries && npm run get_music_data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
-    "build_blog": "node ./build_blog.js",
-    "build_entries": "node ./build_entries.js",
-    "get_music_data": "sh ./get_music_data.sh"
+    "build_blog": "node ./scripts/build_blog.js",
+    "build_entries": "node ./scripts/build_entries.js",
+    "get_music_data": "sh ./scripts/get_music_data.sh",
+    "start_load_images_server": "node ./scripts/load_images_server.mjs"
   },
   "browserslist": {
     "production": [
@@ -61,6 +62,7 @@
     "remark-rehype": "^11.0.0",
     "remark-stringify": "^11.0.0",
     "rss": "^1.2.2",
+    "shadcn": "^2.3.0",
     "sharp": "^0.32.6",
     "strip-markdown": "^5.0.0",
     "tailwind-merge": "^3.2.0",
@@ -77,6 +79,7 @@
     "@types/react": "18.2.37",
     "@types/react-katex": "^3.0.4",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^8.2.2",
     "express": "^5.1.0",
     "file-loader": "^6.2.0",
     "ignore-loader": "^0.1.2",

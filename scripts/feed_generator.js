@@ -56,70 +56,106 @@ function generate_rss_feed(options) {
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
-      { 'itunes:owner': [
-        { 'itunes:name': author },
-        { 'itunes:email': email }
-      ]},
-      { 'itunes:image': {
-        _attr: {
-          href: feed_image_url
+      {
+        'itunes:owner': [
+          { 'itunes:name': author },
+          { 'itunes:email': email }
+        ]
+      },
+      {
+        'itunes:image': {
+          _attr: {
+            href: feed_image_url
+          }
         }
-      }},
-      {'itunes:category': [
-        {_attr: {
-          text: 'Society & Culture'
-        }},
-        {'itunes:category': {
-          _attr: {
-            text: 'Personal Journals'
-          }
-        }},
-        {'itunes:category': {
-          _attr: {
-            text: 'Places & Travel'
-          }
-        }},
-      ]},
-      {'itunes:category': [
-        {_attr: {
-          text: 'Technology'
-        }},
-      ]},
-      {'itunes:category': [
-        {_attr: {
-          text: 'Arts'
-        }},
-        {'itunes:category': {
-          _attr: {
-            text: 'Books'
-          }
-        }},
-      ]},
-      {'itunes:category': [
-        {_attr: {
-          text: 'Business'
-        }},
-        {'itunes:category': {
-          _attr: {
-            text: 'Non-Profit'
-          }
-        }},
-      ]},
-      {'itunes:category': [
-        {_attr: {
-          text: 'Health & Fitness'
-        }},
-        {'itunes:category': {
-          _attr: {
-            text: 'Mental Health'
-          }
-        }},
-        {'itunes:category': {
-          _attr: {
-            text: 'Sexuality'
-          }
-        }},
-      ]},
+      },
+      {
+        'itunes:category': [
+          {
+            _attr: {
+              text: 'Society & Culture'
+            }
+          },
+          {
+            'itunes:category': {
+              _attr: {
+                text: 'Personal Journals'
+              }
+            }
+          },
+          {
+            'itunes:category': {
+              _attr: {
+                text: 'Places & Travel'
+              }
+            }
+          },
+        ]
+      },
+      {
+        'itunes:category': [
+          {
+            _attr: {
+              text: 'Technology'
+            }
+          },
+        ]
+      },
+      {
+        'itunes:category': [
+          {
+            _attr: {
+              text: 'Arts'
+            }
+          },
+          {
+            'itunes:category': {
+              _attr: {
+                text: 'Books'
+              }
+            }
+          },
+        ]
+      },
+      {
+        'itunes:category': [
+          {
+            _attr: {
+              text: 'Business'
+            }
+          },
+          {
+            'itunes:category': {
+              _attr: {
+                text: 'Non-Profit'
+              }
+            }
+          },
+        ]
+      },
+      {
+        'itunes:category': [
+          {
+            _attr: {
+              text: 'Health & Fitness'
+            }
+          },
+          {
+            'itunes:category': {
+              _attr: {
+                text: 'Mental Health'
+              }
+            }
+          },
+          {
+            'itunes:category': {
+              _attr: {
+                text: 'Sexuality'
+              }
+            }
+          },
+        ]
+      },
     ]
   })
 
@@ -185,11 +221,13 @@ function generate_rss_feed(options) {
         { 'itunes:author': author },
         { 'itunes:subtitle': article.summary },
         { 'itunes:summary': article.summary },
-        { 'itunes:image': {
-          _attr: {
-            href: coverphoto_url
+        {
+          'itunes:image': {
+            _attr: {
+              href: coverphoto_url
+            }
           }
-        }},
+        },
       ]
     })
   }

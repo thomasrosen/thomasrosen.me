@@ -4,7 +4,7 @@ const path = require('path')
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  output: 'export',
+  // output: 'export',
 
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   trailingSlash: true,
@@ -58,13 +58,28 @@ const nextConfig = {
       use: 'ignore-loader'
     })
 
+    // // Add rule for image files with spaces in names
+    // config.module.rules.push({
+    //   test: /\.(png|jpg|jpeg|gif|webp|avif)$/,
+    //   use: {
+    //     loader: 'file-loader',
+    //     options: {
+    //       publicPath: '/_next/static/media',
+    //       outputPath: isServer ? '../static/media' : 'static/media',
+    //       name: '[name].[hash].[ext]',
+    //       emitFile: true,
+    //       esModule: true,
+    //     },
+    //   },
+    // })
+
     return config
   },
 
   images: {
-    unoptimized: true,
-    // loader: 'custom',
-    // loaderFile: './src/lib/imageLoader.js',
+    // unoptimized: true,
+    loader: 'custom',
+    loaderFile: './src/lib/imageLoader.js',
     // // deviceSizes: [100, 200, 400], // only allow 100px and 200px variants
     // // imageSizes: [200], // optional: for images with 'sizes' attribute
   },
