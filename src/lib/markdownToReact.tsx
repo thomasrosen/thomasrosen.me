@@ -396,7 +396,7 @@ export function markdownToReact(markdown: string) {
             <img
               {...props}
               src={src}
-              className={cn('w-[500px] max-w-full rounded-md', props.className)}
+              className={cn('w-full rounded-xl', props.className)}
             />
           )
         },
