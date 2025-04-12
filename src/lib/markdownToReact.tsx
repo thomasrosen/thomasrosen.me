@@ -1,4 +1,4 @@
-import { Typo } from '@/components/Typoo'
+import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import {
   Tooltip,
