@@ -18,23 +18,7 @@ const articles_build_dir = './.tmp/build_blog/blog/articles/'
 const images_build_dir = './.tmp/build_blog/blog/images/'
 const audio_build_dir = './.tmp/build_blog/blog/audio/'
 const public_data_blog_dir = './public/data/blog/'
-const data_blog_dir = './src/data/blog/'
-
-
-const showdown = require('showdown')
-showdown.setFlavor('github')
-const converter = new showdown.Converter({
-  noHeaderId: true,
-  headerLevelStart: 2,
-  simplifiedAutoLink: true,
-  excludeTrailingPunctuationFromURLs: true,
-  strikethrough: true,
-  tables: true,
-  tasklists: true,
-  simpleLineBreaks: true,
-  openLinksInNewWindow: true,
-  ghCodeBlocks: true,
-})
+const src_data_blog_dir = './src/data/blog/'
 
 async function* getFilesRecursive(dir, root = dir) {
   // source: https://stackoverflow.com/a/45130990/2387277
@@ -106,7 +90,7 @@ function buildBlog() {
 
                 data.summary = plaintext.substring(0, 100).trim() + '…'
                 data.plaintext = plaintext
-                data.html = converter.makeHtml(text)
+                data.md = `${data.content}`
                 delete data.content
 
                 return data
@@ -199,7 +183,7 @@ buildBlog()
           article: {
             ...article.data,
             plaintext: article.plaintext || '',
-            html: article.html || '',
+            md: article.md || '',
           }
         }
 

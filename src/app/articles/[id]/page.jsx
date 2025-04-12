@@ -1,6 +1,7 @@
 import { Dot } from '@/components/Dot'
 import '@/fonts/petrona-v28-latin/index.css'
 import { getRelativeTime, loadArticles } from '@/lib/loadArticles'
+import { markdownToReact } from '@/lib/markdownToReact'
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export function generateStaticParams() {
@@ -93,10 +94,10 @@ export default async function PageArticle({ params }) {
             </audio>
           ) : null}
 
-          <div
-            dangerouslySetInnerHTML={{ __html: article.html }}
-            itemProp='articleBody'
-          />
+          {article.md ? (
+            <div itemProp='articleBody'>{markdownToReact(article.md)}</div>
+          ) : null}
+
           <Dot />
 
           {!!article &&

@@ -1,6 +1,5 @@
-import { Headline } from '@/components/custom-ui/Headline'
+import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import {
   Tooltip,
   TooltipContent,
@@ -9,6 +8,7 @@ import {
 import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
 import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
 import { cn } from '@/lib/utils'
+import { sanitizeUrl } from '@braintree/sanitize-url'
 import Link from 'next/link'
 import { BlockMath } from 'react-katex'
 import * as prod from 'react/jsx-runtime'
@@ -18,7 +18,9 @@ import refractor_csv from 'refractor/lang/csv'
 import refractor_excelFormula from 'refractor/lang/excel-formula'
 import refractor_ignore from 'refractor/lang/ignore'
 import refractor_jsx from 'refractor/lang/jsx'
+import rehypeRaw from 'rehype-raw'
 import rehypeReact from 'rehype-react'
+import remarkBreaks from 'remark-breaks'
 import remarkFootnotesExtra from 'remark-footnotes-extra'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
@@ -55,23 +57,13 @@ function findFirstNodeWithType(node: any, nodeType: string): any | null {
   return null
 }
 
-function GhostButton({
-  children,
-  ...props
-}: React.ComponentProps<typeof Button>) {
-  return (
-    <Button size='sm' variant='ghost' {...props}>
-      {children}
-    </Button>
-  )
-}
-
 export function markdownToReact(markdown: string) {
   markdown = correctMarkdownTextForRender(markdown)
 
   const file = unified()
     .use(remarkParse) // Parse markdown.
     .use(remarkGfm) // Support GFM (tables, autolinks, tasklists, strikethrough).
+    .use(remarkBreaks) // Convert single line breaks to <br>
     .use(remarkFootnotesExtra, {
       breakLink: true,
     })
@@ -134,6 +126,7 @@ export function markdownToReact(markdown: string) {
       }
     })
     .use(remarkRehype, {
+      allowDangerousHtml: true,
       handlers: {
         inlineCode: (state, node, parent) => {
           // pass the value to the code element
@@ -203,6 +196,7 @@ export function markdownToReact(markdown: string) {
         return node
       },
     }) // Turn it into HTML.
+    .use(rehypeRaw) // Parse raw HTML into proper nodes.
     .use(() => (tree) => {
       visit(tree, (node) => {
         if (node?.type === 'element' && (node as any)?.tagName === 'pre') {
@@ -222,38 +216,17 @@ export function markdownToReact(markdown: string) {
           return <code {...props}>{props.value}</code>
         },
         div: ({ node, ...props }: any) => props.children,
-        h1: ({ node, ...props }: any) => (
-          <Headline as='h1' headingStyle='h4' {...props} />
-        ),
-        h2: ({ node, ...props }: any) => (
-          <Headline as='h2' headingStyle='h5' {...props} />
-        ),
-        h3: ({ node, ...props }: any) => (
-          <Headline as='h3' headingStyle='h6' {...props} />
-        ),
+        h1: ({ node, ...props }: any) => <Typo as='h1' {...props} />,
+        h2: ({ node, ...props }: any) => <Typo as='h2' {...props} />,
+        h3: ({ node, ...props }: any) => <Typo as='h3' {...props} />,
         h4: ({ node, ...props }: any) => (
-          <Headline
-            as='h4'
-            headingStyle='h6'
-            className='opacity-80'
-            {...props}
-          />
+          <Typo as='h4' className='opacity-80' {...props} />
         ),
         h5: ({ node, ...props }: any) => (
-          <Headline
-            as='h5'
-            headingStyle='h6'
-            className='opacity-70'
-            {...props}
-          />
+          <Typo as='h5' className='opacity-70' {...props} />
         ),
         h6: ({ node, ...props }: any) => (
-          <Headline
-            as='h6'
-            headingStyle='h6'
-            className='opacity-60'
-            {...props}
-          />
+          <Typo as='h6' className='opacity-60' {...props} />
         ),
         hr: ({ node, ...props }: any) => (
           <hr
@@ -272,7 +245,7 @@ export function markdownToReact(markdown: string) {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Link {...props} target='_blank'>
-                    <Badge variant='footnote'>{props.children}</Badge>
+                    <Badge>{props.children}</Badge>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -410,19 +383,67 @@ export function markdownToReact(markdown: string) {
             {...props}
           />
         ),
-        img: ({ node, ...props }: any) => {
-          const src = props.src
-          const alt = props.alt
-          const title = props.title
+        img: async ({ node, ...props }: any) => {
+          if (!props.src || typeof props.src !== 'string') {
+            return null
+          }
+
+          const imagePath = await import(`@/data${props.src}`)
+          const src = imagePath.default.src
 
           return (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={src}
-              alt={alt}
-              title={title}
-              className={cn('w-[500px] max-w-full rounded-md', props.className)}
               {...props}
+              src={src}
+              className={cn('w-[500px] max-w-full rounded-md', props.className)}
+            />
+          )
+        },
+        audio: async ({ node, ...props }: any) => {
+          if (!props.src || typeof props.src !== 'string') {
+            return null
+          }
+
+          try {
+            // Import the audio file using the file-loader
+            const audioPath = await import(`@/data${props.src}`)
+            const src = audioPath.default
+
+            const title = props.title
+
+            return (
+              <audio
+                {...props}
+                title={title}
+                controls={true}
+                preload='metadata'
+                src={src}
+              >
+                <source src={src} type='audio/mpeg' />
+                <a href={src}>
+                  <button>
+                    {title ? `Herunterladen: "${title}"` : 'Herunterladen'}
+                  </button>
+                </a>
+              </audio>
+            )
+          } catch (error) {
+            console.error('Error loading audio file:', error)
+            return null
+          }
+        },
+        iframe: ({ node, ...props }: any) => {
+          const src = props.src ? sanitizeUrl(props.src) : undefined
+
+          if (!src) {
+            return null
+          }
+
+          return (
+            <iframe
+              {...props}
+              className={cn('overflow-hidden rounded-xl', props.className)}
             />
           )
         },

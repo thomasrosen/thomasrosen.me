@@ -15,7 +15,7 @@ const nextConfig = {
   // Optional: Change the output directory `out` -> `dist`
   distDir: 'build',
 
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, 'src'),
@@ -28,8 +28,9 @@ const nextConfig = {
         loader: 'file-loader',
         options: {
           publicPath: '/_next/static/media',
-          outputPath: 'static/media',
+          outputPath: isServer ? '../static/media' : 'static/media',
           name: '[name].[hash].[ext]',
+          emitFile: true,
         },
       },
     })
