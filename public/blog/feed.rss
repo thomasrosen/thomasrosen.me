@@ -9,10 +9,10 @@
             <link>https://thomasrosen.me</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 11 Apr 2025 20:58:04 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 12 Apr 2025 05:18:52 GMT</lastBuildDate>
         <atom:link href="https://thomasrosen.me/blog/feed.rss" rel="self" type="application/rss+xml"/>
         <author><![CDATA[Thomas Rosen]]></author>
-        <pubDate>Fri, 11 Apr 2025 20:58:04 GMT</pubDate>
+        <pubDate>Sat, 12 Apr 2025 05:18:52 GMT</pubDate>
         <copyright><![CDATA[Copyright 2025 Thomas Rosen]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[hello@thomasrosen.me (Thomas Rosen)]]></managingEditor>
@@ -103,7 +103,7 @@ Dandelion from 2014-07-23
             <itunes:author>Thomas Rosen</itunes:author>
             <itunes:subtitle>A few years ago, I discovered this website with flat wallpapers. This was probably at the beginning…</itunes:subtitle>
             <itunes:summary>A few years ago, I discovered this website with flat wallpapers. This was probably at the beginning…</itunes:summary>
-            <itunes:image href="https://thomasrosen.me/blog/images/2014-07-23-simpledesktops/Screenshot 2023-03-26 at 20.28.35.png"/>
+            <itunes:image href="https://thomasrosen.me/blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-28-35.png"/>
         </item>
         <item>
             <title><![CDATA[Mein Amazon-Interview: QueerMap – Sichere Orte für die LGBTIAQ+-Community
@@ -142,7 +142,7 @@ Ja, genau! Das Amazon hat einen Artikel über die QueerMap…</itunes:subtitle>
             <itunes:summary>Amazon Web Services hat mich interviewt!
 
 Ja, genau! Das Amazon hat einen Artikel über die QueerMap…</itunes:summary>
-            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot 2023-03-16 at 22.47.12.png"/>
+            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot_2023-03-16_22-47-12.png"/>
         </item>
         <item>
             <title><![CDATA[Susan.]]></title>
@@ -246,7 +246,7 @@ Visit the website at queer.thomasrosen.me to access these resources and learn mo
             <itunes:author>Thomas Rosen</itunes:author>
             <itunes:subtitle>As a member of the queer community, I understand how challenging it can be to find reliable resource…</itunes:subtitle>
             <itunes:summary>As a member of the queer community, I understand how challenging it can be to find reliable resource…</itunes:summary>
-            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot 2023-03-20 at 06.25.10.png"/>
+            <itunes:image href="https://thomasrosen.me/blog/images/Screenshot_2023-03-20_06-25-10.png"/>
         </item>
         <item>
             <title><![CDATA[Laras Geheimnis!]]></title>
@@ -468,6 +468,8 @@ Worum gehts überhaupt?
 
 Ich wurde gefragt zu einem bestehenden Radiospot für Zenris ein Video zu produzieren.
 Hier schonmal der Radiospot. Dann wisst ihr genauer worum es geht:
+
+
 
 Einzige Wünsche:
 

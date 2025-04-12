@@ -127,8 +127,6 @@ a.link_box {
 	background: var(--text-color);
 	color: var(--background-color);
 
-	border-radius: 10px;
-
 	width: var(--content-box-width);
 	max-width: 100%;
 	padding: 40px;
@@ -184,7 +182,7 @@ a.link_box p:last-child {
 .links_grid_item .image_container img {
 	width: 200px;
 	margin-block-start: 5px;
-	border-radius: 2px;
+	border-radius: 5px;
 }
 @media (max-width: 600px) {
 	.links_grid_item {

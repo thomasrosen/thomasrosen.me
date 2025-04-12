@@ -1,11 +1,13 @@
 import { Dot } from '@/components/Dot'
 import '@/fonts/petrona-v28-latin/index.css'
-import { getRelativeTime, loadArticles } from '@/utils/loadArticles'
-import fs from 'fs'
+import { getRelativeTime } from '@/lib/getRelativeTime'
+import { loadArticle, loadArticles } from '@/lib/loadArticles'
+import { markdownToReact } from '@/lib/markdownToReact'
+import Image from 'next/image'
 
 // Return a list of `params` to populate the [slug] dynamic segment
-export function generateStaticParams() {
-  const articles = loadArticles()
+export async function generateStaticParams() {
+  const articles = await loadArticles()
 
   return articles.flatMap((article) => [
     {
@@ -17,33 +19,32 @@ export function generateStaticParams() {
   ])
 }
 
-export default async function Page({ params }) {
+export default async function PageArticle({ params }) {
   let { id } = (await params) || {}
 
   if (!id) {
     throw new Error('No article id provided.')
   }
 
-  id = decodeURIComponent(id)
+  const article = await loadArticle(id)
 
-  let article = null
-
-  try {
-    let data = fs.readFileSync(`./public/blog/articles/${id}.json`, 'utf8')
-    data = JSON.parse(data)
-    article = data.article
-    article.relative_date = getRelativeTime(new Date(article.date))
-  } catch (error) {
-    throw new Error(`Could not load the article: ${error.message}`)
-  }
-
-  let images = null
+  let coverphoto_src = null
+  let coverphoto_blurDataURL = null
   if (
     !!article &&
     typeof article.coverphoto === 'string' &&
     article.coverphoto.length > 0
   ) {
-    images = [`https://thomasrosen.me/${article.coverphoto}`]
+    try {
+      // Remove any URL encoding from the path
+      const cleanPath = decodeURIComponent(article.coverphoto)
+      const imagePath = await import(`@/data${cleanPath}`)
+      coverphoto_src = imagePath.default.src
+      coverphoto_blurDataURL = imagePath.default.blurDataURL
+    } catch (error) {
+      console.error('Error loading cover photo:', error)
+      // Continue without the cover photo rather than failing the build
+    }
   }
 
   return (
@@ -63,7 +64,7 @@ export default async function Page({ params }) {
                 title={article.date}
                 itemProp='datePublished'
               >
-                {article.relative_date}
+                {getRelativeTime(new Date(article.date))}
               </time>{' '}
               — 
               <span className='tag_row' itemProp='keywords'>
@@ -94,29 +95,26 @@ export default async function Page({ params }) {
             </audio>
           ) : null}
 
-          <div
-            dangerouslySetInnerHTML={{ __html: article.html }}
-            itemProp='articleBody'
-          />
+          {article.md ? (
+            <div itemProp='articleBody'>{markdownToReact(article.md)}</div>
+          ) : null}
+
           <Dot />
 
           {!!article &&
-          typeof article.coverphoto === 'string' &&
-          article.coverphoto.length > 0 ? (
+          typeof coverphoto_src === 'string' &&
+          coverphoto_src.length > 0 ? (
             <>
               <br />
               <br />
-              <meta
-                itemProp='image'
-                content={`https://thomasrosen.me/${article.coverphoto}`}
-              />
-              <img
-                src={article.coverphoto}
+              <meta itemProp='image' content={coverphoto_src} />
+              <Image
+                src={coverphoto_src}
+                blurDataURL={coverphoto_blurDataURL}
                 alt={article.title}
-                style={{
-                  width: '200px',
-                  maxWidth: '100%',
-                }}
+                className='rounded-xl w-[200px] h-auto max-w-full'
+                width={200}
+                height={200}
               />
             </>
           ) : null}
@@ -132,7 +130,7 @@ export default async function Page({ params }) {
                   '@id': `https://thomasrosen.me/articles/${article.slug}`,
                 },
                 headline: article.title,
-                image: images,
+                image: coverphoto_src,
                 datePublished: article.date,
                 dateModified: article.date,
                 author: {

@@ -1,10 +1,21 @@
 import { Emoji } from '@/components/Emoji'
 import '@/fonts/petrona-v28-latin/index.css'
-import { loadArticles } from '@/utils/loadArticles'
+import { loadArticles } from '@/lib/loadArticles'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-function ArticleItem({ article }) {
+async function ArticleCard({ article }) {
+  let coverphoto = null
+  if (
+    !!article &&
+    typeof article.coverphoto === 'string' &&
+    article.coverphoto.length > 0
+  ) {
+    const imagePath = await import(`@/data${article.coverphoto}`)
+    coverphoto = imagePath.default.src
+  }
+
   return (
     <div
       className={`
@@ -16,11 +27,19 @@ function ArticleItem({ article }) {
           }
         `}
     >
-      {typeof article.coverphoto === 'string' &&
-      article.coverphoto.length > 0 ? (
+      {typeof coverphoto === 'string' && coverphoto.length > 0 ? (
         <div className='image_container'>
           <Link href={'/articles/' + article.slug}>
-            <img src={article.coverphoto} alt={article.title} />
+            <Image
+              src={coverphoto}
+              alt={article.title}
+              width={200}
+              height={200}
+              style={{
+                objectFit: 'cover',
+                height: 'auto',
+              }}
+            />
           </Link>
         </div>
       ) : null}
@@ -65,7 +84,7 @@ function ArticleItem({ article }) {
   )
 }
 
-function ArticlePageContent({ articles }) {
+function ArticlesPageContent({ articles }) {
   return (
     <div className='tab_content'>
       <h2>Blog</h2>
@@ -105,9 +124,9 @@ function ArticlePageContent({ articles }) {
         <a
           target='_blank'
           rel='noreferrer'
-          href='https://podcasts.google.com/feed/aHR0cHM6Ly90aG9tYXNyb3Nlbi5tZS9ibG9nL2ZlZWQucnNz'
+          href='https://www.youtube.com/playlist?list=PLLImRvwJvhwmueAA0cY4qCScBsjpKP5T2'
         >
-          <button>Google Podcasts</button>
+          <button>YouTube Podcasts</button>
         </a>
         <a
           target='_blank'
@@ -128,22 +147,15 @@ function ArticlePageContent({ articles }) {
           gridTemplateColumns: 'auto',
         }}
       >
-        {(articles || []).map((article) => (
-          <ArticleItem key={article.slug} article={article} />
+        {(articles.length ? articles : []).map((article) => (
+          <ArticleCard key={article.slug} article={article} />
         ))}
       </div>
     </div>
   )
 }
 
-export default function Page() {
-  let articles = null
-
-  try {
-    articles = loadArticles()
-  } catch (error) {
-    throw new Error(`Could not load the articles: ${error.message}`)
-  }
-
-  return <ArticlePageContent articles={articles} />
+export default async function PageArticles() {
+  const articles = await loadArticles()
+  return <ArticlesPageContent articles={articles} />
 }

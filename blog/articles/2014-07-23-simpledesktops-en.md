@@ -5,7 +5,7 @@ title: Simple Desktops
 slug: simpledesktops
 audio: /blog/audio/2014-07-23-simpledesktops-en.mp3
 audio_length: 01:09
-coverphoto: /blog/images/2014-07-23-simpledesktops/Screenshot 2023-03-26 at 20.28.35.png
+coverphoto: /blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-28-35.png
 lang: en
 font: serif
 tags: [Art, Minimalism, Software]
@@ -39,4 +39,4 @@ So pure focus … I guess …
 
 ---
 
-![Screenshot of the Simple Desktops website](</blog/images/2014-07-23-simpledesktops/Screenshot 2023-03-26 at 20-27-24 Browse — Simple Desktops.png>)
+![Screenshot of the Simple Desktops website](</blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-27-24_Browse_Simple_Desktops.png>)

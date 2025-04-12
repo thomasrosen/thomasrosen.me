@@ -1,0 +1,22 @@
+entries:
+  - date: 2025-04-11 06:03
+    displayAs: 'image'
+    title: 'Rete.js'
+    text: 'JavaScript framework for visual programming'
+    url: 'https://picsum.photos/200/300'
+    image: 'https://picsum.photos/200/300'
+
+  - date: 2025-04-11 06:02
+    displayAs: 'text'
+    title: 'Rete.js'
+    text: 'Hello, world!'
+    loc:
+      name: 'Bonn'
+      lat: 50.93805
+      lng: 6.95699
+
+  - date: 2025-04-11 06:01
+    displayAs: 'link'
+    title: 'Rete.js'
+    text: 'JavaScript framework for visual programming'
+    url: 'https://retejs.org/'
