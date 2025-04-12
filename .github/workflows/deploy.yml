@@ -14,18 +14,18 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    name: Build and Deploy
+    name: build and deploy
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Add Private Key
+      - name: add private key
         run: |-
           eval `ssh-agent -s`
           ssh-add - <<< '${{ secrets.DATA_ABOUT_THOMASROSEN_PRIVATE_KEY }}'
 
-      - name: Configure git
+      - name: configure git
         env:
           TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
@@ -37,17 +37,15 @@ jobs:
           node-version: 18
           check-latest: true
           cache: 'npm'
-      - name: Install Dependencies
+      - name: install dependencies
         run: npm i
-      - name: Add gh-pages as a dev-dependency
+      - name: add gh-pages as a dev-dependency
         run: npm i --save-dev gh-pages
-      - name: Start Pre-Build
-        run: npm run prebuild
-      - name: Build ReactJS App
+      - name: build next.js webapp
         run: npm run build
-      - name: Remove node_modules folder
+      - name: remove node_modules folder
         run: rm -rf node_modules
-      - name: Deploy to GitHub Pages
+      - name: deploy to github pages
         uses: Cecilapp/GitHub-Pages-deploy@3.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
