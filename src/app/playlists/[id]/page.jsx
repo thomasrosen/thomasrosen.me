@@ -50,14 +50,7 @@ export default async function PagePlaylist({ params }) {
     throw new Error('No playlist id provided.')
   }
 
-  let playlist = null
-  try {
-    id = decodeURIComponent(id)
-    const playlistAsModule = await import(`@/data/music/playlists/${id}.json`)
-    playlist = { ...playlistAsModule }
-  } catch (error) {
-    throw new Error(`Could not load the playlist: ${error.message}`)
-  }
+  const playlist = await loadPlaylist(id)
 
   if (!playlist) {
     throw new Error('No playlist found.')

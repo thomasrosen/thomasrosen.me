@@ -25,15 +25,7 @@ export default async function PageArticle({ params }) {
     throw new Error('No article id provided.')
   }
 
-  let article = null
-  try {
-    id = decodeURIComponent(id)
-    const articleData = await import(`@/data/blog/articles/${id}.json`)
-    article = articleData.default.article
-    article.relative_date = getRelativeTime(new Date(article.date))
-  } catch (error) {
-    throw new Error(`Could not load the article: ${error.message}`)
-  }
+  const article = await loadArticle(id)
 
   let coverphoto_src = null
   let coverphoto_blurDataURL = null
