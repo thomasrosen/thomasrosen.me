@@ -17,7 +17,6 @@ const blog_build_dir = './.tmp/build_blog/blog/'
 const articles_build_dir = './.tmp/build_blog/blog/articles/'
 const images_build_dir = './.tmp/build_blog/blog/images/'
 const audio_build_dir = './.tmp/build_blog/blog/audio/'
-const public_data_blog_dir = './public/data/blog/'
 const src_data_blog_dir = './src/data/blog/'
 
 async function* getFilesRecursive(dir, root = dir) {
@@ -247,22 +246,6 @@ buildBlog()
       fs.cpSync(dir_audio, audio_build_dir, { recursive: true, overwrite: true });
     }
     // END audio
-
-
-
-    // delete blog_build_dir
-    if (fs.existsSync(public_data_blog_dir)) {
-      fs.rmdirSync(public_data_blog_dir, { recursive: true })
-    }
-
-    // check if build directory exists and create it, if not
-    if (!fs.existsSync(public_data_blog_dir)) {
-      // create each directory in the path
-      fs.mkdirSync(public_data_blog_dir, { recursive: true })
-    }
-
-    // copy blog_build_dir to ./src/data/blog
-    fs.cpSync(blog_build_dir, public_data_blog_dir, { recursive: true, overwrite: true });
 
 
 
