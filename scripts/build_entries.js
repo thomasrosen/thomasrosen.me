@@ -1,8 +1,9 @@
 const fs = require('fs');
 const matter = require('gray-matter');
 const path = require('path');
+
 // Read YAML file
-const fullpath_load = path.join(__dirname, '../data_about_thomasrosen/entries.yml');
+const fullpath_load = path.join(__dirname, '../src/data/entries.yml');
 const yamlContent = fs.readFileSync(fullpath_load, 'utf8');
 const { data: entries } = matter(`---
 ${yamlContent}
