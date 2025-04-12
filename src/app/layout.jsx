@@ -67,6 +67,12 @@ export default function RootLayout({ children }) {
               <button>Hi!</button>
             </Link>
             <div />
+            {/* <Link href='/travel'>
+              <button>
+                <Emoji aria-hidden='true'>🗺️</Emoji> Travel
+              </button>
+            </Link>
+            <div /> */}
             <Link href='/articles'>
               <button>
                 <Emoji aria-hidden='true'>📝</Emoji> Blog
