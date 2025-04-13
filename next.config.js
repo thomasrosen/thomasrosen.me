@@ -82,15 +82,8 @@ const nextConfig = {
     // loaderFile: './src/lib/simpleImageLoader.js',
     deviceSizes: [64, 128, 200, 400, 600, 1200], // only allow some specific sizes
     imageSizes: [64, 128, 200, 400, 600, 1200], // optional: for images with 'sizes' attribute
-    domains: ['localhost'],
     path: '/_next/image',
     loader: 'default',
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: '**',
-    //   },
-    // ],
   },
 
   // async redirects() {
