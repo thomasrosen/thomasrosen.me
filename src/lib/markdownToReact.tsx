@@ -98,7 +98,7 @@ export function markdownToReact(markdown: string) {
 
             const domain = new URL(
               footnoteDefinition?.link?.url
-            ).hostname.replace(/^www\./, '')
+            )?.hostname?.replace(/^www\./, '')
 
             let label = footnoteDefinition.definition.label
 

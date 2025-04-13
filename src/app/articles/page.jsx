@@ -1,5 +1,6 @@
 import { Emoji } from '@/components/Emoji'
 import '@/fonts/petrona-v28-latin/index.css'
+import { importBlogDataImage } from '@/lib/imageUtils'
 import { loadArticles } from '@/lib/loadArticles'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,8 +13,7 @@ async function ArticleCard({ article }) {
     typeof article.coverphoto === 'string' &&
     article.coverphoto.length > 0
   ) {
-    const imagePath = await import(`@/data${article.coverphoto}`)
-    coverphoto = imagePath.default.src
+    coverphoto = await importBlogDataImage(article.coverphoto)
   }
 
   return (

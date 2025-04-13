@@ -34,7 +34,11 @@ async function* getFilesRecursive(dir, root = dir) {
     if (dirent.isDirectory()) {
       yield* getFilesRecursive(res, dir);
     } else {
-      yield res.replace(root_path, '');
+      if (typeof res === 'string') {
+        yield res.replace(root_path, '');
+      } else {
+        yield res
+      }
     }
   }
 }
@@ -64,24 +68,24 @@ function buildBlog() {
                 const data = matter(filecontent)
 
                 const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.([^()]*?))>?\)/gmi;
-                const text = data.content.replace(markdown_img_regex, (match, g1, g2, g3) => {
-                  const fileextension_lowercase = g3.toLowerCase()
+                // const text = data.content.replace(markdown_img_regex, (match, g1, g2, g3) => {
+                //   const fileextension_lowercase = g3.toLowerCase()
 
-                  if (
-                    fileextension_lowercase === 'jpg'
-                    || fileextension_lowercase === 'jpeg'
-                    || fileextension_lowercase === 'png'
-                  ) {
-                    return match.replace(g1, `${g2}_1000.jpg`)
-                  }
-                  // if (fileextension_lowercase === 'png') {
-                  //   return match.replace(g1, `${g2}_1000.${fileextension_lowercase}`)
-                  // }
+                //   if (
+                //     fileextension_lowercase === 'jpg'
+                //     || fileextension_lowercase === 'jpeg'
+                //     || fileextension_lowercase === 'png'
+                //   ) {
+                //     return match.replace(g1, `${g2}_1000.jpg`)
+                //   }
+                //   // if (fileextension_lowercase === 'png') {
+                //   //   return match.replace(g1, `${g2}_1000.${fileextension_lowercase}`)
+                //   // }
 
-                  return String(match)
-                })
+                //   return String(match)
+                // })
 
-                let plaintext = `${data.content}`
+                let plaintext = `${data.content || ''}`
                   .replace(markdown_img_regex, () => '') // replace all images with empty string (only in the plaintext version)
 
                 plaintext = await remark()
@@ -91,7 +95,7 @@ function buildBlog() {
 
                 data.summary = plaintext.substring(0, 100).trim() + '…'
                 data.plaintext = plaintext
-                data.md = `${data.content}`
+                data.md = `${data.content || ''}`
                 delete data.content
 
                 return data
@@ -228,12 +232,14 @@ buildBlog()
 
           for (const format of imageFormats) {
             for (const size of imageSizes) {
-              let new_relative_filepath = relative_filepath.replace(fileExtension_original, `_${size}.${format}`)
-              const resizedImagePath = path.join(images_build_dir, new_relative_filepath)
-              await image
-                .resize({ width: size })
-                .toFormat(format)
-                .toFile(resizedImagePath)
+              if (typeof relative_filepath === 'string') {
+                let new_relative_filepath = relative_filepath.replace(fileExtension_original, `_${size}.${format}`)
+                const resizedImagePath = path.join(images_build_dir, new_relative_filepath)
+                await image
+                  .resize({ width: size })
+                  .toFormat(format)
+                  .toFile(resizedImagePath)
+              }
             }
           }
         }

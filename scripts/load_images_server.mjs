@@ -42,7 +42,9 @@ app.get('/load_image', async function (req, res) {
       ? format.toLowerCase()
       : 'webp'
 
-    src = src.replace('/_next/', '../build/')
+    if (src) {
+      src = src.replace('/_next/', '/build/')
+    }
 
     // Fetch the image
     let imageBuffer = null

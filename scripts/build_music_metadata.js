@@ -19,7 +19,11 @@ async function* getFilesRecursive(dir, root = dir) {
     if (dirent.isDirectory()) {
       yield* getFilesRecursive(res, dir);
     } else {
-      yield res.replace(root_path, '');
+      if (typeof res === 'string') {
+        yield res.replace(root_path, '');
+      } else {
+        yield res
+      }
     }
   }
 }
