@@ -28,6 +28,6 @@
     "erasableSyntaxOnly": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["src", "build/types/**/*.ts", ".next/types/**/*.ts"],
+  "include": [".next", "src", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

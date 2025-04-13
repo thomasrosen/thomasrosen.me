@@ -1,5 +1,4 @@
 const path = require('path')
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 /**
  * @type {import('next').NextConfig}
@@ -37,10 +36,10 @@ const nextConfig = {
       use: {
         loader: 'file-loader',
         options: {
-          // publicPath: '/_next/static/media',
-          // outputPath: isServer ? '../static/media' : 'static/media',
-          // name: '[name].[contenthash].[ext]',
           emitFile: true,
+          publicPath: '/_next/static/media',
+          outputPath: isServer ? '../static/media' : 'static/media',
+          name: '[name].[contenthash].[ext]',
         },
       },
     })
@@ -59,20 +58,20 @@ const nextConfig = {
       use: 'ignore-loader'
     })
 
-    // Add rule for image files with spaces in names
-    config.module.rules.push({
-      test: /\.(png|jpg|jpeg|gif|webp|avif)$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          // publicPath: '/build/static/media',
-          // outputPath: isServer ? '../static/media' : 'static/media',
-          // name: '[name].[contenthash].[ext]',
-          emitFile: true,
-          // esModule: false,
-        },
-      },
-    })
+    // // Add rule for image files
+    // config.module.rules.push({
+    //   test: /\.(png|jpg|jpeg|gif|webp|avif)$/,
+    //   use: {
+    //     loader: 'file-loader',
+    //     options: {
+    //       emitFile: true,
+    //       esModule: true,
+    //       publicPath: '/_next/static/media',
+    //       outputPath: isServer ? '../static/media' : 'static/media',
+    //       name: '[name].[contenthash].[ext]',
+    //     },
+    //   },
+    // })
 
     return config
   },
@@ -83,6 +82,9 @@ const nextConfig = {
     // loaderFile: './src/lib/simpleImageLoader.js',
     deviceSizes: [64, 128, 200, 400, 600, 1200], // only allow some specific sizes
     imageSizes: [64, 128, 200, 400, 600, 1200], // optional: for images with 'sizes' attribute
+    domains: ['localhost'],
+    path: '/_next/image',
+    loader: 'default',
     // remotePatterns: [
     //   {
     //     protocol: 'https',

@@ -7,13 +7,16 @@ import Link from 'next/link'
 import React from 'react'
 
 async function ArticleCard({ article }) {
-  let coverphoto = null
+  let coverphoto_src = null
+  let coverphoto_blurDataURL = null
   if (
     !!article &&
     typeof article.coverphoto === 'string' &&
     article.coverphoto.length > 0
   ) {
-    coverphoto = await importBlogDataImage(article.coverphoto)
+    const { src, blurDataURL } = await importBlogDataImage(article.coverphoto)
+    coverphoto_src = src
+    coverphoto_blurDataURL = blurDataURL
   }
 
   return (
@@ -27,11 +30,12 @@ async function ArticleCard({ article }) {
           }
         `}
     >
-      {typeof coverphoto === 'string' && coverphoto.length > 0 ? (
+      {typeof coverphoto_src === 'string' && coverphoto_src.length > 0 ? (
         <div className='image_container'>
           <Link href={'/articles/' + article.slug}>
             <Image
-              src={coverphoto}
+              src={coverphoto_src}
+              blurDataURL={coverphoto_blurDataURL}
               alt={article.title}
               width={200}
               height={200}

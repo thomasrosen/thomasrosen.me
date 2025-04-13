@@ -232,6 +232,7 @@ buildBlog()
 
           for (const format of imageFormats) {
             for (const size of imageSizes) {
+              console.log('relative_filepath', relative_filepath)
               if (typeof relative_filepath === 'string') {
                 let new_relative_filepath = relative_filepath.replace(fileExtension_original, `_${size}.${format}`)
                 const resizedImagePath = path.join(images_build_dir, new_relative_filepath)

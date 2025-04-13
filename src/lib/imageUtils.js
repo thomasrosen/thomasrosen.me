@@ -1,21 +1,36 @@
+/**
+ * Imports an image from the data directory using Next.js's image optimization
+ * @param {string} path - The path to the image relative to the data directory
+ * @returns {Promise<{src: string, blurDataURL?: string} | null>} - The image source and optional blur data URL
+ */
 export async function importBlogDataImage(path) {
   try {
-    // Remove any URL encoding from the path
-    const cleanPath = decodeURIComponent(path)
-    // Ensure the path starts with a slash
-    const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`
+    // Remove any URL encoding from the path and ensure it starts with a slash
+    const cleanPath = decodeURIComponent(path).startsWith('/')
+      ? path
+      : `/${path}`
 
-    // Try to import the image
-    const imageModule = await import(`@/data${normalizedPath}`)
+    // Since __dirname is in .next/server/app/articles, we need to go up 4 levels
+    // to reach the project root, then go into src/data
+    // const fullPath = `../../../../src/data${cleanPath}`
+
+    // Import the image using Next.js's dynamic import
+    const imageModule = require(`@/data${cleanPath}`);
     console.log('imageModule.default', imageModule.default)
+    // const imageModule = await import(fullPath)
+    // console.log('imageModule', imageModule)
 
-    if (!imageModule?.default) {
-      throw new Error('Invalid image module')
+    // Return the image data in the format expected by Next.js Image component
+    return {
+      src: imageModule.default.src,
+      blurDataURL: imageModule.default.blurDataURL,
     }
-
-    return imageModule.default
   } catch (error) {
     console.error('Error importing image:', error)
-    return null
+  }
+
+  return {
+    src: null,
+    blurDataURL: null,
   }
 } 
