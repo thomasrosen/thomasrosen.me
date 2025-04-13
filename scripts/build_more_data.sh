@@ -17,7 +17,6 @@ if [ -z "$GH_TOKEN" ]; then
     exit 1
 fi
 
-echo "GH_TOKEN: $GH_TOKEN"
 git config --global url."https://${GH_TOKEN}@github.com".insteadOf "https://github.com"
 
 # check if git folder is cloned and can be updated or needs to be cloned

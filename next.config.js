@@ -4,16 +4,11 @@ const path = require('path')
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  // output: 'export',
-
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   trailingSlash: true,
 
   // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`
   skipTrailingSlashRedirect: false,
-
-  // Optional: Change the output directory `out` -> `dist`
-  // distDir: 'build',
 
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
@@ -58,48 +53,30 @@ const nextConfig = {
       use: 'ignore-loader'
     })
 
-    // // Add rule for image files
-    // config.module.rules.push({
-    //   test: /\.(png|jpg|jpeg|gif|webp|avif)$/,
-    //   use: {
-    //     loader: 'file-loader',
-    //     options: {
-    //       emitFile: true,
-    //       esModule: true,
-    //       publicPath: '/_next/static/media',
-    //       outputPath: isServer ? '../static/media' : 'static/media',
-    //       name: '[name].[contenthash].[ext]',
-    //     },
-    //   },
-    // })
-
     return config
   },
 
   images: {
-    // unoptimized: true,
-    // loader: 'custom',
-    // loaderFile: './src/lib/simpleImageLoader.js',
     deviceSizes: [64, 128, 200, 400, 600, 1200], // only allow some specific sizes
     imageSizes: [64, 128, 200, 400, 600, 1200], // optional: for images with 'sizes' attribute
     path: '/_next/image',
     loader: 'default',
   },
 
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/blog',
-  //       destination: '/articles',
-  //       permanent: false,
-  //     },
-  //     {
-  //       source: '/zenris',
-  //       destination: '/articles/zenris',
-  //       permanent: false,
-  //     },
-  //   ]
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/articles',
+        permanent: false,
+      },
+      {
+        source: '/zenris',
+        destination: '/articles/zenris',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

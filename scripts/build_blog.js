@@ -2,7 +2,6 @@ console.info('➡️ Started building blog...')
 
 const matter = require('gray-matter')
 const path = require('path')
-const sharp = require('sharp')
 const fs = require('fs')
 const { readdir } = require('fs').promises;
 
@@ -19,29 +18,6 @@ const images_build_dir = './.tmp/build_blog/blog/images/'
 const audio_build_dir = './.tmp/build_blog/blog/audio/'
 const src_data_blog_dir = './src/data/blog/'
 const public_blog_dir = './public/blog/'
-
-
-async function* getFilesRecursive(dir, root = dir) {
-  // source: https://stackoverflow.com/a/45130990/2387277
-  // source: https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
-  // I added the part with the root_path variable, because I wanted to get the relative path of the files.
-
-  const root_path = path.resolve(root) + '/'
-
-  const dirents = await readdir(dir, { withFileTypes: true });
-  for (const dirent of dirents) {
-    const res = path.resolve(dir, dirent.name);
-    if (dirent.isDirectory()) {
-      yield* getFilesRecursive(res, dir);
-    } else {
-      if (typeof res === 'string') {
-        yield res.replace(root_path, '');
-      } else {
-        yield res
-      }
-    }
-  }
-}
 
 function buildBlog() {
   return new Promise(async (resolve, reject) => {
@@ -68,23 +44,6 @@ function buildBlog() {
                 const data = matter(filecontent)
 
                 const markdown_img_regex = /!\[[^[\]]+\]\(<?(([^()]+)\.([^()]*?))>?\)/gmi;
-                // const text = data.content.replace(markdown_img_regex, (match, g1, g2, g3) => {
-                //   const fileextension_lowercase = g3.toLowerCase()
-
-                //   if (
-                //     fileextension_lowercase === 'jpg'
-                //     || fileextension_lowercase === 'jpeg'
-                //     || fileextension_lowercase === 'png'
-                //   ) {
-                //     return match.replace(g1, `${g2}_1000.jpg`)
-                //   }
-                //   // if (fileextension_lowercase === 'png') {
-                //   //   return match.replace(g1, `${g2}_1000.${fileextension_lowercase}`)
-                //   // }
-
-                //   return String(match)
-                // })
-
                 let plaintext = `${data.content || ''}`
                   .replace(markdown_img_regex, () => '') // replace all images with empty string (only in the plaintext version)
 
@@ -115,32 +74,17 @@ function buildBlog() {
   })
 }
 
-function get_img_src_path(image_path) {
-  const markdown_img_src_regex = /([^()]+)\.[^()]*?/;
-  const coverphoto_w1000_match = image_path.match(markdown_img_src_regex)
-  const coverphoto_w1000 = (
-    coverphoto_w1000_match !== null
-      ? coverphoto_w1000_match[1] + '_1000.jpg'
-      : image_path
-  )
-
-  return coverphoto_w1000
-}
-
 buildBlog()
   .then(async articles => {
     console.info('✅ Loaded articles.')
 
     const summary_list = articles
       .map(article => {
-
-        const coverphoto_w1000 = get_img_src_path(article.data.coverphoto || '', '1000')
-
         return {
           date: article.data.date,
           title: article.data.title,
           slug: article.data.slug,
-          coverphoto: coverphoto_w1000,
+          coverphoto: article.data.coverphoto,
           font: article.data.font,
           tags: article.data.tags,
           summary: article.summary,
@@ -216,35 +160,6 @@ buildBlog()
 
       // copy images folder to ./src/data/blog/images
       fs.cpSync(dir_images, images_build_dir, { recursive: true, overwrite: true });
-
-      // Generate smaller versions of the images
-      const imageSizes = [1000] // 100, ...
-      const imageFormats = ['jpg'] // webp, jpg, png
-
-      for await (const relative_filepath of getFilesRecursive(dir_images)) {
-        const absolute_filepath = path.join(dir_images, relative_filepath)
-        const fileExtension_original = path.extname(absolute_filepath)
-        const fileExtension = fileExtension_original.toLowerCase()
-        // const fileName = path.basename(absolute_filepath, fileExtension)
-
-        if (fileExtension === '.jpg' || fileExtension === '.jpeg' || fileExtension === '.png' || fileExtension === '.webp') {
-          const image = sharp(absolute_filepath);
-
-          for (const format of imageFormats) {
-            for (const size of imageSizes) {
-              if (typeof relative_filepath === 'string') {
-                let new_relative_filepath = relative_filepath.replace(fileExtension_original, `_${size}.${format}`)
-                const resizedImagePath = path.join(images_build_dir, new_relative_filepath)
-                await image
-                  .resize({ width: size })
-                  .toFormat(format)
-                  .toFile(resizedImagePath)
-              }
-            }
-          }
-        }
-      }
-
     }
 
     // END images
