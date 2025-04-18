@@ -1,68 +1,65 @@
-# This is a workflow to deploy the react code to GitHub Pages.
-name: Deploy to Uberspace via GitHub Pages
-
-# Controls when the action will run.
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    name: Build and Deploy
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-
-      - name: Add Private Key
-        run: |-
-          eval `ssh-agent -s`
-          ssh-add - <<< '${{ secrets.DATA_ABOUT_THOMASROSEN_PRIVATE_KEY }}'
-
-      - name: Configure git
-        env:
-          TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          check-latest: true
-          cache: 'npm'
-      - name: Install Dependencies
-        run: yarn
-      - name: Add gh-pages as a dev-dependency
-        run: yarn add --dev gh-pages
-      - name: Get Music Data
-        run: yarn get_music_data
-      - name: Convert blog articles to JSON
-        run: yarn build_blog
-      - name: Build ReactJS App
-        run: yarn build
-      - name: Remove node_modules folder
-        run: rm -rf node_modules
-      - name: Deploy to GitHub Pages
-        uses: Cecilapp/GitHub-Pages-deploy@3.1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          email: thomas.rosen@me.com
-          build_dir: ./
-          # cname: thomasrosen.me
-          branch: deployment
-      - name: run deploy commands on uberspace
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: cd ~/thomasrosen.me/ && git checkout deployment && git pull && cd ./backend/ && yarn && supervisorctl restart thomasrosen.me;
-          host: giclas.uberspace.de
-          username: qiekub
-          password: ${{ secrets.UBERSPACE_PASSWORD_QIEKUB }}
+# # This is a workflow to deploy the react code to GitHub Pages.
+# name: Deploy to Uberspace via GitHub Pages
+#
+# # Controls when the action will run.
+# on:
+#   # Triggers the workflow on push or pull request events but only for the main branch
+#   push:
+#     branches: ['main']
+#
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
+#
+# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs:
+#   # This workflow contains a single job called "build"
+#   build:
+#     name: build and deploy
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-latest
+#
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       - name: add private key
+#         run: |-
+#           eval `ssh-agent -s`
+#           ssh-add - <<< '${{ secrets.DATA_ABOUT_THOMASROSEN_PRIVATE_KEY }}'
+#
+#       - name: configure git
+#         env:
+#           TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#         run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+#
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 20
+#           check-latest: true
+#           cache: 'npm'
+#       - name: install dependencies
+#         run: npm i
+#       - name: add gh-pages as a dev-dependency
+#         run: npm i --save-dev gh-pages
+#       - name: build next.js webapp
+#         run: npm run build
+#       - name: remove node_modules folder
+#         run: rm -rf node_modules
+#       - name: remove data_about_thomasrosen folder
+#         run: rm -rf data_about_thomasrosen
+#       - name: deploy to github pages
+#         uses: Cecilapp/GitHub-Pages-deploy@3.1.0
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           email: thomas.rosen@me.com
+#           build_dir: ./
+#           # cname: thomasrosen.me
+#           branch: deployment
+#       - name: run deploy commands on uberspace
+#         uses: garygrossgarten/github-action-ssh@release
+#         with:
+#           command: cd ~/thomasrosen.me/ && git checkout deployment && git pull && cd ./backend/ && npm i && supervisorctl restart thomasrosen.me;
+#           host: giclas.uberspace.de
+#           username: qiekub
+#           password: ${{ secrets.UBERSPACE_PASSWORD_QIEKUB }}

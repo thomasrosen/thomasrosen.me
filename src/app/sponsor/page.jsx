@@ -1,23 +1,38 @@
 import { Dot } from '@/components/Dot'
 
-export default function Page() {
-  return <div className="tab_content">
+export default function PageSponsor() {
+  return (
+    <div className='tab_content'>
+      <h2>Sponsor</h2>
 
-    <h2>Sponsor</h2>
+      <div className='links_grid'>
+        <h3>
+          <Dot color='#0d57aa' />
+          PayPal
+        </h3>
+        <a
+          href='https://paypal.me/ThomasRosen'
+          target='_blank'
+          rel='noreferrer'
+          data-umami-event='paypal'
+        >
+          ThomasRosen
+        </a>
 
-    <div className="links_grid">
+        <h3>
+          <Dot color='#000000' />
+          GitHub
+        </h3>
+        <a
+          href='https://github.com/sponsors/thomasrosen'
+          target='_blank'
+          rel='noreferrer'
+          data-umami-event='github'
+        >
+          thomasrosen
+        </a>
 
-      <h3><Dot color="#0d57aa" />PayPal</h3>
-      <a href="https://paypal.me/ThomasRosen" target="_blank" rel="noreferrer" data-umami-event="paypal">
-        ThomasRosen
-      </a>
-
-      <h3><Dot color="#000000" />GitHub</h3>
-      <a href="https://github.com/sponsors/thomasrosen" target="_blank" rel="noreferrer" data-umami-event="github">
-        thomasrosen
-      </a>
-
-      {/*
+        {/*
 
       <li>
         <a href="https://liberapay.com/thomasrosen/" target="_blank" rel="nofollow" data-umami-event="liberapay">
@@ -37,8 +52,7 @@ export default function Page() {
       </li>
 
     */}
-
+      </div>
     </div>
-
-  </div>
+  )
 }

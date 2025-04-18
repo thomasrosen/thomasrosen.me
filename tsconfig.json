@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -27,33 +23,11 @@
     ],
     "baseUrl": "src/",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/utils/*": [
-        "utils/*"
-      ],
-      "@/app/*": [
-        "app/*"
-      ],
-      "@/fonts/*": [
-        "fonts/*"
-      ],
-      "@/images/*": [
-        "images/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ]
-    }
+      "@/*": ["*"]
+    },
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
   },
-  "include": [
-    "src/app",
-    "build/types/**/*.ts",
-    "src/components",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": [".next", "src", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
