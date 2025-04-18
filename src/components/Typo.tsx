@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { type HTMLAttributes, type ReactNode } from 'react'
+import { type ElementType, type HTMLAttributes, type ReactNode } from 'react'
 
 type TypoVariant =
   | 'h1'
@@ -45,7 +45,7 @@ const typoVariants = cva('', {
 interface TypoProps
   extends HTMLAttributes<HTMLElement>,
     VariantProps<typeof typoVariants> {
-  as?: TypoVariant
+  as?: TypoVariant | ElementType
   children: ReactNode
 }
 

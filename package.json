@@ -13,7 +13,8 @@
     "start_server": "cd ./backend/; node ./index.js",
     "build_blog": "node ./scripts/build_blog.js",
     "build_more_data": "sh ./scripts/build_more_data.sh",
-    "start_load_images_server": "node ./scripts/load_images_server.mjs"
+    "start_load_images_server": "node ./scripts/load_images_server.mjs",
+    "build_timeline": "node ./scripts/build_timeline.js"
   },
   "browserslist": {
     "production": [
@@ -78,10 +79,12 @@
     "@types/react-katex": "^3.0.4",
     "autoprefixer": "^10.4.21",
     "concurrently": "^8.2.2",
+    "exifreader": "^4.28.1",
     "express": "^5.1.0",
     "file-loader": "^6.2.0",
     "ignore-loader": "^0.1.2",
     "image-minimizer-webpack-plugin": "^4.1.3",
+    "image-size": "^2.0.2",
     "imagemin": "^9.0.1",
     "imagemin-jpegtran": "^8.0.0",
     "imagemin-optipng": "^8.0.0",

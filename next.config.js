@@ -61,6 +61,7 @@ const nextConfig = {
     imageSizes: [64, 128, 200, 400, 600, 1200], // optional: for images with 'sizes' attribute
     path: '/_next/image',
     loader: 'default',
+    remotePatterns: [new URL('https://picsum.photos/**')],
   },
 
   async redirects() {

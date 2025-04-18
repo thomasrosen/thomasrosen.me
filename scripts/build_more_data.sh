@@ -48,12 +48,12 @@ echo "✅ done copying playlists";
 node ./scripts/build_music_metadata.js
 echo "✅ done running build_music_metadata.js";
 
-# copy entries.yml to src/data/entries.yml
-cp ./data_about_thomasrosen/entries.yml ./src/data/entries.yml
-echo "✅ done copying entries.yml";
+# copy timeline.yml to src/data/timeline.yml
+cp ./data_about_thomasrosen/timeline.yml ./src/data/timeline.yml
+echo "✅ done copying timeline.yml";
 
-node ./scripts/build_entries.js
-echo "✅ done running build_entries.js";
+node ./scripts/build_timeline.js
+echo "✅ done running build_timeline.js";
 
 # maybe clean up the folder (but it's in gitignore, so can stay here to be faster in dev)
 # rm -rf ./data_about_thomasrosen

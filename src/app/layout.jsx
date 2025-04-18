@@ -62,17 +62,17 @@ export default function RootLayout({ children }) {
 
           <br />
 
-          <nav>
+          <nav className='my-4 flex flex-row gap-4 flex-wrap justify-center'>
             <Link href='/'>
               <button>Hi!</button>
             </Link>
             <div />
-            {/* <Link href='/travel'>
+            <Link href='/timeline'>
               <button>
-                <Emoji aria-hidden='true'>🗺️</Emoji> Travel
+                <Emoji aria-hidden='true'>🗺️</Emoji> Timeline
               </button>
             </Link>
-            <div /> */}
+            <div />
             <Link href='/articles'>
               <button>
                 <Emoji aria-hidden='true'>📝</Emoji> Blog
@@ -100,7 +100,9 @@ export default function RootLayout({ children }) {
             <Link href='/contact'>
               <button>Contact</button>
             </Link>
-            {/* <Link href="/sponsor"><button>Sponsor</button></Link> */}
+            <Link href='/sponsor'>
+              <button>Sponsor</button>
+            </Link>
           </nav>
 
           <br />

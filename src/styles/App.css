@@ -71,15 +71,6 @@ header {
 	}
 }
 
-nav {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 20px;
-	margin: 20px 0;
-}
-
 .tab_content {
 	display: block;
 	text-align: start;
