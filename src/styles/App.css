@@ -244,14 +244,26 @@ _::-webkit-full-page-media,
 
 
 .mygrid {
+	width: calc(var(--content-box-width) * 2);
+	max-width: 100%;
+	margin-inline: auto;
+
 	--size: calc(var(--content-box-width)/2);
   display: grid;
   grid-template-columns: repeat(auto-fill, var(--size));
   grid-template-rows: repeat(auto, var(--size));
   grid-auto-flow: row dense;
 }
-@media (width < 600px) {
-.mygrid {
-	--size: 50%;
+
+
+@media (width <= 48rem /* 768px */) {
+	.mygrid:has(> :only-child) {
+		--size: 100%;
+		padding-inline: 8px;
+	}
+}
+@media (width <= 620px) {
+	.mygrid {
+		--size: 50%;
 	}
 }
