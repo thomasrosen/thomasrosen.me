@@ -40,18 +40,16 @@ function EntryTextContent({ entry }: { entry: Entry }) {
           <div className='h-[1px] bg-foreground w-full opacity-50' />
         </Typo>
       )}
-      <div className='text-balance'>
-        {entry.title && (
-          <Typo as='h3' className='inline'>
-            {entry.title}
-          </Typo>
-        )}{' '}
-        {entry.text && (
-          <Typo as='div' className='text-sm inline'>
-            {entry.text}
-          </Typo>
-        )}
-      </div>
+      {entry.title && (
+        <Typo as='h3' className='text-balance'>
+          {entry.title}
+        </Typo>
+      )}{' '}
+      {entry.text && (
+        <Typo as='div' className='text-sm text-balance'>
+          {entry.text}
+        </Typo>
+      )}
     </>
   )
 }
