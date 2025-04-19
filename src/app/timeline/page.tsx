@@ -23,14 +23,21 @@ function EntryTextContent({ entry }: { entry: Entry }) {
   return (
     <>
       {entry.date && (
-        <Typo as='time' variant='small' className='opacity-60'>
-          {new Date(entry.date).toLocaleDateString('de-DE', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-          })}
+        <Typo
+          as='time'
+          variant='small'
+          className='opacity-60 flex items-center gap-2 font-normal text-xs'
+        >
+          <span className='shrink-0'>
+            {new Date(entry.date).toLocaleDateString('de-DE', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </span>
+          <div className='h-[1px] bg-foreground w-full' />
         </Typo>
       )}
       {entry.title && <Typo as='h3'>{entry.title}</Typo>}
@@ -45,12 +52,7 @@ function EntryTextContent({ entry }: { entry: Entry }) {
 
 function EntryText({ entry, className }: { entry: Entry; className?: string }) {
   return (
-    <div
-      className={cn(
-        'bg-background text-foreground p-4 rounded-lg flex flex-col gap-2',
-        className
-      )}
-    >
+    <div className={cn('my-4 flex flex-col gap-2', className)}>
       <EntryTextContent entry={entry} />
     </div>
   )
@@ -117,12 +119,7 @@ function EntryLink({ entry, className }: { entry: Entry; className?: string }) {
   }
 
   return (
-    <div
-      className={cn(
-        'bg-background text-foreground p-4 rounded-lg flex flex-col gap-2',
-        className
-      )}
-    >
+    <div className={cn('my-4 flex flex-col gap-2', className)}>
       <EntryTextContent entry={entry} />
 
       <a href={entry.url} target='_blank' rel='noreferrer' className='text-sm'>
