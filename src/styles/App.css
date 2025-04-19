@@ -241,3 +241,34 @@ _::-webkit-full-page-media,
 .image_backdrop_glow:before {
   display: none;
 }
+
+
+.mygrid {
+	/* width: var(--content-box-width); */
+	/* max-width: 100%; */
+	--size: calc(var(--content-box-width)/2);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--size));
+  grid-template-rows: repeat(auto, var(--size));
+  grid-auto-flow: row dense;
+}
+/* .mygrid {
+	display: flex;
+	flex-wrap: wrap;
+} */
+@media (width < 600px) {
+.mygrid {
+	--size: 50%;
+	}
+}
+@media (width >= 48rem) {
+.mygrid {
+	/* width: 100%; */
+	/* max-width: 100%; */
+	--size: calc(var(--content-box-width)/2);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--size));
+  grid-template-rows: repeat(auto, var(--size));
+  grid-auto-flow: row dense;
+	}
+}

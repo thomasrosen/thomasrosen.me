@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang='en' className='dark'>
       <head>
         <meta charSet='utf-8' />
         <link rel='icon' href='/logo64.jpg' />

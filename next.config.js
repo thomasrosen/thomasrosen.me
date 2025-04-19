@@ -51,7 +51,7 @@ const nextConfig = {
 
     // Ignore HEIC files
     config.module.rules.push({
-      test: /\.heic$/i,
+      test: /\.heic|webp$/i,
       use: 'ignore-loader'
     })
 
