@@ -26,9 +26,9 @@ function EntryTextContent({ entry }: { entry: Entry }) {
         <Typo
           as='time'
           variant='small'
-          className='opacity-60 flex items-center gap-2 font-normal text-xs'
+          className='flex items-center gap-2 font-normal text-xs'
         >
-          <span className='shrink-0'>
+          <span className='opacity-60 shrink-0'>
             {new Date(entry.date).toLocaleDateString('de-DE', {
               month: 'long',
               day: 'numeric',
@@ -37,15 +37,21 @@ function EntryTextContent({ entry }: { entry: Entry }) {
               minute: '2-digit',
             })}
           </span>
-          <div className='h-[1px] bg-foreground w-full' />
+          <div className='h-[1px] bg-foreground w-full opacity-50' />
         </Typo>
       )}
-      {entry.title && <Typo as='h3'>{entry.title}</Typo>}
-      {entry.text && (
-        <Typo as='div' className='text-sm'>
-          {entry.text}
-        </Typo>
-      )}
+      <div className='text-balance'>
+        {entry.title && (
+          <Typo as='h3' className='inline'>
+            {entry.title}
+          </Typo>
+        )}{' '}
+        {entry.text && (
+          <Typo as='div' className='text-sm inline'>
+            {entry.text}
+          </Typo>
+        )}
+      </div>
     </>
   )
 }
@@ -172,7 +178,7 @@ export default function PageTimeline() {
   const entries: Entry[] = (timelineData.entries || []).sort((a, b) => {
     const dateA = new Date(a.date || '1970-01-01').getTime()
     const dateB = new Date(b.date || '1970-01-01').getTime()
-    return dateB - dateA
+    return dateA - dateB
   })
 
   // Group entries by year and month
@@ -219,6 +225,13 @@ export default function PageTimeline() {
                   className='mygrid gap-4 place-content-center place-items-center'
                 >
                   {entries.map((entry, index_entry) => {
+                    const before = entries[index_entry - 1]
+                    const after = entries[index_entry + 1]
+
+                    const isSurroundedByImages =
+                      before?.displayAs === 'image' ||
+                      after?.displayAs === 'image'
+
                     const entryClone = { ...entry }
                     if (entryClone.displayAs === 'image') {
                       entryClone.imageAspectRatio =
@@ -240,7 +253,10 @@ export default function PageTimeline() {
                           entryClone.imageAspectRatio === 0.5 &&
                             'col-span-1 row-span-2 md:col-span-1 md:row-span-2 aspect-[0.5]',
                           entryClone.displayAs !== 'image' &&
-                            'col-span-2 row-span-1 w-full aspect-[unset] md:w-[var(--content-box-width)] md:col-span-full h-auto md:h-auto'
+                            'col-span-2 row-span-1 max-w-[var(--content-box-width)] w-full aspect-[unset] md:w-[var(--content-box-width)] md:col-span-full h-auto md:h-auto',
+                          entryClone.displayAs === 'image' &&
+                            !isSurroundedByImages &&
+                            'md:h-[var(--content-box-width)] md:col-span-full md:w-auto'
                         )}
                         key={entryClone.date}
                         entry={entryClone}
