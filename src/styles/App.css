@@ -244,7 +244,7 @@ _::-webkit-full-page-media,
 
 
 .mygrid {
-	width: calc(var(--content-box-width) * 2);
+	width: calc(var(--content-box-width) * 2.5);
 	max-width: 100%;
 	margin-inline: auto;
 
@@ -260,6 +260,7 @@ _::-webkit-full-page-media,
 	.mygrid:has(> :only-child) {
 		--size: 100%;
 		padding-inline: 8px;
+    grid-template-columns: var(--size);
 	}
 }
 @media (width <= 620px) {
