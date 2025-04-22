@@ -1,6 +1,8 @@
 import { Typo } from '@/components/Typo'
+import { Badge } from '@/components/ui/badge'
 import timelineData from '@/data/timeline/entries.json'
 import '@/fonts/petrona-v28-latin/index.css'
+import { markdownToReact } from '@/lib/markdownToReact'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
@@ -10,6 +12,7 @@ type Entry = {
   displayAs: string
   title?: string
   text?: string
+  author?: string
   url?: string
   image?: string
   imageAspectRatio?: number
@@ -18,6 +21,7 @@ type Entry = {
     lat: number
     lng: number
   }
+  tags?: string[]
 }
 
 function getMonthName(monthIndex: number) {
@@ -30,18 +34,39 @@ function EntryTextContent({
   entryBefore,
   entry,
   entryAfter,
+  children,
 }: {
   entryBefore?: Entry
   entry: Entry
   entryAfter?: Entry
+  children?: React.ReactNode
 }) {
   const sameDayAsBefore =
     entryBefore &&
     new Date(entryBefore.date).toDateString() ===
       new Date(entry.date).toDateString()
 
+  const fullDateTimeString = new Date(entry.date).toLocaleDateString('de-DE', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+  const dateString = new Date(entry.date).toLocaleDateString('de-DE', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
+  const timeString = new Date(entry.date).toLocaleTimeString('de-DE', {
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+
+  const noTimeDefined = timeString === '00:00'
+
   return (
-    <>
+    <div className='space-y-2'>
       {entry.date && (
         <Typo
           as='time'
@@ -50,34 +75,30 @@ function EntryTextContent({
         >
           <span className='opacity-60 shrink-0'>
             {sameDayAsBefore
-              ? new Date(entry.date).toLocaleTimeString('de-DE', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })
-              : new Date(entry.date).toLocaleDateString('de-DE', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
+              ? noTimeDefined
+                ? dateString
+                : timeString
+              : noTimeDefined
+              ? dateString
+              : fullDateTimeString}
           </span>
           {sameDayAsBefore ? null : (
             <div className='h-[1px] bg-foreground w-full opacity-50' />
           )}
         </Typo>
       )}
-      {entry.title && (
-        <Typo as='h3' className='text-balance'>
-          {entry.title}
-        </Typo>
-      )}{' '}
-      {entry.text && (
-        <Typo as='div' className='text-sm text-balance'>
-          {entry.text}
-        </Typo>
+      {entry.title && <Typo as='h3'>{entry.title}</Typo>}{' '}
+      {entry.text && markdownToReact(entry.text || '')}
+      {entry.author && <Typo as='small'>by {entry.author}</Typo>}
+      {children}
+      {entry.tags && (
+        <div className='flex flex-wrap gap-2'>
+          {entry.tags.map((tag) => (
+            <Badge key={tag}>{tag}</Badge>
+          ))}
+        </div>
       )}
-    </>
+    </div>
   )
 }
 
@@ -187,11 +208,16 @@ function EntryLink({
         entry={entry}
         entryBefore={entryBefore}
         entryAfter={entryAfter}
-      />
-
-      <a href={entry.url} target='_blank' rel='noreferrer' className='text-sm'>
-        {entry.title || entry.url}
-      </a>
+      >
+        <a
+          href={entry.url}
+          target='_blank'
+          rel='noreferrer'
+          className='text-sm'
+        >
+          {entry.title || entry.url}
+        </a>
+      </EntryTextContent>
     </div>
   )
 }
@@ -250,9 +276,19 @@ function Entry({
 
 type GroupedEntries = Record<string, Entry[]>
 
-export default function PageTimeline() {
+function getGroupedEntries({
+  tags = [],
+}: { tags?: string[] } = {}): GroupedEntries {
+  let entries: Entry[] = timelineData.entries || []
+
+  if (tags.length > 0) {
+    entries = entries.filter((entry) =>
+      tags.some((tag) => entry.tags?.includes(tag))
+    )
+  }
+
   // Sort entries by date in descending order
-  const entries: Entry[] = (timelineData.entries || []).sort((a, b) => {
+  entries = entries.sort((a, b) => {
     const dateA = new Date(a.date || '1970-01-01').getTime()
     const dateB = new Date(b.date || '1970-01-01').getTime()
     return dateB - dateA
@@ -271,6 +307,12 @@ export default function PageTimeline() {
 
     return acc
   }, {})
+
+  return groupedEntries
+}
+
+export default function PageTimeline() {
+  const groupedEntries = getGroupedEntries({ tags: ['press'] })
 
   let yearBefore: string | null = null
   let monthBefore: string | null = null

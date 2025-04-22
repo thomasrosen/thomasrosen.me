@@ -34,7 +34,7 @@ notes: |
 
 Amazon Web Services hat mich interviewt!
 
-Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Artikel findest du unter folgendem Link: <https://web.archive.org/web/20240716150532/https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community>. Der Titel des Artikels ist "Mapping safe places for people in the LGBTQ+ community", und er dreht sich um die QueerMap, die ich entwickelt habe. Die Karte zeigt queere Orte, damit Leute aus der LGBTQ+-Community sichere und unterstützende Umgebungen finden können.
+Ja, genau! Das Amazon hat einen Artikel über die QueerMap geschrieben. Den Artikel findest du unter folgendem Link: <https://www.aboutamazon.com/news/aws/mapping-safe-places-for-people-in-the-lgbtq-community>. Der Titel des Artikels ist "Mapping safe places for people in the LGBTQ+ community", und er dreht sich um die QueerMap, die ich entwickelt habe. Die Karte zeigt queere Orte, damit Leute aus der LGBTQ+-Community sichere und unterstützende Umgebungen finden können.
 
 AWS hat mich gefragt, ob ich mit ihnen über das Projekt sprechen möchte. Klar, das ist ziemlich sicher auch pink-washing, aber ich dachte, es ist eine gute Chance, um die QueerMap bekannter zu machen. Das Interview haben wir dann auf Englisch per Videoanruf gemacht.
 Für mich war ungewohnt mit Personen in einer 9 Stunden entfernten Zeitzone zu sprechen. Aber ich fands es auch ein tolles Erlebniss.

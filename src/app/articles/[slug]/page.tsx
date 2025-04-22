@@ -1,51 +1,71 @@
 import { Dot } from '@/components/Dot'
 import '@/fonts/petrona-v28-latin/index.css'
 import { getRelativeTime } from '@/lib/getRelativeTime'
-import { loadArticle, loadArticles } from '@/lib/loadArticles'
-import { markdownToReact } from '@/lib/markdownToReact'
+import { loadArticles } from '@/lib/loadArticles'
+import type { Metadata } from 'next'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
 
-// Return a list of `params` to populate the [slug] dynamic segment
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+const articles = await loadArticles()
+
 export async function generateStaticParams() {
-  const articles = await loadArticles()
-
   return articles.flatMap((article) => [
     {
-      id:
+      slug:
         process.env.NODE_ENV === 'production'
-          ? article.slug
-          : encodeURIComponent(article.slug),
+          ? article.data.slug
+          : encodeURIComponent(article.data.slug),
     },
   ])
 }
 
-export default async function PageArticle({ params }) {
-  let { id } = (await params) || {}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const { slug } = await params
 
-  if (!id) {
-    throw new Error('No article id provided.')
+  const article = articles.find((article) => article.data.slug === slug)
+  return {
+    title: article?.data.title,
+    description: article?.data.summary,
+  }
+}
+
+export default async function PageArticle({ params }: Props) {
+  let { slug } = (await params) || {}
+  if (!slug) {
+    throw new Error('No article slug provided.')
   }
 
-  const article = await loadArticle(id)
-
-  let coverphoto_src = null
-  let coverphoto_blurDataURL = null
-  if (
-    !!article &&
-    typeof article.coverphoto === 'string' &&
-    article.coverphoto.length > 0
-  ) {
-    try {
-      // Remove any URL encoding from the path
-      const cleanPath = decodeURIComponent(article.coverphoto)
-      const imagePath = await import(`@/data${cleanPath}`)
-      coverphoto_src = imagePath.default.src
-      coverphoto_blurDataURL = imagePath.default.blurDataURL
-    } catch (error) {
-      console.error('Error loading cover photo:', error)
-      // Continue without the cover photo rather than failing the build
-    }
+  const article = articles.find((article) => article.data.slug === slug)
+  if (!article) {
+    notFound()
   }
+
+  const { default: Content, data, getStaticProps } = article
+  const { props } = await getStaticProps()
+
+  return (
+    <ArticleLayout {...props} data={data}>
+      <Content />
+    </ArticleLayout>
+  )
+}
+
+export async function ArticleLayout({
+  children,
+  data: article,
+}: {
+  children: React.ReactNode
+  data: any
+}) {
+  const coverphoto_src = article.coverphoto_src
+  const coverphoto_blurDataURL = article.coverphoto_blurDataURL
+  const audio_src = article.audio_src
 
   return (
     <div
@@ -68,7 +88,7 @@ export default async function PageArticle({ params }) {
               </time>{' '}
               — 
               <span className='tag_row' itemProp='keywords'>
-                {article.tags.map((tag) => (
+                {article.tags.map((tag: string) => (
                   <button className='small' disabled key={tag}>
                     {tag}
                   </button>
@@ -77,27 +97,23 @@ export default async function PageArticle({ params }) {
             </strong>
           </p>
 
-          {!!article.audio &&
-          typeof article.audio === 'string' &&
-          article.audio.length > 0 ? (
+          {audio_src ? (
             <audio
               controls
               preload='metadata'
               style={{ width: '100%', marginBlockEnd: '20px' }}
-              src={article.audio}
+              src={audio_src}
             >
-              <source src={article.audio} type='audio/mpeg' />
+              <source src={audio_src} type='audio/mpeg' />
               <p>
-                <a href={article.audio}>
+                <a href={audio_src}>
                   <button>Download audio of the article.</button>
                 </a>
               </p>
             </audio>
           ) : null}
 
-          {article.md ? (
-            <div itemProp='articleBody'>{markdownToReact(article.md)}</div>
-          ) : null}
+          {children}
 
           <Dot />
 

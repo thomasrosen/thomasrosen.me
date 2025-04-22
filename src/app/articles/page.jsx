@@ -1,23 +1,13 @@
 import { Emoji } from '@/components/Emoji'
 import '@/fonts/petrona-v28-latin/index.css'
-import { importBlogDataImage } from '@/lib/imageUtils'
 import { loadArticles } from '@/lib/loadArticles'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
 async function ArticleCard({ article }) {
-  let coverphoto_src = null
-  let coverphoto_blurDataURL = null
-  if (
-    !!article &&
-    typeof article.coverphoto === 'string' &&
-    article.coverphoto.length > 0
-  ) {
-    const { src, blurDataURL } = await importBlogDataImage(article.coverphoto)
-    coverphoto_src = src
-    coverphoto_blurDataURL = blurDataURL
-  }
+  let coverphoto_src = article.coverphoto_src
+  let coverphoto_blurDataURL = article.coverphoto_blurDataURL
 
   return (
     <div
@@ -152,7 +142,7 @@ function ArticlesPageContent({ articles }) {
         }}
       >
         {(articles.length ? articles : []).map((article) => (
-          <ArticleCard key={article.slug} article={article} />
+          <ArticleCard key={article.data.slug} article={article.data} />
         ))}
       </div>
     </div>

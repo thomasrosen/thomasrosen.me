@@ -1,4 +1,4 @@
-const RSS = require('rss')
+import RSS from 'rss'
 
 /*
 https://podcasters.apple.com/support/823-podcast-requirements
@@ -13,8 +13,9 @@ https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fthomasrosen.me%2Fblog%
 */
 
 const author = 'Thomas Rosen'
+const domain = 'http://localhost:3000' // 'https://thomasrosen.me'
 
-function generate_rss_feed(options) {
+export function generate_rss_feed(options) {
 
   const {
     articles = []
@@ -26,7 +27,7 @@ function generate_rss_feed(options) {
 
   const description = 'This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.'
 
-  const feed_image_url = 'https://thomasrosen.me/DSC03214_square_2000.jpg'
+  const feed_image_url = `${domain}/DSC03214_square_2000.jpg`
 
   const email = 'hello@thomasrosen.me'
 
@@ -34,8 +35,8 @@ function generate_rss_feed(options) {
   const feed = new RSS({
     title: 'Thomas Rosen - Blog',
     description: description,
-    feed_url: 'https://thomasrosen.me/blog/feed.rss',
-    site_url: 'https://thomasrosen.me',
+    feed_url: `${domain}/blog/feed.rss`,
+    site_url: domain,
     image_url: feed_image_url,
     // docs: 'http://example.com/rss/docs.html',
     // geoRSS: true,
@@ -165,27 +166,28 @@ function generate_rss_feed(options) {
     const episode_number = i + 1
 
     let coverphoto_url = feed_image_url
-    const coverphoto = article.data.coverphoto
+    const coverphoto = article.data.coverphoto_src
     if (
       !!coverphoto
       && typeof coverphoto === 'string'
       && coverphoto.length > 0
     ) {
-      coverphoto_url = `https://thomasrosen.me${coverphoto}`
+      coverphoto_url = `${domain}${coverphoto}`
     }
 
 
 
-    let audio_url = 'https://thomasrosen.me/blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
+    let audio_url = `${domain}/blog/audio/Empty_Podcast_Audio.m4a` // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
     let audio_file = './blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
-    const audio = article.data.audio
+    const audio = article.data.audio_src
     if (
       !!audio
       && typeof audio === 'string'
       && audio.length > 0
     ) {
-      audio_url = `https://thomasrosen.me${audio}`
-      audio_file = `.${audio}`
+
+      audio_url = `${domain}${audio}`
+      audio_file = audio.replace('/_next', '.next')
     }
 
     let audio_length = '00:10' // length of the empty default enclosure
@@ -201,7 +203,7 @@ function generate_rss_feed(options) {
     feed.item({
       title: article.data.title,
       description: article.plaintext,
-      url: `https://thomasrosen.me/articles/${article.data.slug}`, // link to the item
+      url: `${domain}/articles/${article.data.slug}`, // link to the item
       guid: article.data.id || undefined, // optional - defaults to url
       categories: article.data.tags, // optional - array of item categories
       author: author, // optional - defaults to feed author property
@@ -236,8 +238,4 @@ function generate_rss_feed(options) {
   const xml = feed.xml({ indent: true });
 
   return xml
-}
-
-module.exports = {
-  generate_rss_feed
 }
