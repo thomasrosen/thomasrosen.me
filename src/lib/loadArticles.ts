@@ -26,7 +26,7 @@ type Article = {
 
 export async function loadArticles() {
   const context = require.context(
-    '@/app/articles/posts/',
+    '@/data/blog/articles/',
     false,
     /^\.\/.*\.mdx?$/
   )
