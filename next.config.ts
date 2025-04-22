@@ -124,11 +124,6 @@ let nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  experimental: {
-    cssChunking: true,
-    useLightningcss: true,
-  },
 }
 
 // Merge MDX config with Next.js config
