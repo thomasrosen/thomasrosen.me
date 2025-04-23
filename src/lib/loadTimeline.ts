@@ -42,7 +42,6 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
 
   const currentDir = process.cwd()
-  console.log('currentDir', currentDir)
   const { default: timeline } = await import(
     `${currentDir}/src/data/timeline/entries.yml`
   )
