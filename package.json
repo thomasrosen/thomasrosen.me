@@ -48,6 +48,7 @@
     "js-yaml-loader": "^1.2.2",
     "lucide-react": "^0.487.0",
     "next": "^15.3.0",
+    "next-mdx-remote-client": "^1.1.0",
     "next-plugin-yaml": "^1.0.1",
     "next-themes": "^0.4.6",
     "react": "^18.3.1",
