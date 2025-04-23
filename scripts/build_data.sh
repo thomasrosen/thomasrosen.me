@@ -20,6 +20,8 @@ elif [ -f .env ]; then
     export $(grep -v '^#' .env | xargs)
 else
     echo "⚠️ No environment file found, using environment variables directly"
+    echo "📁 Listing files in project root:"
+    ls -la
 fi
 
 # Check if GH_TOKEN is set
