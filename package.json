@@ -89,6 +89,7 @@
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "20.9.1",
     "@types/react": "18.2.37",
     "@types/react-katex": "^3.0.4",
