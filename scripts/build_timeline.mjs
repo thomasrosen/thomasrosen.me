@@ -93,7 +93,7 @@ export function processImageFiles() {
     return images;
   } catch (error) {
     console.error('❌ Error processing image files:', error);
-    process.exit(1);
+    return [];
   }
 }
 
