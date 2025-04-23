@@ -35,7 +35,7 @@ let nextConfig: NextConfig = {
 
   output: 'standalone',
   outputFileTracingIncludes: {
-    '/*': ['src/data/blog/articles/**/*'],
+    '/*': ['src/data/**/*'],
   },
 
   webpack: (config, { isServer }) => {
