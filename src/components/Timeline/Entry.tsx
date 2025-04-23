@@ -32,6 +32,8 @@ export function Entry({
         />
       )
     case 'link':
+    case 'playlist':
+    case 'article':
       return (
         <EntryArticle
           entry={parsedEntry}
@@ -43,16 +45,6 @@ export function Entry({
     case 'image':
       return (
         <EntryImage
-          entry={parsedEntry}
-          isFirstImage={isFirstImage}
-          className={className}
-          entryBefore={entryBefore}
-          entryAfter={entryAfter}
-        />
-      )
-    case 'article':
-      return (
-        <EntryArticle
           entry={parsedEntry}
           isFirstImage={isFirstImage}
           className={className}

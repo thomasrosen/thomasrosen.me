@@ -35,11 +35,21 @@ export function EntryArticle({
         'border border-border',
         'hover:bg-accent cursor-pointer',
         'transition-colors duration-150',
+        'z-10',
         className
       )}
     >
       {hasImage ? (
         <>
+          {displayAs === 'playlist' ? (
+            <div
+              className='image_backdrop_glow'
+              style={{
+                // @ts-ignore
+                '--background-image': `url(${entry.image})`,
+              }}
+            />
+          ) : null}
           <Image
             src={entry.image || ''}
             alt={''}
@@ -57,7 +67,10 @@ export function EntryArticle({
             alt={''}
             width={128}
             height={128}
-            className='z-20 relative object-cover w-[128px] h-[128px] rounded-sm'
+            className={cn(
+              'z-20 relative object-cover w-[128px] h-[128px] rounded-sm',
+              displayAs === 'playlist' && 'contrast-110 saturate-110'
+            )}
             priority={isFirstImage}
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             quality={75}
@@ -74,6 +87,7 @@ export function EntryArticle({
           <Emoji className='text-5xl'>📄</Emoji>
         </div>
       )}
+
       <EntryTextContent
         entry={entry}
         entryBefore={entryBefore}

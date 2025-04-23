@@ -8,7 +8,7 @@ export default function PageTimeline() {
         Timeline
       </Typo>
 
-      <Timeline tags={['article']} />
+      <Timeline />
     </>
   )
 }

@@ -38,7 +38,7 @@ export function EntryTextContent({
 
   const noTimeDefined = timeString === '00:00'
 
-  const tagsToFilterOut = ['article', 'project', 'press']
+  const tagsToFilterOut = ['article', 'project', 'press', 'playlist']
   const tags = entry.tags?.filter((tag) => !tagsToFilterOut.includes(tag))
 
   const hasAudio = !!entry.audio

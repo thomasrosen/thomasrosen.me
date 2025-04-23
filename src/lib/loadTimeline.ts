@@ -15,8 +15,9 @@
 //   }
 // }
 
+import { loadArticles } from '@/lib/loadArticles'
+import { loadPlaylists } from '@/lib/loadPlaylists'
 import { processImageFiles } from '../../scripts/build_timeline.mjs'
-import { loadArticles } from './loadArticles'
 
 export type TimelineEntry = {
   date: string
@@ -57,5 +58,22 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     audio: article.data.audio_src,
   }))
 
-  return [...timelineEntries, ...articlesAsEntries, ...images]
+  const playlists = await loadPlaylists()
+  console.log('playlists', playlists)
+  const playlistsAsEntries = playlists.map((playlist) => ({
+    displayAs: 'playlist',
+    image: playlist.coverphoto,
+    url: '/playlists/' + playlist.name,
+    tags: [...new Set(['playlist', ...playlist.genres])],
+    date: playlist.date_month,
+    title: playlist.name,
+    text: playlist.count === 1 ? 'One Song' : playlist.count + ' Songs',
+  }))
+
+  return [
+    ...timelineEntries,
+    ...articlesAsEntries,
+    ...images,
+    ...playlistsAsEntries,
+  ]
 }
