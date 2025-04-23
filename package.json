@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "npm run build_data",
-    "build": "next build --no-cache",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "uuid": "node new_uuid.js",
