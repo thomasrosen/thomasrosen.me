@@ -1,7 +1,6 @@
-import { getRelativeTime } from '@/lib/getRelativeTime'
 import { components, mdxOptions } from '@@/mdx-components'
 import fs from 'fs'
-import { evaluate, type MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
+import { evaluate } from 'next-mdx-remote-client/rsc'
 import path from 'path'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkParse from 'remark-parse'
@@ -11,7 +10,7 @@ import { unified } from 'unified'
 import { removeFrontmatter } from './unified/removeFrontmatter'
 
 type Article = {
-  default: any
+  content: any
   filepath: string
   getStaticProps: () => Promise<any>
   data: {
@@ -29,35 +28,30 @@ type Article = {
 
 export async function loadArticles() {
   const currentDir = process.cwd()
-  console.log('currentDir', currentDir)
   const articlesDirectory = `${currentDir}/src/data/blog/articles/`
-  console.log('articlesDirectory', articlesDirectory)
   const files = fs.readdirSync(articlesDirectory)
   const mdxFiles = files.filter((file) => /\.mdx?$/.test(file))
-  console.log('mdxFiles', mdxFiles)
 
   const modules = (
     await Promise.all(
       mdxFiles.map(async (filename: string): Promise<Article> => {
         const filepath = path.join(articlesDirectory, filename)
-        console.log('filepath', filepath)
-        const fileContent = fs.readFileSync(filepath, 'utf8')
-        console.log('fileContent', fileContent)
+        const orginal_file_content = fs.readFileSync(filepath, 'utf8')
 
-        const options: MDXRemoteOptions = {
-          mdxOptions: mdxOptions as any,
-          parseFrontmatter: true,
-        }
+        type Frontmatter = Record<string, any>
+        type Scope = Record<string, any>
 
-        const { frontmatter } = await evaluate({
-          source: fileContent,
-          options,
+        const module = await evaluate<Frontmatter, Scope>({
+          source: orginal_file_content,
+          options: {
+            mdxOptions,
+            parseFrontmatter: false,
+          },
           components,
         })
 
-        const data = frontmatter || {}
-
-        const orginal_file_content = fs.readFileSync(filepath, 'utf8')
+        const mod: Record<string, any> = module.mod
+        const data = mod.data || {}
 
         const plaintext = await unified()
           .use(remarkParse)
@@ -80,8 +74,8 @@ export async function loadArticles() {
           try {
             // Remove any URL encoding from the path
             const cleanPath = decodeURIComponent(data.coverphoto)
-            const currentDir = process.cwd()
-            const imagePath = await import(`${currentDir}/src/data${cleanPath}`)
+            // const currentDir = process.cwd()
+            const imagePath = await import(`@/data${cleanPath}`)
             coverphoto_src = imagePath.default.src
             coverphoto_blurDataURL = imagePath.default.blurDataURL
           } catch (error) {
@@ -107,20 +101,28 @@ export async function loadArticles() {
           }
         }
 
+        const getStaticProps = mod.getStaticProps || (() => Promise.resolve({}))
+
         return {
-          ...module,
+          content: module.content,
+          getStaticProps,
           filepath,
           data: {
-            ...data,
-            plaintext,
+            // ...data,
+            slug: data.slug,
+            title: data.title,
+            date: data.date,
+            audio: data.audio,
+            tags: data.tags,
+            // plaintext,
             summary,
-            has_audio:
-              !!data.audio &&
-              typeof data.audio === 'string' &&
-              data.audio.length > 0,
-            has_tags:
-              !!data.tags && Array.isArray(data.tags) && data.tags.length > 0,
-            relative_date: getRelativeTime(new Date(data.date)),
+            // has_audio:
+            //   !!data.audio &&
+            //   typeof data.audio === 'string' &&
+            //   data.audio.length > 0,
+            // has_tags:
+            //   !!data.tags && Array.isArray(data.tags) && data.tags.length > 0,
+            // relative_date: getRelativeTime(new Date(data.date)),
 
             audio_src,
             coverphoto_src,
