@@ -59,7 +59,6 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   }))
 
   const playlists = await loadPlaylists()
-  console.log('playlists', playlists)
   const playlistsAsEntries = playlists.map((playlist) => ({
     displayAs: 'playlist',
     image: playlist.coverphoto,
