@@ -38,6 +38,13 @@ let nextConfig: NextConfig = {
   //   '/*': ['/**/*'],
   // },
 
+  experimental: {
+    scrollRestoration: true,
+    ppr: true,
+    routerBFCache: true,
+    viewTransition: true,
+  },
+
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
