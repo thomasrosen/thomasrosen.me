@@ -15,12 +15,13 @@
 //   }
 // }
 
+import timeline_data from '@/data/timeline/entries.yml'
 import { loadArticles } from '@/lib/loadArticles'
 import { loadPlaylists } from '@/lib/loadPlaylists'
-import fs from 'fs'
 import yaml from 'js-yaml'
-import path from 'path'
 import { processImageFiles } from '../../scripts/build_timeline.mjs'
+
+console.log('timeline_data', timeline_data)
 
 export type TimelineEntry = {
   date: string
@@ -44,9 +45,11 @@ export type TimelineEntry = {
 export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
 
-  const currentDir = process.cwd()
-  const yamlPath = path.join(currentDir, 'src/data/timeline/entries.yml')
-  const yamlContent = fs.readFileSync(yamlPath, 'utf8')
+  // const currentDir = process.cwd()
+  // const yamlPath = path.join(currentDir, 'src/data/timeline/entries.yml')
+  // const yamlContent = fs.readFileSync(yamlPath, 'utf8')
+
+  const yamlContent = timeline_data
   const timeline = yaml.load(yamlContent) as { entries: TimelineEntry[] }
   const timelineEntries: TimelineEntry[] = timeline.entries
 
