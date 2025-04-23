@@ -44,7 +44,7 @@ export function EntryTextContent({
   const hasAudio = !!entry.audio
 
   return (
-    <div className='text-[0px] leading-none space-y-1'>
+    <div className='text-[0px] leading-none space-y-1 w-full'>
       {entry.date && (
         <Typo
           as='time'
