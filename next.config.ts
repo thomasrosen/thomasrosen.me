@@ -24,7 +24,6 @@ const __dirname = path.dirname(__filename)
 // })
 
 let nextConfig: NextConfig = {
-  output: 'standalone',
   poweredByHeader: false,
   devIndicators: false,
 
@@ -33,6 +32,11 @@ let nextConfig: NextConfig = {
 
   // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`
   skipTrailingSlashRedirect: false,
+
+  output: 'standalone',
+  outputFileTracingIncludes: {
+    '/*': ['src/data/blog/articles/**/*'],
+  },
 
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
