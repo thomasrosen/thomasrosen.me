@@ -70,8 +70,8 @@ mkdir -p ./src/data/timeline
 cp -rp ./data_about_thomasrosen/timeline/ ./src/data/timeline
 echo "✅ done copying timeline";
 
-# node ./scripts/build_timeline.js
-# echo "✅ done running build_timeline.js";
+node ./scripts/build_timeline.mjs
+echo "✅ done running build_timeline.mjs";
 
 # maybe clean up the folder (but it's in gitignore, so can stay here to be faster in dev)
 # rm -rf ./data_about_thomasrosen
