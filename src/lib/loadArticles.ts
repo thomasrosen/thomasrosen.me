@@ -34,40 +34,46 @@ export async function loadArticles() {
     await Promise.all(
       mdxFiles.map(async (filename): Promise<Article> => {
         const filepath = path.join(articlesDirectory, filename)
-        const module = await import(`./src/data/blog/articles/${filename}`)
-        const data = module.data || {}
+          const currentDir = process.cwd()
+          const module = await import(
+            `${currentDir}/src/data/blog/articles/${filename}`
+          )
+          const data = module.data || {}
 
-        const orginal_file_content = fs.readFileSync(filepath, 'utf8')
+          const orginal_file_content = fs.readFileSync(filepath, 'utf8')
 
-        const plaintext = await unified()
-          .use(remarkParse)
-          .use(remarkFrontmatter)
-          .use(removeFrontmatter)
-          .use(strip as any)
-          .use(remarkStringify)
-          .process(orginal_file_content)
-          .then((file: any) => String(file).trim())
+          const plaintext = await unified()
+            .use(remarkParse)
+            .use(remarkFrontmatter)
+            .use(removeFrontmatter)
+            .use(strip as any)
+            .use(remarkStringify)
+            .process(orginal_file_content)
+            .then((file: any) => String(file).trim())
 
-        const summary = plaintext.substring(0, 100).trim() + '…'
+          const summary = plaintext.substring(0, 100).trim() + '…'
 
-        let coverphoto_src = null
-        let coverphoto_blurDataURL = null
-        if (
-          !!data &&
-          typeof data.coverphoto === 'string' &&
-          data.coverphoto?.length > 0
-        ) {
-          try {
-            // Remove any URL encoding from the path
-            const cleanPath = decodeURIComponent(data.coverphoto)
-            const imagePath = await import(`@/data${cleanPath}`)
-            coverphoto_src = imagePath.default.src
-            coverphoto_blurDataURL = imagePath.default.blurDataURL
-          } catch (error) {
-            console.error('Error loading cover photo:', error)
-            // Continue without the cover photo rather than failing the build
+          let coverphoto_src = null
+          let coverphoto_blurDataURL = null
+          if (
+            !!data &&
+            typeof data.coverphoto === 'string' &&
+            data.coverphoto?.length > 0
+          ) {
+            try {
+              // Remove any URL encoding from the path
+              const cleanPath = decodeURIComponent(data.coverphoto)
+              const currentDir = process.cwd()
+              const imagePath = await import(
+                `${currentDir}/src/data${cleanPath}`
+              )
+              coverphoto_src = imagePath.default.src
+              coverphoto_blurDataURL = imagePath.default.blurDataURL
+            } catch (error) {
+              console.error('Error loading cover photo:', error)
+              // Continue without the cover photo rather than failing the build
+            }
           }
-        }
 
         let audio_src = null
         if (
