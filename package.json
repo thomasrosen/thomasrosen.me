@@ -5,7 +5,7 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run build_data",
+    "prebuild": "npm run build_data && pwd && ls -la",
     "build": "pwd && ls -la && next build",
     "start": "next start",
     "lint": "next lint",
