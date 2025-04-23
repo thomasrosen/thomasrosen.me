@@ -48,7 +48,8 @@ export function processImageFiles() {
   try {
     // Create output directory and copy images
     if (!fs.existsSync(outputImagesDir)) {
-      fs.mkdirSync(outputImagesDir, { recursive: true });
+      return []
+      // fs.mkdirSync(outputImagesDir, { recursive: true });
     }
     execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
     console.info(`✅ Successfully copied images to ${outputImagesDir}`);
