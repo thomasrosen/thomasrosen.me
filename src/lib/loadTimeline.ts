@@ -17,8 +17,8 @@
 
 import { loadArticles } from '@/lib/loadArticles'
 import { loadPlaylists } from '@/lib/loadPlaylists'
-import timeline from '../../../data/timeline/entries.yml'
 import { processImageFiles } from '../../scripts/build_timeline.mjs'
+import timeline from '../data/timeline/entries.yml'
 
 console.log('timeline', timeline)
 
