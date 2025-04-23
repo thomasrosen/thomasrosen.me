@@ -58,6 +58,7 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
 
           return (
             <Entry
+              key={`${entryClone.date}-${index_entry}`}
               className={cn(
                 'h-full w-full',
                 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
@@ -81,7 +82,6 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
                     ]
                   : [])
               )}
-              key={entryClone.date}
               entry={entryClone}
               isFirstImage={
                 false
