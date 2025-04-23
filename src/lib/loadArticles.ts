@@ -1,5 +1,7 @@
 import { getRelativeTime } from '@/lib/getRelativeTime'
+import { components, mdxOptions } from '@@/mdx-components'
 import fs from 'fs'
+import { evaluate, type MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 import path from 'path'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkParse from 'remark-parse'
@@ -32,13 +34,28 @@ export async function loadArticles() {
   console.log('articlesDirectory', articlesDirectory)
   const files = fs.readdirSync(articlesDirectory)
   const mdxFiles = files.filter((file) => /\.mdx?$/.test(file))
+  console.log('mdxFiles', mdxFiles)
 
   const modules = (
     await Promise.all(
-      mdxFiles.map(async (filename): Promise<Article> => {
+      mdxFiles.map(async (filename: string): Promise<Article> => {
         const filepath = path.join(articlesDirectory, filename)
-        const module = await import(`${articlesDirectory}${filename}`)
-        const data = module.data || {}
+        console.log('filepath', filepath)
+        const fileContent = fs.readFileSync(filepath, 'utf8')
+        console.log('fileContent', fileContent)
+
+        const options: MDXRemoteOptions = {
+          mdxOptions: mdxOptions as any,
+          parseFrontmatter: true,
+        }
+
+        const { frontmatter } = await evaluate({
+          source: fileContent,
+          options,
+          components,
+        })
+
+        const data = frontmatter || {}
 
         const orginal_file_content = fs.readFileSync(filepath, 'utf8')
 
