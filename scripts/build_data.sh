@@ -54,10 +54,6 @@ fi
 
 echo "✅ done cloning";
 
-# list files in data_about_thomasrosen
-echo "📁 Listing files in data_about_thomasrosen:"
-ls -la ./data_about_thomasrosen
-
 # for development
 mkdir -p ./src/data/music/playlists
 cp -rp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
