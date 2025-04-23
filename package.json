@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "",
-    "build": "pwd && ls -la && ls -la .vercel/ && npm run build_data && ls -la && next build",
+    "build": "pwd && ls -la && ls -la .vercel/ && cat .vercel/project.json && npm run build_data && ls -la && next build",
     "start": "next start",
     "lint": "next lint",
     "uuid": "node new_uuid.js",
