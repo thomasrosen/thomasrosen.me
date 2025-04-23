@@ -69,10 +69,6 @@ echo "✅ done running build_music_metadata.js";
 mkdir -p ./src/data/blog
 cp -rp ./blog/ ./src/data/blog
 echo "✅ done copying blog";
-echo "📁 Listing files in project root:"
-ls -la
-echo "📁 Listing files in src/data/blog:"
-ls -la ./src/data/blog
 
 mkdir -p ./src/data/timeline
 cp -rp ./data_about_thomasrosen/timeline/ ./src/data/timeline
