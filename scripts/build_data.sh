@@ -2,12 +2,24 @@
 
 echo "✅ started build_data.sh";
 
-# Load environment variables from .env file
-if [ -f .env ]; then
+# Load environment variables in order of precedence
+if [ ! -z "$VERCEL_ENV" ] && [ -f ".env.${VERCEL_ENV}" ]; then
+    echo "📥 Loading environment variables from .env.${VERCEL_ENV} file..."
+    export $(grep -v '^#' ".env.${VERCEL_ENV}" | xargs)
+elif [ ! -z "$NODE_ENV" ] && [ -f ".env.${NODE_ENV}.local" ]; then
+    echo "📥 Loading environment variables from .env.${NODE_ENV}.local file..."
+    export $(grep -v '^#' ".env.${NODE_ENV}.local" | xargs)
+elif [ -f .env.local ]; then
+    echo "📥 Loading environment variables from .env.local file..."
+    export $(grep -v '^#' .env.local | xargs)
+elif [ ! -z "$NODE_ENV" ] && [ -f ".env.${NODE_ENV}" ]; then
+    echo "📥 Loading environment variables from .env.${NODE_ENV} file..."
+    export $(grep -v '^#' ".env.${NODE_ENV}" | xargs)
+elif [ -f .env ]; then
     echo "📥 Loading environment variables from .env file..."
     export $(grep -v '^#' .env | xargs)
 else
-    echo "⚠️ No .env file found, using environment variables directly"
+    echo "⚠️ No environment file found, using environment variables directly"
 fi
 
 # Check if GH_TOKEN is set
