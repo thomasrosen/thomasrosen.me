@@ -1,9 +1,13 @@
 import { Dot } from '@/components/Dot'
+import { Typo } from '@/components/Typo'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import '@/fonts/petrona-v28-latin/index.css'
 import { getRelativeTime } from '@/lib/getRelativeTime'
 import { loadArticles } from '@/lib/loadArticles'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -79,41 +83,39 @@ export async function ArticleLayout({
     >
       {!!article ? (
         <>
-          <h2 itemProp='headline'>{article.title}</h2>
+          <Typo as='h2' itemProp='headline'>
+            {article.title}
+          </Typo>
 
-          <p>
-            <strong>
-              <time
-                dateTime={article.date}
-                title={article.date}
-                itemProp='datePublished'
-              >
-                {getRelativeTime(new Date(article.date))}
-              </time>{' '}
-              — 
-              <span className='tag_row' itemProp='keywords'>
-                {article.tags.map((tag: string) => (
-                  <button className='small' disabled key={tag}>
-                    {tag}
-                  </button>
-                ))}
-              </span>
-            </strong>
-          </p>
+          <Typo as='p' className='flex items-center gap-2'>
+            <time
+              dateTime={article.date}
+              title={article.date}
+              itemProp='datePublished'
+            >
+              {getRelativeTime(new Date(article.date))}
+            </time>
+            <span>—</span>
+            <span className='contents' itemProp='keywords'>
+              {article.tags.map((tag: string) => (
+                <Badge variant='accent' key={tag}>
+                  {tag}
+                </Badge>
+              ))}
+            </span>
+          </Typo>
 
           {audio_src ? (
             <audio
               controls
               preload='metadata'
-              style={{ width: '100%', marginBlockEnd: '20px' }}
+              className='w-full mb-4'
               src={audio_src}
             >
               <source src={audio_src} type='audio/mpeg' />
-              <p>
-                <a href={audio_src}>
-                  <button>Download audio of the article.</button>
-                </a>
-              </p>
+              <Link href={audio_src}>
+                <Button>Download audio of the article.</Button>
+              </Link>
             </audio>
           ) : null}
 
