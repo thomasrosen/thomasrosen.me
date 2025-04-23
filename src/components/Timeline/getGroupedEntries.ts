@@ -9,7 +9,7 @@ export async function getGroupedEntries({
 
   if (tags.length > 0) {
     entries = entries.filter((entry) =>
-      tags.some((tag) => entry.tags?.includes(tag))
+      tags.some((tag) => (entry.tags || []).includes(tag))
     )
   }
 
