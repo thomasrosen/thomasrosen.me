@@ -14,14 +14,18 @@ type Props = {
 const articles = await loadArticles()
 
 export async function generateStaticParams() {
-  return articles.flatMap((article) => [
-    {
-      slug:
-        process.env.NODE_ENV === 'production'
-          ? article.data.slug
-          : encodeURIComponent(article.data.slug),
-    },
-  ])
+  return articles.flatMap((article) =>
+    article.data.slug
+      ? [
+          {
+            slug:
+              process.env.NODE_ENV === 'production'
+                ? article.data.slug
+                : encodeURIComponent(article.data.slug),
+          },
+        ]
+      : []
+  )
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,12 +50,12 @@ export default async function PageArticle({ params }: Props) {
     notFound()
   }
 
-  const { default: Content, data, getStaticProps } = article
+  const { content, data, getStaticProps } = article
   const { props } = await getStaticProps()
 
   return (
     <ArticleLayout {...props} data={data}>
-      <Content />
+      {content}
     </ArticleLayout>
   )
 }
