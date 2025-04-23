@@ -6,7 +6,7 @@ import { Entry } from './Entry'
 import { getGroupedEntries } from './getGroupedEntries'
 import { getMonthName } from './getMonthName'
 
-export async function Timeline({ tags }: { tags?: string[] }) {
+export async function Timeline({ tags = [] }: { tags?: string[] }) {
   const groupedEntries = await getGroupedEntries({
     tags,
   })
