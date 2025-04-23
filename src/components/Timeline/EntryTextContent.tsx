@@ -62,7 +62,7 @@ export function EntryTextContent({
               : fullDateTimeString}
           </span>
           {sameDayAsBefore ? null : (
-            <div className='h-[1px] bg-foreground w-full opacity-10' />
+            <div className='h-[1px] bg-foreground w-full opacity-10 rounded-full' />
           )}
         </Typo>
       )}
