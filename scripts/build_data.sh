@@ -55,12 +55,12 @@ fi
 echo "✅ done cloning";
 
 # for development
-mkdir -p ./src/data/music/playlists
-cp -rp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
-echo "✅ done copying playlists";
+# mkdir -p ./src/data/music/playlists
+# cp -rp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
+# echo "✅ done copying playlists";
 
-node ./scripts/build_music_metadata.js
-echo "✅ done running build_music_metadata.js";
+node ./scripts/build_music_metadata.mjs
+echo "✅ done running build_music_metadata.mjs";
 
 mkdir -p ./src/data/blog
 cp -rp ./blog/* ./src/data/blog

@@ -25,7 +25,7 @@ export function EntryArticle({
 
   return (
     <LinkOrDiv
-      entry={entry}
+      href={entry.url}
       className={cn(
         'relative rounded-lg overflow-hidden',
         'w-auto h-auto',

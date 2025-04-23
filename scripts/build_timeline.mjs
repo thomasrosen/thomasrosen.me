@@ -1,27 +1,17 @@
-import { execSync } from 'child_process';
 import ExifReader from 'exifreader';
 import fs from 'fs';
-import matter from 'gray-matter';
+// import matter from 'gray-matter';
 import { imageSize } from 'image-size';
 import path from 'path';
 
 // Define paths
-const inputImagesDir = './data_about_thomasrosen/timeline/images';
-const inputEntriesPath = './data_about_thomasrosen/timeline/entries.yml';
+// const inputImagesDir = './data_about_thomasrosen/timeline/images';
+// const inputEntriesPath = './data_about_thomasrosen/timeline/entries.yml';
 const outputImagesDir = './src/data/timeline/images';
-const outputEntriesPath = './src/data/timeline/entries.json';
+// const outputEntriesPath = './src/data/timeline/entries.json';
 
 // Supported image formats
 const supportedFormats = ['.jpg', '.jpeg', '.png'];
-
-// Function to ensure directory exists
-function ensureDirectoryExists(filePath) {
-  const dir = path.dirname(filePath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-    console.info(`📁 Created directory: ${dir}`);
-  }
-}
 
 // Function to read image metadata
 function getImageMetadata(filePath) {
@@ -46,13 +36,13 @@ function getImageMetadata(filePath) {
 // Function to process image files
 export function processImageFiles() {
   try {
-    // Create output directory and copy images
-    if (!fs.existsSync(outputImagesDir)) {
-      return []
-      // fs.mkdirSync(outputImagesDir, { recursive: true });
-    }
-    execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
-    console.info(`✅ Successfully copied images to ${outputImagesDir}`);
+    // // Create output directory and copy images
+    // if (!fs.existsSync(outputImagesDir)) {
+    //   return []
+    //   // fs.mkdirSync(outputImagesDir, { recursive: true });
+    // }
+    // execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
+    // console.info(`✅ Successfully copied images to ${outputImagesDir}`);
 
     // Read all files from the output directory
     const files = fs.readdirSync(outputImagesDir);
@@ -98,6 +88,7 @@ export function processImageFiles() {
   }
 }
 
+/*
 // Function to process timeline entries
 function processTimelineEntries(images) {
   try {
@@ -154,6 +145,7 @@ ${yamlContent}
     return images;
   }
 }
+*/
 
 // // Run the script
 // const images = processImageFiles();

@@ -5,14 +5,15 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "",
-    "build": "pwd && ls -la && npm run build_data && (find src/ | sed 's|[^/]*/|- |g') && next build",
+    "prebuild": "npm run build_data",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
     "build_data": "sh ./scripts/build_data.sh",
-    "build_timeline": "node ./scripts/build_timeline.js"
+    "build_timeline": "node ./scripts/build_timeline.js",
+    "build_music_metadata": "node ./scripts/build_music_metadata.mjs"
   },
   "browserslist": {
     "production": [

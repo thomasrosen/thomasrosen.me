@@ -1,22 +1,20 @@
-import { type TimelineEntry } from '@/lib/loadTimeline'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 export function LinkOrDiv({
-  entry,
   children,
   className,
+  href,
 }: {
-  entry: TimelineEntry
   children: React.ReactNode
   className?: string
+  href?: string
 }) {
-  const linkUrl = entry.url
-  const isExternalLink = Boolean(linkUrl?.startsWith('http'))
+  const isExternalLink = Boolean(href?.startsWith('http'))
 
-  return linkUrl ? (
+  return href ? (
     <Link
-      href={linkUrl}
+      href={href}
       target={isExternalLink ? '_blank' : '_self'}
       rel={isExternalLink ? 'noreferrer' : undefined}
       className={cn(

@@ -188,16 +188,10 @@ h1 {
   line-height: 0.8;
 }
 
-h2 {
+h2, h3 {
   font-family: var(--font-family-headline);
-  font-weight: bold;
-  font-size: 40px;
-  margin-bottom: 40px;
 }
 
-h3 {
-  font-family: var(--font-family-headline);
-}
 /*
 h3+p,
 h4+p,

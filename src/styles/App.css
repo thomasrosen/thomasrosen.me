@@ -137,6 +137,7 @@ a.link_box p:last-child {
 	margin-block-end: 0;
 }
 
+/*
 .tab_content.article h2 {
 	margin-block-end: 10px;
 }
@@ -148,6 +149,7 @@ a.link_box p:last-child {
 	letter-spacing: 0.5px;
 	margin-block-start: 40px;
 }
+	*/
 .tab_content.article audio,
 .tab_content.article video,
 .tab_content.article iframe {
