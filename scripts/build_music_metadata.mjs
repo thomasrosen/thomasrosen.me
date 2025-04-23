@@ -14,7 +14,7 @@ ensureCleanDirectoryExists(album_artworks_dir)
 ensureCleanDirectoryExists(playlists_dir)
 
 const filetype = 'png'
-const imagesize = 512
+const imagesize = 128
 
 // Album Artwork URL
 
