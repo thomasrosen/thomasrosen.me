@@ -33,10 +33,10 @@ let nextConfig: NextConfig = {
   // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`
   skipTrailingSlashRedirect: false,
 
-  output: 'standalone',
-  outputFileTracingIncludes: {
-    '/*': ['/**/*'],
-  },
+  output: undefined,
+  // outputFileTracingIncludes: {
+  //   '/*': ['/**/*'],
+  // },
 
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
