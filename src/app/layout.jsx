@@ -5,6 +5,7 @@ import '@/fonts/ubuntu-v20-latin/index.css'
 import '@/styles/App.css'
 import '@/styles/index.css'
 import Link from 'next/link'
+import Script from 'next/script'
 
 export default function RootLayout({ children }) {
   return (
@@ -26,13 +27,12 @@ export default function RootLayout({ children }) {
           href='/blog/feed.rss'
         />
 
-        <script
-          async
+        <Script
           defer
           data-website-id='fe447956-68a8-4bd6-a139-c218621354de'
           src='https://umami.thomasrosen.me/script.js'
-          data-domains='thomasrosen.me'
-        ></script>
+          data-domains='www.thomasrosen.me,thomasrosen.me'
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
