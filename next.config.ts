@@ -40,7 +40,6 @@ let nextConfig: NextConfig = {
 
   experimental: {
     scrollRestoration: true,
-    ppr: true,
     routerBFCache: true,
     viewTransition: true,
   },
