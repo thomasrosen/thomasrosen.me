@@ -41,7 +41,11 @@ export type TimelineEntry = {
 export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
 
-  const { default: timeline } = await import('./src/data/timeline/entries.yml')
+  const currentDir = process.cwd()
+  console.log('currentDir', currentDir)
+  const { default: timeline } = await import(
+    `${currentDir}/src/data/timeline/entries.yml`
+  )
   const timelineEntries: TimelineEntry[] = timeline.entries
 
   const articles = await loadArticles()
