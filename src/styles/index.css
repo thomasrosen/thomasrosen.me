@@ -59,86 +59,78 @@ body {
 }
 
 :root {
-  --text-color: #00150f;
-  --background-color: #fff;
-  --primary-color: #00845E;
   --content-box-width: 620px;
-  --radius: 0.625rem;
+}
+
+:root {
+  --radius: .625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.54 0.114881 164.5621);
+  --primary-foreground: oklch(0.982 0.018 155.826);
+  --secondary: oklch(0.141 0.005 285.823);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.0334 173.21);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: var(--primary);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: oklch(0.982 0.018 155.826);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.0334 173.21);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: var(--primary);
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-color: #fff;
-    --background-color: #00150f;
-    --primary-color: #00d095;
-  }
-}
-
-
-
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.17 0.0334 173.21);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.21 0.0334 173.21);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.21 0.0334 173.21);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --primary: oklch(0.76 0.1616 164.09);
+  --primary-foreground: oklch(0.17 0.0334 173.21);
+  --secondary: oklch(1 0 0);
+  --secondary-foreground: oklch(0.17 0.0334 173.21);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.0334 173.21);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: var(--primary);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.21 0.0334 173.21);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: oklch(0.393 0.095 152.535);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: var(--primary);
 }
+
+
 
 
 
@@ -167,8 +159,8 @@ body {
 } */
 
 body {
-  background: var(--background-color);
-  color: var(--text-color);
+  background: var(--background);
+  color: var(--foreground);
   transition: color .2s ease, background .2s ease;
   padding-block-end: 25vh;
 }
@@ -237,7 +229,7 @@ img {
   max-width: 100%;
 }
 
-button {
+.OLDSTYLES button {
   font-family: var(--font-family-button);
   text-decoration: none;
 
@@ -251,13 +243,13 @@ button {
 
 	padding: 10px 20px;
 	border-radius: 100px;
-	color: var(--background-color);
-	fill: var(--background-color);
-	background: var(--text-color);
+	color: var(--background);
+	fill: var(--background);
+	background: var(--foreground);
 	font-weight: bold;
 
   --shadow-width: 0px;
-  --shadow-color: var(--text-color);
+  --shadow-color: var(--foreground);
   --shadow-amount: 0;
   box-shadow:
     /* this gets rid of a weird 0.1px gap between box and shadow */
@@ -267,37 +259,37 @@ button {
 
 	transition: box-shadow 0.2s ease;
 }
-button.small {
+.OLDSTYLES button.small {
   padding: 5px 10px;
   font-size: 14px;
 }
-button[data-selected="true"] {
+.OLDSTYLES button[data-selected="true"] {
   --shadow-width: 5px;
   --shadow-amount: 1;
 }
-button:not(:disabled):hover {
+.OLDSTYLES button:not(:disabled):hover {
   --shadow-width: 10px;
   --shadow-amount: 1;
-	color: var(--background-color);
-	fill: var(--background-color);
-	background: var(--text-color);
+	color: var(--background);
+	fill: var(--background);
+	background: var(--foreground);
 	text-decoration: none;
 }
-button.small:not(:disabled):hover {
+.OLDSTYLES button.small:not(:disabled):hover {
   --shadow-width: 5px;
   --shadow-amount: 1;
 }
-button:not(:disabled):active,
-button:not(:disabled):focus,
-button:not(:disabled).active,
-a.active button:not(:disabled) {
-	color: var(--background-color);
-	fill: var(--background-color);
-	background: var(--primary-color);
-  --shadow-color: var(--primary-color);
+.OLDSTYLES button:not(:disabled):active,
+.OLDSTYLES button:not(:disabled):focus,
+.OLDSTYLES button:not(:disabled).active,
+.OLDSTYLES a.active button:not(:disabled) {
+	color: var(--background);
+	fill: var(--background);
+	background: var(--primary);
+  --shadow-color: var(--primary);
 	text-decoration: none;
 }
-button:disabled {
+.OLDSTYLES button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -308,14 +300,14 @@ code {
 
 a,
 .link {
-  color: var(--primary-color);
+  color: var(--primary);
   text-decoration: none;
-  text-decoration-color: var(--primary-color);
+  text-decoration-color: var(--primary);
 }
 
 a:hover,
 .link:hover {
-  color: var(--primary-color);
+  color: var(--primary);
   text-decoration: underline;
   /* text-decoration-style: double; */
   text-decoration-color: currentColor;
@@ -329,14 +321,14 @@ a.inherit_color {
 hr {
   border: 0;
   height: 0.8rem;
-  background-color: var(--text-color);
+  background-color: var(--foreground);
   margin: 40px 0;
   border-radius: 0.8rem;
 }
 hr.small {
   border: 0;
   height: 1px;
-  background-color: var(--text-color);
+  background-color: var(--foreground);
   margin: 0;
 }
 

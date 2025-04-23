@@ -1,7 +1,9 @@
 import { type TimelineEntry } from '@/lib/loadTimeline'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import { Emoji } from '../Emoji'
 import { EntryTextContent } from './EntryTextContent'
+import { LinkOrDiv } from './LinkOrDiv'
 
 export function EntryArticle({
   entry,
@@ -19,14 +21,20 @@ export function EntryArticle({
   const hasImage = entry.image && typeof entry.image === 'string'
   const isExternalImage = entry.image?.startsWith('http')
 
+  const displayAs = entry.displayAs
+
   return (
-    <div
+    <LinkOrDiv
+      entry={entry}
       className={cn(
         'relative rounded-lg overflow-hidden',
         'w-auto h-auto',
         'bg-background text-card-foreground',
         'flex items-start',
         'p-6 gap-3',
+        'border border-border',
+        'hover:bg-accent cursor-pointer',
+        'transition-colors duration-150',
         className
       )}
     >
@@ -37,7 +45,7 @@ export function EntryArticle({
             alt={''}
             width={128}
             height={128}
-            className='z-10 absolute object-cover w-[128px] h-[128px] blur-[64px] saturate-150 opacity-60 rounded-sm'
+            className='shrink-0 z-10 absolute object-cover w-[128px] h-[128px] blur-[64px] saturate-150 opacity-60 rounded-sm'
             priority={isFirstImage}
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             quality={75}
@@ -57,13 +65,21 @@ export function EntryArticle({
             unoptimized={isExternalImage}
           />
         </>
-      ) : null}
-
+      ) : displayAs === 'link' ? (
+        <div className='shrink-0 w-[32px] h-[32px] bg-accent rounded-sm flex items-center justify-center'>
+          <Emoji className='text-lg'>🔗</Emoji>
+        </div>
+      ) : (
+        <div className='shrink-0 w-[128px] h-[128px] bg-accent rounded-sm flex items-center justify-center'>
+          <Emoji className='text-5xl'>📄</Emoji>
+        </div>
+      )}
       <EntryTextContent
         entry={entry}
         entryBefore={entryBefore}
         entryAfter={entryAfter}
+        showTags={true}
       />
-    </div>
+    </LinkOrDiv>
   )
 }

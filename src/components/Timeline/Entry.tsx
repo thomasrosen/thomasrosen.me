@@ -23,9 +23,17 @@ export function Entry({
 
   switch (parsedEntry.displayAs) {
     case 'text':
-    case 'link':
       return (
         <EntryText
+          entry={parsedEntry}
+          className={className}
+          entryBefore={entryBefore}
+          entryAfter={entryAfter}
+        />
+      )
+    case 'link':
+      return (
+        <EntryArticle
           entry={parsedEntry}
           className={className}
           entryBefore={entryBefore}

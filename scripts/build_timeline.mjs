@@ -19,7 +19,7 @@ function ensureDirectoryExists(filePath) {
   const dir = path.dirname(filePath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
-    console.log(`📁 Created directory: ${dir}`);
+    console.info(`📁 Created directory: ${dir}`);
   }
 }
 
@@ -51,7 +51,7 @@ export function processImageFiles() {
     //   fs.mkdirSync(outputImagesDir, { recursive: true });
     // }
     // execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
-    // console.log(`✅ Successfully copied images to ${outputImagesDir}`);
+    // console.info(`✅ Successfully copied images to ${outputImagesDir}`);
 
     // Read all files from the output directory
     const files = fs.readdirSync(outputImagesDir);
@@ -64,7 +64,7 @@ export function processImageFiles() {
       const ext = path.extname(file).toLowerCase();
 
       if (!supportedFormats.includes(ext)) {
-        console.log(`Skipping ${file}: Not a supported image format`);
+        console.info(`Skipping ${file}: Not a supported image format`);
         continue;
       }
 
@@ -89,7 +89,7 @@ export function processImageFiles() {
     // Sort images by date
     images.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    console.log(`✅ Successfully processed ${images.length} images`);
+    console.info(`✅ Successfully processed ${images.length} images`);
     return images;
   } catch (error) {
     console.error('❌ Error processing image files:', error);
@@ -102,7 +102,7 @@ function processTimelineEntries(images) {
   try {
     // Check if entries file exists
     if (!fs.existsSync(inputEntriesPath)) {
-      console.log(`ℹ️ No entries file found at ${inputEntriesPath}, using only images`);
+      console.info(`ℹ️ No entries file found at ${inputEntriesPath}, using only images`);
       return images;
     }
 
@@ -145,7 +145,7 @@ ${yamlContent}
     // Write JSON file
     fs.writeFileSync(outputEntriesPath, JSON.stringify({ entries: combinedEntries }, null, 2));
 
-    console.log(`✅ Successfully combined ${entries.length} entries with ${images.length} images (${remainingImages.length} images added)`);
+    console.info(`✅ Successfully combined ${entries.length} entries with ${images.length} images (${remainingImages.length} images added)`);
     return combinedEntries;
   } catch (error) {
     console.error('❌ Error processing timeline entries:', error);

@@ -85,10 +85,31 @@ let nextConfig: NextConfig = {
       },
     })
 
+    // Update YAML loader configuration
     config.module.rules.push({
       test: /\.ya?ml$/,
-      use: 'js-yaml-loader',
+      use: [
+        {
+          loader: 'js-yaml-loader',
+          options: {
+            asJSON: true,
+          },
+        },
+      ],
     })
+
+    // // Add rule for MDX files
+    // config.module.rules.push({
+    //   test: /\.mdx?$/,
+    //   use: [
+    //     {
+    //       loader: '@next/mdx',
+    //       options: {
+    //         extension: /\.mdx?$/,
+    //       },
+    //     },
+    //   ],
+    // })
 
     // Ignore HEIC files
     config.module.rules.push({

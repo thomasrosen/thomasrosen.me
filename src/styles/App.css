@@ -115,13 +115,12 @@ header {
 a.link_box {
 	display: block;
 
-	background: var(--text-color);
-	color: var(--background-color);
+	background: var(--foreground);
+	color: var(--background);
 
 	width: var(--content-box-width);
 	max-width: 100%;
 	padding: 40px;
-	margin-block-start: 80px;
 
 	transition: box-shadow 0.2s ease;
 }
@@ -129,9 +128,9 @@ a.link_box h2 {
 	margin-block-end: 10px;
 }
 a.link_box:hover {
-	background: var(--text-color);
-	color: var(--background-color);
-	box-shadow: 0 0 0 10px var(--primary-color);
+	background: var(--foreground);
+	color: var(--background);
+	box-shadow: 0 0 0 10px var(--primary);
 	text-decoration: none;
 }
 a.link_box p:last-child {
@@ -248,7 +247,8 @@ _::-webkit-full-page-media,
 	max-width: 100%;
 	margin-inline: auto;
 
-	--size: calc(var(--content-box-width)/2);
+	--gap: calc(var(--spacing) * 4);
+	--size: calc((var(--content-box-width) - var(--gap))/2);
   display: grid;
   grid-template-columns: repeat(auto-fit, var(--size));
   grid-template-rows: repeat(auto, var(--size));

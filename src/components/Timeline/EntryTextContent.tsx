@@ -1,15 +1,18 @@
 import { Typo } from '@/components/Typo'
 import { type TimelineEntry } from '@/lib/loadTimeline'
-import Link from 'next/link'
+import { Emoji } from '../Emoji'
+import { Badge } from '../ui/badge'
 
 export function EntryTextContent({
   entryBefore,
   entry,
   entryAfter,
+  showTags = false,
 }: {
   entryBefore?: TimelineEntry
   entry: TimelineEntry
   entryAfter?: TimelineEntry
+  showTags?: boolean
 }) {
   const sameDayAsBefore =
     entryBefore &&
@@ -35,8 +38,10 @@ export function EntryTextContent({
 
   const noTimeDefined = timeString === '00:00'
 
-  const linkUrl = entry.url
-  const isExternalLink = Boolean(linkUrl?.startsWith('http'))
+  const tagsToFilterOut = ['article', 'project', 'press']
+  const tags = entry.tags?.filter((tag) => !tagsToFilterOut.includes(tag))
+
+  const hasAudio = !!entry.audio
 
   return (
     <div className='text-[0px] leading-none space-y-1'>
@@ -56,30 +61,26 @@ export function EntryTextContent({
               : fullDateTimeString}
           </span>
           {sameDayAsBefore ? null : (
-            <div className='h-[1px] bg-foreground w-full opacity-50' />
+            <div className='h-[1px] bg-foreground w-full opacity-10' />
           )}
         </Typo>
       )}
-      {entry.author && (
-        <div className='flex flex-wrap gap-2 items-center'>
+      {entry.author || (showTags && tags?.length) || hasAudio ? (
+        <div className='flex flex-wrap gap-x-2 gap-y-1 items-center'>
           {entry.author && <Typo as='small'>by {entry.author}</Typo>}
-          {/* {entry.tags && entry.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)} */}
+          {showTags && tags?.length
+            ? tags.map((tag) => (
+                <Badge key={tag} variant='accent'>
+                  {tag}
+                </Badge>
+              ))
+            : null}
+          {hasAudio ? (
+            <Emoji className='inline-block text-base'>🔊</Emoji>
+          ) : null}
         </div>
-      )}
-      {entry.title ? (
-        linkUrl ? (
-          <Link
-            href={linkUrl}
-            target={isExternalLink ? '_blank' : '_self'}
-            rel={isExternalLink ? 'noreferrer' : undefined}
-            className='!text-inherit'
-          >
-            <Typo as='h3'>{entry.title}</Typo>
-          </Link>
-        ) : (
-          <Typo as='h3'>{entry.title}</Typo>
-        )
       ) : null}
+      {entry.title ? <Typo as='h3'>{entry.title}</Typo> : null}
       {entry.text && (
         <Typo as='p' className='body2'>
           {entry.text || ''}

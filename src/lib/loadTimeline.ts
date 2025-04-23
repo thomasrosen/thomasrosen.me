@@ -27,6 +27,8 @@ export type TimelineEntry = {
   url?: string
   image?: string
   imageAspectRatio?: number
+  audio?: string
+  audio_length?: string
   loc?: {
     name: string
     lat: number
@@ -39,12 +41,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
 
   const { default: timeline } = await import('@/data/timeline/entries.yml')
-  const timelineEntries: TimelineEntry[] = timeline.entries.map(
-    (entry: TimelineEntry) => ({
-      ...entry,
-      displayAs: entry.displayAs === 'link' ? 'text' : entry.displayAs,
-    })
-  )
+  const timelineEntries: TimelineEntry[] = timeline.entries
 
   const articles = await loadArticles()
   const articlesAsEntries = articles.map((article, index) => ({
@@ -57,6 +54,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     // imageAspectRatio: article.data.coverphoto_src ? 2 : 4,
     date: article.data.date,
     tags: [...new Set(['article', ...article.data.tags])],
+    audio: article.data.audio_src,
   }))
 
   return [...timelineEntries, ...articlesAsEntries, ...images]
