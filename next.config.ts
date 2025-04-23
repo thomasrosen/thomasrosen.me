@@ -33,7 +33,7 @@ let nextConfig: NextConfig = {
   // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`
   skipTrailingSlashRedirect: false,
 
-  output: undefined,
+  // output: undefined,
   // outputFileTracingIncludes: {
   //   '/*': ['/**/*'],
   // },
