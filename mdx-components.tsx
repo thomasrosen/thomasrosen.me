@@ -15,7 +15,7 @@ import Link from 'next/link'
 import recmaExportFilepath from 'recma-export-filepath'
 import recmaMdxEscapeMissingComponents from 'recma-mdx-escape-missing-components'
 import recmaNextjsStaticProps from 'recma-nextjs-static-props'
-// import { refractor } from 'refractor'
+import { refractor } from 'refractor'
 import rehypeMdxTitle from 'rehype-mdx-title'
 import rehypePreLanguage from 'rehype-pre-language'
 import remarkBreaks from 'remark-breaks'
@@ -25,6 +25,8 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import { remarkFootnoteReferences } from './src/lib/unified/remarkFootnoteReferences'
+
+import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 
 export const components: MDXComponents = {
   code: (props) => {
@@ -234,7 +236,8 @@ export function useMDXComponents(
   }
 }
 
-export const mdxOptions = {
+export const mdxOptions: MDXRemoteOptions['mdxOptions'] = {
+  outputFormat: 'function-body',
   recmaPlugins: [
     recmaMdxEscapeMissingComponents,
     // recmaMdxChangeImports,
@@ -262,7 +265,6 @@ export const mdxOptions = {
     // rehypePreElements,
     // ['rehype-katex', { strict: true, throwOnError: true }]
   ],
-  /*
   remarkRehypeOptions: {
     allowDangerousHtml: true,
     handlers: {
@@ -334,5 +336,4 @@ export const mdxOptions = {
       return node
     },
   },
-  */
 }
