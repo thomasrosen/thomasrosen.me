@@ -13,7 +13,7 @@ https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fthomasrosen.me%2Fblog%
 */
 
 const author = 'Thomas Rosen'
-const domain = 'http://localhost:3000' // 'https://thomasrosen.me'
+const domain = 'https://thomasrosen.me'
 
 export function generate_rss_feed(options) {
 
