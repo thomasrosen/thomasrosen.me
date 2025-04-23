@@ -1,9 +1,9 @@
+import { execSync } from 'child_process';
 import ExifReader from 'exifreader';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { imageSize } from 'image-size';
 import path from 'path';
-const { execSync } = require('child_process');
 
 // Define paths
 const inputImagesDir = '/data_about_thomasrosen/timeline/images';
