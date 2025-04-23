@@ -4,10 +4,9 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 export default function PageProjects() {
   return (
-    <div className='tab_content'>
-      <Typo as='h2' className='mb-6'>
-        Projects
-      </Typo>
+    <div className='tab_content space-y-6'>
+      <Typo as='h2'>Projects</Typo>
+      <Typo as='p'>A small collection of some projects, I've worked on.</Typo>
 
       <div className='flex flex-col gap-8'>
         <div className='flex flex-col gap-2'>
