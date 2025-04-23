@@ -34,7 +34,7 @@ export async function loadArticles() {
     await Promise.all(
       mdxFiles.map(async (filename): Promise<Article> => {
         const filepath = path.join(articlesDirectory, filename)
-        const module = await import(`@/data/blog/articles/${filename}`)
+        const module = await import(`./src/data/blog/articles/${filename}`)
         const data = module.data || {}
 
         const orginal_file_content = fs.readFileSync(filepath, 'utf8')
