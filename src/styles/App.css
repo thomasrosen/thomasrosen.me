@@ -250,19 +250,31 @@ _::-webkit-full-page-media,
 
 	--size: calc(var(--content-box-width)/2);
   display: grid;
-  grid-template-columns: repeat(auto-fill, var(--size));
+  grid-template-columns: repeat(auto-fit, var(--size));
   grid-template-rows: repeat(auto, var(--size));
   grid-auto-flow: row dense;
 }
+/* @media (width > 48rem) {
+	.mygrid {
+		width: calc(var(--content-box-width) + 100px);
+	}
+}
+@media (width > 1500px) {
+	.mygrid {
+		width: calc(var(--content-box-width) * 2.5);
+	}
+} */
 
 
-@media (width <= 48rem /* 768px */) {
+
+
+/* @media (width <= 48rem) {
 	.mygrid:has(> :only-child) {
 		--size: 100%;
 		padding-inline: 8px;
     grid-template-columns: var(--size);
 	}
-}
+} */
 @media (width <= 620px) {
 	.mygrid {
 		--size: 50%;

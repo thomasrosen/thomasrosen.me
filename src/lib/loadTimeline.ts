@@ -1,0 +1,63 @@
+// type Article = {
+//   default: any
+//   filepath: string
+//   getStaticProps: () => Promise<any>
+//   data: {
+//     slug: string
+//     title: string
+//     summary: string
+//     date: string
+//     audio: string
+//     tags: string[]
+//     audio_src?: string
+//     coverphoto_src?: string
+//     coverphoto_blurDataURL?: string
+//   }
+// }
+
+import { processImageFiles } from '../../scripts/build_timeline.mjs'
+import { loadArticles } from './loadArticles'
+
+export type TimelineEntry = {
+  date: string
+  displayAs: string
+  title?: string
+  text?: string
+  author?: string
+  url?: string
+  image?: string
+  imageAspectRatio?: number
+  loc?: {
+    name: string
+    lat: number
+    lng: number
+  }
+  tags?: string[]
+}
+
+export async function loadTimeline(): Promise<TimelineEntry[]> {
+  const images = processImageFiles()
+
+  const { default: timeline } = await import('@/data/timeline/entries.yml')
+  const timelineEntries: TimelineEntry[] = timeline.entries.map(
+    (entry: TimelineEntry) => ({
+      ...entry,
+      displayAs: entry.displayAs === 'link' ? 'text' : entry.displayAs,
+    })
+  )
+
+  const articles = await loadArticles()
+  const articlesAsEntries = articles.map((article, index) => ({
+    title: article.data.title,
+    text: article.data.summary,
+    author: 'Thomas Rosen',
+    url: `/articles/${article.data.slug}`,
+    image: article.data.coverphoto_src,
+    displayAs: 'article',
+    // imageAspectRatio: article.data.coverphoto_src ? 2 : 4,
+    date: article.data.date,
+    tags: [...new Set(['article', ...article.data.tags])],
+  }))
+
+  return [...timelineEntries, ...articlesAsEntries, ...images]
+}

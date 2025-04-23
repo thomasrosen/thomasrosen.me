@@ -5,15 +5,13 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run build_more_data && npm run build_blog",
+    "prebuild": "npm run build_data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
-    "build_blog": "node ./scripts/build_blog.js",
-    "build_more_data": "sh ./scripts/build_more_data.sh",
-    "start_load_images_server": "node ./scripts/load_images_server.mjs",
+    "build_data": "sh ./scripts/build_data.sh",
     "build_timeline": "node ./scripts/build_timeline.js"
   },
   "browserslist": {
@@ -47,8 +45,11 @@
     "clsx": "^2.1.1",
     "eslint-config-next": "^15.3.0",
     "gray-matter": "^4.0.3",
+    "js-yaml-loader": "^1.2.2",
     "lucide-react": "^0.487.0",
     "next": "^15.3.0",
+    "next-plugin-yaml": "^1.0.1",
+    "next-themes": "^0.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-katex": "^3.0.1",
@@ -109,7 +110,8 @@
     "postcss": "^8.5.3",
     "raw-loader": "^4.0.2",
     "sharp": "^0.34.1",
-    "tailwindcss": "^4.1.3"
+    "tailwindcss": "^4.1.3",
+    "yaml-loader": "^0.8.1"
   },
   "overrides": {
     "estree-walker": "2.0.2"

@@ -1,4 +1,4 @@
-import { Timeline } from '@/components/Timeline'
+import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 
 export default function PageTimeline() {
@@ -8,7 +8,7 @@ export default function PageTimeline() {
         Timeline
       </Typo>
 
-      <Timeline tags={[]} />
+      <Timeline />
     </>
   )
 }

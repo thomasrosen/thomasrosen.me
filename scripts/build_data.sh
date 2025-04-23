@@ -1,6 +1,6 @@
 # download music data from private git repo
 
-echo "✅ started build_more_data.sh";
+echo "✅ started build_data.sh";
 
 # Load environment variables from .env file
 if [ -f .env ]; then
@@ -42,20 +42,24 @@ echo "✅ done cloning";
 
 # for development
 mkdir -p ./src/data/music/playlists
-cp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
+cp -rp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
 echo "✅ done copying playlists";
 
 node ./scripts/build_music_metadata.js
 echo "✅ done running build_music_metadata.js";
 
-# copy timeline.yml to src/data/timeline.yml
-cp ./data_about_thomasrosen/timeline.yml ./src/data/timeline.yml
-echo "✅ done copying timeline.yml";
+mkdir -p ./src/data/blog
+cp -rp ./blog/ ./src/data/blog
+echo "✅ done copying blog";
 
-node ./scripts/build_timeline.js
-echo "✅ done running build_timeline.js";
+mkdir -p ./src/data/timeline
+cp -rp ./data_about_thomasrosen/timeline/ ./src/data/timeline/
+echo "✅ done copying timeline";
+
+# node ./scripts/build_timeline.js
+# echo "✅ done running build_timeline.js";
 
 # maybe clean up the folder (but it's in gitignore, so can stay here to be faster in dev)
 # rm -rf ./data_about_thomasrosen
 
-echo "✅ finished build_more_data.sh";
+echo "✅ finished build_data.sh";

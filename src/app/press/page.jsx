@@ -1,4 +1,4 @@
-import { Timeline } from '@/components/Timeline'
+import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 
 export default function PagePress() {

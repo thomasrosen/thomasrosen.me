@@ -18,6 +18,7 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import { fileURLToPath } from 'url'
 // import { rehypePreElements } from './src/lib/unified/rehypePreElements'
 // import recmaMdxChangeImports from 'recma-mdx-change-imports'
+// import withYaml from 'next-plugin-yaml'
 import recmaExportFilepath from 'recma-export-filepath'
 import recmaMdxEscapeMissingComponents from 'recma-mdx-escape-missing-components'
 import rehypeMdxTitle from 'rehype-mdx-title'
@@ -78,10 +79,15 @@ let nextConfig: NextConfig = {
 
     // Add rule for XML/RSS files
     config.module.rules.push({
-      test: /\.(xml|rss|yml)$/,
+      test: /\.(xml|rss)$/,
       use: {
         loader: 'raw-loader',
       },
+    })
+
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'js-yaml-loader',
     })
 
     // Ignore HEIC files
@@ -97,8 +103,8 @@ let nextConfig: NextConfig = {
     deviceSizes: [64, 128, 200, 400, 600, 1200], // only allow some specific sizes
     imageSizes: [64, 128, 200, 400, 600, 1200], // optional: for images with 'sizes' attribute
     // path: '.next/image',
-    loader: 'default',
-    remotePatterns: [new URL('https://picsum.photos/**')],
+    // loader: 'default',
+    // remotePatterns: [new URL('https://picsum.photos/**')],
   },
 
   async redirects() {
@@ -125,6 +131,8 @@ let nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 }
+
+// nextConfig = withYaml(nextConfig)
 
 // Merge MDX config with Next.js config
 const withMDX = nextMDX({
