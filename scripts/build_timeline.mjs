@@ -6,10 +6,10 @@ import { imageSize } from 'image-size';
 import path from 'path';
 
 // Define paths
-const inputImagesDir = '/data_about_thomasrosen/timeline/images';
-const inputEntriesPath = '/data_about_thomasrosen/timeline/entries.yml';
-const outputImagesDir = '/src/data/timeline/images';
-const outputEntriesPath = '/src/data/timeline/entries.json';
+const inputImagesDir = './data_about_thomasrosen/timeline/images';
+const inputEntriesPath = './data_about_thomasrosen/timeline/entries.yml';
+const outputImagesDir = './src/data/timeline/images';
+const outputEntriesPath = './src/data/timeline/entries.json';
 
 // Supported image formats
 const supportedFormats = ['.jpg', '.jpeg', '.png'];
