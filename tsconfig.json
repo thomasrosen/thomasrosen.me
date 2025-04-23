@@ -21,9 +21,10 @@
         "name": "next"
       }
     ],
-    "baseUrl": "src/",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["src/*"],
+      "@@/*": ["*"]
     },
     "erasableSyntaxOnly": true,
     "verbatimModuleSyntax": true,
