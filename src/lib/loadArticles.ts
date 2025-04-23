@@ -108,22 +108,8 @@ export async function loadArticles() {
           getStaticProps,
           filepath,
           data: {
-            // ...data,
-            slug: data.slug,
-            title: data.title,
-            date: data.date,
-            audio: data.audio,
-            tags: data.tags,
-            // plaintext,
+            ...data,
             summary,
-            // has_audio:
-            //   !!data.audio &&
-            //   typeof data.audio === 'string' &&
-            //   data.audio.length > 0,
-            // has_tags:
-            //   !!data.tags && Array.isArray(data.tags) && data.tags.length > 0,
-            // relative_date: getRelativeTime(new Date(data.date)),
-
             audio_src,
             coverphoto_src,
             coverphoto_blurDataURL,
