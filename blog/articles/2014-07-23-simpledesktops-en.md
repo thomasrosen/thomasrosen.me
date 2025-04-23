@@ -25,18 +25,18 @@ Keeping my desk tidy is still hard. But over the years I changed my digital desk
 
 So pure focus … I guess …
 
-<!-- [Picture of cluttered desk.] -->
+{/* [maybe as picture of the cluttered desk.] */}
 
 ## The Wallpapers
 
 ### Diamond Heart from 2014-05-27
 
-[![Diamantenherz](</blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png>)](</blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png>)
+[![Diamantenherz](/blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png)](/blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png)
 
 ### Dandelion from 2014-07-23
 
-[![Pusteblume](</blog/images/2014-07-23-simpledesktops/Pusteblume.png>)](</blog/images/2014-07-23-simpledesktops/Pusteblume.png>)
+[![Pusteblume](/blog/images/2014-07-23-simpledesktops/Pusteblume.png)](/blog/images/2014-07-23-simpledesktops/Pusteblume.png)
 
 ---
 
-![Screenshot of the Simple Desktops website](</blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-27-24_Browse_Simple_Desktops.png>)
+![Screenshot of the Simple Desktops website](/blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-27-24_Browse_Simple_Desktops.png)

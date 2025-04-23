@@ -27,8 +27,8 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import { map } from 'unist-util-map'
-import { visit } from 'unist-util-visit'
+import { rehypePreElements } from './unified/rehypePreElements'
+import { remarkFootnoteReferences } from './unified/remarkFootnoteReferences'
 
 refractor.register(refractor_jsx)
 refractor.register(refractor_excelFormula)
@@ -45,110 +45,33 @@ const production = {
   jsxs: (prod as any).jsxs,
 }
 
-function findFirstNodeWithType(node: any, nodeType: string): any | null {
-  if (node.type === nodeType) {
-    return node
-  }
-
-  if (node.children) {
-    for (const child of node.children) {
-      const found = findFirstNodeWithType(child, nodeType)
-      if (found) {
-        return found
-      }
-    }
-  }
-
-  return null
-}
-
 export function markdownToReact(markdown: string) {
   markdown = correctMarkdownTextForRender(markdown)
 
   const file = unified()
-    .use(remarkParse) // Parse markdown.
-    .use(remarkGfm) // Support GFM (tables, autolinks, tasklists, strikethrough).
-    .use(remarkBreaks) // Convert single line breaks to <br>
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkBreaks)
     .use(remarkFootnotesExtra, {
       breakLink: true,
     })
-    .use(() => (tree) => {
-      if (tree?.type === 'root' && (tree as any)?.children) {
-        const footnoteDefinitions = (tree as any).children
-          .filter((child: any) => child.type === 'footnoteDefinition')
-          .map((definition: any) => {
-            // Use the recursive function to find the link
-            return {
-              definition,
-              link: findFirstNodeWithType(definition, 'link'),
-            }
-          })
-
-        const newTree = map(tree, function (node) {
-          if (node.type === 'footnoteReference') {
-            const identifier = (node as any).identifier
-            const footnoteDefinition = footnoteDefinitions.find(
-              (definition: any) =>
-                definition.definition.identifier === identifier
-            )
-
-            if (!footnoteDefinition || !footnoteDefinition.link) {
-              return node
-            }
-
-            const domain = new URL(
-              footnoteDefinition?.link?.url
-            )?.hostname?.replace(/^www\./, '')
-
-            let label = footnoteDefinition.definition.label
-
-            const label_matcher = /^[0-9]\^$/ // label should not be 5^ or 1^ or so on
-            if (!label || label_matcher.test(label)) {
-              const textNode = findFirstNodeWithType(
-                footnoteDefinition.link,
-                'text'
-              )
-              label = textNode?.value
-            }
-
-            return {
-              ...footnoteDefinition.link,
-              type: 'footnoteReferenceLink',
-              children: [
-                {
-                  type: 'text',
-                  value: domain,
-                },
-              ],
-              label,
-            }
-          }
-
-          return node
-        })
-
-        return newTree
-      }
-    })
+    .use(remarkFootnoteReferences)
     .use(remarkRehype, {
       allowDangerousHtml: true,
       handlers: {
-        inlineCode: (state, node, parent) => {
-          // pass the value to the code element
-          return {
-            type: 'element',
-            tagName: 'code',
-            properties: {
+        inlineCode: (state, node, parent) => ({
+          type: 'element',
+          tagName: 'code',
+          properties: {
+            value: node.value,
+          },
+          children: [
+            {
+              type: 'text',
               value: node.value,
             },
-            children: [
-              {
-                type: 'text',
-                value: node.value,
-              },
-            ],
-          }
-        },
+          ],
+        }),
         code: (state, node, parent) => {
           // instead of refractor, we could also use https://github.com/wooorm/starry-night
           // starry-night is probably the best we can get, but it is more heavy.
@@ -197,21 +120,11 @@ export function markdownToReact(markdown: string) {
             children: node.children,
           }
         }
-
         return node
       },
-    }) // Turn it into HTML.
-    .use(rehypeRaw) // Parse raw HTML into proper nodes.
-    .use(() => (tree) => {
-      visit(tree, (node) => {
-        if (node?.type === 'element' && (node as any)?.tagName === 'pre') {
-          const [codeEl] = (node as any).children
-
-          if (codeEl?.tagName !== 'code') return
-          ;(node as any).raw = codeEl.children?.[0]?.value
-        }
-      })
     })
+    .use(rehypeRaw)
+    .use(rehypePreElements)
     // @ts-expect-error: the react types are missing.
     .use(rehypeReact, {
       ...production,

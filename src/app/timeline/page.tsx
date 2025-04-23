@@ -1,14 +1,14 @@
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 
-export default function PagePress() {
+export default function PageTimeline() {
   return (
     <>
       <Typo as='h2' className='tab_content'>
-        Articles about me and my projects
+        Timeline
       </Typo>
 
-      <Timeline tags={['press']} />
+      <Timeline />
     </>
   )
 }

@@ -21,13 +21,21 @@
         "name": "next"
       }
     ],
-    "baseUrl": "src/",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["src/*"],
+      "@@/*": ["*"]
     },
     "erasableSyntaxOnly": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": ["webpack-env"]
   },
-  "include": [".next", "src", ".next/types/**/*.ts"],
+  "include": [
+    ".next",
+    "src",
+    ".next/types/**/*.ts",
+    "mdx-components.tsx",
+    "next.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

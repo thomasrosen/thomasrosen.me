@@ -7,7 +7,7 @@ export default function PageContact() {
 
       <div className='links_grid'>
         <h3>
-          <Dot color='var(--primary-color)' />
+          <Dot color='var(--primary)' />
           Email
         </h3>
         <a

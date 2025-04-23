@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { type HTMLAttributes, type ReactNode } from 'react'
+import { type ElementType, type HTMLAttributes, type ReactNode } from 'react'
 
 type TypoVariant =
   | 'h1'
@@ -15,7 +15,7 @@ type TypoVariant =
   | 'code'
   | 'small'
 
-const typoVariants = cva('', {
+const typoVariants = cva('text-pretty', {
   variants: {
     variant: {
       h1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
@@ -24,11 +24,11 @@ const typoVariants = cva('', {
       h4: 'scroll-m-20 text-xl font-semibold tracking-tight',
       h5: 'scroll-m-20 text-lg font-semibold tracking-tight',
       h6: 'scroll-m-20 text-base font-semibold tracking-tight',
-      p: 'leading-7 [&:not(:first-child)]:mt-6',
+      p: 'leading-7 [&:not(:last-child)]:mb-6',
       span: 'text-base',
       div: 'text-base',
-      blockquote: 'mt-6 border-l-2 pl-6 italic',
-      ul: 'my-6 ml-6 list-disc [&>li]:mt-2',
+      blockquote: 'mb-6 border-l-2 pl-6 italic',
+      ul: 'my-6 ml-6 list-disc [&>li]:mb-2',
       inline_code:
         'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
       lead: 'text-xl text-muted-foreground',
@@ -45,15 +45,14 @@ const typoVariants = cva('', {
 interface TypoProps
   extends HTMLAttributes<HTMLElement>,
     VariantProps<typeof typoVariants> {
-  as?: TypoVariant
-  children: ReactNode
+  as?: TypoVariant | ElementType
+  children?: ReactNode
 }
 
 export function Typo({
   as: Component,
   variant,
   className,
-  children,
   ...props
 }: TypoProps) {
   if (!variant) {
@@ -117,8 +116,9 @@ export function Typo({
   }
 
   return (
-    <Component className={cn(typoVariants({ variant }), className)} {...props}>
-      {children}
-    </Component>
+    <Component
+      className={cn(typoVariants({ variant }), className)}
+      {...props}
+    />
   )
 }
