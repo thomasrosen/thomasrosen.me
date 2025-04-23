@@ -63,11 +63,11 @@ node ./scripts/build_music_metadata.js
 echo "✅ done running build_music_metadata.js";
 
 mkdir -p ./src/data/blog
-cp -rp ./blog/ ./src/data/blog
+cp -rp ./blog/* ./src/data/blog
 echo "✅ done copying blog";
 
 mkdir -p ./src/data/timeline
-cp -rp ./data_about_thomasrosen/timeline/ ./src/data/timeline
+cp -rp ./data_about_thomasrosen/timeline/* ./src/data/timeline
 echo "✅ done copying timeline";
 
 node ./scripts/build_timeline.mjs
