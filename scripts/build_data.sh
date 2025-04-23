@@ -54,6 +54,10 @@ fi
 
 echo "✅ done cloning";
 
+# list files in data_about_thomasrosen
+echo "📁 Listing files in data_about_thomasrosen:"
+ls -la ./data_about_thomasrosen
+
 # for development
 mkdir -p ./src/data/music/playlists
 cp -rp ./data_about_thomasrosen/music/playlists/* ./src/data/music/playlists
@@ -67,7 +71,7 @@ cp -rp ./blog/ ./src/data/blog
 echo "✅ done copying blog";
 
 mkdir -p ./src/data/timeline
-cp -rp ./data_about_thomasrosen/timeline/ ./src/data/timeline/
+cp -rp ./data_about_thomasrosen/timeline/ ./src/data/timeline
 echo "✅ done copying timeline";
 
 # node ./scripts/build_timeline.js
