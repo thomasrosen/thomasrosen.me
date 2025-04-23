@@ -17,6 +17,9 @@
 
 import { loadArticles } from '@/lib/loadArticles'
 import { loadPlaylists } from '@/lib/loadPlaylists'
+import fs from 'fs'
+import yaml from 'js-yaml'
+import path from 'path'
 import { processImageFiles } from '../../scripts/build_timeline.mjs'
 
 export type TimelineEntry = {
@@ -42,9 +45,9 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
 
   const currentDir = process.cwd()
-  const { default: timeline } = await import(
-    `${currentDir}/src/data/timeline/entries.yml`
-  )
+  const yamlPath = path.join(currentDir, 'src/data/timeline/entries.yml')
+  const yamlContent = fs.readFileSync(yamlPath, 'utf8')
+  const timeline = yaml.load(yamlContent) as { entries: TimelineEntry[] }
   const timelineEntries: TimelineEntry[] = timeline.entries
 
   const articles = await loadArticles()
@@ -57,7 +60,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     displayAs: 'article',
     // imageAspectRatio: article.data.coverphoto_src ? 2 : 4,
     date: article.data.date,
-    tags: [...new Set(['article', ...article.data.tags])],
+    tags: [], // [...new Set(['article', ...article.data.tags])],
     audio: article.data.audio_src,
   }))
 
@@ -66,7 +69,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     displayAs: 'playlist',
     image: playlist.coverphoto,
     url: '/playlists/' + playlist.name,
-    tags: [...new Set(['playlist', ...playlist.genres])],
+    tags: [], // [...new Set(['playlist', ...playlist.genres])],
     date: playlist.date_month,
     title: playlist.name,
     text: playlist.count === 1 ? 'One Song' : playlist.count + ' Songs',
