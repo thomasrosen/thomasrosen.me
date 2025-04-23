@@ -60,7 +60,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     displayAs: 'article',
     // imageAspectRatio: article.data.coverphoto_src ? 2 : 4,
     date: article.data.date,
-    tags: [], // [...new Set(['article', ...article.data.tags])],
+    tags: [...new Set(['article', ...(article.data.tags || [])])],
     audio: article.data.audio_src,
   }))
 
@@ -69,7 +69,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     displayAs: 'playlist',
     image: playlist.coverphoto,
     url: '/playlists/' + playlist.name,
-    tags: [], // [...new Set(['playlist', ...playlist.genres])],
+    tags: [...new Set(['playlist', ...(playlist.genres || [])])],
     date: playlist.date_month,
     title: playlist.name,
     text: playlist.count === 1 ? 'One Song' : playlist.count + ' Songs',
