@@ -6,7 +6,7 @@ import path from 'path';
 // const { execSync } = require('child_process');
 
 // Define paths
-// const inputImagesDir = './data_about_thomasrosen/timeline/images';
+const inputImagesDir = './data_about_thomasrosen/timeline/images';
 const inputEntriesPath = './data_about_thomasrosen/timeline/entries.yml';
 const outputImagesDir = './src/data/timeline/images';
 const outputEntriesPath = './src/data/timeline/entries.json';
@@ -46,12 +46,12 @@ function getImageMetadata(filePath) {
 // Function to process image files
 export function processImageFiles() {
   try {
-    // // Create output directory and copy images
-    // if (!fs.existsSync(outputImagesDir)) {
-    //   fs.mkdirSync(outputImagesDir, { recursive: true });
-    // }
-    // execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
-    // console.info(`✅ Successfully copied images to ${outputImagesDir}`);
+    // Create output directory and copy images
+    if (!fs.existsSync(outputImagesDir)) {
+      fs.mkdirSync(outputImagesDir, { recursive: true });
+    }
+    execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
+    console.info(`✅ Successfully copied images to ${outputImagesDir}`);
 
     // Read all files from the output directory
     const files = fs.readdirSync(outputImagesDir);
