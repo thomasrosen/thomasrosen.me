@@ -47,19 +47,73 @@ export async function generateStaticParams() {
   ])
 }
 
-function SongCard({ song }: { song: any }) {
+function SongCard({
+  song,
+  className,
+  position,
+}: {
+  song: any
+  className?: string
+  position: number
+}) {
   const album_artwork = song['Album Artwork']
   const title = song.Title
   const genre = song.Genre
   const url = song['Store URL']
   const play_count = song['Play Count']
 
+  const text_content = (
+    <div className='flex flex-col gap-2 w-full'>
+      <Typo as='h3' className='scroll-m-0'>
+        {title}
+      </Typo>
+
+      <div className='leading-thight text-sm'>
+        {song.Artist.length ? (
+          <strong className='font-[900]'>{song.Artist}</strong>
+        ) : null}
+
+        {song.Artist.length && song.Album.length ? ': ' : null}
+
+        {song.Album.length ? song.Album : null}
+      </div>
+
+      <Typo as='small' className='flex flex-wrap items-center gap-4'>
+        {[
+          typeof genre === 'string' && genre.length > 0 ? (
+            <span title={`Genre: ${genre}`}>
+              <Badge variant='accent' key={genre}>
+                {genre}
+              </Badge>
+            </span>
+          ) : null,
+
+          <time title={`Duration: ${song.Duration} min`}>
+            {song.Duration} min
+          </time>,
+          play_count > 0 ? (
+            <Emoji title={`Play Count: ${play_count}`}>🔄 {play_count}</Emoji>
+          ) : null,
+          song['Is Explicit'] === '1' ? (
+            <Emoji title='Song is Explicit' alt='Song is Explicit'>
+              🔥
+            </Emoji>
+          ) : null,
+        ]
+          .filter(Boolean)
+          .map((item, index) => (
+            <React.Fragment key={index}>{item}</React.Fragment>
+          ))}
+      </Typo>
+    </div>
+  )
+
   return (
     <LinkOrDiv
       href={url}
       className={cn(
         'relative rounded-lg overflow-hidden',
-        'w-auto h-auto',
+        'w-full h-auto',
         'bg-background text-card-foreground',
         'flex items-start',
         'p-6 gap-3',
@@ -67,84 +121,56 @@ function SongCard({ song }: { song: any }) {
         'hover:bg-accent cursor-pointer',
         'transition-colors duration-150',
         'z-10',
-        'flex gap-4 z-20'
+        'flex flex-col gap-4',
+        '@container/song',
+        className
       )}
     >
-      {album_artwork ? (
-        <>
-          <Image
-            src={album_artwork}
-            alt={''}
-            width={64}
-            height={64}
-            className='shrink-0 z-10 absolute object-cover w-[64px] h-[64px] blur-[64px] saturate-150 rounded-sm'
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            quality={100}
-            loading='lazy'
-          />
-          <Image
-            src={album_artwork}
-            alt={title}
-            width={64}
-            height={64}
-            className={cn(
-              'z-20 relative object-cover w-[64px] h-[64px] rounded-sm',
-              'contrast-110 saturate-110'
-            )}
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            quality={100}
-            loading='lazy'
-          />
-        </>
-      ) : (
-        <div className='shrink-0 w-[64px] h-[64px] bg-accent rounded-sm flex items-center justify-center'>
-          <Emoji className='text-3xl'>🎵</Emoji>
-        </div>
-      )}
+      <div className='flex gap-4 w-full justify-between'>
+        {album_artwork ? (
+          <>
+            <Image
+              src={album_artwork}
+              alt={''}
+              width={64}
+              height={64}
+              className='shrink-0 z-10 absolute object-cover w-[64px] h-[64px] blur-[64px] saturate-150 rounded-sm'
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              quality={100}
+              loading='lazy'
+            />
+            <Image
+              src={album_artwork}
+              alt={title}
+              width={64}
+              height={64}
+              className={cn(
+                'z-20 relative object-cover w-[64px] h-[64px] rounded-sm',
+                'contrast-110 saturate-110'
+              )}
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              quality={100}
+              loading='lazy'
+            />
+          </>
+        ) : (
+          <div className='shrink-0 w-[64px] h-[64px] bg-accent rounded-sm flex items-center justify-center'>
+            <Emoji className='text-3xl'>🎵</Emoji>
+          </div>
+        )}
 
-      <div className='flex flex-col gap-2'>
-        <Typo as='h3' className='scroll-m-0'>
-          {title}
-        </Typo>
+        <div className='hidden @sm/song:block w-full'>{text_content}</div>
 
-        <div className='leading-thight text-sm'>
-          {song.Artist.length ? (
-            <strong className='font-[900]'>{song.Artist}</strong>
-          ) : null}
-
-          {song.Artist.length && song.Album.length ? ': ' : null}
-
-          {song.Album.length ? song.Album : null}
-        </div>
-
-        <Typo as='small' className='flex flex-wrap items-center gap-4'>
-          {[
-            typeof genre === 'string' && genre.length > 0 ? (
-              <span title={`Genre: ${genre}`}>
-                <Badge variant='accent' key={genre}>
-                  {genre}
-                </Badge>
-              </span>
-            ) : null,
-
-            <time title={`Duration: ${song.Duration} min`}>
-              {song.Duration} min
-            </time>,
-            play_count > 0 ? (
-              <Emoji title={`Play Count: ${play_count}`}>🔄 {play_count}</Emoji>
-            ) : null,
-            song['Is Explicit'] === '1' ? (
-              <Emoji title='Song is Explicit' alt='Song is Explicit'>
-                🔥
-              </Emoji>
-            ) : null,
-          ]
-            .filter(Boolean)
-            .map((item, index) => (
-              <React.Fragment key={index}>{item}</React.Fragment>
-            ))}
-        </Typo>
+        {position ? (
+          <Badge
+            variant='accent'
+            className='rounded-full p-0 h-7 w-7 flex items-center justify-center shrink-0 z-30 text-sm font-bold'
+          >
+            {position}
+          </Badge>
+        ) : null}
       </div>
+      <div className='block @sm/song:hidden w-full'>{text_content}</div>
     </LinkOrDiv>
   )
 }
@@ -192,8 +218,8 @@ export default async function PagePlaylist({
   }
 
   return (
-    <div className='tab_content space-y-16'>
-      <div className='space-y-2'>
+    <div className='tab_content'>
+      <div className='space-y-2 mb-6'>
         <Typo as='h2' itemProp='headline' className='pb-0'>
           <time
             dateTime={date_month}
@@ -218,12 +244,10 @@ export default async function PagePlaylist({
         </div>
       </div>
 
-      <hr className='!mb-16' />
-
-      <div className='space-y-2'>
+      <div className='flex flex-wrap gap-4 w-full'>
         {song_count > 0 &&
           playlist.Songs.map((song: any, index: number) => (
-            <SongCard key={index} song={song} />
+            <SongCard key={index} position={index + 1} song={song} />
           ))}
       </div>
 
