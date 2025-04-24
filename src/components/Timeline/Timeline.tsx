@@ -17,13 +17,13 @@ export async function Timeline({
     tags,
   })
 
-  let yearBefore: string | null = null
-  let monthBefore: string | null = null
-  let dayBefore: string | null = null
-
   let entriesToCombineWith: React.ReactNode[] = []
 
   const groupedEntriesAsArray = Object.entries(groupedEntries)
+
+  let yearBefore: string | null = null
+  let monthBefore: string | null = null
+  let dayBefore: string | null = null
 
   return (
     <div className='w-full space-y-4'>
@@ -35,10 +35,10 @@ export async function Timeline({
         const month = date.getMonth().toString()
         const day = date.getDate().toString()
 
-        const isNewYear = year !== yearBefore && index !== 0
-        const isNewMonth = month !== monthBefore && index !== 0
+        const isNewYear = year !== yearBefore
+        const isNewMonth = month !== monthBefore
 
-        const innerGroupEverything = !isNewYear && !isNewMonth
+        const innerGroupEverything = false // !isNewYear && !isNewMonth &&
 
         yearBefore = year
         monthBefore = month
@@ -144,10 +144,8 @@ export async function Timeline({
                 as='h2'
                 className='!mb-0 pb-4 tab_content mx-auto font-bold space-x-2'
               >
-                {isNewYear || index === 0 ? (
-                  <span className='opacity-60'>{year}</span>
-                ) : null}
-                {isNewMonth || index === 0 ? (
+                {isNewYear ? <span className='opacity-60'>{year}</span> : null}
+                {isNewMonth ? (
                   <span>{getMonthName(parseInt(month))}</span>
                 ) : null}
               </Typo>
