@@ -142,7 +142,11 @@ export async function Timeline({
             {showTimeHeadlines ? (
               <Typo
                 as='h2'
-                className='!mb-0 pb-4 tab_content mx-auto font-bold space-x-2'
+                className={cn(
+                  '!mb-0 pb-4 tab_content mx-auto font-bold space-x-2',
+                  isNewMonth && index !== 0 && 'mt-16',
+                  isNewYear && index !== 0 && 'mt-32'
+                )}
               >
                 {isNewYear ? <span className='opacity-60'>{year}</span> : null}
                 {isNewMonth ? (
