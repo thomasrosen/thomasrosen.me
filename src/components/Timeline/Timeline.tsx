@@ -148,8 +148,7 @@ export async function Timeline({
                   className={cn(
                     'col-span-1 xs:col-span-full row-span-1 w-full max-w-[var(--content-box-width)] h-auto',
                     'font-bold',
-                    'bg-red-500 xs:bg-pink-500 lg:bg-orange-500 sm:bg-blue-500 md:bg-green-500',
-                    'flex gap-4',
+                    'flex gap-x-4 flex-wrap',
                     isNewMonth && index !== 0 && 'mt-8',
                     isNewYear && index !== 0 && 'mt-32'
                   )}
