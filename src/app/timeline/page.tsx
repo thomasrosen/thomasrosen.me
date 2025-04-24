@@ -27,7 +27,7 @@ export default async function PageTimeline({
         </div>
       </Typo>
 
-      <Timeline tags={tagsArray} />
+      <Timeline tags={tagsArray} showTimeHeadlines={true} />
     </>
   )
 }
