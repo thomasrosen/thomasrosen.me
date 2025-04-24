@@ -22,8 +22,13 @@ export async function getGroupedEntries({
 
   // Group entries by year and month
   const groupedEntries = entries.reduce((acc: GroupedEntries, entry) => {
-    const date = new Date(entry.date || '1970-01-01')
-    const asIsoString = date.toISOString().split('T')[0]
+    let asIsoString = '1970-01-01'
+    try {
+      const date = new Date(entry.date)
+      asIsoString = date.toISOString().split('T')[0]
+    } catch (error) {
+      // gooble up the error
+    }
 
     if (!acc[asIsoString]) {
       acc[asIsoString] = []

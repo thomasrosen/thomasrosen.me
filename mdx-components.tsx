@@ -12,6 +12,9 @@ import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 
 // import nextMDX from '@next/mdx'
+import { rehypeMapHtmlElementsToReact } from '@/lib/unified/rehypeMapHtmlElementsToReact'
+import { remarkFootnoteReferences } from '@/lib/unified/remarkFootnoteReferences'
+import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 import recmaExportFilepath from 'recma-export-filepath'
 import recmaMdxEscapeMissingComponents from 'recma-mdx-escape-missing-components'
 import recmaNextjsStaticProps from 'recma-nextjs-static-props'
@@ -19,14 +22,10 @@ import { refractor } from 'refractor'
 import rehypeMdxTitle from 'rehype-mdx-title'
 import rehypePreLanguage from 'rehype-pre-language'
 import remarkBreaks from 'remark-breaks'
-import remarkComment from 'remark-comment'
 import remarkFootnotesExtra from 'remark-footnotes-extra'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
-import { remarkFootnoteReferences } from './src/lib/unified/remarkFootnoteReferences'
-
-import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 
 export const components: MDXComponents = {
   code: (props) => {
@@ -45,7 +44,7 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  a: (props) => {
+  a: (props: any) => {
     const className = props.className
 
     const isFootnote = props['data-is-footnote']
@@ -80,6 +79,7 @@ export const components: MDXComponents = {
         {...props}
         className={cn(
           'underline decoration-primary decoration-2 underline-offset-2 hover:decoration-1',
+          'hyphens-none break-all',
           className
         )}
         target='_blank'
@@ -211,7 +211,7 @@ export const components: MDXComponents = {
       return null
     }
   },
-  iframe: (props) => {
+  Iframe: (props) => {
     const src = props.src ? sanitizeUrl(props.src) : undefined
 
     if (!src) {
@@ -237,21 +237,9 @@ export function useMDXComponents(
 }
 
 export const mdxOptions: MDXRemoteOptions['mdxOptions'] = {
-  outputFormat: 'function-body',
-  recmaPlugins: [
-    recmaMdxEscapeMissingComponents,
-    // recmaMdxChangeImports,
-    // recmaMdxImportMedia,
-    [
-      recmaExportFilepath,
-      {
-        absolute: true,
-      },
-    ],
-    recmaNextjsStaticProps,
-  ],
+  format: 'mdx',
+  development: false,
   remarkPlugins: [
-    remarkComment,
     remarkGfm,
     remarkBreaks,
     [remarkFootnotesExtra, { breakLink: true }],
@@ -260,6 +248,7 @@ export const mdxOptions: MDXRemoteOptions['mdxOptions'] = {
     [remarkMdxFrontmatter, { name: 'data' }],
   ],
   rehypePlugins: [
+    rehypeMapHtmlElementsToReact,
     rehypePreLanguage,
     rehypeMdxTitle,
     // rehypePreElements,
@@ -294,7 +283,7 @@ export const mdxOptions: MDXRemoteOptions['mdxOptions'] = {
             node.value,
             node.lang || 'txt'
           )
-          highlightTreeChildren = highlightTree.children
+          highlightTreeChildren = (highlightTree.children || []) as any
         } catch (error) {
           console.error('ERROR_aeJKJvEI', error)
 
@@ -336,4 +325,16 @@ export const mdxOptions: MDXRemoteOptions['mdxOptions'] = {
       return node
     },
   },
+  recmaPlugins: [
+    recmaMdxEscapeMissingComponents,
+    // recmaMdxChangeImports,
+    // recmaMdxImportMedia,
+    [
+      recmaExportFilepath,
+      {
+        absolute: true,
+      },
+    ],
+    recmaNextjsStaticProps,
+  ],
 }

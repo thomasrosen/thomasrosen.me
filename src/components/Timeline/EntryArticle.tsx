@@ -52,6 +52,7 @@ export function EntryArticle({
           ) : null}
           <Image
             src={entry.image || ''}
+            blurDataURL={entry.image_blurDataURL || undefined}
             alt={''}
             width={128}
             height={128}
@@ -64,6 +65,7 @@ export function EntryArticle({
           />
           <Image
             src={entry.image || ''}
+            blurDataURL={entry.image_blurDataURL || undefined}
             alt={''}
             width={128}
             height={128}

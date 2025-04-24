@@ -9,17 +9,17 @@ export async function loadPlaylists() {
         )
         .map(async (playlist) => {
           let coverphoto_src = null
+          let coverphoto_blurDataURL = null
 
           try {
             const playlist_coverphoto = playlist.coverphoto
 
-            // let coverphoto_blurDataURL = null
             if (!!playlist_coverphoto && playlist_coverphoto.length > 0) {
               const imagePath = await import(
                 `@/data/music/playlist_covers/${playlist_coverphoto}`
               )
               coverphoto_src = imagePath.default.src
-              // coverphoto_blurDataURL = imagePath.default.blurDataURL
+              coverphoto_blurDataURL = imagePath.default.blurDataURL
             }
           } catch (error) {
             // gooble up the error
@@ -28,6 +28,7 @@ export async function loadPlaylists() {
           return {
             ...playlist,
             coverphoto: coverphoto_src,
+            coverphoto_blurDataURL: coverphoto_blurDataURL,
           }
         })
     )
