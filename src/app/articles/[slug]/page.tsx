@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import '@/fonts/petrona-v28-latin/index.css'
 import { getRelativeTime } from '@/lib/getRelativeTime'
 import { loadArticles } from '@/lib/loadArticles'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -77,9 +78,13 @@ export async function ArticleLayout({
 
   return (
     <div
-      className={`tab_content article ${
-        !!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font'
-      }`}
+      className={cn(
+        'tab_content article',
+        !!article && article.font === 'serif'
+          ? 'serif_font'
+          : 'sans_serif_font',
+        'wrap-normal hyphens-auto'
+      )}
     >
       {!!article ? (
         <>
@@ -87,7 +92,7 @@ export async function ArticleLayout({
             {article.title}
           </Typo>
 
-          <Typo as='p' className='flex items-center gap-2'>
+          <Typo as='small' className='flex items-center gap-2 mb-8 flex-wrap'>
             <time
               dateTime={article.date}
               title={article.date}
@@ -103,6 +108,25 @@ export async function ArticleLayout({
                 </Badge>
               ))}
             </span>
+
+            {!!article &&
+            typeof coverphoto_src === 'string' &&
+            coverphoto_src.length > 0 ? (
+              <>
+                <meta itemProp='image' content={coverphoto_src} />
+                <Image
+                  src={coverphoto_src}
+                  blurDataURL={coverphoto_blurDataURL}
+                  alt={article.title}
+                  className={cn(
+                    'rounded-sm h-[20px] w-auto max-w-full',
+                    'hover:scale-1000 transition-all duration-150 z-10 hover:rounded-[1px]'
+                  )}
+                  width={40}
+                  height={40}
+                />
+              </>
+            ) : null}
           </Typo>
 
           {audio_src ? (
@@ -121,25 +145,9 @@ export async function ArticleLayout({
 
           {children}
 
-          <Dot />
-
-          {!!article &&
-          typeof coverphoto_src === 'string' &&
-          coverphoto_src.length > 0 ? (
-            <>
-              <br />
-              <br />
-              <meta itemProp='image' content={coverphoto_src} />
-              <Image
-                src={coverphoto_src}
-                blurDataURL={coverphoto_blurDataURL}
-                alt={article.title}
-                className='rounded-xl w-[200px] h-auto max-w-full'
-                width={200}
-                height={200}
-              />
-            </>
-          ) : null}
+          <center>
+            <Dot />
+          </center>
 
           <script
             type='application/ld+json'
