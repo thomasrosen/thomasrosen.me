@@ -6,7 +6,13 @@ import { Entry } from './Entry'
 import { getGroupedEntries } from './getGroupedEntries'
 import { getMonthName } from './getMonthName'
 
-export async function Timeline({ tags = [] }: { tags?: string[] }) {
+export async function Timeline({
+  tags = [],
+  showTimeHeadlines = false,
+}: {
+  tags?: string[]
+  showTimeHeadlines?: boolean
+}) {
   const groupedEntries = await getGroupedEntries({
     tags,
   })
@@ -15,25 +21,24 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
   let monthBefore: string | null = null
   let dayBefore: string | null = null
 
-  const showTimeHeadlines = false
-  const groupEverything = true
-
   let entriesToCombineWith: React.ReactNode[] = []
 
   const groupedEntriesAsArray = Object.entries(groupedEntries)
 
   return (
     <div className='w-full space-y-4'>
-      {groupedEntriesAsArray.map(([key, entries], index_year) => {
-        const isLastGroup = index_year === groupedEntriesAsArray.length - 1
+      {groupedEntriesAsArray.map(([key, entries], index) => {
+        const isLastGroup = index === groupedEntriesAsArray.length - 1
 
         const date = new Date(key)
         const year = date.getFullYear().toString()
         const month = date.getMonth().toString()
         const day = date.getDate().toString()
 
-        const isNewYear = year !== yearBefore
-        const isNewMonth = month !== monthBefore
+        const isNewYear = year !== yearBefore && index !== 0
+        const isNewMonth = month !== monthBefore && index !== 0
+
+        const innerGroupEverything = !isNewYear && !isNewMonth
 
         yearBefore = year
         monthBefore = month
@@ -101,14 +106,11 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
                   ? 'md:w-[var(--content-box-width)] col-span-full h-auto md:col-span-full md:h-auto'
                   : null,
 
-                ...(entryClone.displayAs === 'image'
+                ...(!innerGroupEverything &&
+                entryClone.displayAs === 'image' &&
+                !isSurroundedByImages
                   ? [
-                      isOnlyOneEntry || groupEverything
-                        ? null
-                        : entryClone.displayAs === 'image' &&
-                          !isSurroundedByImages
-                        ? 'md:w-[var(--content-box-width)] md:col-span-full md:h-auto'
-                        : null,
+                      'md:w-[var(--content-box-width)] md:col-span-full md:h-auto',
                     ]
                   : [])
               )}
@@ -124,14 +126,16 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
         })
 
         entriesToCombineWith.push(...entriesContent)
+        let entriesForRender: React.ReactNode[] = []
         if (
-          (groupEverything && !isLastGroup) ||
+          (innerGroupEverything && !isLastGroup) ||
           (isOnlyOneEntry && !isLastGroup && !showTimeHeadlines)
         ) {
-          return null
+          entriesForRender = []
+        } else {
+          entriesForRender = [...entriesToCombineWith]
+          entriesToCombineWith = []
         }
-        const entriesForRender = [...entriesToCombineWith]
-        entriesToCombineWith = []
 
         return (
           <React.Fragment key={key}>
@@ -140,8 +144,10 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
                 as='h2'
                 className='!mb-0 pb-4 tab_content mx-auto font-bold space-x-2'
               >
-                {isNewYear ? <span className='opacity-60'>{year}</span> : null}
-                {isNewMonth ? (
+                {isNewYear || index === 0 ? (
+                  <span className='opacity-60'>{year}</span>
+                ) : null}
+                {isNewMonth || index === 0 ? (
                   <span>{getMonthName(parseInt(month))}</span>
                 ) : null}
               </Typo>
