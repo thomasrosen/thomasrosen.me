@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { loadPlaylist, loadPlaylists } from '@/lib/loadPlaylists'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 function get_genres(playlist: any): string[] {
@@ -233,9 +234,9 @@ export default async function PagePlaylist({
         <div className='flex flex-wrap gap-2 items-center'>
           <div itemProp='keywords' className='contents'>
             {genres.map((genre) => (
-              <Badge variant='accent' key={genre}>
-                {genre}
-              </Badge>
+              <Link href={`/timeline?tags=${genre}`} key={genre}>
+                <Badge variant='accent'>{genre}</Badge>
+              </Link>
             ))}
           </div>
           <Typo as='small'>

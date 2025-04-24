@@ -103,9 +103,9 @@ export async function ArticleLayout({
             <span>—</span>
             <span className='contents' itemProp='keywords'>
               {article.tags.map((tag: string) => (
-                <Badge variant='accent' key={tag}>
-                  {tag}
-                </Badge>
+                <Link href={`/timeline?tags=${tag}`} key={tag}>
+                  <Badge variant='accent'>{tag}</Badge>
+                </Link>
               ))}
             </span>
 
