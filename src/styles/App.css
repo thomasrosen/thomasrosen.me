@@ -248,7 +248,8 @@ _::-webkit-full-page-media,
 
 
 .mygrid {
-	width: calc(var(--content-box-width) * 2.5);
+	/* width: calc(var(--content-box-width) * 2.5); */
+	width: calc(var(--content-box-width) * 1);
 	max-width: 100%;
 	margin-inline: auto;
 
