@@ -31,7 +31,7 @@ export function EntryArticle({
         'w-auto h-auto',
         'bg-background text-card-foreground',
         'flex items-start',
-        'p-6 gap-3',
+        'p-6 gap-6',
         'border border-border',
         'hover:bg-accent cursor-pointer',
         'transition-colors duration-150',
