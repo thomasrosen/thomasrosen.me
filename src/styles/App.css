@@ -248,7 +248,7 @@ _::-webkit-full-page-media,
 
 
 .mygrid {
-	width: calc(var(--content-box-width) * 2.5);
+	width: var(--content-box-width);
 	max-width: 100%;
 	margin-inline: auto;
 
@@ -271,6 +271,7 @@ _::-webkit-full-page-media,
 }
 @media (width >= 48rem) {
 	.mygrid {
+	  width: calc(var(--content-box-width) * 2.5);
 		grid-template-columns: repeat(auto-fit, var(--size));
 	}
 }
