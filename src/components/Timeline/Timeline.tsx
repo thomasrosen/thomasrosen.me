@@ -16,7 +16,7 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
   let dayBefore: string | null = null
 
   const showTimeHeadlines = false
-  const groupEverything = false
+  const groupEverything = true
 
   let entriesToCombineWith: React.ReactNode[] = []
 
@@ -90,12 +90,16 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
 
                 aspectRatioClass,
 
-                entryClone.imageAspectRatio === 2 &&
+                targetRatio === 2 &&
                   'col-span-2 md:col-span-2 aspect-[2] md:aspect-[2] min-h-[50vw] md:min-h-full h-auto w-full md:h-full',
-                entryClone.imageAspectRatio === 0.5 &&
+                targetRatio === 0.5 &&
                   'col-span-1 row-span-2 md:col-span-1 md:row-span-2 aspect-[0.5]',
                 entryClone.displayAs !== 'image' &&
-                  'col-span-2 row-span-1 max-w-[var(--content-box-width)] w-full aspect-[unset] md:w-[var(--content-box-width)] md:col-span-full h-auto md:h-auto',
+                  'col-span-2 row-span-1 max-w-[var(--content-box-width)] w-full !aspect-[unset] md:w-[var(--content-box-width)] md:col-span-full h-auto md:h-auto',
+
+                entryClone.displayAs === 'image' && targetRatio > 1
+                  ? 'md:w-[var(--content-box-width)] col-span-full h-auto md:col-span-full md:h-auto'
+                  : null,
 
                 ...(entryClone.displayAs === 'image'
                   ? [
@@ -146,7 +150,7 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
             {entriesForRender.length > 0 ? (
               <div
                 key={`${year}-${month}-${day}`}
-                className='mygrid gap-4 place-content-center place-items-start'
+                className='mygrid gap-4 place-content-center place-items-center'
               >
                 {entriesForRender}
               </div>
