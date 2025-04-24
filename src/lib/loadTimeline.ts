@@ -89,7 +89,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     image: article.data.coverphoto_src,
     image_blurDataURL: article.data.coverphoto_blurDataURL,
     displayAs: 'article',
-    imageAspectRatio: article.data.coverphoto_src ? 2 : 4,
+    imageAspectRatio: 4,
     date: article.data.date,
     tags: [...new Set(['article', ...(article.data.tags || [])])],
     audio: article.data.audio_src,
