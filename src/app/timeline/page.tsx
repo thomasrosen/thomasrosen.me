@@ -1,6 +1,7 @@
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
+import { notFound } from 'next/navigation'
 
 export default async function PageTimeline({
   searchParams,
@@ -8,8 +9,11 @@ export default async function PageTimeline({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { tags } = await searchParams
-
   const tagsArray = Array.isArray(tags) ? tags : tags ? [tags] : undefined
+
+  if (!tagsArray && process.env.NODE_ENV !== 'development') {
+    notFound()
+  }
 
   return (
     <>

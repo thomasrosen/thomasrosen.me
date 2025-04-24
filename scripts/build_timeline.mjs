@@ -22,10 +22,15 @@ function getImageMetadata(filePath) {
     // Get image dimensions
     const dimensions = imageSize(buffer);
 
+    const datetime = tags.DateTime?.description || tags.DateTimeOriginal?.description || tags.DateTimeDigitized?.description
+
     return {
+      exif: tags,
       width: dimensions.width,
       height: dimensions.height,
-      exif: tags
+      datetime: exifToISO(datetime),
+      latitude: tags.GPSLatitude?.description,
+      longitude: tags.GPSLongitude?.description,
     };
   } catch (error) {
     console.warn(`⚠️ Could not read metadata for ${filePath}:`, error.message);
@@ -50,30 +55,32 @@ export function processImageFiles() {
     // Process each image file
     const images = [];
 
-    for (const file of files) {
-      const filePath = path.join(outputImagesDir, file);
-      const ext = path.extname(file).toLowerCase();
+    for (const filename of files) {
+      const filePath = path.join(outputImagesDir, filename);
+      const ext = path.extname(filename).toLowerCase();
 
       if (!supportedFormats.includes(ext)) {
-        console.info(`Skipping ${file}: Not a supported image format`);
+        console.info(`Skipping ${filename}: Not a supported image format`);
         continue;
       }
 
       const metadata = getImageMetadata(filePath);
-      if (!metadata) continue;
-
-      // Extract date from EXIF or use file creation date
-      const date = metadata.exif?.DateTimeOriginal?.description ||
-        metadata.exif?.DateTime?.description ||
-        fs.statSync(filePath).birthtime.toISOString();
+      if (!metadata) {
+        continue;
+      }
 
       // Create image entry with correct path for imports
       images.push({
-        date,
+        date: metadata.datetime,
+        latitude: metadata.latitude,
+        longitude: metadata.longitude,
         displayAs: 'image',
-        title: path.parse(file).name,
-        image: `/data/timeline/images/${file}`, // Path relative to /public/
+        author: 'Thomas Rosen',
+        title: '', // path.parse(filename).name,
+        text: metadata.exif?.UserComment?.description || '',
+        image: filename,
         imageAspectRatio: metadata.width / metadata.height,
+        tags: []
       });
     }
 
@@ -150,3 +157,28 @@ ${yamlContent}
 // // Run the script
 // const images = processImageFiles();
 // processTimelineEntries(images);
+
+
+/**
+ * Convert EXIF datetime to ISO 8601 format
+ * @param {string} exifDateTime - EXIF datetime string (format: YYYY:MM:DD HH:MM:SS)
+ * @param {string} [subsec] - Subseconds (e.g., "234")
+ * @param {string} [timezone] - Timezone offset (e.g., "+01:00" or "Z")
+ * @returns {string} ISO 8601 formatted date
+ */
+function exifToISO(exifDateTime, subsec, timezone) {
+  if (!exifDateTime) return null;
+
+  // Basic conversion: Replace colons and add T
+  let isoStr = exifDateTime
+    .replace(/^(\d{4}):(\d{2}):(\d{2})/, '$1-$2-$3')  // Date part
+    .replace(' ', 'T');                                // Time separator
+
+  // Add subseconds if provided
+  if (subsec) {
+    isoStr = isoStr.replace(/(T\d{2}:\d{2}:\d{2})/, `$1.${subsec}`);
+  }
+
+  // Add timezone (default to Z if none provided)
+  return isoStr + (timezone || 'Z');
+}

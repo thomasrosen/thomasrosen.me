@@ -16,7 +16,7 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
   let dayBefore: string | null = null
 
   const showTimeHeadlines = false
-  const groupEverything = true
+  const groupEverything = false
 
   let entriesToCombineWith: React.ReactNode[] = []
 
@@ -56,6 +56,31 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
             entryClone.imageAspectRatio = entryClone.imageAspectRatio || 4
           }
 
+          const possibleImageAspectRatios: Record<string, string> = {
+            '0.25': 'aspect-[0.25]',
+            '0.5': 'aspect-[0.5]',
+            '0.75': 'aspect-[0.75]',
+            '1': 'aspect-[1]',
+            '1.5': 'aspect-[1.5]',
+            '2': 'aspect-[2]',
+            '4': 'aspect-[4]',
+          }
+
+          function findNearestRatio(target: number): string {
+            const availableRatios = Object.keys(possibleImageAspectRatios).map(
+              Number
+            )
+            return String(
+              availableRatios.reduce((prev, curr) =>
+                Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev
+              )
+            )
+          }
+
+          const targetRatio = entryClone.imageAspectRatio || 1
+          const nearestRatio = findNearestRatio(targetRatio)
+          const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
+
           return (
             <Entry
               key={`${entryClone.date}-${index_entry}`}
@@ -63,7 +88,8 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
                 'h-full w-full',
                 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
 
-                'aspect-[1]',
+                aspectRatioClass,
+
                 entryClone.imageAspectRatio === 2 &&
                   'col-span-2 md:col-span-2 aspect-[2] md:aspect-[2] min-h-[50vw] md:min-h-full h-auto w-full md:h-full',
                 entryClone.imageAspectRatio === 0.5 &&
@@ -120,7 +146,7 @@ export async function Timeline({ tags = [] }: { tags?: string[] }) {
             {entriesForRender.length > 0 ? (
               <div
                 key={`${year}-${month}-${day}`}
-                className='mygrid gap-4 place-content-center place-items-center'
+                className='mygrid gap-4 place-content-center place-items-start'
               >
                 {entriesForRender}
               </div>
