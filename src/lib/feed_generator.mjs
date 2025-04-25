@@ -203,7 +203,7 @@ export function generate_rss_feed(options) {
 
     feed.item({
       title: article.data.title,
-      description: article.plaintext,
+      description: article.data.plaintext,
       url: `${domain}/articles/${article.data.slug}`, // link to the item
       guid: article.data.id || undefined, // optional - defaults to url
       categories: article.data.tags, // optional - array of item categories
@@ -222,8 +222,8 @@ export function generate_rss_feed(options) {
         { 'itunes:episode': episode_number },
         { 'itunes:season': 1 },
         { 'itunes:author': author },
-        { 'itunes:subtitle': article.summary },
-        { 'itunes:summary': article.summary },
+        { 'itunes:subtitle': article.data.summary },
+        { 'itunes:summary': article.data.summary },
         {
           'itunes:image': {
             _attr: {
