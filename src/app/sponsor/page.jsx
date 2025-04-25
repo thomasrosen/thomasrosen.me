@@ -1,15 +1,18 @@
 import { Dot } from '@/components/Dot'
+import { Typo } from '@/components/Typo'
 
 export default function PageSponsor() {
   return (
     <div className='tab_content'>
-      <h2>Sponsor</h2>
+      <Typo as='h2' className='mb-6'>
+        Sponsor
+      </Typo>
 
-      <div className='links_grid'>
-        <h3>
+      <div className='links_grid !gap-y-6'>
+        <Typo as='h3' className='text-md'>
           <Dot color='#0d57aa' />
           PayPal
-        </h3>
+        </Typo>
         <a
           href='https://paypal.me/ThomasRosen'
           target='_blank'
@@ -19,10 +22,10 @@ export default function PageSponsor() {
           ThomasRosen
         </a>
 
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#000000' />
           GitHub
-        </h3>
+        </Typo>
         <a
           href='https://github.com/sponsors/thomasrosen'
           target='_blank'
