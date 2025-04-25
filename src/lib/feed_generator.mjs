@@ -179,7 +179,7 @@ export function generate_rss_feed(options) {
 
     let audio_url = `${domain}/blog/audio/Empty_Podcast_Audio.m4a` // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
     let audio_file = './blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
-    const audio = article.data.audio_src
+    const audio = article.data.audio
     if (
       !!audio
       && typeof audio === 'string'
@@ -187,7 +187,7 @@ export function generate_rss_feed(options) {
     ) {
 
       audio_url = `${domain}${audio}`
-      audio_file = audio.replace('/_next', '.next')
+      audio_file = audio // .replace('/_next', '.next')
     }
 
     let audio_length = '00:10' // length of the empty default enclosure
