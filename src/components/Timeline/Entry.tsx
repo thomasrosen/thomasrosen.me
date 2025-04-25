@@ -1,7 +1,6 @@
 import { type TimelineEntry } from '@/lib/loadTimeline'
 import { EntryArticle } from './EntryArticle'
 import { EntryImage } from './EntryImage'
-import { EntryPlaylist } from './EntryPlaylist'
 import { EntryText } from './EntryText'
 
 export function Entry({
@@ -33,14 +32,6 @@ export function Entry({
         />
       )
     case 'playlist':
-      return (
-        <EntryPlaylist
-          entry={parsedEntry}
-          className={className}
-          entryBefore={entryBefore}
-          entryAfter={entryAfter}
-        />
-      )
     case 'link':
     case 'article':
       return (
