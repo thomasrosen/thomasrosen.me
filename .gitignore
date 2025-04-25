@@ -1,12 +1,7 @@
 .tmp/
 data_about_thomasrosen/
 public/data/
-public/blog/
-public/blog/feed.rss
-public/generated/
 src/data/
-
-build/cache/webpack/
 
 # Logs
 logs
