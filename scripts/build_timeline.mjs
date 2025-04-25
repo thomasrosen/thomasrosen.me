@@ -7,7 +7,7 @@ import path from 'path';
 const outputImagesDir = './src/data/timeline/images';
 
 // Supported image formats
-const supportedFormats = ['.jpg', '.jpeg', '.png'];
+const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp'];
 
 // Function to read image metadata
 function getImageMetadata(filePath) {
