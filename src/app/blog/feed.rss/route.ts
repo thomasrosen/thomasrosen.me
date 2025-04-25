@@ -1,4 +1,4 @@
-import { generate_rss_feed } from '@/lib/feed_generator.mjs'
+import { generate_rss_feed } from '@/lib/feed_generator'
 import { loadArticles } from '@/lib/loadArticles'
 
 export async function GET() {
