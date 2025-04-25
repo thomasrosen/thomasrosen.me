@@ -72,32 +72,45 @@ export default function RootLayout({ children }) {
 
             <br />
 
-            <nav className='my-4 flex flex-row gap-4 flex-wrap justify-center'>
-              <Link href='/'>
-                <Button variant='accent' size='lg'>
-                  Hi!
-                </Button>
-              </Link>
-              <Link href='/articles'>
-                <Button variant='secondary' size='lg'>
-                  <Emoji aria-hidden='true'>📝</Emoji> Blog
-                </Button>
-              </Link>
-              <Link href='/projects'>
-                <Button variant='secondary' size='lg'>
-                  <Emoji aria-hidden='true'>🚀</Emoji> Projects
-                </Button>
-              </Link>
-              <Link href='/playlists'>
-                <Button variant='secondary' size='lg'>
-                  <Emoji aria-hidden='true'>🎸</Emoji> Playlists
-                </Button>
-              </Link>
-              <Link href='/press'>
-                <Button variant='secondary' size='lg'>
-                  <Emoji aria-hidden='true'>📰</Emoji> In the Press
-                </Button>
-              </Link>
+            <nav>
+              <div className='my-4 flex flex-row gap-4 flex-wrap justify-center'>
+                <Link href='/'>
+                  <Button variant='accent' size='lg'>
+                    Hi!
+                  </Button>
+                </Link>
+                <Link href='/articles'>
+                  <Button variant='secondary' size='lg'>
+                    <Emoji aria-hidden='true'>📝</Emoji> Blog
+                  </Button>
+                </Link>
+                <Link href='/playlists'>
+                  <Button variant='secondary' size='lg'>
+                    <Emoji aria-hidden='true'>🎸</Emoji> Playlists
+                  </Button>
+                </Link>
+                <Link href='/press'>
+                  <Button variant='secondary' size='lg'>
+                    <Emoji aria-hidden='true'>📰</Emoji> In the Press
+                  </Button>
+                </Link>
+
+                <Link href='/follow'>
+                  <Button variant='accent' size='lg'>
+                    Follow
+                  </Button>
+                </Link>
+                <Link href='/contact'>
+                  <Button variant='accent' size='lg'>
+                    Contact
+                  </Button>
+                </Link>
+                <Link href='/sponsor'>
+                  <Button variant='accent' size='lg'>
+                    Sponsor
+                  </Button>
+                </Link>
+              </div>
             </nav>
 
             <div className='mb-8' />
@@ -105,24 +118,6 @@ export default function RootLayout({ children }) {
             {children}
 
             <div className='mb-8' />
-
-            <nav className='my-4 flex flex-row gap-4 flex-wrap justify-center'>
-              <Link href='/follow'>
-                <Button variant='accent' size='lg'>
-                  Follow
-                </Button>
-              </Link>
-              <Link href='/contact'>
-                <Button variant='accent' size='lg'>
-                  Contact
-                </Button>
-              </Link>
-              <Link href='/sponsor'>
-                <Button variant='accent' size='lg'>
-                  Sponsor
-                </Button>
-              </Link>
-            </nav>
 
             <Link
               href='https://mailchi.mp/59f35b198abe/thomasrosen'
