@@ -129,6 +129,7 @@ export async function loadArticles() {
             filepath,
             data: {
               ...data,
+              plaintext,
               summary,
               audio_src,
               coverphoto_src,
