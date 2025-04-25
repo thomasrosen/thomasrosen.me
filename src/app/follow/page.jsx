@@ -1,15 +1,18 @@
 import { Dot } from '@/components/Dot'
+import { Typo } from '@/components/Typo'
 
 export default function PageFollow() {
   return (
     <div className='tab_content'>
-      <h2>Follow</h2>
+      <Typo as='h2' className='mb-6'>
+        Follow
+      </Typo>
 
-      <div className='links_grid'>
-        <h3>
+      <div className='links_grid !gap-y-6'>
+        <Typo as='h3' className='text-md'>
           <Dot color='#ed4956' />
           Instagram
-        </h3>
+        </Typo>
         <a
           href='https://www.instagram.com/thomasrosen/'
           target='_blank'
@@ -18,10 +21,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#1da1f2' />
           Twitter
-        </h3>
+        </Typo>
         <a
           href='https://twitter.com/thomas_roses'
           target='_blank'
@@ -30,10 +33,10 @@ export default function PageFollow() {
         >
           thomas_roses
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#00f2ea' />
           TikTok
-        </h3>{' '}
+        </Typo>{' '}
         {/* #ff0050 #00f2ea */}
         <a
           href='https://www.tiktok.com/@thomasroses'
@@ -43,10 +46,10 @@ export default function PageFollow() {
         >
           thomasroses
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#ff0000' />
           YouTube
-        </h3>
+        </Typo>
         <a
           href='https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA'
           target='_blank'
@@ -55,10 +58,10 @@ export default function PageFollow() {
         >
           Thomas Rosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#0a66c1' />
           LinkedIn
-        </h3>
+        </Typo>
         <a
           href='https://www.linkedin.com/in/thomasroses/'
           target='_blank'
@@ -67,10 +70,10 @@ export default function PageFollow() {
         >
           thomasroses
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#000000' />
           GitHub
-        </h3>
+        </Typo>
         <a
           href='https://github.com/thomasrosen'
           target='_blank'
@@ -80,11 +83,11 @@ export default function PageFollow() {
           thomasrosen
         </a>
         <div></div>
-        <hr className='small' />
-        <h3>
+        <hr className='col-span-1 !my-6' />
+        <Typo as='h3' className='text-md'>
           <Dot color='#d60017' />
           Apple Music
-        </h3>
+        </Typo>
         <a
           href='https://music.apple.com/profile/thomasrosen'
           target='_blank'
@@ -93,10 +96,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#e24329' />
           GitLab
-        </h3>
+        </Typo>
         <a
           href='https://gitlab.com/thomasrosen'
           target='_blank'
@@ -105,10 +108,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#e24329' />
           GitLab (Volt DE)
-        </h3>
+        </Typo>
         <a
           href='https://gitlab.com/thomas.rosen.volt'
           target='_blank'
@@ -117,10 +120,10 @@ export default function PageFollow() {
         >
           thomas.rosen.volt
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#000000' />
           Subreply
-        </h3>
+        </Typo>
         <a
           href='https://subreply.com/thomasrosen'
           target='_blank'
@@ -129,10 +132,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#2f93d7' />
           Mastodon
-        </h3>
+        </Typo>
         <a
           href='https://mastodon.social/@thomasrosen'
           target='_blank'
@@ -141,10 +144,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#268f23' />
           Medium
-        </h3>
+        </Typo>
         <a
           href='https://medium.com/@thomas_rosen'
           target='_blank'
@@ -153,10 +156,10 @@ export default function PageFollow() {
         >
           thomas_rosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#001935' />
           Tumblr
-        </h3>
+        </Typo>
         <a
           href='https://thomasrosen.tumblr.com/'
           target='_blank'
@@ -165,10 +168,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#e60023' />
           Pinterest
-        </h3>
+        </Typo>
         <a
           href='https://www.pinterest.com/thomas_roses/'
           target='_blank'
@@ -177,10 +180,10 @@ export default function PageFollow() {
         >
           thomas_roses
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#1067d9' />
           Flickr
-        </h3>
+        </Typo>
         <a
           href='https://www.flickr.com/photos/116207237@N03/'
           target='_blank'
@@ -189,10 +192,10 @@ export default function PageFollow() {
         >
           Thomas Rosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#ea4c89' />
           Dribbble
-        </h3>
+        </Typo>
         <a
           href='https://dribbble.com/thomasrosen/likes'
           target='_blank'
@@ -201,10 +204,10 @@ export default function PageFollow() {
         >
           thomasrosen/likes
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#7ebc6f' />
           OpenStreetMap
-        </h3>
+        </Typo>
         <a
           href='https://www.openstreetmap.org/user/thomasrosen'
           target='_blank'
@@ -213,10 +216,10 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <h3>
+        <Typo as='h3' className='text-md'>
           <Dot color='#000000' />
           dev.to
-        </h3>
+        </Typo>
         <a
           href='https://dev.to/thomasrosen'
           target='_blank'
