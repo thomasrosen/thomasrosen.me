@@ -271,8 +271,8 @@ _::-webkit-full-page-media,
 }
 @media (width >= 48rem) {
 	.mygrid {
-	  width: calc(var(--content-box-width) * 2.5);
-		grid-template-columns: repeat(auto-fit, var(--size));
+	  width: calc((var(--content-box-width) + var(--gap)) * 2);
+		grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
 	}
 }
 
