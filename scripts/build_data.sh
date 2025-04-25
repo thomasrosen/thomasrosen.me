@@ -64,7 +64,11 @@ echo "✅ done running build_music_metadata.mjs";
 
 mkdir -p ./src/data/blog
 cp -rp ./blog/* ./src/data/blog
-echo "✅ done copying blog";
+echo "✅ done copying blog to src/data/blog";
+
+mkdir -p ./public/blog
+cp -rp ./blog/* ./public/blog
+echo "✅ done copying blog to public/blog";
 
 mkdir -p ./src/data/timeline
 cp -rp ./data_about_thomasrosen/timeline/* ./src/data/timeline
