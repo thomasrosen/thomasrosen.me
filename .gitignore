@@ -1,6 +1,7 @@
 .tmp/
 data_about_thomasrosen/
 public/data/
+public/blog/
 src/data/
 
 # Logs
