@@ -223,7 +223,7 @@ export function generate_rss_feed(options) {
         { 'itunes:season': 1 },
         { 'itunes:author': author },
         { 'itunes:subtitle': article.data.summary },
-        { 'itunes:summary': article.data.summary },
+        { 'itunes:summary': article.data.plaintext },
         {
           'itunes:image': {
             _attr: {
