@@ -11,9 +11,7 @@
     "lint": "next lint",
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
-    "build_data": "sh ./scripts/build_data.sh",
-    "build_timeline": "node ./scripts/build_timeline.js",
-    "build_music_metadata": "node ./scripts/build_music_metadata.mjs"
+    "build_data": "sh ./scripts/build_data.sh"
   },
   "browserslist": {
     "production": [
