@@ -23,7 +23,7 @@ export function EntryImage({
     <div
       className={cn(
         'relative rounded-xl bg-background overflow-hidden',
-        'w-auto h-[400px]',
+        'w-auto h-auto',
         'group/image',
         className
       )}
