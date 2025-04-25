@@ -28,9 +28,9 @@ export function EntryArticle({
       href={entry.url}
       className={cn(
         'relative rounded-lg overflow-hidden',
-        'w-auto h-auto',
+        'w-full h-full',
         'bg-background text-card-foreground',
-        'flex items-start',
+        'flex items-start xs:flex-nowrap flex-wrap content-start',
         'p-6 gap-6',
         'border border-border',
         'hover:bg-accent cursor-pointer',
