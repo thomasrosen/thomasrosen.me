@@ -30,6 +30,9 @@ export async function getGroupedEntries({
       // gooble up the error
     }
 
+    // reduce to YYYY-MM
+    asIsoString = asIsoString.split('-').slice(0, 2).join('-')
+
     if (!acc[asIsoString]) {
       acc[asIsoString] = []
     }

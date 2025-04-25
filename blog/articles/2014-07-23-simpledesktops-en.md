@@ -31,11 +31,11 @@ So pure focus … I guess …
 
 ### Diamond Heart from 2014-05-27
 
-[![Diamantenherz](/blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png)](/blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png)
+![Diamantenherz](/blog/images/2014-07-23-simpledesktops/diamantenherz_2880x1800.png)
 
 ### Dandelion from 2014-07-23
 
-[![Pusteblume](/blog/images/2014-07-23-simpledesktops/Pusteblume.png)](/blog/images/2014-07-23-simpledesktops/Pusteblume.png)
+![Pusteblume](/blog/images/2014-07-23-simpledesktops/Pusteblume.png)
 
 ---
 

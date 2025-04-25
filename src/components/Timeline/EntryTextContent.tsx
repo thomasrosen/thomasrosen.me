@@ -45,7 +45,7 @@ export function EntryTextContent({
   const hasAudio = !!entry.audio
 
   return (
-    <div className='text-[0px] leading-none space-y-1 w-full'>
+    <div className='text-[0px] leading-none space-y-2 w-full'>
       {entry.date && (
         <Typo
           as='time'
@@ -53,17 +53,10 @@ export function EntryTextContent({
           className='flex items-center gap-2 font-normal text-xs'
         >
           <span className='opacity-60 shrink-0'>
-            {sameDayAsBefore
-              ? noTimeDefined
-                ? dateString
-                : timeString
-              : noTimeDefined
-              ? dateString
-              : fullDateTimeString}
+            {noTimeDefined ? dateString : fullDateTimeString}
           </span>
-          {sameDayAsBefore ? null : (
-            <div className='h-[1px] bg-foreground w-full opacity-10 rounded-full' />
-          )}
+
+          <div className='h-[1px] bg-foreground w-full opacity-10 rounded-full' />
         </Typo>
       )}
       {entry.author || (showTags && tags?.length) || hasAudio ? (

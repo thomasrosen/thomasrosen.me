@@ -5,7 +5,7 @@ import { Emoji } from '../Emoji'
 import { EntryTextContent } from './EntryTextContent'
 import { LinkOrDiv } from './LinkOrDiv'
 
-export function EntryArticle({
+export function EntryPlaylist({
   entry,
   isFirstImage = false,
   className = '',
@@ -28,7 +28,7 @@ export function EntryArticle({
       href={entry.url}
       className={cn(
         'relative rounded-lg overflow-hidden',
-        'w-full h-full',
+        'w-auto h-auto',
         'bg-background text-card-foreground',
         'flex items-start xs:flex-nowrap flex-wrap content-start',
         'p-6 gap-6',

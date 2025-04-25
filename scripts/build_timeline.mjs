@@ -1,17 +1,13 @@
 import ExifReader from 'exifreader';
 import fs from 'fs';
-// import matter from 'gray-matter';
 import { imageSize } from 'image-size';
 import path from 'path';
 
 // Define paths
-// const inputImagesDir = './data_about_thomasrosen/timeline/images';
-// const inputEntriesPath = './data_about_thomasrosen/timeline/entries.yml';
 const outputImagesDir = './src/data/timeline/images';
-// const outputEntriesPath = './src/data/timeline/entries.json';
 
 // Supported image formats
-const supportedFormats = ['.jpg', '.jpeg', '.png'];
+const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp'];
 
 // Function to read image metadata
 function getImageMetadata(filePath) {
@@ -24,11 +20,19 @@ function getImageMetadata(filePath) {
 
     const datetime = tags.DateTime?.description || tags.DateTimeOriginal?.description || tags.DateTimeDigitized?.description
 
+    const textKey = ['Caption/Abstract', 'UserComment', 'ImageDescription', 'Comments'].find(tag => tags[tag]?.description)
+
+    let text = '';
+    if (tags[textKey]?.description) {
+      text = tags[textKey]?.description;
+    }
+
     return {
       exif: tags,
       width: dimensions.width,
       height: dimensions.height,
       datetime: exifToISO(datetime),
+      text,
       latitude: tags.GPSLatitude?.description,
       longitude: tags.GPSLongitude?.description,
     };
@@ -41,14 +45,6 @@ function getImageMetadata(filePath) {
 // Function to process image files
 export function processImageFiles() {
   try {
-    // // Create output directory and copy images
-    // if (!fs.existsSync(outputImagesDir)) {
-    //   return []
-    //   // fs.mkdirSync(outputImagesDir, { recursive: true });
-    // }
-    // execSync(`cp -r ${inputImagesDir}/* ${outputImagesDir}/`);
-    // console.info(`✅ Successfully copied images to ${outputImagesDir}`);
-
     // Read all files from the output directory
     const files = fs.readdirSync(outputImagesDir);
 
@@ -77,7 +73,7 @@ export function processImageFiles() {
         displayAs: 'image',
         author: 'Thomas Rosen',
         title: '', // path.parse(filename).name,
-        text: metadata.exif?.UserComment?.description || '',
+        text: metadata.text,
         image: filename,
         imageAspectRatio: metadata.width / metadata.height,
         tags: []
@@ -94,70 +90,6 @@ export function processImageFiles() {
     return [];
   }
 }
-
-/*
-// Function to process timeline entries
-function processTimelineEntries(images) {
-  try {
-    // Check if entries file exists
-    if (!fs.existsSync(inputEntriesPath)) {
-      console.info(`ℹ️ No entries file found at ${inputEntriesPath}, using only images`);
-      return images;
-    }
-
-    // Read YAML file
-    const yamlContent = fs.readFileSync(inputEntriesPath, 'utf8');
-    const { data } = matter(`---
-${yamlContent}
----`);
-
-    // Ensure entries is an array
-    const entries = Array.isArray(data.entries) ? data.entries : [];
-
-    // Create a map of images by their path for quick lookup
-    const imageMap = new Map(images.map(img => [img.image, img]));
-
-    // Process entries first, merging with image data if available
-    const processedEntries = entries.map(entry => {
-      if (entry.image && imageMap.has(entry.image)) {
-        // If entry has an image that exists in our images, merge the data
-        const imageData = imageMap.get(entry.image);
-        imageMap.delete(entry.image); // Remove from map to track which images are used
-        return {
-          ...imageData,
-          ...entry // Entry data takes precedence
-        };
-      }
-      return entry;
-    });
-
-    // Add any remaining images that weren't in entries
-    const remainingImages = Array.from(imageMap.values());
-    const combinedEntries = [...processedEntries, ...remainingImages];
-
-    // Sort all entries by date
-    combinedEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // Ensure output directory exists
-    ensureDirectoryExists(outputEntriesPath);
-
-    // Write JSON file
-    fs.writeFileSync(outputEntriesPath, JSON.stringify({ entries: combinedEntries }, null, 2));
-
-    console.info(`✅ Successfully combined ${entries.length} entries with ${images.length} images (${remainingImages.length} images added)`);
-    return combinedEntries;
-  } catch (error) {
-    console.error('❌ Error processing timeline entries:', error);
-    console.error('Error details:', error.stack);
-    return images;
-  }
-}
-*/
-
-// // Run the script
-// const images = processImageFiles();
-// processTimelineEntries(images);
-
 
 /**
  * Convert EXIF datetime to ISO 8601 format

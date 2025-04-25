@@ -23,7 +23,8 @@ export function EntryImage({
     <div
       className={cn(
         'relative rounded-xl bg-background overflow-hidden',
-        'w-auto h-[400px]',
+        'w-auto h-auto',
+        'group/image',
         className
       )}
     >
@@ -41,12 +42,15 @@ export function EntryImage({
           unoptimized={isExternalImage}
         />
       ) : null}
-      <div className='z-30 absolute -bottom-2 -left-2 -right-2 p-2 w-[calc(100%+(var(--spacing)*2))] pt-[64px]'>
-        <div className='z-10 absolute bottom-0 left-0 right-0 h-[calc(100%-0px)] backdrop-blur-[2px] mask-t-from-[calc(100%-64px)]' />
+      <div
+        className={cn(
+          'z-30 absolute -bottom-2 -left-2 -right-2 p-2 w-[calc(100%+(var(--spacing)*2))] pt-[64px]',
+          'transition-transform duration-150 will-change-[transform] group-hover/image:translate-y-[100%]'
+        )}
+      >
         <div className='z-20 absolute bottom-0 left-0 right-0 h-[calc(100%-32px)] backdrop-blur-[4px] mask-t-from-[calc(100%-64px)]' />
         <div className='z-30 absolute bottom-0 left-0 right-0 h-[calc(100%-48px)] backdrop-blur-[8px] mask-t-from-[calc(100%-64px)]' />
         <div className='z-40 absolute bottom-0 left-0 right-0 h-[calc(100%-64px)] backdrop-blur-[16px] mask-t-from-[calc(100%-64px)]' />
-        <div className='z-50 absolute bottom-0 left-0 right-0 h-[calc(100%-96px)] backdrop-blur-[32px] mask-t-from-[calc(100%-64px)]' />
         <div className='z-50 absolute bottom-0 left-0 right-0 h-[calc(100%-32px)] mask-t-to-[100%] bg-background opacity-30' />
         <div className='relative z-60 text-foreground flex flex-col gap-2 p-4'>
           <EntryTextContent

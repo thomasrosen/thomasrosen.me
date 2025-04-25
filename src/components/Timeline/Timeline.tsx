@@ -17,13 +17,13 @@ export async function Timeline({
     tags,
   })
 
-  let yearBefore: string | null = null
-  let monthBefore: string | null = null
-  let dayBefore: string | null = null
-
   let entriesToCombineWith: React.ReactNode[] = []
 
   const groupedEntriesAsArray = Object.entries(groupedEntries)
+
+  let yearBefore: string | null = null
+  let monthBefore: string | null = null
+  let dayBefore: string | null = null
 
   return (
     <div className='w-full space-y-4'>
@@ -35,10 +35,10 @@ export async function Timeline({
         const month = date.getMonth().toString()
         const day = date.getDate().toString()
 
-        const isNewYear = year !== yearBefore && index !== 0
-        const isNewMonth = month !== monthBefore && index !== 0
+        const isNewYear = year !== yearBefore
+        const isNewMonth = month !== monthBefore
 
-        const innerGroupEverything = !isNewYear && !isNewMonth
+        const innerGroupEverything = false // !isNewYear && !isNewMonth &&
 
         yearBefore = year
         monthBefore = month
@@ -50,14 +50,16 @@ export async function Timeline({
           const before = entries[index_entry - 1]
           const after = entries[index_entry + 1]
 
+          const displayAs = entry.displayAs || 'text'
+
           const isSurroundedByImages =
             before?.displayAs === 'image' || after?.displayAs === 'image'
 
           const entryClone = { ...entry }
-          if (entryClone.displayAs === 'image') {
+          if (displayAs === 'image') {
             entryClone.imageAspectRatio = entryClone.imageAspectRatio || 1
           }
-          if (entryClone.displayAs !== 'image') {
+          if (displayAs !== 'image') {
             entryClone.imageAspectRatio = entryClone.imageAspectRatio || 4
           }
 
@@ -91,28 +93,31 @@ export async function Timeline({
               key={`${entryClone.date}-${index_entry}`}
               className={cn(
                 'h-full w-full',
-                'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
+                'col-span-1 row-span-1',
 
                 aspectRatioClass,
 
-                targetRatio === 2 &&
-                  'col-span-2 md:col-span-2 aspect-[2] md:aspect-[2] min-h-[50vw] md:min-h-full h-auto w-full md:h-full',
-                targetRatio === 0.5 &&
-                  'col-span-1 row-span-2 md:col-span-1 md:row-span-2 aspect-[0.5]',
-                entryClone.displayAs !== 'image' &&
-                  'col-span-2 row-span-1 max-w-[var(--content-box-width)] w-full !aspect-[unset] md:w-[var(--content-box-width)] md:col-span-full h-auto md:h-auto',
+                targetRatio === 2 && 'xs:col-span-2',
+                targetRatio === 0.5 && 'row-span-2',
 
-                entryClone.displayAs === 'image' && targetRatio > 1
-                  ? 'md:w-[var(--content-box-width)] col-span-full h-auto md:col-span-full md:h-auto'
+                displayAs !== 'image'
+                  ? '!aspect-[unset] xs:max-w-[var(--content-box-width)] xs:col-span-full h-auto'
                   : null,
 
-                ...(!innerGroupEverything &&
-                entryClone.displayAs === 'image' &&
-                !isSurroundedByImages
-                  ? [
-                      'md:w-[var(--content-box-width)] md:col-span-full md:h-auto',
-                    ]
-                  : [])
+                displayAs === 'image' && targetRatio > 1
+                  ? 'h-auto xs:col-span-2' // xs:max-w-[var(--content-box-width)]
+                  : null
+
+                // ...(!innerGroupEverything &&
+                // displayAs === 'image' &&
+                // !isSurroundedByImages
+                //   ? [
+                //       'xs:max-w-[var(--content-box-width)] col-span-1 xs:col-span-full xs:h-auto',
+                //     ]
+                //   : []),
+
+                // displayAs === 'playlist' &&
+                //   'xs:col-span-2 xs:w-full xs:h-auto aspect-[unset]'
               )}
               entry={entryClone}
               isFirstImage={
@@ -137,31 +142,35 @@ export async function Timeline({
           entriesToCombineWith = []
         }
 
+        if (!showTimeHeadlines && entriesForRender.length === 0) {
+          return null
+        }
+
         return (
-          <React.Fragment key={key}>
+          <div
+            key={key}
+            className='mygrid gap-4 place-content-center place-items-center'
+          >
             {showTimeHeadlines ? (
               <Typo
                 as='h2'
-                className='!mb-0 pb-4 tab_content mx-auto font-bold space-x-2'
+                className={cn(
+                  'col-span-1 xs:col-span-full row-span-1 w-full max-w-[var(--content-box-width)] h-auto',
+                  'font-bold',
+                  'flex gap-x-4 flex-wrap',
+                  isNewMonth && index !== 0 && 'mt-8',
+                  isNewYear && index !== 0 && 'mt-32'
+                )}
               >
-                {isNewYear || index === 0 ? (
-                  <span className='opacity-60'>{year}</span>
-                ) : null}
-                {isNewMonth || index === 0 ? (
+                {isNewYear ? <span className='opacity-60'>{year}</span> : null}
+                {isNewMonth ? (
                   <span>{getMonthName(parseInt(month))}</span>
                 ) : null}
               </Typo>
             ) : null}
 
-            {entriesForRender.length > 0 ? (
-              <div
-                key={`${year}-${month}-${day}`}
-                className='mygrid gap-4 place-content-center place-items-center'
-              >
-                {entriesForRender}
-              </div>
-            ) : null}
-          </React.Fragment>
+            {entriesForRender.length > 0 ? entriesForRender : null}
+          </div>
         )
       })}
     </div>
