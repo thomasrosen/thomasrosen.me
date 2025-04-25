@@ -1,3 +1,3 @@
 # thomasrosen.me
 
-My website.
+My website :)
