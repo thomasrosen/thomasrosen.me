@@ -58,7 +58,7 @@ export default async function PageArticles() {
         </div>
       </div>
 
-      <Timeline tags={['article']} />
+      <Timeline tags={['article', 'project']} showTimeHeadlines={false} />
     </>
   )
 }
