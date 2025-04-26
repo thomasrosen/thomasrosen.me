@@ -1,5 +1,5 @@
-import { type TimelineEntry } from '@/lib/loadTimeline'
 import { cn } from '@/lib/utils'
+import type { TimelineEntry } from '@/types'
 import { EntryTextContent } from './EntryTextContent'
 
 export function EntryText({

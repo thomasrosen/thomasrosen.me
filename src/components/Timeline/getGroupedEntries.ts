@@ -1,4 +1,5 @@
-import { loadTimeline, type TimelineEntry } from '@/lib/loadTimeline'
+import { loadTimeline } from '@/lib/loadTimeline'
+import type { TimelineEntry } from '@/types'
 
 type GroupedEntries = Record<string, TimelineEntry[]>
 

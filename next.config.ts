@@ -38,13 +38,17 @@ let nextConfig: NextConfig = {
   //   '/*': ['/**/*'],
   // },
 
-  experimental: {
-    scrollRestoration: true,
-    routerBFCache: true,
-    viewTransition: true,
-  },
+  // experimental: {
+  //   scrollRestoration: true,
+  //   routerBFCache: true,
+  //   viewTransition: true,
+  // },
 
   webpack: (config, { isServer }) => {
+    config.infrastructureLogging = {
+      level: 'error', // or 'warn' if you still want some warnings
+    }
+
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, 'src'),

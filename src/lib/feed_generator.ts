@@ -1,3 +1,4 @@
+import type { Article } from '@/types'
 import RSS from 'rss'
 
 /*
@@ -15,17 +16,17 @@ https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fthomasrosen.me%2Fblog%
 const author = 'Thomas Rosen'
 const domain = 'https://thomasrosen.me'
 
-export function generate_rss_feed(options) {
+export function generate_rss_feed(options: { articles?: Article[] }) {
+  const { articles = [] } = options || {}
 
-  const {
-    articles = []
-  } = options || {}
-
-  const all_tags = [...new Set(articles.flatMap(article => article.data.tags || []))]
+  const all_tags = [
+    ...new Set(articles.flatMap((article) => article.data?.tags || [])),
+  ]
 
   const current_year = new Date().getFullYear()
 
-  const description = 'This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.'
+  const description =
+    'This is the feed of my blog. Expect anything and everything. But mostly tech and random stories. Maybe some calm political stuff.'
 
   const feed_image_url = `${domain}/DSC03214_square_2000.jpg`
 
@@ -40,7 +41,6 @@ export function generate_rss_feed(options) {
     image_url: feed_image_url,
     // docs: 'http://example.com/rss/docs.html',
     // geoRSS: true,
-    author: author,
     managingEditor: `${email} (${author})`,
     webMaster: `${email} (${author})`,
     copyright: `Copyright ${current_year} ${author}`,
@@ -49,115 +49,113 @@ export function generate_rss_feed(options) {
     pubDate: new Date().toISOString(),
     // ttl: '60',
     custom_namespaces: {
-      'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
+      itunes: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
     },
     custom_elements: [
+      { author },
       { 'itunes:explicit': 'no' }, // yes/no/clean or true/false ???
       { 'itunes:type': 'episodic' },
       { 'itunes:subtitle': description },
       { 'itunes:author': author },
       { 'itunes:summary': description },
       {
-        'itunes:owner': [
-          { 'itunes:name': author },
-          { 'itunes:email': email }
-        ]
+        'itunes:owner': [{ 'itunes:name': author }, { 'itunes:email': email }],
       },
       {
         'itunes:image': {
           _attr: {
-            href: feed_image_url
-          }
-        }
+            href: feed_image_url,
+          },
+        },
       },
       {
         'itunes:category': [
           {
             _attr: {
-              text: 'Society & Culture'
-            }
+              text: 'Society & Culture',
+            },
           },
           {
             'itunes:category': {
               _attr: {
-                text: 'Personal Journals'
-              }
-            }
+                text: 'Personal Journals',
+              },
+            },
           },
           {
             'itunes:category': {
               _attr: {
-                text: 'Places & Travel'
-              }
-            }
+                text: 'Places & Travel',
+              },
+            },
           },
-        ]
+        ],
       },
       {
         'itunes:category': [
           {
             _attr: {
-              text: 'Technology'
-            }
+              text: 'Technology',
+            },
           },
-        ]
+        ],
       },
       {
         'itunes:category': [
           {
             _attr: {
-              text: 'Arts'
-            }
+              text: 'Arts',
+            },
           },
           {
             'itunes:category': {
               _attr: {
-                text: 'Books'
-              }
-            }
+                text: 'Books',
+              },
+            },
           },
-        ]
+        ],
       },
       {
         'itunes:category': [
           {
             _attr: {
-              text: 'Business'
-            }
+              text: 'Business',
+            },
           },
           {
             'itunes:category': {
               _attr: {
-                text: 'Non-Profit'
-              }
-            }
+                text: 'Non-Profit',
+              },
+            },
           },
-        ]
+        ],
       },
       {
         'itunes:category': [
           {
             _attr: {
-              text: 'Health & Fitness'
-            }
+              text: 'Health & Fitness',
+            },
           },
           {
             'itunes:category': {
               _attr: {
-                text: 'Mental Health'
-              }
-            }
+                text: 'Mental Health',
+              },
+            },
           },
           {
             'itunes:category': {
               _attr: {
-                text: 'Sexuality'
-              }
-            }
+                text: 'Sexuality',
+              },
+            },
           },
-        ]
+        ],
       },
-    ]
+    ],
   })
 
   for (let i = 0; i < articles.length; i++) {
@@ -166,37 +164,33 @@ export function generate_rss_feed(options) {
     const episode_number = i + 1
 
     let coverphoto_url = feed_image_url
-    const coverphoto = article.data.coverphoto_src
+    const coverphoto = article.data?.coverphoto_src
     if (
-      !!coverphoto
-      && typeof coverphoto === 'string'
-      && coverphoto.length > 0
+      !!coverphoto &&
+      typeof coverphoto === 'string' &&
+      coverphoto.length > 0
     ) {
       coverphoto_url = `${domain}${coverphoto}`
     }
 
-
-
     let audio_url = `${domain}/blog/audio/Empty_Podcast_Audio.m4a` // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
     let audio_file = './blog/audio/Empty_Podcast_Audio.m4a' // A small basicly empty audio file as the default enclosure. So the item is shown in Apple Podcasts.
-    const audio = article.data.audio_src
-    const audio_public = article.data.audio
-    if (
-      !!audio
-      && typeof audio === 'string'
-      && audio.length > 0
-    ) {
-
+    const audio = article.data?.audio_src
+    const audio_public = article.data?.audio
+    if (!!audio && typeof audio === 'string' && audio.length > 0) {
       audio_url = `${domain}${audio_public}`
-      audio_file = audio.replace('/_next/static/media/', '.next/server/static/media/')
+      audio_file = audio.replace(
+        '/_next/static/media/',
+        '.next/server/static/media/'
+      )
     }
 
     let audio_length = '00:10' // length of the empty default enclosure
     const audio_length_tmp = article.data.audio_length
     if (
-      !!audio_length_tmp
-      && typeof audio_length_tmp === 'string'
-      && audio_length_tmp.length > 0
+      !!audio_length_tmp &&
+      typeof audio_length_tmp === 'string' &&
+      audio_length_tmp.length > 0
     ) {
       audio_length = audio_length_tmp
     }
@@ -227,16 +221,16 @@ export function generate_rss_feed(options) {
         {
           'itunes:image': {
             _attr: {
-              href: coverphoto_url
-            }
-          }
+              href: coverphoto_url,
+            },
+          },
         },
-      ]
+      ],
     })
   }
 
   // cache the xml to send to clients
-  const xml = feed.xml({ indent: true });
+  const xml = feed.xml({ indent: true })
 
   return xml
 }

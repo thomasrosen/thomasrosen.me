@@ -1,6 +1,9 @@
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
 export default function PagePress() {
   return (
     <>

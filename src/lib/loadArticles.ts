@@ -1,3 +1,4 @@
+import type { Article } from '@/types'
 import { components, mdxOptions } from '@@/mdx-components'
 import fs from 'fs'
 import { evaluate } from 'next-mdx-remote-client/rsc'
@@ -8,23 +9,6 @@ import remarkStringify from 'remark-stringify'
 import strip from 'strip-markdown'
 import { unified } from 'unified'
 import { removeFrontmatter } from './unified/removeFrontmatter'
-
-type Article = {
-  content: any
-  filepath: string
-  getStaticProps: () => Promise<any>
-  data: {
-    slug: string
-    title: string
-    summary: string
-    date: string
-    audio: string
-    tags: string[]
-    audio_src?: string
-    coverphoto_src?: string
-    coverphoto_blurDataURL?: string
-  }
-}
 
 export async function loadArticles() {
   try {

@@ -1,4 +1,4 @@
-import { type TimelineEntry } from '@/lib/loadTimeline'
+import type { TimelineEntry } from '@/types'
 import { EntryArticle } from './EntryArticle'
 import { EntryImage } from './EntryImage'
 import { EntryText } from './EntryText'

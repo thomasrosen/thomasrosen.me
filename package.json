@@ -5,7 +5,7 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run build_data",
+    "prebuild": "tsc --noEmit && npm run build_data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -92,6 +92,7 @@
     "@types/node": "20.9.1",
     "@types/react": "18.2.37",
     "@types/react-katex": "^3.0.4",
+    "@types/rss": "^0.0.32",
     "@types/webpack-env": "^1.18.8",
     "autoprefixer": "^10.4.21",
     "concurrently": "^8.2.2",

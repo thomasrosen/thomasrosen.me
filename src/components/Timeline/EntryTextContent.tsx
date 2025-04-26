@@ -1,5 +1,5 @@
 import { Typo } from '@/components/Typo'
-import { type TimelineEntry } from '@/lib/loadTimeline'
+import type { TimelineEntry } from '@/types'
 import { Emoji } from '../Emoji'
 import { Badge } from '../ui/badge'
 

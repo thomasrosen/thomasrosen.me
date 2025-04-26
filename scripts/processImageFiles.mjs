@@ -42,9 +42,15 @@ function getImageMetadata(filePath) {
   }
 }
 
+const processImageFilesCache = undefined;
+
 // Function to process image files
 export function processImageFiles() {
   try {
+    if (processImageFilesCache) {
+      return processImageFilesCache;
+    }
+
     // Read all files from the output directory
     const files = fs.readdirSync(outputImagesDir);
 
@@ -83,7 +89,7 @@ export function processImageFiles() {
     // Sort images by date
     images.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    console.info(`✅ Successfully processed ${images.length} images`);
+    processImageFilesCache = images;
     return images;
   } catch (error) {
     console.error('❌ Error processing image files:', error);

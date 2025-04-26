@@ -9,6 +9,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
 function get_genres(playlist: any): string[] {
   if (!playlist || !playlist.Songs || Array.isArray(playlist.Songs) === false) {
     return []
@@ -234,7 +237,7 @@ export default async function PagePlaylist({
         <div className='flex flex-wrap gap-2 items-center'>
           <div itemProp='keywords' className='contents'>
             {genres.map((genre) => (
-              <Link href={`/timeline?tags=${genre}`} key={genre}>
+              <Link href={`/tag/${genre}`} key={genre}>
                 <Badge variant='accent'>{genre}</Badge>
               </Link>
             ))}

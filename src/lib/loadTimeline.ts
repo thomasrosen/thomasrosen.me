@@ -1,49 +1,19 @@
-// type Article = {
-//   default: any
-//   filepath: string
-//   getStaticProps: () => Promise<any>
-//   data: {
-//     slug: string
-//     title: string
-//     summary: string
-//     date: string
-//     audio: string
-//     tags: string[]
-//     audio_src?: string
-//     coverphoto_src?: string
-//     coverphoto_blurDataURL?: string
-//   }
-// }
-
 import timeline from '@/data/timeline/entries.yml'
 import { loadArticles } from '@/lib/loadArticles'
 import { loadPlaylists } from '@/lib/loadPlaylists'
-import { processImageFiles } from '@@/scripts/build_timeline.mjs'
+import type { TimelineEntry } from '@/types'
+import { processImageFiles } from '@@/scripts/processImageFiles.mjs'
 
-export type TimelineEntry = {
-  date: string
-  displayAs: string
-  title?: string
-  text?: string
-  author?: string
-  url?: string
-  image?: string
-  image_blurDataURL?: string
-  imageAspectRatio?: number
-  audio?: string
-  audio_length?: string
-  loc?: {
-    name?: string
-    lat: number
-    lng: number
-  }
-  tags?: string[]
-}
+let loadTimelineCache: TimelineEntry[] | undefined = undefined
 
 export async function loadTimeline(): Promise<TimelineEntry[]> {
+  if (loadTimelineCache) {
+    return loadTimelineCache
+  }
+
   const images = processImageFiles()
   const imagesAsEntries = await Promise.all(
-    images.map(async (data, index) => {
+    images.map(async (data) => {
       const loc =
         data.latitude && data.longitude
           ? {
@@ -107,10 +77,12 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     text: playlist.count === 1 ? 'One Song' : playlist.count + ' Songs',
   }))
 
-  return [
+  loadTimelineCache = [
     ...timelineEntries,
     ...articlesAsEntries,
     ...imagesAsEntries,
     ...playlistsAsEntries,
   ]
+
+  return loadTimelineCache
 }
