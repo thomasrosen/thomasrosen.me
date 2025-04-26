@@ -14,7 +14,6 @@ export type Article = {
     tags: string[]
     audio_src?: string
     coverphoto_src?: string
-    coverphoto_blurDataURL?: string
   }
 }
 
@@ -26,7 +25,6 @@ export type TimelineEntry = {
   author?: string
   url?: string
   image?: string
-  image_blurDataURL?: string
   imageAspectRatio?: number
   audio?: string
   audio_length?: string

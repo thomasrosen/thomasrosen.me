@@ -1,10 +1,4 @@
 import { Typo } from '@/components/Typo'
-import { Badge } from '@/components/ui/badge'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import type { MDXComponents } from 'mdx/types'
@@ -27,6 +21,21 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
+// import refractor_bash from 'refractor/lang/bash'
+// import refractor_csv from 'refractor/lang/csv'
+// import refractor_excelFormula from 'refractor/lang/excel-formula'
+// import refractor_ignore from 'refractor/lang/ignore'
+// import refractor_jsx from 'refractor/lang/jsx'
+
+// refractor.register(refractor_jsx)
+// refractor.register(refractor_excelFormula)
+// refractor.register(refractor_bash)
+// refractor.register(refractor_csv)
+// refractor.register(refractor_ignore)
+// refractor.alias({
+//   markup: ['atom', 'html', 'mathml', 'rss', 'ssml', 'svg', 'xml', 'vue'],
+// })
+
 export const components: MDXComponents = {
   code: (props) => {
     return <code {...props} />
@@ -47,32 +56,32 @@ export const components: MDXComponents = {
   a: (props: any) => {
     const className = props.className
 
-    const isFootnote = props['data-is-footnote']
-    if (isFootnote) {
-      const label = props['data-label']
-
-      return (
-        <Tooltip delayDuration={100}>
-          <TooltipTrigger asChild>
-            <Link {...props} target='_blank'>
-              <Badge>{props.children}</Badge>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent>
-            <Link {...props} target='_blank'>
-              <div className='flex flex-col gap-1'>
-                {label ? <strong>{label}</strong> : null}
-                {props.href ? (
-                  <em className='inline-block w-fit max-w-[200px] break-all text-xs leading-tight opacity-60'>
-                    {props.href}
-                  </em>
-                ) : null}
-              </div>
-            </Link>
-          </TooltipContent>
-        </Tooltip>
-      )
-    }
+    // const isFootnote = props['data-is-footnote']
+    // if (isFootnote) {
+    //   const label = props['data-label']
+    //
+    //   return (
+    //     <Tooltip delayDuration={100}>
+    //       <TooltipTrigger asChild>
+    //         <Link {...props} target='_blank'>
+    //           <Badge>{props.children}</Badge>
+    //         </Link>
+    //       </TooltipTrigger>
+    //       <TooltipContent>
+    //         <Link {...props} target='_blank'>
+    //           <div className='flex flex-col gap-1'>
+    //             {label ? <strong>{label}</strong> : null}
+    //             {props.href ? (
+    //               <em className='inline-block w-fit max-w-[200px] break-all text-xs leading-tight opacity-60'>
+    //                 {props.href}
+    //               </em>
+    //             ) : null}
+    //           </div>
+    //         </Link>
+    //       </TooltipContent>
+    //     </Tooltip>
+    //   )
+    // }
 
     return (
       <Link
@@ -166,7 +175,7 @@ export const components: MDXComponents = {
     }
 
     const imagePath = require(`@/data${props.src}`)
-    const src = imagePath.default.src
+    const src = imagePath.default
 
     return (
       <Image

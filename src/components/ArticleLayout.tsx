@@ -14,7 +14,6 @@ interface ArticleLayoutProps {
     date: string
     tags: string[]
     coverphoto_src?: string
-    coverphoto_blurDataURL?: string
     audio_src?: string
     font?: string
     slug: string
@@ -27,7 +26,6 @@ export async function ArticleLayout({
   data: article,
 }: ArticleLayoutProps) {
   const coverphoto_src = article.coverphoto_src
-  const coverphoto_blurDataURL = article.coverphoto_blurDataURL
   const audio_src = article.audio_src
 
   return (
@@ -70,7 +68,6 @@ export async function ArticleLayout({
                 <meta itemProp='image' content={coverphoto_src} />
                 <Image
                   src={coverphoto_src}
-                  blurDataURL={coverphoto_blurDataURL}
                   alt={article.title}
                   className={cn(
                     'rounded-sm h-[20px] w-auto max-w-full',

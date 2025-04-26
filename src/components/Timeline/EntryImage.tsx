@@ -31,7 +31,6 @@ export function EntryImage({
       {hasImage ? (
         <Image
           src={entry.image || ''}
-          blurDataURL={entry.image_blurDataURL || undefined}
           alt={''}
           fill
           className='z-20 relative object-cover'

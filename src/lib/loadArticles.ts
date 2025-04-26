@@ -68,7 +68,6 @@ export async function loadArticles() {
           const summary = plaintext.substring(0, 100).trim() + '…'
 
           let coverphoto_src = null
-          let coverphoto_blurDataURL = null
           if (
             !!data &&
             typeof data.coverphoto === 'string' &&
@@ -79,8 +78,7 @@ export async function loadArticles() {
               const cleanPath = decodeURIComponent(data.coverphoto)
               // const currentDir = process.cwd()
               const imagePath = await import(`@/data${cleanPath}`)
-              coverphoto_src = imagePath.default.src
-              coverphoto_blurDataURL = imagePath.default.blurDataURL
+              coverphoto_src = imagePath.default
             } catch (error) {
               console.error('Error loading cover photo:', error)
               // Continue without the cover photo rather than failing the build
@@ -117,7 +115,6 @@ export async function loadArticles() {
               summary,
               audio_src,
               coverphoto_src,
-              coverphoto_blurDataURL,
             },
           }
         })

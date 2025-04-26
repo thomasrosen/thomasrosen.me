@@ -23,15 +23,13 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
           : undefined
 
       let image_src = null
-      let image_blurDataURL = null
       if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
         try {
           // Remove any URL encoding from the path
           const cleanPath = decodeURIComponent(data.image)
           // const currentDir = process.cwd()
           const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
-          image_src = imagePath.default.src
-          image_blurDataURL = imagePath.default.blurDataURL
+          image_src = imagePath.default
         } catch (error) {
           console.error('Error loading image:', error)
           // Continue without the image rather than failing the build
@@ -41,7 +39,6 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
       return {
         ...data,
         image: image_src,
-        image_blurDataURL: image_blurDataURL,
         tags: [...new Set(['image', ...(data.tags || [])])],
         loc,
       }
@@ -57,7 +54,6 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     author: 'Thomas Rosen',
     url: `/articles/${article.data.slug}`,
     image: article.data.coverphoto_src,
-    image_blurDataURL: article.data.coverphoto_blurDataURL,
     displayAs: 'article',
     imageAspectRatio: 4,
     date: article.data.date,
@@ -69,7 +65,6 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const playlistsAsEntries = playlists.map((playlist) => ({
     displayAs: 'playlist',
     image: playlist.coverphoto,
-    image_blurDataURL: playlist.coverphoto_blurDataURL,
     url: '/playlists/' + playlist.name,
     tags: [...new Set(['playlist', ...(playlist.genres || [])])],
     date: playlist.date_month,

@@ -1,10 +1,4 @@
 import { Typo } from '@/components/Typo'
-import { Badge } from '@/components/ui/badge'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
 import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
 import { cn } from '@/lib/utils'
@@ -155,32 +149,32 @@ export function markdownToReact(markdown: string) {
         a: ({ node, ...props }: any) => {
           const className = props.className
 
-          const isFootnote = props['data-is-footnote']
-          if (isFootnote) {
-            const label = props['data-label']
-
-            return (
-              <Tooltip delayDuration={100}>
-                <TooltipTrigger asChild>
-                  <Link {...props} target='_blank'>
-                    <Badge>{props.children}</Badge>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <Link {...props} target='_blank'>
-                    <div className='flex flex-col gap-1'>
-                      {label ? <strong>{label}</strong> : null}
-                      {props.href ? (
-                        <em className='inline-block w-fit max-w-[200px] break-all text-xs leading-tight opacity-60'>
-                          {props.href}
-                        </em>
-                      ) : null}
-                    </div>
-                  </Link>
-                </TooltipContent>
-              </Tooltip>
-            )
-          }
+          // const isFootnote = props['data-is-footnote']
+          // if (isFootnote) {
+          //   const label = props['data-label']
+          //
+          //   return (
+          //     <Tooltip delayDuration={100}>
+          //       <TooltipTrigger asChild>
+          //         <Link {...props} target='_blank'>
+          //           <Badge>{props.children}</Badge>
+          //         </Link>
+          //       </TooltipTrigger>
+          //       <TooltipContent>
+          //         <Link {...props} target='_blank'>
+          //           <div className='flex flex-col gap-1'>
+          //             {label ? <strong>{label}</strong> : null}
+          //             {props.href ? (
+          //               <em className='inline-block w-fit max-w-[200px] break-all text-xs leading-tight opacity-60'>
+          //                 {props.href}
+          //               </em>
+          //             ) : null}
+          //           </div>
+          //         </Link>
+          //       </TooltipContent>
+          //     </Tooltip>
+          //   )
+          // }
 
           return (
             <Link
@@ -307,7 +301,7 @@ export function markdownToReact(markdown: string) {
           }
 
           const imagePath = await import(`@/data${props.src}`)
-          const src = imagePath.default.src
+          const src = imagePath.default
 
           return (
             <Image

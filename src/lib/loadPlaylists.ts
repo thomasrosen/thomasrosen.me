@@ -9,7 +9,6 @@ export async function loadPlaylists() {
         )
         .map(async (playlist) => {
           let coverphoto_src = null
-          let coverphoto_blurDataURL = null
 
           try {
             const playlist_coverphoto = playlist.coverphoto
@@ -18,8 +17,7 @@ export async function loadPlaylists() {
               const imagePath = await import(
                 `@/data/music/playlist_covers/${playlist_coverphoto}`
               )
-              coverphoto_src = imagePath.default.src
-              coverphoto_blurDataURL = imagePath.default.blurDataURL
+              coverphoto_src = imagePath.default
             }
           } catch (error) {
             // gooble up the error
@@ -28,7 +26,6 @@ export async function loadPlaylists() {
           return {
             ...playlist,
             coverphoto: coverphoto_src,
-            coverphoto_blurDataURL: coverphoto_blurDataURL,
           }
         })
     )
@@ -63,7 +60,8 @@ export async function loadPlaylist(name: string) {
             const albumArtworkPath = await import(
               `@/data/music/album_artworks/${albumArtwork}`
             )
-            song['Album Artwork'] = albumArtworkPath.default.src
+            console.log('albumArtworkPath', albumArtworkPath)
+            song['Album Artwork'] = albumArtworkPath.default
           }
         } catch (error) {
           // gooble up the error

@@ -1,27 +1,10 @@
-import path from 'path'
-// import refractor_bash from 'refractor/lang/bash'
-// import refractor_csv from 'refractor/lang/csv'
-// import refractor_excelFormula from 'refractor/lang/excel-formula'
-// import refractor_ignore from 'refractor/lang/ignore'
-// import refractor_jsx from 'refractor/lang/jsx'
+import bundleAnalyzer from '@next/bundle-analyzer'
 import type { NextConfig } from 'next'
-// import recmaMdxImportMedia from 'recma-mdx-import-media'
+import path from 'path'
 import { fileURLToPath } from 'url'
-// import { rehypePreElements } from './src/lib/unified/rehypePreElements'
-// import recmaMdxChangeImports from 'recma-mdx-change-imports'
-// import withYaml from 'next-plugin-yaml'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
-// refractor.register(refractor_jsx)
-// refractor.register(refractor_excelFormula)
-// refractor.register(refractor_bash)
-// refractor.register(refractor_csv)
-// refractor.register(refractor_ignore)
-// refractor.alias({
-//   markup: ['atom', 'html', 'mathml', 'rss', 'ssml', 'svg', 'xml', 'vue'],
-// })
 
 let nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -38,11 +21,13 @@ let nextConfig: NextConfig = {
   //   '/*': ['/**/*'],
   // },
 
-  // experimental: {
-  //   scrollRestoration: true,
-  //   routerBFCache: true,
-  //   viewTransition: true,
-  // },
+  experimental: {
+    forceSwcTransforms: true,
+    ppr: 'incremental',
+    //   scrollRestoration: true,
+    //   routerBFCache: true,
+    //   viewTransition: true,
+  },
 
   webpack: (config, { isServer }) => {
     config.infrastructureLogging = {
@@ -117,6 +102,25 @@ let nextConfig: NextConfig = {
       use: 'ignore-loader',
     })
 
+    // Find existing rule handling images
+    const imageRule = config.module.rules.find((rule: any) => {
+      if (typeof rule !== 'object') {
+        return false
+      }
+      if (!rule.test) {
+        return false
+      }
+      return (
+        rule.test?.toString().includes('jpg') ||
+        rule.test?.toString().includes('png')
+      )
+    })
+
+    if (imageRule) {
+      imageRule.type = 'asset/resource' // Tell Webpack: treat as file, not as inline asset
+      delete imageRule.parser // Clean up potential leftover settings
+    }
+
     return config
   },
 
@@ -164,5 +168,10 @@ const withMDX = nextMDX({
 })
 nextConfig = withMDX(nextConfig)
 */
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
+nextConfig = withBundleAnalyzer(nextConfig)
 
 export default nextConfig

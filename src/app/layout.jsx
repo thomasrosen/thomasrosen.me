@@ -10,6 +10,8 @@ import '@/styles/index.css'
 import Link from 'next/link'
 import Script from 'next/script'
 
+export const experimental_ppr = true
+
 export default function RootLayout({ children }) {
   return (
     <html lang='en' suppressHydrationWarning>
