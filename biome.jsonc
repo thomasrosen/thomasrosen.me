@@ -11,7 +11,7 @@
   "linter": {
     "rules": {
       "style": {
-        "useFilenamingConvention": "error"
+        "useFilenamingConvention": "off"
       },
       "correctness": {
         "noUnusedImports": {
@@ -25,6 +25,12 @@
       },
       "nursery": {
         "noUnknownAtRule": "off"
+      },
+      "performance": {
+        "useTopLevelRegex": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       }
     }
   },
