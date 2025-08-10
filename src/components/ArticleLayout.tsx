@@ -1,11 +1,11 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { Dot } from '@/components/Dot'
 import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { getRelativeTime } from '@/lib/getRelativeTime'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
 
 interface ArticleLayoutProps {
   children: React.ReactNode
@@ -21,10 +21,7 @@ interface ArticleLayoutProps {
   }
 }
 
-export async function ArticleLayout({
-  children,
-  data: article,
-}: ArticleLayoutProps) {
+export function ArticleLayout({ children, data: article }: ArticleLayoutProps) {
   const coverphoto_src = article.coverphoto_src
   const audio_src = article.audio_src
 
@@ -32,62 +29,49 @@ export async function ArticleLayout({
     <div
       className={cn(
         'tab_content article',
-        !!article && article.font === 'serif'
-          ? 'serif_font'
-          : 'sans_serif_font',
+        !!article && article.font === 'serif' ? 'serif_font' : 'sans_serif_font',
         'wrap-normal hyphens-auto'
       )}
     >
-      {!!article ? (
+      {article ? (
         <>
-          <Typo as='h2' itemProp='headline'>
+          <Typo as="h2" itemProp="headline">
             {article.title}
           </Typo>
 
-          <Typo as='small' className='flex items-center gap-2 mb-8 flex-wrap'>
-            <time
-              dateTime={article.date}
-              title={article.date}
-              itemProp='datePublished'
-            >
+          <Typo as="small" className="mb-8 flex flex-wrap items-center gap-2">
+            <time dateTime={article.date} itemProp="datePublished" title={article.date}>
               {getRelativeTime(new Date(article.date))}
             </time>
             <span>—</span>
-            <span className='contents' itemProp='keywords'>
+            <span className="contents" itemProp="keywords">
               {article.tags.map((tag: string) => (
                 <Link href={`/tag/${tag}`} key={tag}>
-                  <Badge variant='accent'>{tag}</Badge>
+                  <Badge variant="accent">{tag}</Badge>
                 </Link>
               ))}
             </span>
 
-            {!!article &&
-            typeof coverphoto_src === 'string' &&
-            coverphoto_src.length > 0 ? (
+            {!!article && typeof coverphoto_src === 'string' && coverphoto_src.length > 0 ? (
               <>
-                <meta itemProp='image' content={coverphoto_src} />
+                <meta content={coverphoto_src} itemProp="image" />
                 <Image
-                  src={coverphoto_src}
                   alt={article.title}
                   className={cn(
-                    'rounded-sm h-[20px] w-auto max-w-full',
-                    'hover:scale-1000 transition-all duration-150 z-10 hover:rounded-[1px]'
+                    'h-[20px] w-auto max-w-full rounded-sm',
+                    'z-10 transition-all duration-150 hover:scale-1000 hover:rounded-[1px]'
                   )}
-                  width={40}
                   height={40}
+                  src={coverphoto_src}
+                  width={40}
                 />
               </>
             ) : null}
           </Typo>
 
           {audio_src ? (
-            <audio
-              controls
-              preload='metadata'
-              className='w-full mb-4'
-              src={audio_src}
-            >
-              <source src={audio_src} type='audio/mpeg' />
+            <audio className="mb-4 w-full" controls preload="metadata" src={audio_src}>
+              <source src={audio_src} type="audio/mpeg" />
               <Link href={audio_src}>
                 <Button>Download audio of the article.</Button>
               </Link>
@@ -101,7 +85,6 @@ export async function ArticleLayout({
           </center>
 
           <script
-            type='application/ld+json'
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 '@context': 'https://schema.org',
@@ -131,6 +114,7 @@ export async function ArticleLayout({
                 articleBody: article.html,
               }),
             }}
+            type="application/ld+json"
           />
         </>
       ) : null}

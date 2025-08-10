@@ -27,29 +27,27 @@ export function Shine({
     const children = childrenWrapperRef.current
     const filterElement = filterRef.current
     const lightElement = filterElement?.querySelector('fePointLight')
-    if (!filterElement || !children || !lightElement) return
+    if (!(filterElement && children && lightElement)) return
 
     function getBounds(children: HTMLDivElement) {
-      return new Promise<IntersectionObserverEntry['boundingClientRect']>(
-        (resolve) => {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              // Loop through all `entries` returned by the observer
-              for (const entry of entries) {
-                // The `entry.boundingClientRect` is where all the dimensions are stored
-                resolve(entry.boundingClientRect)
-                observer.disconnect()
-                break
-              }
-            },
-            {
-              threshold: [],
+      return new Promise<IntersectionObserverEntry['boundingClientRect']>((resolve) => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            // Loop through all `entries` returned by the observer
+            for (const entry of entries) {
+              // The `entry.boundingClientRect` is where all the dimensions are stored
+              resolve(entry.boundingClientRect)
+              observer.disconnect()
+              break
             }
-          )
+          },
+          {
+            threshold: [],
+          }
+        )
 
-          observer.observe(children as Element)
-        }
-      )
+        observer.observe(children as Element)
+      })
     }
 
     const setPos = async () => {
@@ -89,9 +87,7 @@ export function Shine({
       {...otherProps}
     >
       <svg
-        width='0'
-        height='0'
-        // This is crucial. Without these styles the effect breaks on some browsers
+        height="0"
         style={{
           position: 'fixed',
           top: 0,
@@ -102,45 +98,42 @@ export function Shine({
           height: '100%',
           pointerEvents: 'none',
         }}
+        // This is crucial. Without these styles the effect breaks on some browsers
+        width="0"
       >
-        <filter id={filterId} ref={filterRef} colorInterpolationFilters='sRGB'>
-          <feGaussianBlur in='SourceAlpha' stdDeviation={puffyness} />
+        <filter colorInterpolationFilters="sRGB" id={filterId} ref={filterRef}>
+          <feGaussianBlur in="SourceAlpha" stdDeviation={puffyness} />
           <feSpecularLighting
-            result='light-source'
-            // represents the height of the surface for a light filter primitive
-            surfaceScale='2'
-            // The bigger the value the bigger the reflection
-            specularConstant='0.75'
-            // controls the focus for the light source. The bigger the value the brighter the light
-            specularExponent='120'
             lightingColor={lightColor}
+            // represents the height of the surface for a light filter primitive
+            result="light-source"
+            // The bigger the value the bigger the reflection
+            specularConstant="0.75"
+            // controls the focus for the light source. The bigger the value the brighter the light
+            specularExponent="120"
+            surfaceScale="2"
           >
-            <fePointLight x={mouse.current.x} y={mouse.current.y} z='300' />
+            <fePointLight x={mouse.current.x} y={mouse.current.y} z="300" />
           </feSpecularLighting>
+          <feComposite in="light-source" in2="SourceAlpha" operator="in" result="reflections" />
           <feComposite
-            result='reflections'
-            in='light-source'
-            in2='SourceAlpha'
-            operator='in'
-          />
-          <feComposite
-            in='SourceGraphic'
-            in2='reflections'
-            operator='arithmetic'
-            k1='0'
-            k2='1'
-            k3='1'
-            k4='0'
+            in="SourceGraphic"
+            in2="reflections"
+            k1="0"
+            k2="1"
+            k3="1"
+            k4="0"
+            operator="arithmetic"
           />
         </filter>
       </svg>
       <span
+        ref={childrenWrapperRef}
         style={{
           display: 'inline-block',
           filter: `url(#${filterId})`,
           isolation: 'isolate',
         }}
-        ref={childrenWrapperRef}
       >
         {children}
       </span>

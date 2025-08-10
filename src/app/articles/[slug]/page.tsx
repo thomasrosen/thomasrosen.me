@@ -1,7 +1,7 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { loadArticles } from '@/lib/loadArticles'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { loadArticles } from '@/lib/loadArticles'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -13,7 +13,7 @@ type Props = {
 
 const articles = await loadArticles()
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return articles.flatMap((article) =>
     article.data.slug
       ? [
@@ -32,7 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const { slug } = await params
 
-  const article = articles.find((article) => article.data.slug === slug)
+  const article = articles.find((this_article) => this_article.data.slug === slug)
+
   return {
     title: article?.data.title,
     description: article?.data.summary,
@@ -40,12 +41,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PageArticle({ params }: Props) {
-  let { slug } = (await params) || {}
+  const { slug } = (await params) || {}
   if (!slug) {
     throw new Error('No article slug provided.')
   }
 
-  const article = articles.find((article) => article.data.slug === slug)
+  const article = articles.find((this_article) => this_article.data.slug === slug)
   if (!article) {
     notFound()
   }

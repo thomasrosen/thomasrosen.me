@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
-import Image from 'next/image'
 import { Emoji } from '../Emoji'
 import { EntryTextContent } from './EntryTextContent'
 import { LinkOrDiv } from './LinkOrDiv'
@@ -25,73 +25,73 @@ export function EntryArticle({
 
   return (
     <LinkOrDiv
-      href={entry.url}
       className={cn(
-        'relative rounded-lg overflow-hidden',
-        'w-full h-full',
+        'relative overflow-hidden rounded-lg',
+        'h-full w-full',
         'bg-background text-card-foreground',
-        'flex items-start xs:flex-nowrap flex-wrap content-start',
-        'p-6 gap-6',
+        'flex flex-wrap xs:flex-nowrap content-start items-start',
+        'gap-6 p-6',
         'border border-border',
-        'hover:bg-accent cursor-pointer',
+        'cursor-pointer hover:bg-accent',
         'transition-colors duration-150',
         'z-10',
         className
       )}
+      href={entry.url}
     >
       {hasImage ? (
         <>
           {displayAs === 'playlist' ? (
             <div
-              className='image_backdrop_glow'
+              className="image_backdrop_glow"
               style={{
-                // @ts-ignore
+                // @ts-expect-error
                 '--background-image': `url(${entry.image})`,
               }}
             />
           ) : null}
           <Image
-            src={entry.image || ''}
             alt={''}
-            width={128}
+            className="absolute z-10 h-[128px] w-[128px] shrink-0 rounded-sm object-cover opacity-60 blur-[64px] saturate-150"
             height={128}
-            className='shrink-0 z-10 absolute object-cover w-[128px] h-[128px] blur-[64px] saturate-150 opacity-60 rounded-sm'
-            priority={isFirstImage}
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            quality={75}
             loading={isFirstImage ? 'eager' : 'lazy'}
+            priority={isFirstImage}
+            quality={75}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            src={entry.image || ''}
             unoptimized={isExternalImage}
+            width={128}
           />
           <Image
-            src={entry.image || ''}
             alt={''}
-            width={128}
-            height={128}
             className={cn(
-              'z-20 relative object-cover w-[128px] h-[128px] rounded-sm',
+              'relative z-20 h-[128px] w-[128px] rounded-sm object-cover',
               displayAs === 'playlist' && 'contrast-110 saturate-110'
             )}
-            priority={isFirstImage}
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            quality={75}
+            height={128}
             loading={isFirstImage ? 'eager' : 'lazy'}
+            priority={isFirstImage}
+            quality={75}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            src={entry.image || ''}
             unoptimized={isExternalImage}
+            width={128}
           />
         </>
       ) : displayAs === 'link' ? (
-        <div className='shrink-0 w-[32px] h-[32px] bg-accent rounded-sm flex items-center justify-center'>
-          <Emoji className='text-lg'>🔗</Emoji>
+        <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-sm bg-accent">
+          <Emoji className="text-lg">🔗</Emoji>
         </div>
       ) : (
-        <div className='shrink-0 w-[128px] h-[128px] bg-accent rounded-sm flex items-center justify-center'>
-          <Emoji className='text-5xl'>📄</Emoji>
+        <div className="flex h-[128px] w-[128px] shrink-0 items-center justify-center rounded-sm bg-accent">
+          <Emoji className="text-5xl">📄</Emoji>
         </div>
       )}
 
       <EntryTextContent
         entry={entry}
-        entryBefore={entryBefore}
         entryAfter={entryAfter}
+        entryBefore={entryBefore}
         showTags={true}
       />
     </LinkOrDiv>

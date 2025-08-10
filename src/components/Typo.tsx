@@ -1,40 +1,29 @@
-import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { type ElementType, type HTMLAttributes, type ReactNode } from 'react'
+import type { ElementType, HTMLAttributes, ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 
-type TypoVariant =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'p'
-  | 'span'
-  | 'div'
-  | 'code'
-  | 'small'
+type TypoVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div' | 'code' | 'small'
 
 const typoVariants = cva('text-pretty', {
   variants: {
     variant: {
-      h1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
-      h2: 'scroll-m-20 text-[42px] mb-[10px] font-semibold tracking-tight',
-      h3: 'scroll-m-20 text-[32px] mb-[10px] font-semibold tracking-tight',
-      h4: 'scroll-m-20 text-xl font-semibold tracking-tight',
-      h5: 'scroll-m-20 text-lg font-semibold tracking-tight',
-      h6: 'scroll-m-20 text-base font-semibold tracking-tight',
+      h1: 'scroll-m-20 font-extrabold text-4xl tracking-tight lg:text-5xl',
+      h2: 'mb-[10px] scroll-m-20 font-semibold text-[42px] tracking-tight',
+      h3: 'mb-[10px] scroll-m-20 font-semibold text-[32px] tracking-tight',
+      h4: 'scroll-m-20 font-semibold text-xl tracking-tight',
+      h5: 'scroll-m-20 font-semibold text-lg tracking-tight',
+      h6: 'scroll-m-20 font-semibold text-base tracking-tight',
       p: 'leading-7 [&:not(:last-child)]:mb-6',
       span: 'text-base',
       div: 'text-base',
       blockquote: 'mb-6 border-l-2 pl-6 italic',
       ul: 'my-6 ml-6 list-disc [&>li]:mb-2',
       inline_code:
-        'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
-      lead: 'text-xl text-muted-foreground',
-      large: 'text-lg font-semibold',
-      small: 'text-sm font-medium leading-none',
-      muted: 'text-sm text-muted-foreground',
+        'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono font-semibold text-sm',
+      lead: 'text-muted-foreground text-xl',
+      large: 'font-semibold text-lg',
+      small: 'font-medium text-sm leading-none',
+      muted: 'text-muted-foreground text-sm',
     },
   },
   defaultVariants: {
@@ -42,19 +31,12 @@ const typoVariants = cva('text-pretty', {
   },
 })
 
-interface TypoProps
-  extends HTMLAttributes<HTMLElement>,
-    VariantProps<typeof typoVariants> {
+interface TypoProps extends HTMLAttributes<HTMLElement>, VariantProps<typeof typoVariants> {
   as?: TypoVariant | ElementType
   children?: ReactNode
 }
 
-export function Typo({
-  as: Component,
-  variant,
-  className,
-  ...props
-}: TypoProps) {
+export function Typo({ as: Component, variant, className, ...props }: TypoProps) {
   if (!variant) {
     switch (Component) {
       case 'h1':
@@ -115,10 +97,5 @@ export function Typo({
     }
   }
 
-  return (
-    <Component
-      className={cn(typoVariants({ variant }), className)}
-      {...props}
-    />
-  )
+  return <Component className={cn(typoVariants({ variant }), className)} {...props} />
 }

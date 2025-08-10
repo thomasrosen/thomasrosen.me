@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 
-export default function Error({
+export default function ErrorPage({
   error,
   reset,
 }: {
@@ -23,6 +23,7 @@ export default function Error({
           // Attempt to recover by trying to re-render the segment
           () => reset()
         }
+        type="button"
       >
         Try again
       </button>

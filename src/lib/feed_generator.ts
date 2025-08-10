@@ -1,5 +1,5 @@
-import type { Article } from '@/types'
 import RSS from 'rss'
+import type { Article } from '@/types'
 
 /*
 https://podcasters.apple.com/support/823-podcast-requirements
@@ -19,9 +19,7 @@ const domain = 'https://thomasrosen.me'
 export function generate_rss_feed(options: { articles?: Article[] }) {
   const { articles = [] } = options || {}
 
-  const all_tags = [
-    ...new Set(articles.flatMap((article) => article.data?.tags || [])),
-  ]
+  const all_tags = [...new Set(articles.flatMap((article) => article.data?.tags || []))]
 
   const current_year = new Date().getFullYear()
 
@@ -35,7 +33,7 @@ export function generate_rss_feed(options: { articles?: Article[] }) {
   /* lets create an rss feed */
   const feed = new RSS({
     title: 'Thomas Rosen - Blog',
-    description: description,
+    description,
     feed_url: `${domain}/blog/feed.rss`,
     site_url: domain,
     image_url: feed_image_url,
@@ -165,11 +163,7 @@ export function generate_rss_feed(options: { articles?: Article[] }) {
 
     let coverphoto_url = feed_image_url
     const coverphoto = article.data?.coverphoto_src
-    if (
-      !!coverphoto &&
-      typeof coverphoto === 'string' &&
-      coverphoto.length > 0
-    ) {
+    if (!!coverphoto && typeof coverphoto === 'string' && coverphoto.length > 0) {
       coverphoto_url = `${domain}${coverphoto}`
     }
 
@@ -179,19 +173,12 @@ export function generate_rss_feed(options: { articles?: Article[] }) {
     const audio_public = article.data?.audio
     if (!!audio && typeof audio === 'string' && audio.length > 0) {
       audio_url = `${domain}${audio_public}`
-      audio_file = audio.replace(
-        '/_next/static/media/',
-        '.next/server/static/media/'
-      )
+      audio_file = audio.replace('/_next/static/media/', '.next/server/static/media/')
     }
 
     let audio_length = '00:10' // length of the empty default enclosure
     const audio_length_tmp = article.data.audio_length
-    if (
-      !!audio_length_tmp &&
-      typeof audio_length_tmp === 'string' &&
-      audio_length_tmp.length > 0
-    ) {
+    if (!!audio_length_tmp && typeof audio_length_tmp === 'string' && audio_length_tmp.length > 0) {
       audio_length = audio_length_tmp
     }
 
@@ -201,7 +188,7 @@ export function generate_rss_feed(options: { articles?: Article[] }) {
       url: `${domain}/articles/${article.data.slug}`, // link to the item
       guid: article.data.id || undefined, // optional - defaults to url
       categories: article.data.tags, // optional - array of item categories
-      author: author, // optional - defaults to feed author property
+      author, // optional - defaults to feed author property
       date: article.data.date, // any format that js Date can parse.
       // lat: 33.417974, //optional latitude field for GeoRSS
       // long: -111.933231, //optional longitude field for GeoRSS

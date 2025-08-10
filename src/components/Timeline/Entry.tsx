@@ -25,10 +25,10 @@ export function Entry({
     case 'text':
       return (
         <EntryText
-          entry={parsedEntry}
           className={className}
-          entryBefore={entryBefore}
+          entry={parsedEntry}
           entryAfter={entryAfter}
+          entryBefore={entryBefore}
         />
       )
     case 'playlist':
@@ -36,20 +36,20 @@ export function Entry({
     case 'article':
       return (
         <EntryArticle
-          entry={parsedEntry}
           className={className}
-          entryBefore={entryBefore}
+          entry={parsedEntry}
           entryAfter={entryAfter}
+          entryBefore={entryBefore}
         />
       )
     case 'image':
       return (
         <EntryImage
-          entry={parsedEntry}
-          isFirstImage={isFirstImage}
           className={className}
-          entryBefore={entryBefore}
+          entry={parsedEntry}
           entryAfter={entryAfter}
+          entryBefore={entryBefore}
+          isFirstImage={isFirstImage}
         />
       )
     default:

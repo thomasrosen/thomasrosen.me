@@ -15,11 +15,7 @@ export function EntryText({
 }) {
   return (
     <div className={cn('mb-4 flex flex-col gap-2', className)}>
-      <EntryTextContent
-        entry={entry}
-        entryBefore={entryBefore}
-        entryAfter={entryAfter}
-      />
+      <EntryTextContent entry={entry} entryAfter={entryAfter} entryBefore={entryBefore} />
     </div>
   )
 }

@@ -1,30 +1,35 @@
-import ExifReader from 'exifreader';
-import fs from 'fs';
-import { imageSize } from 'image-size';
-import path from 'path';
+import fs from 'node:fs'
+import path from 'node:path'
+import ExifReader from 'exifreader'
+import { imageSize } from 'image-size'
 
 // Define paths
-const outputImagesDir = './src/data/timeline/images';
+const outputImagesDir = './src/data/timeline/images'
 
 // Supported image formats
-const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp'];
+const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp']
 
 // Function to read image metadata
 function getImageMetadata(filePath) {
   try {
-    const buffer = fs.readFileSync(filePath);
-    const tags = ExifReader.load(buffer);
+    const buffer = fs.readFileSync(filePath)
+    const tags = ExifReader.load(buffer)
 
     // Get image dimensions
-    const dimensions = imageSize(buffer);
+    const dimensions = imageSize(buffer)
 
-    const datetime = tags.DateTime?.description || tags.DateTimeOriginal?.description || tags.DateTimeDigitized?.description
+    const datetime =
+      tags.DateTime?.description ||
+      tags.DateTimeOriginal?.description ||
+      tags.DateTimeDigitized?.description
 
-    const textKey = ['Caption/Abstract', 'UserComment', 'ImageDescription', 'Comments'].find(tag => tags[tag]?.description)
+    const textKey = ['Caption/Abstract', 'UserComment', 'ImageDescription', 'Comments'].find(
+      (tag) => tags[tag]?.description
+    )
 
-    let text = '';
+    let text = ''
     if (tags[textKey]?.description) {
-      text = tags[textKey]?.description;
+      text = tags[textKey]?.description
     }
 
     return {
@@ -35,40 +40,40 @@ function getImageMetadata(filePath) {
       text,
       latitude: tags.GPSLatitude?.description,
       longitude: tags.GPSLongitude?.description,
-    };
+    }
   } catch (error) {
-    console.warn(`⚠️ Could not read metadata for ${filePath}:`, error.message);
-    return null;
+    console.warn(`⚠️ Could not read metadata for ${filePath}:`, error.message)
+    return null
   }
 }
 
-const processImageFilesCache = undefined;
+let processImageFilesCache
 
 // Function to process image files
 export function processImageFiles() {
   try {
     if (processImageFilesCache) {
-      return processImageFilesCache;
+      return processImageFilesCache
     }
 
     // Read all files from the output directory
-    const files = fs.readdirSync(outputImagesDir);
+    const files = fs.readdirSync(outputImagesDir)
 
     // Process each image file
-    const images = [];
+    const images = []
 
     for (const filename of files) {
-      const filePath = path.join(outputImagesDir, filename);
-      const ext = path.extname(filename).toLowerCase();
+      const filePath = path.join(outputImagesDir, filename)
+      const ext = path.extname(filename).toLowerCase()
 
       if (!supportedFormats.includes(ext)) {
-        console.info(`Skipping ${filename}: Not a supported image format`);
-        continue;
+        console.info(`Skipping ${filename}: Not a supported image format`)
+        continue
       }
 
-      const metadata = getImageMetadata(filePath);
+      const metadata = getImageMetadata(filePath)
       if (!metadata) {
-        continue;
+        continue
       }
 
       // Create image entry with correct path for imports
@@ -82,18 +87,18 @@ export function processImageFiles() {
         text: metadata.text,
         image: filename,
         imageAspectRatio: metadata.width / metadata.height,
-        tags: []
-      });
+        tags: [],
+      })
     }
 
     // Sort images by date
-    images.sort((a, b) => new Date(b.date) - new Date(a.date));
+    images.sort((a, b) => new Date(b.date) - new Date(a.date))
 
-    processImageFilesCache = images;
-    return images;
+    processImageFilesCache = images
+    return images
   } catch (error) {
-    console.error('❌ Error processing image files:', error);
-    return [];
+    console.error('❌ Error processing image files:', error)
+    return []
   }
 }
 
@@ -105,18 +110,20 @@ export function processImageFiles() {
  * @returns {string} ISO 8601 formatted date
  */
 function exifToISO(exifDateTime, subsec, timezone) {
-  if (!exifDateTime) return null;
+  if (!exifDateTime) {
+    return null
+  }
 
   // Basic conversion: Replace colons and add T
   let isoStr = exifDateTime
-    .replace(/^(\d{4}):(\d{2}):(\d{2})/, '$1-$2-$3')  // Date part
-    .replace(' ', 'T');                                // Time separator
+    .replace(/^(\d{4}):(\d{2}):(\d{2})/, '$1-$2-$3') // Date part
+    .replace(' ', 'T') // Time separator
 
   // Add subseconds if provided
   if (subsec) {
-    isoStr = isoStr.replace(/(T\d{2}:\d{2}:\d{2})/, `$1.${subsec}`);
+    isoStr = isoStr.replace(/(T\d{2}:\d{2}:\d{2})/, `$1.${subsec}`)
   }
 
   // Add timezone (default to Z if none provided)
-  return isoStr + (timezone || 'Z');
+  return isoStr + (timezone || 'Z')
 }

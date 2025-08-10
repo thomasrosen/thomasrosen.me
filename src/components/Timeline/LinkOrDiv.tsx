@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 export function LinkOrDiv({
   children,
@@ -14,13 +14,10 @@ export function LinkOrDiv({
 
   return href ? (
     <Link
+      className={cn('!text-inherit !no-underline !hover:no-underline', className)}
       href={href}
-      target={isExternalLink ? '_blank' : '_self'}
       rel={isExternalLink ? 'noreferrer' : undefined}
-      className={cn(
-        '!text-inherit !hover:no-underline !no-underline',
-        className
-      )}
+      target={isExternalLink ? '_blank' : '_self'}
     >
       {children}
     </Link>

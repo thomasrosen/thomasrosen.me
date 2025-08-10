@@ -1,4 +1,4 @@
-import { Shine } from '@/components/Shine';
+import { Shine } from '@/components/Shine'
 
 export function Dot({ color = 'var(--foreground)' }) {
   return (

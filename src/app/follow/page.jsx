@@ -3,228 +3,228 @@ import { Typo } from '@/components/Typo'
 
 export default function PageFollow() {
   return (
-    <div className='tab_content'>
-      <Typo as='h2' className='mb-6'>
+    <div className="tab_content">
+      <Typo as="h2" className="mb-6">
         Follow
       </Typo>
 
-      <div className='links_grid !gap-y-6'>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#ed4956' />
+      <div className="links_grid !gap-y-6">
+        <Typo as="h3" className="text-md">
+          <Dot color="#ed4956" />
           Instagram
         </Typo>
         <a
-          href='https://www.instagram.com/thomasrosen/'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='instagram'
+          data-umami-event="instagram"
+          href="https://www.instagram.com/thomasrosen/"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#1da1f2' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#1da1f2" />
           Twitter
         </Typo>
         <a
-          href='https://twitter.com/thomas_roses'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='twitter'
+          data-umami-event="twitter"
+          href="https://twitter.com/thomas_roses"
+          rel="noreferrer"
+          target="_blank"
         >
           thomas_roses
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#00f2ea' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#00f2ea" />
           TikTok
         </Typo>{' '}
         {/* #ff0050 #00f2ea */}
         <a
-          href='https://www.tiktok.com/@thomasroses'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='tiktok'
+          data-umami-event="tiktok"
+          href="https://www.tiktok.com/@thomasroses"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasroses
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#ff0000' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#ff0000" />
           YouTube
         </Typo>
         <a
-          href='https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='youtube'
+          data-umami-event="youtube"
+          href="https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA"
+          rel="noreferrer"
+          target="_blank"
         >
           Thomas Rosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#0a66c1' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#0a66c1" />
           LinkedIn
         </Typo>
         <a
-          href='https://www.linkedin.com/in/thomasroses/'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='linkedin'
+          data-umami-event="linkedin"
+          href="https://www.linkedin.com/in/thomasroses/"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasroses
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#000000' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#000000" />
           GitHub
         </Typo>
         <a
-          href='https://github.com/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='github'
+          data-umami-event="github"
+          href="https://github.com/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <div></div>
-        <hr className='col-span-1 !my-6' />
-        <Typo as='h3' className='text-md'>
-          <Dot color='#d60017' />
+        <div />
+        <hr className="!my-6 col-span-1" />
+        <Typo as="h3" className="text-md">
+          <Dot color="#d60017" />
           Apple Music
         </Typo>
         <a
-          href='https://music.apple.com/profile/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='apple-music'
+          data-umami-event="apple-music"
+          href="https://music.apple.com/profile/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#e24329' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#e24329" />
           GitLab
         </Typo>
         <a
-          href='https://gitlab.com/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='gitlab'
+          data-umami-event="gitlab"
+          href="https://gitlab.com/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#e24329' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#e24329" />
           GitLab (Volt DE)
         </Typo>
         <a
-          href='https://gitlab.com/thomas.rosen.volt'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='gitlab-volt'
+          data-umami-event="gitlab-volt"
+          href="https://gitlab.com/thomas.rosen.volt"
+          rel="noreferrer"
+          target="_blank"
         >
           thomas.rosen.volt
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#000000' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#000000" />
           Subreply
         </Typo>
         <a
-          href='https://subreply.com/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='subreply'
+          data-umami-event="subreply"
+          href="https://subreply.com/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#2f93d7' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#2f93d7" />
           Mastodon
         </Typo>
         <a
-          href='https://mastodon.social/@thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='mastodon'
+          data-umami-event="mastodon"
+          href="https://mastodon.social/@thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#268f23' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#268f23" />
           Medium
         </Typo>
         <a
-          href='https://medium.com/@thomas_rosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='medium'
+          data-umami-event="medium"
+          href="https://medium.com/@thomas_rosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomas_rosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#001935' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#001935" />
           Tumblr
         </Typo>
         <a
-          href='https://thomasrosen.tumblr.com/'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='tumblr'
+          data-umami-event="tumblr"
+          href="https://thomasrosen.tumblr.com/"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#e60023' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#e60023" />
           Pinterest
         </Typo>
         <a
-          href='https://www.pinterest.com/thomas_roses/'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='pinterest'
+          data-umami-event="pinterest"
+          href="https://www.pinterest.com/thomas_roses/"
+          rel="noreferrer"
+          target="_blank"
         >
           thomas_roses
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#1067d9' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#1067d9" />
           Flickr
         </Typo>
         <a
-          href='https://www.flickr.com/photos/116207237@N03/'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='flickr'
+          data-umami-event="flickr"
+          href="https://www.flickr.com/photos/116207237@N03/"
+          rel="noreferrer"
+          target="_blank"
         >
           Thomas Rosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#ea4c89' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#ea4c89" />
           Dribbble
         </Typo>
         <a
-          href='https://dribbble.com/thomasrosen/likes'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='dribbble'
+          data-umami-event="dribbble"
+          href="https://dribbble.com/thomasrosen/likes"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen/likes
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#7ebc6f' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#7ebc6f" />
           OpenStreetMap
         </Typo>
         <a
-          href='https://www.openstreetmap.org/user/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='openstreetmap'
+          data-umami-event="openstreetmap"
+          href="https://www.openstreetmap.org/user/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#000000' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#000000" />
           dev.to
         </Typo>
         <a
-          href='https://dev.to/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='dev-to'
+          data-umami-event="dev-to"
+          href="https://dev.to/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>

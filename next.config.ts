@@ -1,7 +1,7 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import type { NextConfig } from 'next'
-import path from 'path'
-import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -110,10 +110,7 @@ let nextConfig: NextConfig = {
       if (!rule.test) {
         return false
       }
-      return (
-        rule.test?.toString().includes('jpg') ||
-        rule.test?.toString().includes('png')
-      )
+      return rule.test?.toString().includes('jpg') || rule.test?.toString().includes('png')
     })
 
     if (imageRule) {
@@ -132,6 +129,7 @@ let nextConfig: NextConfig = {
     // remotePatterns: [new URL('https://picsum.photos/**')],
   },
 
+  // biome-ignore lint/suspicious/useAwait: nextjs expects this to be async
   async redirects() {
     return [
       {

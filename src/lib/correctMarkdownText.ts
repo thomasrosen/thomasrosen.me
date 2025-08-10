@@ -5,5 +5,5 @@ export function correctMarkdownTextForRender(text: string) {
     .replaceAll('*innen', '&#42;innen')
     .replaceAll('\\*in ', '&#42;in ')
     .replaceAll('*in ', '&#42;in ')
-    .replaceAll(/\`excel\b(?!-formula)/g, '`excel-formula')
+    .replaceAll(/`excel\b(?!-formula)/g, '`excel-formula')
 }

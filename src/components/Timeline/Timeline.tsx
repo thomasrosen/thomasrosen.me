@@ -1,7 +1,7 @@
 import { Typo } from '@/components/Typo'
 import '@/fonts/petrona-v28-latin/index.css'
+import type React from 'react'
 import { cn } from '@/lib/utils'
-import React from 'react'
 import { Entry } from './Entry'
 import { getGroupedEntries } from './getGroupedEntries'
 import { getMonthName } from './getMonthName'
@@ -26,7 +26,7 @@ export async function Timeline({
   let dayBefore: string | null = null
 
   return (
-    <div className='w-full space-y-4'>
+    <div className="w-full space-y-4">
       {groupedEntriesAsArray.map(([key, entries], index) => {
         const isLastGroup = index === groupedEntriesAsArray.length - 1
 
@@ -52,8 +52,7 @@ export async function Timeline({
 
           const displayAs = entry.displayAs || 'text'
 
-          const isSurroundedByImages =
-            before?.displayAs === 'image' || after?.displayAs === 'image'
+          const isSurroundedByImages = before?.displayAs === 'image' || after?.displayAs === 'image'
 
           const entryClone = { ...entry }
           if (displayAs === 'image') {
@@ -74,9 +73,7 @@ export async function Timeline({
           }
 
           function findNearestRatio(target: number): string {
-            const availableRatios = Object.keys(possibleImageAspectRatios).map(
-              Number
-            )
+            const availableRatios = Object.keys(possibleImageAspectRatios).map(Number)
             return String(
               availableRatios.reduce((prev, curr) =>
                 Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev
@@ -90,7 +87,6 @@ export async function Timeline({
 
           return (
             <Entry
-              key={`${entryClone.date}-${index_entry}`}
               className={cn(
                 'h-full w-full',
                 'col-span-1 row-span-1',
@@ -101,11 +97,11 @@ export async function Timeline({
                 targetRatio === 0.5 && 'row-span-2',
 
                 displayAs !== 'image'
-                  ? '!aspect-[unset] xs:max-w-[var(--content-box-width)] xs:col-span-full h-auto'
+                  ? '!aspect-[unset] xs:col-span-full h-auto xs:max-w-[var(--content-box-width)]'
                   : null,
 
                 displayAs === 'image' && targetRatio > 1
-                  ? 'h-auto xs:col-span-2' // xs:max-w-[var(--content-box-width)]
+                  ? 'xs:col-span-2 h-auto' // xs:max-w-[var(--content-box-width)]
                   : null
 
                 // ...(!innerGroupEverything &&
@@ -120,12 +116,13 @@ export async function Timeline({
                 //   'xs:col-span-2 xs:w-full xs:h-auto aspect-[unset]'
               )}
               entry={entryClone}
+              entryAfter={after}
+              entryBefore={before}
               isFirstImage={
                 false
                 // index_entry === 0 && entryClone.displayAs === 'image'
               }
-              entryBefore={before}
-              entryAfter={after}
+              key={`${entryClone.date}-${index_entry}`}
             />
           )
         })
@@ -147,25 +144,20 @@ export async function Timeline({
         }
 
         return (
-          <div
-            key={key}
-            className='mygrid gap-4 place-content-center place-items-center'
-          >
+          <div className="mygrid place-content-center place-items-center gap-4" key={key}>
             {showTimeHeadlines ? (
               <Typo
-                as='h2'
+                as="h2"
                 className={cn(
-                  'col-span-1 xs:col-span-full row-span-1 w-full max-w-[var(--content-box-width)] h-auto',
+                  'col-span-1 xs:col-span-full row-span-1 h-auto w-full max-w-[var(--content-box-width)]',
                   'font-bold',
-                  'flex gap-x-4 flex-wrap',
+                  'flex flex-wrap gap-x-4',
                   isNewMonth && index !== 0 && 'mt-8',
                   isNewYear && index !== 0 && 'mt-32'
                 )}
               >
-                {isNewYear ? <span className='opacity-60'>{year}</span> : null}
-                {isNewMonth ? (
-                  <span>{getMonthName(parseInt(month))}</span>
-                ) : null}
+                {isNewYear ? <span className="opacity-60">{year}</span> : null}
+                {isNewMonth ? <span>{getMonthName(Number.parseInt(month))}</span> : null}
               </Typo>
             ) : null}
 

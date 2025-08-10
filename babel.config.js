@@ -1,11 +1,7 @@
 const ReactCompilerConfig = {
-  target: '19'
-};
+  target: '19',
+}
 
-module.exports = function () {
-  return {
-    plugins: [
-      ['babel-plugin-react-compiler', ReactCompilerConfig],
-    ],
-  };
-};
+module.exports = () => ({
+  plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
+})

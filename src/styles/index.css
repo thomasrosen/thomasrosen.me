@@ -67,7 +67,7 @@ body {
 }
 
 :root {
-  --radius: .625rem;
+  --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
@@ -134,23 +134,25 @@ body {
   --sidebar-ring: var(--primary);
 }
 
-
-
-
-
 :root,
 .sans_serif_font {
-  --font-family-website-title: "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-family-website-title:
+    "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
   --font-family-headline: Ubuntu, sans-serif;
   --font-family-text: Ubuntu, sans-serif;
   --font-family-button: Ubuntu, sans-serif;
-  --font-family-code: "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-family-code:
+    "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 .serif_font {
   --font-family-headline: Petrona, Ubuntu, serif;
   --font-family-text: Petrona, Ubuntu, serif;
   --font-family-button: Ubuntu, Ubuntu, serif;
-  --font-family-code: "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-family-code:
+    "Ubuntu Mono", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 /* * {
@@ -165,11 +167,18 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  transition: color .2s ease, background .2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
   padding-block-end: 25vh;
 }
 
-body, p, h4, h5, h6, li {
+body,
+p,
+h4,
+h5,
+h6,
+li {
   font-family: var(--font-family-text);
   font-weight: 300;
   font-size: 22px;
@@ -192,7 +201,8 @@ h1 {
   line-height: 0.8;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-family: var(--font-family-headline);
 }
 
@@ -211,7 +221,9 @@ h5+h6 {
 }
 */
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   font-family: var(--font-family-headline);
   font-weight: bold;
 }
@@ -232,23 +244,24 @@ img {
   font-weight: bold;
   cursor: pointer;
 
-	padding: 10px 20px;
-	border-radius: 100px;
-	color: var(--background);
-	fill: var(--background);
-	background: var(--foreground);
-	font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 100px;
+  color: var(--background);
+  fill: var(--background);
+  background: var(--foreground);
 
   --shadow-width: 0px;
   --shadow-color: var(--foreground);
   --shadow-amount: 0;
+  /* this gets rid of a weird 0.1px gap between box and shadow */
   box-shadow:
-    /* this gets rid of a weird 0.1px gap between box and shadow */
-    inset 0 0 calc(1px * var(--shadow-amount)) calc(1px * var(--shadow-amount)) var(--shadow-color),
+    inset 0 0 calc(1px * var(--shadow-amount)) calc(1px * var(--shadow-amount))
+    var(--shadow-color),
     0 0 0 calc(var(--shadow-width) * var(--shadow-amount)) var(--shadow-color),
-    0 0 calc(1px * var(--shadow-amount)) calc(1px * var(--shadow-amount)) var(--shadow-color);
+    0 0 calc(1px * var(--shadow-amount)) calc(1px * var(--shadow-amount))
+    var(--shadow-color);
 
-	transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 .OLDSTYLES button.small {
   padding: 5px 10px;
@@ -261,10 +274,10 @@ img {
 .OLDSTYLES button:not(:disabled):hover {
   --shadow-width: 10px;
   --shadow-amount: 1;
-	color: var(--background);
-	fill: var(--background);
-	background: var(--foreground);
-	text-decoration: none;
+  color: var(--background);
+  fill: var(--background);
+  background: var(--foreground);
+  text-decoration: none;
 }
 .OLDSTYLES button.small:not(:disabled):hover {
   --shadow-width: 5px;
@@ -274,11 +287,11 @@ img {
 .OLDSTYLES button:not(:disabled):focus,
 .OLDSTYLES button:not(:disabled).active,
 .OLDSTYLES a.active button:not(:disabled) {
-	color: var(--background);
-	fill: var(--background);
-	background: var(--primary);
+  color: var(--background);
+  fill: var(--background);
+  background: var(--primary);
   --shadow-color: var(--primary);
-	text-decoration: none;
+  text-decoration: none;
 }
 .OLDSTYLES button:disabled {
   opacity: 0.5;
@@ -323,7 +336,8 @@ hr.small {
   margin: 0;
 }
 
-ul, ol {
+ul,
+ol {
   margin-block-end: 20px;
   margin-inline-start: 1.5rem;
 }

@@ -3,34 +3,34 @@ import { Typo } from '@/components/Typo'
 
 export default function PageSponsor() {
   return (
-    <div className='tab_content'>
-      <Typo as='h2' className='mb-6'>
+    <div className="tab_content">
+      <Typo as="h2" className="mb-6">
         Sponsor
       </Typo>
 
-      <div className='links_grid !gap-y-6'>
-        <Typo as='h3' className='text-md'>
-          <Dot color='#0d57aa' />
+      <div className="links_grid !gap-y-6">
+        <Typo as="h3" className="text-md">
+          <Dot color="#0d57aa" />
           PayPal
         </Typo>
         <a
-          href='https://paypal.me/ThomasRosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='paypal'
+          data-umami-event="paypal"
+          href="https://paypal.me/ThomasRosen"
+          rel="noreferrer"
+          target="_blank"
         >
           ThomasRosen
         </a>
 
-        <Typo as='h3' className='text-md'>
-          <Dot color='#000000' />
+        <Typo as="h3" className="text-md">
+          <Dot color="#000000" />
           GitHub
         </Typo>
         <a
-          href='https://github.com/sponsors/thomasrosen'
-          target='_blank'
-          rel='noreferrer'
-          data-umami-event='github'
+          data-umami-event="github"
+          href="https://github.com/sponsors/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
         >
           thomasrosen
         </a>

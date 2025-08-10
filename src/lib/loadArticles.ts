@@ -1,25 +1,19 @@
-import type { Article } from '@/types'
 import { components, mdxOptions } from '@@/mdx-components'
-import fs from 'fs'
+import fs from 'node:fs'
+import path from 'node:path'
 import { evaluate } from 'next-mdx-remote-client/rsc'
-import path from 'path'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import strip from 'strip-markdown'
 import { unified } from 'unified'
+import type { Article } from '@/types'
 import { removeFrontmatter } from './unified/removeFrontmatter'
 
 export async function loadArticles() {
   try {
     const currentDir = process.cwd()
-    const articlesDirectory = path.join(
-      currentDir,
-      'src',
-      'data',
-      'blog',
-      'articles'
-    )
+    const articlesDirectory = path.join(currentDir, 'src', 'data', 'blog', 'articles')
 
     // Check if directory exists
     if (!fs.existsSync(articlesDirectory)) {
@@ -68,11 +62,7 @@ export async function loadArticles() {
           const summary = plaintext.substring(0, 100).trim() + '…'
 
           let coverphoto_src = null
-          if (
-            !!data &&
-            typeof data.coverphoto === 'string' &&
-            data.coverphoto?.length > 0
-          ) {
+          if (!!data && typeof data.coverphoto === 'string' && data.coverphoto?.length > 0) {
             try {
               // Remove any URL encoding from the path
               const cleanPath = decodeURIComponent(data.coverphoto)
@@ -86,11 +76,7 @@ export async function loadArticles() {
           }
 
           let audio_src = null
-          if (
-            !!data &&
-            typeof data.audio === 'string' &&
-            data.audio?.length > 0
-          ) {
+          if (!!data && typeof data.audio === 'string' && data.audio?.length > 0) {
             try {
               // Remove any URL encoding from the path
               const cleanPath = decodeURIComponent(data.audio)
@@ -102,8 +88,7 @@ export async function loadArticles() {
             }
           }
 
-          const getStaticProps =
-            mod.getStaticProps || (() => Promise.resolve({}))
+          const getStaticProps = mod.getStaticProps || (() => Promise.resolve({}))
 
           return {
             content: module.content,
@@ -120,8 +105,7 @@ export async function loadArticles() {
         })
       )
     ).sort(
-      (a: Article, b: Article) =>
-        new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+      (a: Article, b: Article) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
     )
 
     return modules

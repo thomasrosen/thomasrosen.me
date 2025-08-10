@@ -1,13 +1,7 @@
-import { Typo } from '@/components/Typo'
-import { cn } from '@/lib/utils'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import type { MDXComponents } from 'mdx/types'
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
-
-// import nextMDX from '@next/mdx'
-import { rehypeMapHtmlElementsToReact } from '@/lib/unified/rehypeMapHtmlElementsToReact'
-import { remarkFootnoteReferences } from '@/lib/unified/remarkFootnoteReferences'
 import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 import recmaExportFilepath from 'recma-export-filepath'
 import recmaMdxEscapeMissingComponents from 'recma-mdx-escape-missing-components'
@@ -20,6 +14,11 @@ import remarkFootnotesExtra from 'remark-footnotes-extra'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { Typo } from '@/components/Typo'
+// import nextMDX from '@next/mdx'
+import { rehypeMapHtmlElementsToReact } from '@/lib/unified/rehypeMapHtmlElementsToReact'
+import { remarkFootnoteReferences } from '@/lib/unified/remarkFootnoteReferences'
+import { cn } from '@/lib/utils'
 
 // import refractor_bash from 'refractor/lang/bash'
 // import refractor_csv from 'refractor/lang/csv'
@@ -40,13 +39,13 @@ export const components: MDXComponents = {
   code: (props) => {
     return <code {...props} />
   },
-  div: (props) => <Typo as='div' {...props} />,
-  h1: (props) => <Typo as='h1' {...props} />,
-  h2: (props) => <Typo as='h2' {...props} />,
-  h3: (props) => <Typo as='h3' {...props} />,
-  h4: (props) => <Typo as='h4' className='opacity-80' {...props} />,
-  h5: (props) => <Typo as='h5' className='opacity-70' {...props} />,
-  h6: (props) => <Typo as='h6' className='opacity-60' {...props} />,
+  div: (props) => <Typo as="div" {...props} />,
+  h1: (props) => <Typo as="h1" {...props} />,
+  h2: (props) => <Typo as="h2" {...props} />,
+  h3: (props) => <Typo as="h3" {...props} />,
+  h4: (props) => <Typo as="h4" className="opacity-80" {...props} />,
+  h5: (props) => <Typo as="h5" className="opacity-70" {...props} />,
+  h6: (props) => <Typo as="h6" className="opacity-60" {...props} />,
   hr: (props) => (
     <hr
       // className='my-8 h-[3px] rounded-[3px] border-0 bg-[currentColor] opacity-10'
@@ -87,27 +86,27 @@ export const components: MDXComponents = {
       <Link
         {...props}
         className={cn(
-          'underline decoration-primary decoration-2 underline-offset-2 hover:decoration-1',
+          'underline decoration-2 decoration-primary underline-offset-2 hover:decoration-1',
           'hyphens-none break-all',
           className
         )}
-        target='_blank'
+        target="_blank"
       >
         {props.children}
       </Link>
     )
   },
   pre: (props) => {
-    let language = props.lang || 'text/plain'
+    const language = props.lang || 'text/plain'
 
     return (
-      <div className='group/code text-neutral relative mb-4'>
-        <div className='rounded-xs -mb-3 flex items-center justify-between border px-4 py-1 pb-4'>
-          <span className='font-mono text-xs'>{language}</span>
+      <div className="group/code relative mb-4 text-neutral">
+        <div className="-mb-3 flex items-center justify-between rounded-xs border px-4 py-1 pb-4">
+          <span className="font-mono text-xs">{language}</span>
         </div>
         <pre
           className={cn(
-            'rounded-xs !m-0 max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap border bg-sheet p-4 text-sheet-foreground',
+            '!m-0 max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap rounded-xs border bg-sheet p-4 text-sheet-foreground',
             props.className
           )}
         >
@@ -116,15 +115,15 @@ export const components: MDXComponents = {
       </div>
     )
   },
-  table: (props) => <table className='mb-4 w-full border p-1' {...props} />,
-  tr: (props) => <tr className='border p-1' {...props} />,
-  td: (props) => <td className='border p-1' {...props} />,
-  th: (props) => <th className='border p-1' {...props} />,
-  thead: (props) => <thead className='border p-1' {...props} />,
-  tbody: (props) => <tbody className='border p-1' {...props} />,
+  table: (props) => <table className="mb-4 w-full border p-1" {...props} />,
+  tr: (props) => <tr className="border p-1" {...props} />,
+  td: (props) => <td className="border p-1" {...props} />,
+  th: (props) => <th className="border p-1" {...props} />,
+  thead: (props) => <thead className="border p-1" {...props} />,
+  tbody: (props) => <tbody className="border p-1" {...props} />,
   p: (props) => {
     return (
-      <Typo as='p' {...props}>
+      <Typo as="p" {...props}>
         {props.children}
       </Typo>
     )
@@ -141,15 +140,15 @@ export const components: MDXComponents = {
     // const isOnlyEmoijs = containsOnlyEmojisAndWhitespace(child.value)
     // return <p className={cn('mb-4', isOnlyEmoijs && 'text-4xl')} {...props} />
   },
-  li: (props) => <li className='mb-4' {...props} />,
-  ul: (props) => <ul className='ms-4 list-disc' {...props} />,
+  li: (props) => <li className="mb-4" {...props} />,
+  ul: (props) => <ul className="ms-4 list-disc" {...props} />,
   ol: (props) => {
     const start = props.start || 1
     const li_count = 0 // props.children.filter((subnode: any) => subnode.tagName === 'li').length - 1
     const max_number = start + li_count
 
     let margin_start_class = ''
-    if (max_number > 10000) {
+    if (max_number > 10_000) {
       margin_start_class = 'ms-16'
     } else if (max_number > 1000) {
       margin_start_class = 'ms-14'
@@ -165,7 +164,7 @@ export const components: MDXComponents = {
   },
   blockquote: (props) => (
     <blockquote
-      className="relative mb-4 pl-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-1 before:rounded-full before:bg-primary before:content-['']"
+      className="relative mb-4 pl-4 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:rounded-full before:bg-primary before:content-['']"
       {...props}
     />
   ),
@@ -180,10 +179,10 @@ export const components: MDXComponents = {
     return (
       <Image
         {...(props as ImageProps)}
-        width={600}
+        className={cn('h-auto w-full rounded-xs', props.className)}
         height={600}
         src={src}
-        className={cn('w-full h-auto rounded-xs', props.className)}
+        width={600}
       />
     )
   },
@@ -200,18 +199,10 @@ export const components: MDXComponents = {
       const title = props.title
 
       return (
-        <audio
-          {...props}
-          title={title}
-          controls={true}
-          preload='metadata'
-          src={src}
-        >
-          <source src={src} type='audio/mpeg' />
+        <audio {...props} controls={true} preload="metadata" src={src} title={title}>
+          <source src={src} type="audio/mpeg" />
           <a href={src}>
-            <button>
-              {title ? `Herunterladen: "${title}"` : 'Herunterladen'}
-            </button>
+            <button type="button">{title ? `Herunterladen: "${title}"` : 'Herunterladen'}</button>
           </a>
         </audio>
       )
@@ -227,18 +218,11 @@ export const components: MDXComponents = {
       return null
     }
 
-    return (
-      <iframe
-        {...props}
-        className={cn('overflow-hidden rounded-xl', props.className)}
-      />
-    )
+    return <iframe {...props} className={cn('overflow-hidden rounded-xl', props.className)} />
   },
 }
 
-export function useMDXComponents(
-  components_overwrite: MDXComponents
-): MDXComponents {
+export function useMDXComponents(components_overwrite: MDXComponents): MDXComponents {
   return {
     ...components,
     ...components_overwrite,
@@ -288,10 +272,7 @@ export const mdxOptions: MDXRemoteOptions['mdxOptions'] = {
 
         let highlightTreeChildren = []
         try {
-          const highlightTree = refractor.highlight(
-            node.value,
-            node.lang || 'txt'
-          )
+          const highlightTree = refractor.highlight(node.value, node.lang || 'txt')
           highlightTreeChildren = (highlightTree.children || []) as any
         } catch (error) {
           console.error('ERROR_aeJKJvEI', error)

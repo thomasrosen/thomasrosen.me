@@ -1,10 +1,10 @@
+import { processImageFiles } from '@@/scripts/processImageFiles.mjs'
 import timeline from '@/data/timeline/entries.yml'
 import { loadArticles } from '@/lib/loadArticles'
 import { loadPlaylists } from '@/lib/loadPlaylists'
 import type { TimelineEntry } from '@/types'
-import { processImageFiles } from '@@/scripts/processImageFiles.mjs'
 
-let loadTimelineCache: TimelineEntry[] | undefined = undefined
+let loadTimelineCache: TimelineEntry[] | undefined
 
 export async function loadTimeline(): Promise<TimelineEntry[]> {
   if (loadTimelineCache) {
@@ -17,8 +17,8 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
       const loc =
         data.latitude && data.longitude
           ? {
-              lat: parseFloat(data.latitude),
-              lng: parseFloat(data.longitude),
+              lat: Number.parseFloat(data.latitude),
+              lng: Number.parseFloat(data.longitude),
             }
           : undefined
 

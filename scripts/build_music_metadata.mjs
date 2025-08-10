@@ -1,10 +1,11 @@
-import fs from 'fs'
-import { readdir } from 'fs/promises'
-import path from 'path'
+import fs from 'node:fs'
+import { readdir } from 'node:fs/promises'
+import path from 'node:path'
 import sharp from 'sharp'
 import { ensureCleanDirectoryExists } from './ensureDirectoryExists.mjs'
 
-const empty_transparent_png = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+const empty_transparent_png =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
 
 const playlist_covers_dir = './src/data/music/playlist_covers/'
 const album_artworks_dir = './src/data/music/album_artworks/'
@@ -23,19 +24,17 @@ async function* getFilesRecursive(dir, root = dir) {
   // source: https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
   // I added the part with the root_path variable, because I wanted to get the relative path of the files.
 
-  const root_path = path.resolve(root) + '/'
+  const root_path = `${path.resolve(root)}/`
 
-  const dirents = await readdir(dir, { withFileTypes: true });
+  const dirents = await readdir(dir, { withFileTypes: true })
   for (const dirent of dirents) {
-    const res = path.resolve(dir, dirent.name);
+    const res = path.resolve(dir, dirent.name)
     if (dirent.isDirectory()) {
-      yield* getFilesRecursive(res, dir);
+      yield* getFilesRecursive(res, dir)
+    } else if (typeof res === 'string') {
+      yield res.replace(root_path, '')
     } else {
-      if (typeof res === 'string') {
-        yield res.replace(root_path, '');
-      } else {
-        yield res
-      }
+      yield res
     }
   }
 }
@@ -45,7 +44,7 @@ function get_genres(playlist) {
     // sort the genres by count with reduce
     .reduce((acc, song) => {
       const genre = song.Genre
-      if (!acc.hasOwnProperty(genre)) {
+      if (!Object.hasOwn(acc, genre)) {
         acc[genre] = 0
       }
       acc[genre] += 1
@@ -65,7 +64,7 @@ function get_artists(playlist) {
     // sort the artists by count with reduce
     .reduce((acc, song) => {
       const artist = song.Artist
-      if (!acc.hasOwnProperty(artist)) {
+      if (!Object.hasOwn(acc, artist)) {
         acc[artist] = 0
       }
       acc[artist] += 1
@@ -91,10 +90,10 @@ async function combineImages(imageURIs, options = {}) {
 
   // Loop through the image URIs and composite them onto the canvas
   for (let i = 0; i < imageURIs.length; i++) {
-    const width = (canvasWidth / 2)
-    const height = (canvasHeight / 2)
-    const x = i % 2 * width; // Calculate x position based on column
-    const y = Math.floor(i / 2) * height; // Calculate y position based on row
+    const width = canvasWidth / 2
+    const height = canvasHeight / 2
+    const x = (i % 2) * width // Calculate x position based on column
+    const y = Math.floor(i / 2) * height // Calculate y position based on row
 
     const imageAsBuffer = Buffer.from(imageURIs[i].split(',')[1], 'base64')
 
@@ -107,7 +106,7 @@ async function combineImages(imageURIs, options = {}) {
     images.push({
       input: resizedImageAsBuffer, // Extract image data from data URI
       top: y,
-      left: x
+      left: x,
     })
   }
 
@@ -117,10 +116,9 @@ async function combineImages(imageURIs, options = {}) {
       width: canvasWidth,
       height: canvasHeight,
       channels: 4,
-      background: { r: 0, g: 0, b: 0, alpha: 0 } // Transparent background
-    }
-  })
-    .composite(images)
+      background: { r: 0, g: 0, b: 0, alpha: 0 }, // Transparent background
+    },
+  }).composite(images)
 
   const imageAsBuffer = await canvas.toFormat(filetype).toBuffer()
   return imageAsBuffer
@@ -141,13 +139,13 @@ function sanitizeFilename(filename) {
   return `${filename}`
 }
 
-async function saveAllAlbumArtworks(playlist) {
+function saveAllAlbumArtworks(playlist) {
   for (const [index, song] of playlist.Songs.entries()) {
     const image = song['Album Artwork']
     if (image && image !== '') {
       try {
         // Create a unique filename using album name and artist
-        const filename = `${sanitizeFilename(`${song['Artist']} ${song['Album']}`)}.${filetype}`
+        const filename = `${sanitizeFilename(`${song.Artist} ${song.Album}`)}.${filetype}`
         const filepath = `${album_artworks_dir}${filename}`
 
         // Only process if it's a valid data URI
@@ -166,7 +164,7 @@ async function saveAllAlbumArtworks(playlist) {
           }
         }
       } catch (error) {
-        console.error(`Failed to save artwork for ${song['Album']}: ${error.message}`)
+        console.error(`Failed to save artwork for ${song.Album}: ${error.message}`)
         playlist.Songs[index]['Album Artwork'] = '' // Clear invalid artwork
       }
     }
@@ -176,7 +174,7 @@ async function saveAllAlbumArtworks(playlist) {
 }
 
 async function get_playlist_coverphoto(playlist) {
-  let images = []
+  const images = []
 
   for (const song of playlist.Songs) {
     const image = song['Album Artwork']
@@ -184,12 +182,10 @@ async function get_playlist_coverphoto(playlist) {
       // Skip if it's a file path (from our previous processing)
       if (image.startsWith(album_artworks_dir)) continue
 
-      if (image.startsWith('data:image')) {
-        if (!images.find(img => img === image)) {
-          images.push(image)
-          if (images.length >= 4) {
-            break
-          }
+      if (image.startsWith('data:image') && !images.find((img) => img === image)) {
+        images.push(image)
+        if (images.length >= 4) {
+          break
         }
       }
     }
@@ -252,11 +248,10 @@ async function build_music_metadata() {
     const month = playlist_date[2]
     const playlist_date_string = `${year}-${month}-01T00:00:00.000Z`
 
-
     // get playlist
     const playlist = JSON.parse(fs.readFileSync(playlist_dir + relative_filepath))
 
-    if (playlist.Songs.hasOwnProperty('Title')) {
+    if (Object.hasOwn(playlist.Songs, 'Title')) {
       // if there is only one song, ios saves this as an object, not as an array
       playlist.Songs = [playlist.Songs]
     }

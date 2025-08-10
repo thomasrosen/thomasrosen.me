@@ -1,12 +1,8 @@
-import { Typo } from '@/components/Typo'
-import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
-import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
-import { cn } from '@/lib/utils'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import Image from 'next/image'
 import Link from 'next/link'
-import { BlockMath } from 'react-katex'
 import * as prod from 'react/jsx-runtime'
+import { BlockMath } from 'react-katex'
 import { refractor } from 'refractor'
 import refractor_bash from 'refractor/lang/bash'
 import refractor_csv from 'refractor/lang/csv'
@@ -21,6 +17,10 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
+import { Typo } from '@/components/Typo'
+import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
+import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
+import { cn } from '@/lib/utils'
 import { rehypePreElements } from './unified/rehypePreElements'
 import { remarkFootnoteReferences } from './unified/remarkFootnoteReferences'
 
@@ -72,10 +72,7 @@ export function markdownToReact(markdown: string) {
 
           let highlightTreeChildren = []
           try {
-            const highlightTree = refractor.highlight(
-              node.value,
-              node.lang || 'txt'
-            )
+            const highlightTree = refractor.highlight(node.value, node.lang || 'txt')
             highlightTreeChildren = highlightTree.children as any
           } catch (error) {
             console.error('ERROR_aeJKJvEI', error)
@@ -128,21 +125,15 @@ export function markdownToReact(markdown: string) {
           return <code {...props}>{props.value}</code>
         },
         div: ({ node, ...props }: any) => props.children,
-        h1: ({ node, ...props }: any) => <Typo as='h1' {...props} />,
-        h2: ({ node, ...props }: any) => <Typo as='h2' {...props} />,
-        h3: ({ node, ...props }: any) => <Typo as='h3' {...props} />,
-        h4: ({ node, ...props }: any) => (
-          <Typo as='h4' className='opacity-80' {...props} />
-        ),
-        h5: ({ node, ...props }: any) => (
-          <Typo as='h5' className='opacity-70' {...props} />
-        ),
-        h6: ({ node, ...props }: any) => (
-          <Typo as='h6' className='opacity-60' {...props} />
-        ),
+        h1: ({ node, ...props }: any) => <Typo as="h1" {...props} />,
+        h2: ({ node, ...props }: any) => <Typo as="h2" {...props} />,
+        h3: ({ node, ...props }: any) => <Typo as="h3" {...props} />,
+        h4: ({ node, ...props }: any) => <Typo as="h4" className="opacity-80" {...props} />,
+        h5: ({ node, ...props }: any) => <Typo as="h5" className="opacity-70" {...props} />,
+        h6: ({ node, ...props }: any) => <Typo as="h6" className="opacity-60" {...props} />,
         hr: ({ node, ...props }: any) => (
           <hr
-            className='my-8 h-[3px] rounded-[3px] border-0 bg-[currentColor] opacity-10'
+            className="my-8 h-[3px] rounded-[3px] border-0 bg-[currentColor] opacity-10"
             {...props}
           />
         ),
@@ -180,10 +171,10 @@ export function markdownToReact(markdown: string) {
             <Link
               {...props}
               className={cn(
-                'underline decoration-primary decoration-2 underline-offset-2 hover:decoration-1',
+                'underline decoration-2 decoration-primary underline-offset-2 hover:decoration-1',
                 className
               )}
-              target='_blank'
+              target="_blank"
             >
               {props.children}
             </Link>
@@ -191,7 +182,7 @@ export function markdownToReact(markdown: string) {
         },
         pre: ({ node, ...props }: any) => {
           let language = props.lang || 'text/plain'
-          let value = props.value || ''
+          const value = props.value || ''
           let children = null
 
           if (language === 'message/rfc822') {
@@ -199,7 +190,7 @@ export function markdownToReact(markdown: string) {
             language = 'Email'
 
             children = (
-              <div className='rounded-xs max-w-[calc(100vw-5rem)] whitespace-pre-wrap border bg-sheet p-4 text-sheet-foreground'>
+              <div className="max-w-[calc(100vw-5rem)] whitespace-pre-wrap rounded-xs border bg-sheet p-4 text-sheet-foreground">
                 {value}
               </div>
             )
@@ -207,7 +198,7 @@ export function markdownToReact(markdown: string) {
             children = (
               <pre
                 className={cn(
-                  'rounded-xs !m-0 max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap border bg-sheet p-4 text-sheet-foreground',
+                  '!m-0 max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap rounded-xs border bg-sheet p-4 text-sheet-foreground',
                   props.className
                 )}
               >
@@ -217,63 +208,44 @@ export function markdownToReact(markdown: string) {
           }
 
           return (
-            <div className='group/code text-neutral relative mb-4'>
-              <div className='rounded-xs -mb-3 flex items-center justify-between border px-4 py-1 pb-4'>
-                <span className='font-mono text-xs'>{language}</span>
+            <div className="group/code relative mb-4 text-neutral">
+              <div className="-mb-3 flex items-center justify-between rounded-xs border px-4 py-1 pb-4">
+                <span className="font-mono text-xs">{language}</span>
               </div>
               {children}
             </div>
           )
         },
-        table: ({ node, ...props }: any) => (
-          <table className='mb-4 w-full border p-1' {...props} />
-        ),
-        tr: ({ node, ...props }: any) => (
-          <tr className='border p-1' {...props} />
-        ),
-        td: ({ node, ...props }: any) => (
-          <td className='border p-1' {...props} />
-        ),
-        th: ({ node, ...props }: any) => (
-          <th className='border p-1' {...props} />
-        ),
-        thead: ({ node, ...props }: any) => (
-          <thead className='border p-1' {...props} />
-        ),
-        tbody: ({ node, ...props }: any) => (
-          <tbody className='border p-1' {...props} />
-        ),
+        table: ({ node, ...props }: any) => <table className="mb-4 w-full border p-1" {...props} />,
+        tr: ({ node, ...props }: any) => <tr className="border p-1" {...props} />,
+        td: ({ node, ...props }: any) => <td className="border p-1" {...props} />,
+        th: ({ node, ...props }: any) => <th className="border p-1" {...props} />,
+        thead: ({ node, ...props }: any) => <thead className="border p-1" {...props} />,
+        tbody: ({ node, ...props }: any) => <tbody className="border p-1" {...props} />,
         p: ({ node, ...props }: any) => {
           const [child] = node.children
 
           if (child.type === 'text' && child.value.startsWith('[\n')) {
             return (
-              <p className='mb-4' {...props}>
-                <BlockMath
-                  math={child.value.slice(1, child.value.length - 1)}
-                />
+              <p className="mb-4" {...props}>
+                <BlockMath math={child.value.slice(1, child.value.length - 1)} />
               </p>
             )
           }
 
           const isOnlyEmoijs = containsOnlyEmojisAndWhitespace(child.value)
-          return (
-            <p className={cn('mb-4', isOnlyEmoijs && 'text-4xl')} {...props} />
-          )
+          return <p className={cn('mb-4', isOnlyEmoijs && 'text-4xl')} {...props} />
         },
-        li: ({ node, ...props }: any) => <li className='mb-4' {...props} />,
-        ul: ({ node, ...props }: any) => (
-          <ul className='ms-4 list-disc' {...props} />
-        ),
+        li: ({ node, ...props }: any) => <li className="mb-4" {...props} />,
+        ul: ({ node, ...props }: any) => <ul className="ms-4 list-disc" {...props} />,
         ol: ({ node, ...props }: any) => {
           const start = props.start || 1
           const li_count =
-            node.children.filter((subnode: any) => subnode.tagName === 'li')
-              .length - 1
+            node.children.filter((subnode: any) => subnode.tagName === 'li').length - 1
           const max_number = start + li_count
 
           let margin_start_class = ''
-          if (max_number > 10000) {
+          if (max_number > 10_000) {
             margin_start_class = 'ms-16'
           } else if (max_number > 1000) {
             margin_start_class = 'ms-14'
@@ -285,13 +257,11 @@ export function markdownToReact(markdown: string) {
             margin_start_class = 'ms-5'
           }
 
-          return (
-            <ol className={cn('list-decimal', margin_start_class)} {...props} />
-          )
+          return <ol className={cn('list-decimal', margin_start_class)} {...props} />
         },
         blockquote: ({ node, ...props }: any) => (
           <blockquote
-            className="relative mb-4 pl-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-1 before:rounded-full before:bg-primary before:content-['']"
+            className="relative mb-4 pl-4 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:rounded-full before:bg-primary before:content-['']"
             {...props}
           />
         ),
@@ -306,10 +276,10 @@ export function markdownToReact(markdown: string) {
           return (
             <Image
               {...props}
-              width={600}
+              className={cn('h-auto w-full rounded-xl', props.className)}
               height={600}
               src={src}
-              className={cn('w-full h-auto rounded-xl', props.className)}
+              width={600}
             />
           )
         },
@@ -326,16 +296,10 @@ export function markdownToReact(markdown: string) {
             const title = props.title
 
             return (
-              <audio
-                {...props}
-                title={title}
-                controls={true}
-                preload='metadata'
-                src={src}
-              >
-                <source src={src} type='audio/mpeg' />
+              <audio {...props} controls={true} preload="metadata" src={src} title={title}>
+                <source src={src} type="audio/mpeg" />
                 <a href={src}>
-                  <button>
+                  <button type="button">
                     {title ? `Herunterladen: "${title}"` : 'Herunterladen'}
                   </button>
                 </a>
@@ -353,12 +317,7 @@ export function markdownToReact(markdown: string) {
             return null
           }
 
-          return (
-            <iframe
-              {...props}
-              className={cn('overflow-hidden rounded-xl', props.className)}
-            />
-          )
+          return <iframe {...props} className={cn('overflow-hidden rounded-xl', props.className)} />
         },
       },
     })
