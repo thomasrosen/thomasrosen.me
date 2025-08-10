@@ -26,7 +26,7 @@ function checkOrigin(origin) {
 }
 
 const app = express()
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
 
   // const origin = req.get('origin')
   const origin = req.header('Origin')
@@ -42,16 +42,16 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get('/blog', function (req, res) {
+app.get('/blog', (_req, res) => {
   res.redirect(302, '/articles')
 });
-app.get('/zenris', function (req, res) {
+app.get('/zenris', (_req, res) => {
   res.redirect(302, '/articles/zenris')
 });
 
 app.use('/', express.static('../build/', { fallthrough: true }))
 
-app.get('*', (req, res) => {
+app.get('*', (_req, res) => {
   res.sendFile('index.html', { root: '../build/' })
 })
 
