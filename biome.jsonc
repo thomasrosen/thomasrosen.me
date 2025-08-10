@@ -1,0 +1,49 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+  "extends": ["ultracite"],
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "lineWidth": 100
+    }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useFilenamingConvention": "error"
+      },
+      "correctness": {
+        "noUnusedImports": {
+          "level": "error",
+          "fix": "safe"
+        }
+      },
+      "suspicious": {
+        "noConsole": "off",
+        "noExplicitAny": "off"
+      },
+      "nursery": {
+        "noUnknownAtRule": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "nextjs/src/app/not_found.tsx",
+        "expo/app/+not-found.tsx",
+        "expo/app/api/auth/\\[...auth\\]+api.ts",
+        "expo/ios/**",
+        "expo/android/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    }
+  ]
+}

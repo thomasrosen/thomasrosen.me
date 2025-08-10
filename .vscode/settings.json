@@ -1,13 +1,128 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
+  "files.exclude": {
+    "**/.git": false
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "emmet.showExpandedAbbreviation": "never",
+  "editor.codeActionsOnSave": {
+    "source.action.useSortedKeys.biome": "explicit",
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.sortMembers.biome": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.formatOnSaveMode": "file",
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.formatOnSaveMode": "modifications"
+  "editor.detectIndentation": true,
+  "editor.autoIndent": "full",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.experimental.useTrueInlineView": true,
+  "editor.minimap.enabled": true,
+  "editor.minimap.autohide": false,
+  "multiDiffEditor.experimental.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.scale": 1,
+  "editor.minimap.side": "right",
+  "editor.minimap.size": "proportional",
+  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+  "editor.suggest.preview": true,
+  "editor.suggest.shareSuggestSelections": true,
+  "workbench.editor.decorations.colors": true,
+  "workbench.preferredLightColorTheme": "GitHub Light Default",
+  "workbench.preferredDarkColorTheme": "GitHub Dark Default",
+  "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
+  "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
+  "workbench.fontAliasing": "antialiased",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "left",
+  "workbench.statusBar.visible": true,
+  "workbench.tree.enableStickyScroll": true,
+  "workbench.view.alwaysShowHeaderActions": false,
+  "workbench.view.showQuietly": {
+    "workbench.panel.output": false
+  },
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.filePath": "off",
+  "breadcrumbs.icons": true,
+  "breadcrumbs.showArrays": true,
+  "breadcrumbs.symbolPath": "on",
+  "breadcrumbs.symbolSortOrder": "name",
+  "breadcrumbs.showVariables": true,
+  "breadcrumbs.showTypeParameters": true,
+  "workbench.editor.alwaysShowEditorActions": false,
+  "workbench.editor.decorations.badges": false,
+  "workbench.editor.editorActionsLocation": "default",
+  "workbench.editor.highlightModifiedTabs": true,
+  "window.commandCenter": false,
+  "window.autoDetectColorScheme": true,
+  "window.density.editorTabHeight": "default",
+  "window.titleSeparator": " • ",
+  "inlineChat.lineEmptyHint": false,
+  "chat.editor.wordWrap": "on",
+  "chat.commandCenter.enabled": true,
+  "chat.detectParticipant.enabled": true,
+  "search.defaultViewMode": "tree",
+  "search.seedWithNearestWord": true,
+  "search.seedOnFocus": true,
+  "search.showLineNumbers": true,
+  "search.smartCase": false,
+  "search.useGlobalIgnoreFiles": true,
+  "search.useParentIgnoreFiles": true,
+  "explorer.compactFolders": true,
+  "explorer.decorations.colors": true,
+  "explorer.decorations.badges": true,
+  "explorer.excludeGitIgnore": false,
+  "explorer.fileNesting.enabled": false,
+  "explorer.fileNesting.expand": false,
+  "explorer.incrementalNaming": "smart",
+  "explorer.openEditors.sortOrder": "editorOrder",
+  "explorer.openEditors.visible": 9,
+  "outline.icons": true,
+  "search.actionsPosition": "auto",
+  "scm.alwaysShowActions": false,
+  "scm.alwaysShowRepositories": false,
+  "gitblame.ignoreWhitespace": true,
+  "gitblame.inlineMessageEnabled": true,
+  "gitblame.inlineMessageFormat": "${author.name} (${time.ago})",
+  "gitblame.statusBarMessageClickAction": "Show info message",
+  "gitblame.statusBarMessageFormat": "${author.name} (${time.ago})",
+  "indentRainbow.colorOnWhiteSpaceOnly": true,
+  "importCost.bundleSizeColoring": "minified",
+  "importCost.bundleSizeDecoration": "both",
+  "importCost.debug": false,
+  "importCost.fontStyle": "italic",
+  "importCost.showCalculatingDecoration": true,
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.folders.theme": "specific",
+  "material-icon-theme.folders.color": "#90a4ae",
+  "material-icon-theme.saturation": 1,
+  "material-icon-theme.opacity": 1,
+  "tailwindcss-intellisense.trace.server": "messages",
+  "[javascript][typescript][javascriptreact][typescriptreact][json][jsonc][css][graphql]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
