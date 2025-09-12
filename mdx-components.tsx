@@ -14,6 +14,7 @@ import remarkFootnotesExtra from 'remark-footnotes-extra'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { HR } from '@/components/hr'
 import { Typo } from '@/components/Typo'
 // import nextMDX from '@next/mdx'
 import { rehypeMapHtmlElementsToReact } from '@/lib/unified/rehypeMapHtmlElementsToReact'
@@ -46,12 +47,7 @@ export const components: MDXComponents = {
   h4: (props) => <Typo as="h4" className="opacity-80" {...props} />,
   h5: (props) => <Typo as="h5" className="opacity-70" {...props} />,
   h6: (props) => <Typo as="h6" className="opacity-60" {...props} />,
-  hr: (props) => (
-    <hr
-      // className='my-8 h-[3px] rounded-[3px] border-0 bg-[currentColor] opacity-10'
-      {...props}
-    />
-  ),
+  hr: (props) => <HR {...props} />,
   a: (props: any) => {
     const className = props.className
 
