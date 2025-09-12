@@ -1,5 +1,4 @@
 import { Dot } from '@/components/Dot'
-import { HR } from '@/components/hr'
 import { Typo } from '@/components/Typo'
 
 export default function PageFollow() {
@@ -77,7 +76,7 @@ export default function PageFollow() {
         </a>
 
         <div />
-        <HR className="!my-6" />
+        <div className="h-2" />
 
         <Typo as="h3" className="text-md">
           <Dot color="#000000" />
@@ -119,7 +118,7 @@ export default function PageFollow() {
         </a>
 
         <div />
-        <HR className="!my-6" />
+        <div className="h-2" />
 
         <Typo as="h3" className="text-md">
           <Dot color="#d60017" />

@@ -61,32 +61,34 @@ export default function RootLayout({ children }) {
           enableSystem
         >
           <div className="app_wrapper">
-            <header>
-              <Shine puffyness="3">
-                <div
-                  alt="Thomas Rosen eating a slice of watermelon."
-                  aria-hidden="true"
-                  className="headerImageOfMe"
-                />
-              </Shine>
+            <div className="tab_content">
+              <header>
+                <Shine puffyness="3">
+                  <div
+                    alt="Thomas Rosen eating a slice of watermelon."
+                    aria-hidden="true"
+                    className="headerImageOfMe"
+                  />
+                </Shine>
 
-              <Typo aria-label="Thomas Rosen" as="h1">
-                Thomas
-                <br />
-                Rosen
-              </Typo>
-            </header>
+                <Typo aria-label="Thomas Rosen" as="h1">
+                  Thomas
+                  <br />
+                  Rosen
+                </Typo>
+              </header>
+            </div>
 
             <nav className="tab_content !flex flex-row flex-wrap gap-2">
               <NavLinkButton href="/">Hi!</NavLinkButton>
               <NavLinkButton href="/articles/">
                 <Emoji aria-hidden="true">📝</Emoji> Blog
               </NavLinkButton>
-              <NavLinkButton href="/playlists/">
-                <Emoji aria-hidden="true">🎸</Emoji> Playlists
-              </NavLinkButton>
               <NavLinkButton href="/press/">
                 <Emoji aria-hidden="true">📰</Emoji> In the Press
+              </NavLinkButton>
+              <NavLinkButton href="/playlists/">
+                <Emoji aria-hidden="true">🎸</Emoji> Playlists
               </NavLinkButton>
             </nav>
 
