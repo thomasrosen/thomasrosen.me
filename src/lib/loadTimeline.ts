@@ -48,7 +48,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const timelineEntries: TimelineEntry[] = timeline.entries
 
   const articles = await loadArticles()
-  const articlesAsEntries = articles.map((article, index: number) => ({
+  const articlesAsEntries = articles.map((article) => ({
     title: article.data.title,
     text: article.data.summary,
     author: 'Thomas Rosen',

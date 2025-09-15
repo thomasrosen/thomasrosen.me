@@ -102,21 +102,21 @@ let nextConfig: NextConfig = {
       use: 'ignore-loader',
     })
 
-    // Find existing rule handling images
-    const imageRule = config.module.rules.find((rule: any) => {
-      if (typeof rule !== 'object') {
-        return false
-      }
-      if (!rule.test) {
-        return false
-      }
-      return rule.test?.toString().includes('jpg') || rule.test?.toString().includes('png')
-    })
-
-    if (imageRule) {
-      imageRule.type = 'asset/resource' // Tell Webpack: treat as file, not as inline asset
-      delete imageRule.parser // Clean up potential leftover settings
-    }
+    // // Find existing rule handling images
+    // const imageRule = config.module.rules.find((rule: any) => {
+    //   if (typeof rule !== 'object') {
+    //     return false
+    //   }
+    //   if (!rule.test) {
+    //     return false
+    //   }
+    //   return rule.test?.toString().includes('jpg') || rule.test?.toString().includes('png')
+    // })
+    //
+    // if (imageRule) {
+    //   imageRule.type = 'asset/resource' // Tell Webpack: treat as file, not as inline asset
+    //   delete imageRule.parser // Clean up potential leftover settings
+    // }
 
     return config
   },

@@ -17,7 +17,7 @@ export function EntryImage({
   entryAfter?: TimelineEntry
 }) {
   const hasImage = entry.image && typeof entry.image === 'string'
-  const isExternalImage = entry.image?.startsWith('http')
+  const isExternalImage = typeof entry.image === 'string' && entry.image?.startsWith('http')
 
   return (
     <div
