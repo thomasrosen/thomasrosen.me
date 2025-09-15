@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 import { Dot } from '@/components/Dot'
 import { Emoji } from '@/components/Emoji'
 import { LinkOrDiv } from '@/components/Timeline/LinkOrDiv'
@@ -13,7 +12,7 @@ export const dynamic = 'force-static'
 export const dynamicParams = false
 
 function get_genres(playlist: any): string[] {
-  if (!(playlist && playlist.Songs) || Array.isArray(playlist.Songs) === false) {
+  if (!playlist?.Songs || Array.isArray(playlist.Songs) === false) {
     return []
   }
 
@@ -31,7 +30,7 @@ function get_genres(playlist: any): string[] {
 
   const genres: string[] = Object.entries(genres_with_count)
     .sort((a: any, b: any) => b[1] - a[1])
-    .map(([genre, count]) => genre)
+    .map(([genre]) => genre)
     .slice(0, 3) // only keep the top 3 genres
 
   return genres
@@ -80,27 +79,27 @@ function SongCard({
       <Typo as="small" className="flex flex-wrap items-center gap-4">
         {[
           typeof genre === 'string' && genre.length > 0 ? (
-            <span title={`Genre: ${genre}`}>
+            <span key={genre} title={`Genre: ${genre}`}>
               <Badge key={genre} variant="accent">
                 {genre}
               </Badge>
             </span>
           ) : null,
 
-          <time title={`Duration: ${song.Duration} min`}>{song.Duration} min</time>,
+          <time key={song.Duration} title={`Duration: ${song.Duration} min`}>
+            {song.Duration} min
+          </time>,
           play_count > 0 ? (
-            <Emoji title={`Play Count: ${play_count}`}>🔄 {play_count}</Emoji>
+            <Emoji key={play_count} title={`Play Count: ${play_count}`}>
+              🔄 {play_count}
+            </Emoji>
           ) : null,
           song['Is Explicit'] === '1' ? (
-            <Emoji alt="Song is Explicit" title="Song is Explicit">
+            <Emoji alt="Song is Explicit" key={song['Is Explicit']} title="Song is Explicit">
               🔥
             </Emoji>
           ) : null,
-        ]
-          .filter(Boolean)
-          .map((item, index) => (
-            <React.Fragment key={index}>{item}</React.Fragment>
-          ))}
+        ].filter(Boolean)}
       </Typo>
     </div>
   )
@@ -232,7 +231,7 @@ export default async function PagePlaylist({ params }: { params: Promise<{ id: s
       <div className="flex w-full flex-wrap gap-4">
         {song_count > 0 &&
           playlist.Songs.map((song: any, index: number) => (
-            <SongCard key={index} position={index + 1} song={song} />
+            <SongCard key={`${song.Title}-${index}`} position={index + 1} song={song} />
           ))}
       </div>
 
