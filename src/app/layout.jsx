@@ -6,7 +6,6 @@ import '@/fonts/ubuntu-mono-v15-latin/index.css'
 import '@/fonts/ubuntu-v20-latin/index.css'
 import '@/styles/App.css'
 import '@/styles/index.css'
-import Link from 'next/link'
 import Script from 'next/script'
 import { NavLinkButton } from '@/components/NavLinkButton'
 
@@ -94,6 +93,7 @@ export default function RootLayout({ children }) {
 
             <div className="mb-4" />
 
+            {/*
             <Link
               className="link_box rounded-xl"
               data-umami-event="Newsletter"
@@ -106,6 +106,7 @@ export default function RootLayout({ children }) {
               </Typo>
               <Typo as="p">Signup to get occasional emails from me…</Typo>
             </Link>
+            */}
 
             <svg
               aria-hidden="true"
