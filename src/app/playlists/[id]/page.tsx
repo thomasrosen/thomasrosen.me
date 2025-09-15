@@ -94,11 +94,14 @@ function SongCard({
             </span>
           ) : null,
 
-          <time key={song.Duration} title={`Duration: ${song.Duration} min`}>
+          <time
+            key={`duration-${song.Duration}-${song.Title}`}
+            title={`Duration: ${song.Duration} min`}
+          >
             {song.Duration} min
           </time>,
           play_count > 0 ? (
-            <Emoji key={play_count} title={`Play Count: ${play_count}`}>
+            <Emoji key={`emoji-${play_count}-${song.Title}`} title={`Play Count: ${play_count}`}>
               🔄 {play_count}
             </Emoji>
           ) : null,
