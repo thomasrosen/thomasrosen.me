@@ -5,7 +5,8 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsc --noEmit && npm run build_data",
+    "types": "tsc --noEmit",
+    "prebuild": "npm run build_data",
     "build": "next build",
     "build_analyze": "ANALYZE=true next build",
     "start": "next start",
