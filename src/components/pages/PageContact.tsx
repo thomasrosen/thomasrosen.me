@@ -4,7 +4,7 @@ import { Typo } from '@/components/Typo'
 
 export default function PageContact() {
   return (
-    <div className="tab_content">
+    <section className="tab_content">
       <Typo as="h2" className="mb-6">
         Contact
       </Typo>
@@ -36,7 +36,7 @@ export default function PageContact() {
           thomas.rosen@volteuropa.org
         </Link>
       </div>
-    </div>
+    </section>
   )
 }
 

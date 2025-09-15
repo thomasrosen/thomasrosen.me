@@ -3,7 +3,7 @@ import { Typo } from '@/components/Typo'
 
 export default function PageSponsor() {
   return (
-    <div className="tab_content">
+    <section className="tab_content">
       <Typo as="h2" className="mb-6">
         Sponsor
       </Typo>
@@ -56,6 +56,6 @@ export default function PageSponsor() {
 
     */}
       </div>
-    </div>
+    </section>
   )
 }

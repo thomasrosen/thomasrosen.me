@@ -23,7 +23,7 @@ let nextConfig: NextConfig = {
 
   experimental: {
     forceSwcTransforms: true,
-    ppr: 'incremental',
+    ppr: false, // 'incremental',
     //   scrollRestoration: true,
     //   routerBFCache: true,
     //   viewTransition: true,
@@ -56,7 +56,7 @@ let nextConfig: NextConfig = {
         options: {
           emitFile: true,
           publicPath: '/_next/static/media',
-          outputPath: isServer ? '../static/media' : 'static/media',
+          outputPath: isServer ? '../../static/media' : 'static/media',
           name: '[name].[contenthash].[ext]',
         },
       },
@@ -102,21 +102,21 @@ let nextConfig: NextConfig = {
       use: 'ignore-loader',
     })
 
-    // Find existing rule handling images
-    const imageRule = config.module.rules.find((rule: any) => {
-      if (typeof rule !== 'object') {
-        return false
-      }
-      if (!rule.test) {
-        return false
-      }
-      return rule.test?.toString().includes('jpg') || rule.test?.toString().includes('png')
-    })
-
-    if (imageRule) {
-      imageRule.type = 'asset/resource' // Tell Webpack: treat as file, not as inline asset
-      delete imageRule.parser // Clean up potential leftover settings
-    }
+    // // Find existing rule handling images
+    // const imageRule = config.module.rules.find((rule: any) => {
+    //   if (typeof rule !== 'object') {
+    //     return false
+    //   }
+    //   if (!rule.test) {
+    //     return false
+    //   }
+    //   return rule.test?.toString().includes('jpg') || rule.test?.toString().includes('png')
+    // })
+    //
+    // if (imageRule) {
+    //   imageRule.type = 'asset/resource' // Tell Webpack: treat as file, not as inline asset
+    //   delete imageRule.parser // Clean up potential leftover settings
+    // }
 
     return config
   },

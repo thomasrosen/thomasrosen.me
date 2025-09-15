@@ -2,15 +2,13 @@ import { Emoji } from '@/components/Emoji'
 import { Shine } from '@/components/Shine'
 import { Typo } from '@/components/Typo'
 import { ThemeProvider } from '@/components/theme-provider'
-import { Button } from '@/components/ui/button'
 import '@/fonts/ubuntu-mono-v15-latin/index.css'
 import '@/fonts/ubuntu-v20-latin/index.css'
 import '@/styles/App.css'
 import '@/styles/index.css'
 import Link from 'next/link'
 import Script from 'next/script'
-
-export const experimental_ppr = true
+import { NavLinkButton } from '@/components/NavLinkButton'
 
 export default function RootLayout({ children }) {
   return (
@@ -40,16 +38,14 @@ export default function RootLayout({ children }) {
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-          // send pageviews to Umami when the url changes
+            __html: `// send pageviews to Umami when the url changes
           window.addEventListener('popstate', () => {
             if (window.umami) {
               // window.umami.track()
               const url = window.location.pathname + window.location.search + window.location.hash
               window.umami.track(props => ({ ...props, url }))
             }
-          });
-        `,
+          });`,
           }}
         />
       </head>
@@ -61,65 +57,42 @@ export default function RootLayout({ children }) {
           enableSystem
         >
           <div className="app_wrapper">
-            <header>
-              <Shine puffyness="3">
-                <div
-                  alt="Thomas Rosen eating a slice of watermelon."
-                  aria-hidden="true"
-                  className="headerImageOfMe"
-                />
-              </Shine>
-              <Typo as="h1">Thomas Rosen</Typo>
-            </header>
+            <div className="tab_content">
+              <header>
+                <Shine puffyness="3">
+                  <div
+                    alt="Thomas Rosen eating a slice of watermelon."
+                    aria-hidden="true"
+                    className="headerImageOfMe"
+                  />
+                </Shine>
 
-            <br />
+                <Typo aria-label="Thomas Rosen" as="h1">
+                  Thomas
+                  <br />
+                  Rosen
+                </Typo>
+              </header>
+            </div>
 
-            <nav>
-              <div className="my-4 flex flex-row flex-wrap justify-center gap-4">
-                <Link href="/">
-                  <Button size="lg" variant="accent">
-                    Hi!
-                  </Button>
-                </Link>
-                <Link href="/articles">
-                  <Button size="lg" variant="secondary">
-                    <Emoji aria-hidden="true">📝</Emoji> Blog
-                  </Button>
-                </Link>
-                <Link href="/playlists">
-                  <Button size="lg" variant="secondary">
-                    <Emoji aria-hidden="true">🎸</Emoji> Playlists
-                  </Button>
-                </Link>
-                <Link href="/press">
-                  <Button size="lg" variant="secondary">
-                    <Emoji aria-hidden="true">📰</Emoji> In the Press
-                  </Button>
-                </Link>
-
-                <Link href="/follow">
-                  <Button size="lg" variant="accent">
-                    Follow
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="accent">
-                    Contact
-                  </Button>
-                </Link>
-                <Link href="/sponsor">
-                  <Button size="lg" variant="accent">
-                    Sponsor
-                  </Button>
-                </Link>
-              </div>
+            <nav className="tab_content !flex flex-row flex-wrap gap-2">
+              <NavLinkButton href="/">Hi!</NavLinkButton>
+              <NavLinkButton href="/articles/">
+                <Emoji aria-hidden="true">📝</Emoji> Blog
+              </NavLinkButton>
+              <NavLinkButton href="/press/">
+                <Emoji aria-hidden="true">📰</Emoji> In the Press
+              </NavLinkButton>
+              <NavLinkButton href="/playlists/">
+                <Emoji aria-hidden="true">🎸</Emoji> Playlists
+              </NavLinkButton>
             </nav>
 
-            <div className="mb-8" />
+            <div className="mb-4" />
 
             {children}
 
-            <div className="mb-8" />
+            <div className="mb-4" />
 
             <Link
               className="link_box rounded-xl"
@@ -135,6 +108,7 @@ export default function RootLayout({ children }) {
             </Link>
 
             <svg
+              aria-hidden="true"
               fill="none"
               style={{
                 maxWidth: '100%',

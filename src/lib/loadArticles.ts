@@ -59,9 +59,9 @@ export async function loadArticles() {
             .process(orginal_file_content)
             .then((file: any) => String(file).trim())
 
-          const summary = plaintext.substring(0, 100).trim() + '…'
+          const summary = `${plaintext.substring(0, 100).trim()}…`
 
-          let coverphoto_src = null
+          let coverphoto_src: string | null = null
           if (!!data && typeof data.coverphoto === 'string' && data.coverphoto?.length > 0) {
             try {
               // Remove any URL encoding from the path
@@ -75,7 +75,7 @@ export async function loadArticles() {
             }
           }
 
-          let audio_src = null
+          let audio_src: string | null = null
           if (!!data && typeof data.audio === 'string' && data.audio?.length > 0) {
             try {
               // Remove any URL encoding from the path

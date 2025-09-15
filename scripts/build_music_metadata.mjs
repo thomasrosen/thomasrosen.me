@@ -180,7 +180,9 @@ async function get_playlist_coverphoto(playlist) {
     const image = song['Album Artwork']
     if (image && image !== '') {
       // Skip if it's a file path (from our previous processing)
-      if (image.startsWith(album_artworks_dir)) continue
+      if (image.startsWith(album_artworks_dir)) {
+        continue
+      }
 
       if (image.startsWith('data:image') && !images.find((img) => img === image)) {
         images.push(image)

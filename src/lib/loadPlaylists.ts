@@ -5,7 +5,7 @@ export async function loadPlaylists() {
       playlistData.default.playlists
         .sort((a, b) => new Date(b.date_month).getTime() - new Date(a.date_month).getTime())
         .map(async (playlist) => {
-          let coverphoto_src = null
+          let coverphoto_src: any = null
 
           try {
             const playlist_coverphoto = playlist.coverphoto
@@ -14,7 +14,7 @@ export async function loadPlaylists() {
               const imagePath = await import(`@/data/music/playlist_covers/${playlist_coverphoto}`)
               coverphoto_src = imagePath.default
             }
-          } catch (error) {
+          } catch (_error) {
             // gooble up the error
           }
 
@@ -38,7 +38,7 @@ export async function loadPlaylist(name: string) {
     const playlistsData = await import('@/data/music/playlists.json')
     const playlists = playlistsData.default.playlists
 
-    const foundPlaylist = playlists.find((playlist) => playlist.name === name)
+    const foundPlaylist = playlists.find((playlist_a) => playlist_a.name === name)
     if (!foundPlaylist) {
       throw new Error(`Playlist ${name} not found`)
     }
@@ -51,10 +51,9 @@ export async function loadPlaylist(name: string) {
           const albumArtwork = song['Album Artwork']
           if (albumArtwork) {
             const albumArtworkPath = await import(`@/data/music/album_artworks/${albumArtwork}`)
-            console.log('albumArtworkPath', albumArtworkPath)
             song['Album Artwork'] = albumArtworkPath.default
           }
-        } catch (error) {
+        } catch (_error) {
           // gooble up the error
         }
         return song

@@ -198,7 +198,7 @@ h1 {
   font-weight: bold;
   font-size: 110px;
   letter-spacing: -1.5px;
-  line-height: 0.8;
+  line-height: 0.85;
 }
 
 h2,
@@ -320,20 +320,6 @@ a:hover,
 a.inherit_color {
   color: inherit;
   text-decoration-color: inherit;
-}
-
-hr {
-  border: 0;
-  height: 0.8rem;
-  background-color: var(--foreground);
-  margin: 40px 0;
-  border-radius: 0.8rem;
-}
-hr.small {
-  border: 0;
-  height: 1px;
-  background-color: var(--foreground);
-  margin: 0;
 }
 
 ul,

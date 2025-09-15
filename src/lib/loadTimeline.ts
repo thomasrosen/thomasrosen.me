@@ -13,7 +13,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
 
   const images = processImageFiles()
   const imagesAsEntries = await Promise.all(
-    images.map(async (data) => {
+    images.map(async (data: any) => {
       const loc =
         data.latitude && data.longitude
           ? {
@@ -22,7 +22,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
             }
           : undefined
 
-      let image_src = null
+      let image_src: any = null
       if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
         try {
           // Remove any URL encoding from the path
@@ -48,7 +48,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const timelineEntries: TimelineEntry[] = timeline.entries
 
   const articles = await loadArticles()
-  const articlesAsEntries = articles.map((article, index) => ({
+  const articlesAsEntries = articles.map((article) => ({
     title: article.data.title,
     text: article.data.summary,
     author: 'Thomas Rosen',
@@ -65,11 +65,11 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const playlistsAsEntries = playlists.map((playlist) => ({
     displayAs: 'playlist',
     image: playlist.coverphoto,
-    url: '/playlists/' + playlist.name,
+    url: `/playlists/${playlist.name}`,
     tags: [...new Set(['playlist', ...(playlist.genres || [])])],
     date: playlist.date_month,
     title: playlist.name,
-    text: playlist.count === 1 ? 'One Song' : playlist.count + ' Songs',
+    text: playlist.count === 1 ? 'One Song' : `${playlist.count} Songs`,
   }))
 
   loadTimelineCache = [

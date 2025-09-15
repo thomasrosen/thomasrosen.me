@@ -3,12 +3,12 @@ import { Typo } from '@/components/Typo'
 
 export default function PageFollow() {
   return (
-    <div className="tab_content">
+    <section className="tab_content">
       <Typo as="h2" className="mb-6">
         Follow
       </Typo>
 
-      <div className="links_grid !gap-y-6">
+      <div className="links_grid">
         <Typo as="h3" className="text-md">
           <Dot color="#ed4956" />
           Instagram
@@ -21,22 +21,24 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
-          <Dot color="#1da1f2" />
-          Twitter
+          <Dot color="#000" />
+          Threads
         </Typo>
         <a
-          data-umami-event="twitter"
-          href="https://twitter.com/thomas_roses"
+          data-umami-event="threads"
+          href="https://www.threads.com/@thomasrosen"
           rel="noreferrer"
           target="_blank"
         >
-          thomas_roses
+          thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#00f2ea" />
           TikTok
-        </Typo>{' '}
+        </Typo>
         {/* #ff0050 #00f2ea */}
         <a
           data-umami-event="tiktok"
@@ -46,6 +48,7 @@ export default function PageFollow() {
         >
           thomasroses
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#ff0000" />
           YouTube
@@ -58,6 +61,7 @@ export default function PageFollow() {
         >
           Thomas Rosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#0a66c1" />
           LinkedIn
@@ -70,6 +74,10 @@ export default function PageFollow() {
         >
           thomasroses
         </a>
+
+        <div />
+        <div className="h-2" />
+
         <Typo as="h3" className="text-md">
           <Dot color="#000000" />
           GitHub
@@ -82,20 +90,7 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
-        <div />
-        <hr className="!my-6 col-span-1" />
-        <Typo as="h3" className="text-md">
-          <Dot color="#d60017" />
-          Apple Music
-        </Typo>
-        <a
-          data-umami-event="apple-music"
-          href="https://music.apple.com/profile/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#e24329" />
           GitLab
@@ -108,6 +103,7 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#e24329" />
           GitLab (Volt DE)
@@ -120,6 +116,23 @@ export default function PageFollow() {
         >
           thomas.rosen.volt
         </a>
+
+        <div />
+        <div className="h-2" />
+
+        <Typo as="h3" className="text-md">
+          <Dot color="#d60017" />
+          Apple Music
+        </Typo>
+        <a
+          data-umami-event="apple-music"
+          href="https://music.apple.com/profile/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
+        >
+          thomasrosen
+        </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#000000" />
           Subreply
@@ -132,6 +145,7 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#2f93d7" />
           Mastodon
@@ -144,6 +158,7 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#268f23" />
           Medium
@@ -156,6 +171,7 @@ export default function PageFollow() {
         >
           thomas_rosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#001935" />
           Tumblr
@@ -168,6 +184,7 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#e60023" />
           Pinterest
@@ -180,6 +197,7 @@ export default function PageFollow() {
         >
           thomas_roses
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#1067d9" />
           Flickr
@@ -192,6 +210,7 @@ export default function PageFollow() {
         >
           Thomas Rosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#ea4c89" />
           Dribbble
@@ -204,6 +223,7 @@ export default function PageFollow() {
         >
           thomasrosen/likes
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#7ebc6f" />
           OpenStreetMap
@@ -216,6 +236,7 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
         <Typo as="h3" className="text-md">
           <Dot color="#000000" />
           dev.to
@@ -228,7 +249,20 @@ export default function PageFollow() {
         >
           thomasrosen
         </a>
+
+        <Typo as="h3" className="text-md">
+          <Dot color="#1da1f2" />
+          Twitter
+        </Typo>
+        <a
+          data-umami-event="twitter"
+          href="https://twitter.com/thomas_roses"
+          rel="noreferrer"
+          target="_blank"
+        >
+          thomas_roses
+        </a>
       </div>
-    </div>
+    </section>
   )
 }

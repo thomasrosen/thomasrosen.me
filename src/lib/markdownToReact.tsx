@@ -17,6 +17,7 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
+import { HR } from '@/components/hr'
 import { Typo } from '@/components/Typo'
 import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
 import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
@@ -131,12 +132,7 @@ export function markdownToReact(markdown: string) {
         h4: ({ node, ...props }: any) => <Typo as="h4" className="opacity-80" {...props} />,
         h5: ({ node, ...props }: any) => <Typo as="h5" className="opacity-70" {...props} />,
         h6: ({ node, ...props }: any) => <Typo as="h6" className="opacity-60" {...props} />,
-        hr: ({ node, ...props }: any) => (
-          <hr
-            className="my-8 h-[3px] rounded-[3px] border-0 bg-[currentColor] opacity-10"
-            {...props}
-          />
-        ),
+        hr: ({ node, ...props }: any) => <HR {...props} />,
         a: ({ node, ...props }: any) => {
           const className = props.className
 

@@ -18,8 +18,9 @@ export function EntryArticle({
   entryBefore?: TimelineEntry
   entryAfter?: TimelineEntry
 }) {
-  const hasImage = entry.image && typeof entry.image === 'string'
-  const isExternalImage = entry.image?.startsWith('http')
+  const isExternalImage = typeof entry.image === 'string' && entry.image?.startsWith('http')
+  const imageUrl = (typeof entry.image === 'string' ? entry.image : entry.image?.src) || ''
+  const hasImage = imageUrl && typeof imageUrl === 'string'
 
   const displayAs = entry.displayAs
 
@@ -58,7 +59,7 @@ export function EntryArticle({
             priority={isFirstImage}
             quality={75}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            src={entry.image || ''}
+            src={imageUrl}
             unoptimized={isExternalImage}
             width={128}
           />
@@ -73,11 +74,15 @@ export function EntryArticle({
             priority={isFirstImage}
             quality={75}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            src={entry.image || ''}
+            src={imageUrl}
             unoptimized={isExternalImage}
             width={128}
           />
         </>
+      ) : displayAs === 'playlist' ? (
+        <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-sm bg-accent">
+          <Emoji className="text-5xl">🎵</Emoji>
+        </div>
       ) : displayAs === 'link' ? (
         <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-sm bg-accent">
           <Emoji className="text-lg">🔗</Emoji>

@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils'
 interface ArticleLayoutProps {
   children: React.ReactNode
   data: {
+    audio: string // orginal path
     title: string
     date: string
     tags: string[]
@@ -70,6 +71,7 @@ export function ArticleLayout({ children, data: article }: ArticleLayoutProps) {
           </Typo>
 
           {audio_src ? (
+            // biome-ignore lint/a11y/useMediaCaption: the article is the caption
             <audio className="mb-4 w-full" controls preload="metadata" src={audio_src}>
               <source src={audio_src} type="audio/mpeg" />
               <Link href={audio_src}>
