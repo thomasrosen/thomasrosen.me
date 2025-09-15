@@ -173,7 +173,8 @@ export function generate_rss_feed(options: { articles?: Article[] }) {
     const audio_public = article.data?.audio
     if (!!audio && typeof audio === 'string' && audio.length > 0) {
       audio_url = `${domain}${audio_public}`
-      audio_file = audio.replace('/_next/static/media/', '.next/server/static/media/')
+      // audio_file = audio.replace('/_next/static/media/', '.next/server/static/media/')
+      audio_file = audio.replace('/_next/static/media/', '.next/static/media/')
     }
 
     let audio_length = '00:10' // length of the empty default enclosure

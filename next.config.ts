@@ -56,7 +56,7 @@ let nextConfig: NextConfig = {
         options: {
           emitFile: true,
           publicPath: '/_next/static/media',
-          outputPath: isServer ? '../static/media' : 'static/media',
+          outputPath: isServer ? '../../static/media' : 'static/media',
           name: '[name].[contenthash].[ext]',
         },
       },

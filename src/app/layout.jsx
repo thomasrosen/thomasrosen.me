@@ -10,8 +10,6 @@ import Link from 'next/link'
 import Script from 'next/script'
 import { NavLinkButton } from '@/components/NavLinkButton'
 
-export const experimental_ppr = true
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -40,16 +38,14 @@ export default function RootLayout({ children }) {
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-          // send pageviews to Umami when the url changes
+            __html: `// send pageviews to Umami when the url changes
           window.addEventListener('popstate', () => {
             if (window.umami) {
               // window.umami.track()
               const url = window.location.pathname + window.location.search + window.location.hash
               window.umami.track(props => ({ ...props, url }))
             }
-          });
-        `,
+          });`,
           }}
         />
       </head>
