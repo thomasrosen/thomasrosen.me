@@ -40,11 +40,19 @@ function get_genres(playlist: any): string[] {
 export async function generateStaticParams() {
   const playlists = await loadPlaylists()
 
-  return playlists.flatMap((playlist) => [
+  const id_list = playlists.flatMap((playlist) => [
+    // {
+    //   id: process.env.NODE_ENV === 'production' ? playlist.name : encodeURIComponent(playlist.name),
+    // },
     {
-      id: process.env.NODE_ENV === 'production' ? playlist.name : encodeURIComponent(playlist.name),
+      id: playlist.name,
+    },
+    {
+      id: encodeURIComponent(playlist.name),
     },
   ])
+
+  return id_list
 }
 
 function SongCard({
@@ -173,13 +181,11 @@ function SongCard({
 
 export default async function PagePlaylist({ params }: { params: Promise<{ id: string }> }) {
   const { id: name } = (await params) || {}
-
   if (!name) {
     throw new Error('No playlist name provided.')
   }
 
   const playlist = await loadPlaylist(decodeURIComponent(name))
-
   if (!playlist) {
     throw new Error('No playlist found.')
   }
@@ -219,7 +225,7 @@ export default async function PagePlaylist({ params }: { params: Promise<{ id: s
         <div className="flex flex-wrap items-center gap-2">
           <div className="contents" itemProp="keywords">
             {genres.map((genre) => (
-              <Link href={`/tag/${genre}`} key={genre}>
+              <Link className="text-[0px] leading-none" href={`/tag/${genre}`} key={genre}>
                 <Badge variant="accent">{genre}</Badge>
               </Link>
             ))}
