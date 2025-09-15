@@ -7,7 +7,7 @@ audio: ""
 audio_length: 00:00
 coverphoto: ""
 lang: en
-font: serif
+font: sans_serif
 tags: [Software]
 ---
 
