@@ -22,19 +22,21 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
     notFound()
   }
 
+  const tags = [tag] // to allow multiple tags in the future
+
   return (
     <>
       <Typo as="h2" className="tab_content">
         <div className="flex flex-wrap gap-2">
-          {[tag].map((tag) => (
-            <Badge key={tag} size="lg" variant="accent">
-              {tag}
+          {tags.map((tag_inner) => (
+            <Badge key={tag_inner} size="lg" variant="accent">
+              {tag_inner}
             </Badge>
           ))}
         </div>
       </Typo>
 
-      <Timeline showTimeHeadlines={true} tags={[tag]} />
+      <Timeline showTimeHeadlines={true} tags={tags} />
     </>
   )
 }

@@ -23,7 +23,7 @@ let nextConfig: NextConfig = {
 
   experimental: {
     forceSwcTransforms: true,
-    ppr: 'incremental',
+    ppr: false, // 'incremental',
     //   scrollRestoration: true,
     //   routerBFCache: true,
     //   viewTransition: true,

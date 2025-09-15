@@ -47,9 +47,9 @@ export async function generateStaticParams() {
     {
       id: playlist.name,
     },
-    {
-      id: encodeURIComponent(playlist.name),
-    },
+    // {
+    //   id: encodeURIComponent(playlist.name),
+    // },
   ])
 
   return id_list

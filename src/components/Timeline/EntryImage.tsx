@@ -16,8 +16,9 @@ export function EntryImage({
   entryBefore?: TimelineEntry
   entryAfter?: TimelineEntry
 }) {
-  const hasImage = entry.image && typeof entry.image === 'string'
   const isExternalImage = typeof entry.image === 'string' && entry.image?.startsWith('http')
+  const imageUrl = (typeof entry.image === 'string' ? entry.image : entry.image?.src) || ''
+  const hasImage = imageUrl && typeof imageUrl === 'string'
 
   return (
     <div
@@ -37,7 +38,7 @@ export function EntryImage({
           priority={isFirstImage}
           quality={75}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src={entry.image || ''}
+          src={imageUrl}
           unoptimized={isExternalImage}
         />
       ) : null}

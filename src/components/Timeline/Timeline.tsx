@@ -23,7 +23,7 @@ export async function Timeline({
 
   let yearBefore: string | null = null
   let monthBefore: string | null = null
-  let dayBefore: string | null = null
+  // let dayBefore: string | null = null
 
   return (
     <div className="w-full space-y-4">
@@ -33,7 +33,7 @@ export async function Timeline({
         const date = new Date(key)
         const year = date.getFullYear().toString()
         const month = date.getMonth().toString()
-        const day = date.getDate().toString()
+        // const day = date.getDate().toString()
 
         const isNewYear = year !== yearBefore
         const isNewMonth = month !== monthBefore
@@ -42,7 +42,7 @@ export async function Timeline({
 
         yearBefore = year
         monthBefore = month
-        dayBefore = day
+        // dayBefore = day
 
         const isOnlyOneEntry = entries.length === 1
 
@@ -52,7 +52,7 @@ export async function Timeline({
 
           const displayAs = entry.displayAs || 'text'
 
-          const isSurroundedByImages = before?.displayAs === 'image' || after?.displayAs === 'image'
+          // const isSurroundedByImages = before?.displayAs === 'image' || after?.displayAs === 'image'
 
           const entryClone = { ...entry }
           if (displayAs === 'image') {
@@ -157,7 +157,7 @@ export async function Timeline({
                 )}
               >
                 {isNewYear ? <span className="opacity-60">{year}</span> : null}
-                {isNewMonth ? <span>{getMonthName(Number.parseInt(month))}</span> : null}
+                {isNewMonth ? <span>{getMonthName(Number.parseInt(month, 10))}</span> : null}
               </Typo>
             ) : null}
 
