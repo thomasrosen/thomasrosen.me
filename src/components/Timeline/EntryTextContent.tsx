@@ -4,18 +4,17 @@ import { Emoji } from '../Emoji'
 import { Badge } from '../ui/badge'
 
 export function EntryTextContent({
-  entryBefore,
+  // entryBefore,
   entry,
-  entryAfter,
+  // entryAfter,
   showTags = false,
 }: {
-  entryBefore?: TimelineEntry
+  // entryBefore?: TimelineEntry
   entry: TimelineEntry
-  entryAfter?: TimelineEntry
+  // entryAfter?: TimelineEntry
   showTags?: boolean
 }) {
-  const sameDayAsBefore =
-    entryBefore && new Date(entryBefore.date).toDateString() === new Date(entry.date).toDateString()
+  // const sameDayAsBefore = entryBefore && new Date(entryBefore.date).toDateString() === new Date(entry.date).toDateString()
 
   const fullDateTimeString = new Date(entry.date).toLocaleDateString('de-DE', {
     month: 'long',

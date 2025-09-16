@@ -1,4 +1,7 @@
+/** biome-ignore-all lint/style/noNestedTernary: it works perfectly fine. i dont care. */
+/** biome-ignore-all lint/complexity/noExcessiveCognitiveComplexity: it works perfectly fine. i dont care. */
 import Image from 'next/image'
+import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import { Emoji } from '../Emoji'
@@ -23,6 +26,10 @@ export function EntryArticle({
   const hasImage = imageUrl && typeof imageUrl === 'string'
 
   const displayAs = entry.displayAs
+
+  const targetRatio = entry.imageAspectRatio || 1
+  const nearestRatio = findNearestRatio(targetRatio)
+  const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
 
   return (
     <LinkOrDiv
@@ -53,7 +60,9 @@ export function EntryArticle({
           ) : null}
           <Image
             alt={''}
-            className="absolute z-10 h-[128px] w-[128px] shrink-0 rounded-sm object-cover opacity-60 blur-[64px] saturate-150"
+            className={cn(
+              'absolute z-10 h-auto w-[128px] shrink-0 rounded-sm object-cover opacity-60 blur-[64px] saturate-150'
+            )}
             height={128}
             loading={isFirstImage ? 'eager' : 'lazy'}
             priority={isFirstImage}
@@ -66,7 +75,7 @@ export function EntryArticle({
           <Image
             alt={''}
             className={cn(
-              'relative z-20 h-[128px] w-[128px] rounded-sm object-cover',
+              'relative z-20 h-auto w-[128px] rounded-sm object-cover',
               displayAs === 'playlist' && 'contrast-110 saturate-110'
             )}
             height={128}

@@ -1,6 +1,7 @@
 import { Typo } from '@/components/Typo'
 import '@/fonts/petrona-v28-latin/index.css'
 import type React from 'react'
+import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
 import { cn } from '@/lib/utils'
 import { Entry } from './Entry'
 import { getGroupedEntries } from './getGroupedEntries'
@@ -60,25 +61,6 @@ export async function Timeline({
           }
           if (displayAs !== 'image') {
             entryClone.imageAspectRatio = entryClone.imageAspectRatio || 4
-          }
-
-          const possibleImageAspectRatios: Record<string, string> = {
-            '0.25': 'aspect-[0.25]',
-            '0.5': 'aspect-[0.5]',
-            '0.75': 'aspect-[0.75]',
-            '1': 'aspect-[1]',
-            '1.5': 'aspect-[1.5]',
-            '2': 'aspect-[2]',
-            '4': 'aspect-[4]',
-          }
-
-          function findNearestRatio(target: number): string {
-            const availableRatios = Object.keys(possibleImageAspectRatios).map(Number)
-            return String(
-              availableRatios.reduce((prev, curr) =>
-                Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev
-              )
-            )
           }
 
           const targetRatio = entryClone.imageAspectRatio || 1

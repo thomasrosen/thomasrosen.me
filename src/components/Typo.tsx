@@ -7,12 +7,12 @@ type TypoVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div
 const typoVariants = cva('text-pretty', {
   variants: {
     variant: {
-      h1: 'scroll-m-20 font-extrabold text-4xl tracking-tight lg:text-5xl',
-      h2: 'mb-[10px] scroll-m-20 font-semibold text-[42px] tracking-tight',
-      h3: 'mb-[10px] scroll-m-20 font-semibold text-[32px] tracking-tight',
-      h4: 'scroll-m-20 font-semibold text-xl tracking-tight',
-      h5: 'scroll-m-20 font-semibold text-lg tracking-tight',
-      h6: 'scroll-m-20 font-semibold text-base tracking-tight',
+      h1: 'scroll-m-20 font-extrabold text-4xl leading-tight tracking-tight lg:text-5xl',
+      h2: 'mb-[10px] scroll-m-20 font-semibold text-[42px] leading-tight tracking-tight',
+      h3: 'mb-[10px] scroll-m-20 font-semibold text-[32px] leading-tight tracking-tight',
+      h4: 'scroll-m-20 font-semibold text-xl leading-tight tracking-tight',
+      h5: 'scroll-m-20 font-semibold text-lg leading-tight tracking-tight',
+      h6: 'scroll-m-20 font-semibold text-base leading-tight tracking-tight',
       p: 'leading-7 [&:not(:last-child)]:mb-6',
       span: 'text-base',
       div: 'text-base',
@@ -72,6 +72,8 @@ export function Typo({ as: Component, variant, className, ...props }: TypoProps)
       case 'small':
         variant = 'small'
         break
+      default:
+        variant = 'div'
     }
   }
 

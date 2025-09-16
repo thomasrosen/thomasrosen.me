@@ -22,14 +22,20 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
             }
           : undefined
 
-      let image_src: any = null
       if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
         try {
           // Remove any URL encoding from the path
           const cleanPath = decodeURIComponent(data.image)
           // const currentDir = process.cwd()
           const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
-          image_src = imagePath.default
+          const image_src = imagePath.default
+
+          const width = image_src.width
+          const height = image_src.height
+          const aspectRatio = width / height
+
+          data.image = image_src
+          data.imageAspectRatio = aspectRatio
         } catch (error) {
           console.error('Error loading image:', error)
           // Continue without the image rather than failing the build
@@ -38,14 +44,37 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
 
       return {
         ...data,
-        image: image_src,
         tags: [...new Set(['image', ...(data.tags || [])])],
         loc,
       }
     })
   )
 
-  const timelineEntries: TimelineEntry[] = timeline.entries
+  const timelineEntries: TimelineEntry[] = await Promise.all(
+    timeline.entries.map(async (data: any) => {
+      if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
+        try {
+          // Remove any URL encoding from the path
+          const cleanPath = decodeURIComponent(data.image)
+          // const currentDir = process.cwd()
+          const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
+          const image_src = imagePath.default
+
+          const width = image_src.width
+          const height = image_src.height
+          const aspectRatio = width / height
+
+          data.image = image_src
+          data.imageAspectRatio = aspectRatio
+        } catch (error) {
+          console.error('ERROR_KYb9FC2c Error loading image:', error)
+          // Continue without the image rather than failing the build
+        }
+      }
+
+      return data
+    })
+  )
 
   const articles = await loadArticles()
   const articlesAsEntries = articles.map((article) => ({
