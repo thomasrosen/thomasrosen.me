@@ -55,7 +55,7 @@ export function EntryTextContent({
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {entry.author && <Typo as="small">by {entry.author}</Typo>}
           {showTags && tags?.length
-            ? tags.map((tag) => (
+            ? tags.slice(0, 3).map((tag) => (
                 <Badge key={tag} variant="accent">
                   {tag}
                 </Badge>

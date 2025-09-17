@@ -104,8 +104,8 @@ export function EntryArticle({
 
       <EntryTextContent
         entry={entry}
-        entryAfter={entryAfter}
-        entryBefore={entryBefore}
+        // entryAfter={entryAfter}
+        // entryBefore={entryBefore}
         showTags={true}
       />
     </LinkOrDiv>

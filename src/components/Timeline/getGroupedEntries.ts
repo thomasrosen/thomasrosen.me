@@ -27,7 +27,7 @@ export async function getGroupedEntries({
     try {
       const date = new Date(entry.date)
       asIsoString = date.toISOString().split('T')[0]
-    } catch (error) {
+    } catch (_error) {
       // gooble up the error
     }
 
