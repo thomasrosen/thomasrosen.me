@@ -71,14 +71,17 @@ export function GenreChart({
     ) satisfies ChartConfig
 
   return (
-    <ChartContainer className="-mx-[32px] mt-[32px] h-96 w-[calc(100%+64px)]" config={chartConfig}>
+    <ChartContainer
+      className="-mx-[40px] -mt-[40px] mb-[40px] h-96 w-[calc(100%+80px)]"
+      config={chartConfig}
+    >
       <LineChart
         accessibilityLayer
         data={chartData}
         margin={{
           top: 0,
-          right: 32,
-          left: 32,
+          right: 0,
+          left: 0,
           bottom: 0,
         }}
       >
@@ -88,7 +91,13 @@ export function GenreChart({
           axisLine={false}
           dataKey="date"
           // tickCount={10}
-          // tickFormatter={(value) => value.slice(0, 4)}
+          tick={{
+            fill: 'white',
+            fontSize: 12,
+            fontWeight: 'light',
+            fontFamily: 'inherit',
+            opacity: 0.6,
+          }}
           tickFormatter={(value) => {
             const date = new Date(value)
             return date.toLocaleDateString('de-DE', {
@@ -99,6 +108,7 @@ export function GenreChart({
           }}
           tickLine={false}
           tickMargin={0}
+          // type="category"
         />
         <ChartTooltip
           content={
@@ -116,20 +126,25 @@ export function GenreChart({
             />
           }
           cursor={true}
+          offset={64}
         />
-        <ChartLegend content={<ChartLegendContent payload={dataKeys} />} verticalAlign="bottom" />
+        <ChartLegend
+          content={<ChartLegendContent className="font-bold" payload={dataKeys} />}
+          verticalAlign="bottom"
+        />
         {dataKeys
           // .sort((a, b) => a.localeCompare(b))
           .sort((a, b) => amountPerDataKey[a] - amountPerDataKey[b])
           // .reverse()
           .map((dataKey) => {
-            const color = `hsl(${100 - (dataKeys.indexOf(dataKey) / dataKeys.length) * 360} 100% 60%)`
+            const colorDot = `hsl(${100 - (dataKeys.indexOf(dataKey) / dataKeys.length) * 360} 100% 60%)`
+            const colorLine = `hsl(${100 - (dataKeys.indexOf(dataKey) / dataKeys.length) * 360} 100% 60%)`
             return (
               <Line
                 activeDot={{
                   clipDot: false,
-                  fill: color,
-                  r: 32,
+                  fill: colorDot,
+                  r: 16,
                   style: {
                     zIndex: 1000,
                   },
@@ -137,17 +152,19 @@ export function GenreChart({
                 // connectNulls
                 dataKey={dataKey}
                 dot={{
+                  strokeWidth: 0,
                   clipDot: false,
-                  fill: color,
-                  r: 16,
+                  fill: colorDot,
+                  r: 2,
                 }}
                 isAnimationActive={false}
                 key={dataKey}
-                // label={{ fill: 'white', fontSize: 14, fontWeight: 'bold' }}
-                // legendType="square"
                 name={dataKey}
-                stroke={color}
-                strokeWidth={4}
+                stroke={colorLine}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeOpacity={0.1}
+                strokeWidth={32}
                 type="linear"
               />
             )
