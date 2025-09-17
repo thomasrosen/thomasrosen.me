@@ -31,7 +31,7 @@ function get_genres(playlist: any): string[] {
   const genres: string[] = Object.entries(genres_with_count)
     .sort((a: any, b: any) => b[1] - a[1])
     .map(([genre]) => genre)
-    .slice(0, 3) // only keep the top 3 genres
+    .slice(0, 12) // only keep the top N genres
 
   return genres
 }

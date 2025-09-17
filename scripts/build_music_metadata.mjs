@@ -54,7 +54,7 @@ function get_genres(playlist) {
   genres = Object.entries(genres)
     .sort((a, b) => b[1] - a[1])
     .map(([genre, _count]) => genre)
-    .slice(0, 3) // only keep the top N genres
+    .slice(0, 12) // only keep the top N genres
 
   return genres
 }
