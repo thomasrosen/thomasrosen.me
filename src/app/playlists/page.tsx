@@ -1,4 +1,4 @@
-import { GenreChart } from '@/components/genre-chart'
+import { GenreChart } from '@/components/GenreChart'
 import { getGroupedEntries } from '@/components/Timeline/getGroupedEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
