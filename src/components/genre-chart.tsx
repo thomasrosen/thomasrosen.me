@@ -137,13 +137,13 @@ export function GenreChart({
           .sort((a, b) => amountPerDataKey[a] - amountPerDataKey[b])
           // .reverse()
           .map((dataKey) => {
-            const colorDot = `hsl(${100 - (dataKeys.indexOf(dataKey) / dataKeys.length) * 360} 100% 60%)`
-            const colorLine = `hsl(${100 - (dataKeys.indexOf(dataKey) / dataKeys.length) * 360} 100% 60%)`
+            const color = `oklch(0.8 0.4 ${310 + (dataKeys.indexOf(dataKey) / dataKeys.length) * 360})`
+            // const color = `hsl(${100 - (dataKeys.indexOf(dataKey) / dataKeys.length) * 360} 100% 60%)`
             return (
               <Line
                 activeDot={{
                   clipDot: false,
-                  fill: colorDot,
+                  fill: color,
                   r: 16,
                   style: {
                     zIndex: 1000,
@@ -154,16 +154,16 @@ export function GenreChart({
                 dot={{
                   strokeWidth: 0,
                   clipDot: false,
-                  fill: colorDot,
+                  fill: color,
                   r: 2,
                 }}
                 isAnimationActive={false}
                 key={dataKey}
                 name={dataKey}
-                stroke={colorLine}
+                stroke={color}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeOpacity={0.1}
+                strokeOpacity={0.2}
                 strokeWidth={32}
                 type="linear"
               />
