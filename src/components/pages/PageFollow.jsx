@@ -50,6 +50,19 @@ export default function PageFollow() {
         </a>
 
         <Typo as="h3" className="text-md">
+          <Dot color="#00f" />
+          Bluesky
+        </Typo>
+        <a
+          data-umami-event="threads"
+          href="https://bsky.app/profile/thomasrosen.me"
+          rel="noreferrer"
+          target="_blank"
+        >
+          @thomasrosen.me
+        </a>
+
+        <Typo as="h3" className="text-md">
           <Dot color="#ff0000" />
           YouTube
         </Typo>
