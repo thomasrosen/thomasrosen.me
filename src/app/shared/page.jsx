@@ -14,6 +14,9 @@ export default function Page() {
         Some articles that I think are worth reading. And other stuff that i think might be
         interesting for some ppl :)
       </Typo>
+      <Typo as="p" className="tab_content">
+        These are sorted by date not by importance.
+      </Typo>
 
       <Timeline hiddenTags={['share']} tags={['share']} />
     </>
