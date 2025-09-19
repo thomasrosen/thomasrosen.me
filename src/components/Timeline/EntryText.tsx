@@ -7,15 +7,22 @@ export function EntryText({
   className,
   entryBefore,
   entryAfter,
+  hiddenTags = [],
 }: {
   entry: TimelineEntry
   className?: string
   entryBefore?: TimelineEntry
   entryAfter?: TimelineEntry
+  hiddenTags?: string[]
 }) {
   return (
     <div className={cn('mb-4 flex flex-col gap-2', className)}>
-      <EntryTextContent entry={entry} entryAfter={entryAfter} entryBefore={entryBefore} />
+      <EntryTextContent
+        entry={entry}
+        entryAfter={entryAfter}
+        entryBefore={entryBefore}
+        hiddenTags={hiddenTags}
+      />
     </div>
   )
 }

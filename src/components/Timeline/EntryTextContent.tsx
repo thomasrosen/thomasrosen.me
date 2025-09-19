@@ -8,11 +8,13 @@ export function EntryTextContent({
   entry,
   // entryAfter,
   showTags = false,
+  hiddenTags = [],
 }: {
-  // entryBefore?: TimelineEntry
+  entryBefore?: TimelineEntry
   entry: TimelineEntry
-  // entryAfter?: TimelineEntry
+  entryAfter?: TimelineEntry
   showTags?: boolean
+  hiddenTags?: string[]
 }) {
   // const sameDayAsBefore = entryBefore && new Date(entryBefore.date).toDateString() === new Date(entry.date).toDateString()
 
@@ -35,41 +37,64 @@ export function EntryTextContent({
 
   const noTimeDefined = timeString === '00:00'
 
-  const tagsToFilterOut = ['article', 'project', 'press', 'playlist']
+  const tagsToFilterOut = ['article', 'project', 'press', 'playlist', ...hiddenTags]
   const tags: string[] = entry.tags?.filter((tag) => !tagsToFilterOut.includes(tag)) || []
 
+  const showTagsInner = showTags && tags?.length
   const hasAudio = !!entry.audio
+  const showMetadataHeader = entry.date || showTagsInner || hasAudio
 
   return (
-    <div className="w-full space-y-2 text-[0px] leading-none">
-      {entry.date && (
-        <Typo as="time" className="flex items-center gap-2 font-normal text-xs" variant="small">
-          <span className="shrink-0 opacity-60">
-            {noTimeDefined ? dateString : fullDateTimeString}
-          </span>
+    <div className="flex w-full flex-col gap-y-3 text-[0px] leading-none">
+      {showMetadataHeader ? (
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-normal text-xs">
+          {entry.date ? (
+            <Typo as="time" className="shrink-0" variant="muted">
+              {noTimeDefined ? dateString : fullDateTimeString}
+            </Typo>
+          ) : null}
 
-          <div className="h-[1px] w-full rounded-full bg-foreground opacity-10" />
-        </Typo>
-      )}
-      {entry.author || (showTags && tags?.length) || hasAudio ? (
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          {entry.author && <Typo as="small">by {entry.author}</Typo>}
-          {showTags && tags?.length
-            ? tags.slice(0, 3).map((tag) => (
-                <Badge key={tag} variant="accent">
-                  {tag}
-                </Badge>
-              ))
-            : null}
-          {hasAudio ? <Emoji className="inline-block text-base">🔊</Emoji> : null}
+          <div className="h-[1px] w-auto min-w-[16px] shrink-1 grow-1 rounded-full bg-foreground opacity-10" />
+
+          {hasAudio || showTagsInner ? (
+            <div className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
+              {hasAudio ? <Emoji className="inline-block text-base">🔊</Emoji> : null}
+
+              {showTagsInner
+                ? tags.slice(0, 3).map((tag) => (
+                    <Badge key={tag} variant="accent">
+                      {tag}
+                    </Badge>
+                  ))
+                : null}
+            </div>
+          ) : null}
         </div>
       ) : null}
-      {entry.title ? <Typo as="h3">{entry.title}</Typo> : null}
-      {entry.text && (
-        <Typo as="p" className="body2">
-          {entry.text || ''}
+
+      {entry.title ? (
+        <Typo as="h3" className="mb-0">
+          {entry.title}
+        </Typo>
+      ) : null}
+
+      {entry.author && (
+        <Typo as="small" className="-mt-2 mb-2 font-bold leading-tight" variant="muted">
+          by {entry.author}
         </Typo>
       )}
+
+      {entry.text && (
+        <Typo as="p" className="body2 !mb-0">
+          {entry.text}
+        </Typo>
+      )}
+
+      {entry.url && !entry.url.startsWith('/') ? (
+        <Typo className="!text-xs break-all italic" variant="muted">
+          {entry.url}
+        </Typo>
+      ) : null}
     </div>
   )
 }

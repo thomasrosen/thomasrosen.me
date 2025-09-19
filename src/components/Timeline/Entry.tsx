@@ -9,12 +9,14 @@ export function Entry({
   className = '',
   entryBefore,
   entryAfter,
+  hiddenTags = [],
 }: {
   entry: TimelineEntry
   isFirstImage?: boolean
   className?: string
   entryBefore?: TimelineEntry
   entryAfter?: TimelineEntry
+  hiddenTags?: string[]
 }) {
   const parsedEntry = {
     ...entry,
@@ -29,6 +31,7 @@ export function Entry({
           entry={parsedEntry}
           entryAfter={entryAfter}
           entryBefore={entryBefore}
+          hiddenTags={hiddenTags}
         />
       )
     case 'playlist':
@@ -40,6 +43,7 @@ export function Entry({
           entry={parsedEntry}
           entryAfter={entryAfter}
           entryBefore={entryBefore}
+          hiddenTags={hiddenTags}
         />
       )
     case 'image':
@@ -49,6 +53,7 @@ export function Entry({
           entry={parsedEntry}
           entryAfter={entryAfter}
           entryBefore={entryBefore}
+          hiddenTags={hiddenTags}
           isFirstImage={isFirstImage}
         />
       )

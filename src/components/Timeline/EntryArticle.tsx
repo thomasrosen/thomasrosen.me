@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/style/noNestedTernary: it works perfectly fine. i dont care. */
 /** biome-ignore-all lint/complexity/noExcessiveCognitiveComplexity: it works perfectly fine. i dont care. */
 import Image from 'next/image'
-import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
+// import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import { Emoji } from '../Emoji'
@@ -12,14 +12,16 @@ export function EntryArticle({
   entry,
   isFirstImage = false,
   className = '',
-  entryBefore,
-  entryAfter,
+  // entryBefore,
+  // entryAfter,
+  hiddenTags = [],
 }: {
   entry: TimelineEntry
   isFirstImage?: boolean
   className?: string
   entryBefore?: TimelineEntry
   entryAfter?: TimelineEntry
+  hiddenTags?: string[]
 }) {
   const isExternalImage = typeof entry.image === 'string' && entry.image?.startsWith('http')
   const imageUrl = (typeof entry.image === 'string' ? entry.image : entry.image?.src) || ''
@@ -27,9 +29,9 @@ export function EntryArticle({
 
   const displayAs = entry.displayAs
 
-  const targetRatio = entry.imageAspectRatio || 1
-  const nearestRatio = findNearestRatio(targetRatio)
-  const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
+  // const targetRatio = entry.imageAspectRatio || 1
+  // const nearestRatio = findNearestRatio(targetRatio)
+  // const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
 
   return (
     <LinkOrDiv
@@ -39,7 +41,7 @@ export function EntryArticle({
         'bg-background text-card-foreground',
         'flex flex-wrap xs:flex-nowrap content-start items-start',
         'gap-6 p-6',
-        'border border-border',
+        'border border-border/30 hover:border-border',
         'cursor-pointer hover:bg-accent',
         'transition-colors duration-150',
         'z-10',
@@ -92,11 +94,10 @@ export function EntryArticle({
         <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-sm bg-accent">
           <Emoji className="text-5xl">🎵</Emoji>
         </div>
-      ) : displayAs === 'link' ? (
-        <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-sm bg-accent">
-          <Emoji className="text-lg">🔗</Emoji>
-        </div>
-      ) : (
+      ) : displayAs === 'link' ? null : (
+        // <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-sm bg-accent">
+        //   <Emoji className="text-lg">🔗</Emoji>
+        // </div>
         <div className="flex h-[128px] w-[128px] shrink-0 items-center justify-center rounded-sm bg-accent">
           <Emoji className="text-5xl">📄</Emoji>
         </div>
@@ -104,6 +105,7 @@ export function EntryArticle({
 
       <EntryTextContent
         entry={entry}
+        hiddenTags={hiddenTags}
         // entryAfter={entryAfter}
         // entryBefore={entryBefore}
         showTags={true}

@@ -9,12 +9,14 @@ export function EntryImage({
   className = '',
   entryBefore,
   entryAfter,
+  hiddenTags = [],
 }: {
   entry: TimelineEntry
   isFirstImage?: boolean
   className?: string
   entryBefore?: TimelineEntry
   entryAfter?: TimelineEntry
+  hiddenTags?: string[]
 }) {
   const isExternalImage = typeof entry.image === 'string' && entry.image?.startsWith('http')
   const imageUrl = (typeof entry.image === 'string' ? entry.image : entry.image?.src) || ''
@@ -53,7 +55,12 @@ export function EntryImage({
         <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-40 h-[calc(100%-64px)] backdrop-blur-[16px]" />
         <div className="mask-t-to-[100%] absolute right-0 bottom-0 left-0 z-50 h-[calc(100%-32px)] bg-background opacity-30" />
         <div className="relative z-60 flex flex-col gap-2 p-4 text-foreground">
-          <EntryTextContent entry={entry} entryAfter={entryAfter} entryBefore={entryBefore} />
+          <EntryTextContent
+            entry={entry}
+            entryAfter={entryAfter}
+            entryBefore={entryBefore}
+            hiddenTags={hiddenTags}
+          />
         </div>
       </div>
     </div>

@@ -10,9 +10,11 @@ import { getMonthName } from './getMonthName'
 export async function Timeline({
   tags = [],
   showTimeHeadlines = false,
+  hiddenTags = [],
 }: {
   tags?: string[]
   showTimeHeadlines?: boolean
+  hiddenTags?: string[]
 }) {
   const groupedEntries = await getGroupedEntries({
     tags,
@@ -100,6 +102,7 @@ export async function Timeline({
               entry={entryClone}
               entryAfter={after}
               entryBefore={before}
+              hiddenTags={hiddenTags}
               isFirstImage={
                 false
                 // index_entry === 0 && entryClone.displayAs === 'image'

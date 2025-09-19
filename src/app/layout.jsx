@@ -85,6 +85,9 @@ export default function RootLayout({ children }) {
               <NavLinkButton href="/playlists/">
                 <Emoji aria-hidden="true">🎸</Emoji> Playlists
               </NavLinkButton>
+              <NavLinkButton href="/shared/">
+                <Emoji aria-hidden="true">🔗</Emoji> Interesting Links
+              </NavLinkButton>
             </nav>
 
             <div className="mb-4" />

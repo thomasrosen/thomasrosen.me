@@ -7,23 +7,23 @@ type TypoVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div
 const typoVariants = cva('text-pretty', {
   variants: {
     variant: {
-      h1: 'scroll-m-20 font-extrabold text-4xl leading-tight tracking-tight lg:text-5xl',
-      h2: 'mb-[10px] scroll-m-20 font-semibold text-[42px] leading-tight tracking-tight',
-      h3: 'mb-[10px] scroll-m-20 font-semibold text-[32px] leading-tight tracking-tight',
-      h4: 'scroll-m-20 font-semibold text-xl leading-tight tracking-tight',
-      h5: 'scroll-m-20 font-semibold text-lg leading-tight tracking-tight',
-      h6: 'scroll-m-20 font-semibold text-base leading-tight tracking-tight',
-      p: 'leading-7 [&:not(:last-child)]:mb-6',
+      h1: 'scroll-m-20 text-balance font-extrabold text-4xl leading-tight tracking-tight lg:text-5xl',
+      h2: 'mb-[10px] scroll-m-20 text-balance font-semibold text-[42px] leading-tight tracking-tight',
+      h3: 'mb-[10px] scroll-m-20 text-balance font-semibold text-[32px] leading-tight tracking-tight',
+      h4: 'scroll-m-20 text-balance font-semibold text-xl leading-tight tracking-tight',
+      h5: 'scroll-m-20 text-balance font-semibold text-lg leading-tight tracking-tight',
+      h6: 'scroll-m-20 text-balance font-semibold text-base leading-tight tracking-tight',
+      p: 'text-pretty leading-7 [&:not(:last-child)]:mb-6',
       span: 'text-base',
       div: 'text-base',
       blockquote: 'mb-6 border-l-2 pl-6 italic',
       ul: 'my-6 ml-6 list-disc [&>li]:mb-2',
       inline_code:
         'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono font-semibold text-sm',
-      lead: 'text-muted-foreground text-xl',
+      lead: 'text-foreground/60 text-xl',
       large: 'font-semibold text-lg',
-      small: 'font-medium text-sm leading-none',
-      muted: 'text-muted-foreground text-sm',
+      small: 'font-medium text-sm leading-tight',
+      muted: 'text-foreground/20 text-sm',
     },
   },
   defaultVariants: {
