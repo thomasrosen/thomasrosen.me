@@ -23,7 +23,7 @@ const typoVariants = cva('text-pretty', {
       lead: 'text-foreground/60 text-xl',
       large: 'font-semibold text-lg',
       small: 'font-medium text-sm leading-tight',
-      muted: 'text-foreground/20 text-sm',
+      muted: 'text-foreground/30 text-sm',
     },
   },
   defaultVariants: {

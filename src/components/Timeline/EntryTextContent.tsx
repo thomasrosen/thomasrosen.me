@@ -47,7 +47,7 @@ export function EntryTextContent({
   return (
     <div className="flex w-full flex-col gap-y-3 text-[0px] leading-none">
       {showMetadataHeader ? (
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-normal text-xs">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {entry.date ? (
             <Typo as="time" className="shrink-0" variant="muted">
               {noTimeDefined ? dateString : fullDateTimeString}
@@ -91,7 +91,7 @@ export function EntryTextContent({
       )}
 
       {entry.url && !entry.url.startsWith('/') ? (
-        <Typo className="!text-xs break-all italic" variant="muted">
+        <Typo as="div" className="!text-sm break-all" variant="muted">
           {entry.url}
         </Typo>
       ) : null}
