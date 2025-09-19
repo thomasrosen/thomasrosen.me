@@ -11,7 +11,7 @@ export default function Page() {
         Interesting stuff
       </Typo>
       <Typo as="p" className="tab_content">
-        Some articles that I think are worth reading. And other stuff that i think might be
+        Some articles that I think are worth reading. And other stuff that I think might be
         interesting for some ppl :)
         <br />
         <br />
