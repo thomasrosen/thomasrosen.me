@@ -11,8 +11,8 @@ export default function Page() {
         Interesting stuff
       </Typo>
       <Typo as="p" className="tab_content">
-        Some articles that I think are worth reading, and generally stuff that i think might be cool
-        :)
+        Some articles that I think are worth reading. And other stuff that i think might be
+        interesting for some ppl :)
       </Typo>
 
       <Timeline hiddenTags={['share']} tags={['share']} />
