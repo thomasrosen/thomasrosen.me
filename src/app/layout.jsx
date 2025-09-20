@@ -115,7 +115,8 @@ export default function RootLayout({ children }) {
               aria-hidden="true"
               fill="none"
               style={{
-                maxWidth: '100%',
+                width: '100%',
+                maxWidth: 'calc(2 * var(--content-box-width, 500px))',
                 marginInline: '5px',
                 marginBlockStart: '0px',
                 marginBlockEnd: 'calc(-25vh - 40px)',
