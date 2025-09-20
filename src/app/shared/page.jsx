@@ -15,6 +15,10 @@ export default function Page() {
         interesting for some ppl :)
         <br />
         <br />
+        This is all from other people. The links could change after i put them here. So maybe check
+        them on archive.org if something is weird.
+        <br />
+        <br />
         <strong>These are sorted by date not by importance.</strong>
       </Typo>
 
