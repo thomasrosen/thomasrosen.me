@@ -18,6 +18,7 @@ export type Article = {
 }
 
 export type TimelineEntry = {
+  id?: string
   date: string
   displayAs: string
   title?: string

@@ -1,5 +1,5 @@
-import { ReactMap } from '../ReactMap'
 import { getEntries } from './getEntries'
+import { TimelineMapReactMap } from './TimelineMapReactMap'
 
 export async function TimelineMap({
   tags = [],
@@ -10,17 +10,18 @@ export async function TimelineMap({
 }) {
   const entries = await getEntries({ tags })
 
-  const onlyEntriesWithLocation = entries.filter(
-    (entry) =>
-      Object.hasOwn(entry, 'latitude') &&
-      Object.hasOwn(entry, 'longitude') &&
-      !!entry.latitude &&
-      !!entry.longitude
-  )
+  const onlyEntriesWithLocation = entries
+    .filter(
+      (entry) =>
+        Object.hasOwn(entry, 'latitude') &&
+        Object.hasOwn(entry, 'longitude') &&
+        !!entry.latitude &&
+        !!entry.longitude
+    )
+    .map((entry, index) => {
+      entry.id = `id${index}`
+      return entry
+    })
 
-  return (
-    <div className="green-tint h-screen w-screen">
-      <ReactMap markers={onlyEntriesWithLocation} />
-    </div>
-  )
+  return <TimelineMapReactMap entries={onlyEntriesWithLocation} />
 }

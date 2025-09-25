@@ -1,43 +1,55 @@
-'use client'
-
 import maplibregl from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import useDarkTheme from '@/components/hooks/useDarkTheme'
 import { cn } from '@/lib/utils'
+import type { TimelineEntry } from '@/types'
 
 function absoluteStyle(_previousStyle: any, nextStyle: any) {
-  return {
-    ...nextStyle,
-    // make relative paths absolute
-    sprite: [
-      ...nextStyle.sprite.map((s: any) => {
-        return {
-          ...s,
-          url: s.url, // new URL(s.url, window.location.href).href,
-        }
-      }),
-    ],
-    // URL will % encode the {} in nextStyle.glyphs, so assemble the URL manually
-    glyphs: nextStyle.glyphs, // window.location.origin +
-    sources: {
-      'versatiles-shortbread': {
-        ...nextStyle.sources['versatiles-shortbread'],
-        // tiles: [window.location.origin + nextStyle.sources['versatiles-shortbread'].tiles[0]],
-        tiles: [
-          `https://vector.openstreetmap.org${nextStyle.sources['versatiles-shortbread'].tiles[0]}`,
-        ],
-      },
-    },
-  }
+  return nextStyle
+  // return {
+  //   ...nextStyle,
+  //   // make relative paths absolute
+  //   sprite: [
+  //     ...nextStyle.sprite.map((s: any) => {
+  //       return {
+  //         ...s,
+  //         url: s.url, // new URL(s.url, window.location.href).href,
+  //       }
+  //     }),
+  //   ],
+  //   // URL will % encode the {} in nextStyle.glyphs, so assemble the URL manually
+  //   glyphs: nextStyle.glyphs, // window.location.origin +
+  //   sources: {
+  //     'versatiles-shortbread': {
+  //       ...nextStyle.sources['versatiles-shortbread'],
+  //       // tiles: [window.location.origin + nextStyle.sources['versatiles-shortbread'].tiles[0]],
+  //       tiles: [
+  //         `https://vector.openstreetmap.org${nextStyle.sources['versatiles-shortbread'].tiles[0]}`,
+  //       ],
+  //     },
+  //   },
+  // }
 }
 
-export function ReactMap({ markers }: { markers: any }) {
+export function ReactMap({
+  entries,
+  onEntryMarkerClick,
+  renderEntryMarker,
+}: {
+  entries: TimelineEntry[]
+  onEntryMarkerClick: ({ entry }: { entry: TimelineEntry }) => void
+  renderEntryMarker: ({ entry, index }: { entry: TimelineEntry; index: number }) => React.ReactNode
+}) {
   const mapContainer = useRef<HTMLDivElement | null>(null)
   const map = useRef<maplibregl.Map | null>(null)
+  const markersCacheRef = useRef<any[]>([])
+  const markerElementRefs = useRef<any>({})
 
   const userWantsDarkmode = useDarkTheme()
-  const mapStylePath = userWantsDarkmode ? '/map_styles/eclipse.json' : '/map_styles/colorful.json'
+  const mapStylePath = userWantsDarkmode
+    ? '/map_styles/liberty-dark.json'
+    : '/map_styles/liberty.json' // https://tiles.openfreemap.org/styles/liberty
 
   useEffect(() => {
     // this useEffect is only called once. all changes to the map must be in other useEffects
@@ -74,7 +86,7 @@ export function ReactMap({ markers }: { markers: any }) {
       // for the path. This is because the page could be served on
       // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
       // or a specific server.
-      transformStyle: absoluteStyle,
+      transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
     })
 
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
@@ -87,62 +99,6 @@ export function ReactMap({ markers }: { markers: any }) {
       map.current.setProjection({
         type: 'globe', // Set projection to globe
       })
-
-      map.current.addSource('markers', {
-        type: 'geojson',
-        data: {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [0, 0],
-          },
-          properties: {},
-        },
-      })
-      map.current.addLayer({
-        id: 'markers',
-        type: 'symbol',
-        source: 'markers',
-        layout: {
-          'icon-image': 'airport',
-        },
-      })
-
-      /*
-      const layers = map.current.getStyle().layers
-      // Find the index of the first symbol layer in the map style
-      let firstSymbolId: string | undefined
-      for (const layer of layers) {
-        if (layer.type === 'symbol') {
-          firstSymbolId = layer.id
-          break
-        }
-      }
-      map.current.addSource('urban-areas', {
-        type: 'geojson',
-        data: 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson',
-      })
-      map.current.addLayer(
-        {
-          id: 'urban-areas-fill',
-          type: 'fill',
-          source: 'urban-areas',
-          layout: {},
-          paint: {
-            'fill-color': '#f08',
-            'fill-opacity': 0.4,
-          },
-          // This is the important part of this example: the addLayer
-          // method takes 2 arguments: the layer as an object, and a string
-          // representing another layer's name. if the other layer
-          // exists in the stylesheet already, the new layer will be positioned
-          // right before that layer in the stack, making it possible to put
-          // 'overlays' anywhere in the layer stack.
-          // Insert the layer beneath the first symbol layer.
-        },
-        firstSymbolId
-      )
-      */
     })
   }, [mapStylePath])
 
@@ -158,7 +114,7 @@ export function ReactMap({ markers }: { markers: any }) {
       // for the path. This is because the page could be served on
       // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
       // or a specific server.
-      transformStyle: absoluteStyle,
+      transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
     })
   }, [mapStylePath])
 
@@ -168,48 +124,77 @@ export function ReactMap({ markers }: { markers: any }) {
       return
     }
 
-    map.current.on('style.load', () => {
-      const marker_element = document.createElement('div')
-      marker_element.className = 'marker'
-      marker_element.style.backgroundImage = 'url(https://picsum.photos/32/32/)'
-      marker_element.style.width = `${32}px`
-      marker_element.style.height = `${32}px`
-      // const onclick = () => {
-      //   window.alert('hello world')
-      // }
-      // marker_element.addEventListener('click', onclick)
-
-      // new maplibregl.Marker({ element: marker_element })
-      //   .setLngLat([139.7525, 35.6846])
-      //   .addTo(map.current)
-
-      console.log('markers', markers)
-
-      const json = {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [139.7525, 35.6846],
-        },
-        properties: {},
+    function clearMarkers() {
+      for (const { marker, element, func } of markersCacheRef.current) {
+        element.removeEventListener('click', func)
+        marker.remove()
       }
-      // Update the drone symbol's location on the map
-      // @ts-expect-error setData exists. TS jsut does not know about it.
-      map.current.getSource('markers')?.setData(json)
+      markersCacheRef.current = []
+    }
+
+    map.current.on('style.load', () => {
+      if (!map.current || map.current === null) {
+        // only change if map exists
+        return
+      }
+
+      clearMarkers()
+      for (const entry of entries) {
+        if (!entry.id) {
+          continue
+        }
+
+        const marker_element = markerElementRefs.current[entry.id]
+        const cloned_marker_element = marker_element.cloneNode(true)
+        const onMarkerClickFunc = () => {
+          onEntryMarkerClick({ entry })
+        }
+        cloned_marker_element.addEventListener('click', onMarkerClickFunc)
+
+        const newMarker = new maplibregl.Marker({ element: cloned_marker_element })
+          .setLngLat([entry.longitude || 0, entry.latitude || 0])
+          .addTo(map.current)
+
+        markersCacheRef.current.push({
+          marker: newMarker,
+          element: cloned_marker_element,
+          func: onMarkerClickFunc,
+        })
+      }
     })
 
-    // return () => {
-    //   marker_element.removeEventListener('click', onclick)
-    // }
-  }, [markers])
+    return () => {
+      clearMarkers()
+    }
+  }, [entries, onEntryMarkerClick])
 
   return (
-    <div
-      className={cn(
-        'h-full w-full',
-        userWantsDarkmode ? 'darkmode bg-hsl(33,48%,5%)' : 'lightmode bg-[rgb(249,244,238)]'
-      )}
-      ref={mapContainer}
-    />
+    <>
+      <div
+        className={cn(
+          'h-full w-full',
+          userWantsDarkmode ? 'darkmode bg-hsl(33,48%,5%)' : 'lightmode bg-[rgb(249,244,238)]'
+        )}
+        ref={mapContainer}
+      />
+
+      <div className="absolute hidden h-[0px] w-[0px]">
+        {entries.map((entry, index) => {
+          const markerComponent = renderEntryMarker({ entry, index })
+          return (
+            <div
+              key={entry.id}
+              ref={(el) => {
+                if (entry.id) {
+                  markerElementRefs.current[entry.id] = el
+                }
+              }}
+            >
+              {markerComponent}
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }

@@ -1,0 +1,43 @@
+Copy only the "paint" properties from one vector-tile-style JSON onto another, updating the target style's layers to use the corresponding "paint" values from the source. If layer names do not perfectly match, identify and map the most similar or thematically appropriate layers between source and target. Only the "paint" section of each layer should be copied; all other properties must remain unchanged. If a target layer does not have a clear equivalent in the source, reason about which source style's "paint" properties best fit in order to maintain a coherent visual theme. Output the entire target style JSON, altered exclusively to reflect the new paint properties as described, in the same structure and syntax as the user input.
+
+# Steps
+
+1. Given two vector-tile-style JSON objects, identify layers in both.
+2. For each layer in the target style:
+    - a. Attempt to find the best-matching layer in the source style (name similarity, function, or thematic element).
+    - b. If a match is found, copy over only the "paint" properties from the source to the target layer.
+    - c. If no clear match, select the most suitable "paint" values to maintain design consistency.
+3. Do not alter any other fields in the target style (metadata, layout, ids, etc.).
+4. Before applying changes, reason step by step about the matching and copying decisions for each layer.
+5. Output the full, updated target JSON (mirroring the input format but with updated "paint" sections).
+
+# Output Format
+
+Return a complete JSON object in exactly the same structure as the original target vector-tile-style, but with "paint" sections updated as described. Do not wrap the output in code blocks or add any preamble or explanation.
+
+# Examples
+
+**Example Input:**
+- Source style:
+  { "layers": [ { "id": "water", "paint": { "fill-color": "#aaffee" } }, { "id": "land", "paint": { "fill-color": "#ffeeaa" } } ] }
+- Target style:
+  { "layers": [ { "id": "water-body", "paint": { "fill-color": "#cccccc" } }, { "id": "terrain", "paint": { "fill-color": "#bbbbbb" } } ] }
+
+**Example Internal Reasoning (not to be output to user):**
+- "water-body" best matches "water": copy "paint": { "fill-color": "#aaffee" }
+- "terrain" best matches "land": copy "paint": { "fill-color": "#ffeeaa" }
+
+**Example Output:**
+{ "layers": [ { "id": "water-body", "paint": { "fill-color": "#aaffee" } }, { "id": "terrain", "paint": { "fill-color": "#ffeeaa" } } ] }
+
+(For real use, full vector-tile-style JSONs will be much longer and more detailed; follow the same procedure for every layer.)
+
+# Notes
+
+- Do not modify any property apart from "paint" for any layer.
+- If no matching "paint" values are available, choose one that fits best to retain the thematic integrity.
+- Always reason through matches before replacing, and do not omit or reorder any fields in the input.
+- Output must exactly mirror the target input except for updated "paint" fields.
+
+# Reminder
+Copy only "paint" properties from the best-matching source layers to the corresponding target layers; make all decisions explicit through reasoning before producing the final altered vector-tile-style JSON. Output the full altered target, unchanged except for the "paint" sections.
