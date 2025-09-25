@@ -1,5 +1,5 @@
-import { loadTimeline } from '@/lib/loadTimeline'
 import type { TimelineEntry } from '@/types'
+import { getEntries } from './getEntries'
 
 type GroupedEntries = Record<string, TimelineEntry[]>
 
@@ -8,11 +8,7 @@ export async function getGroupedEntries({
 }: {
   tags?: string[]
 } = {}): Promise<GroupedEntries> {
-  let entries: TimelineEntry[] = (await loadTimeline()) || []
-
-  if (tags.length > 0) {
-    entries = entries.filter((entry) => tags.some((tag) => (entry.tags || []).includes(tag)))
-  }
+  let entries = await getEntries({ tags })
 
   // Sort entries by date in descending order
   entries = entries.sort((a, b) => {

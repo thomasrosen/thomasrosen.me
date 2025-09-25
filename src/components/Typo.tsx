@@ -7,7 +7,7 @@ type TypoVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div
 const typoVariants = cva('text-pretty', {
   variants: {
     variant: {
-      h1: 'scroll-m-20 text-balance font-extrabold text-4xl leading-tight tracking-tight lg:text-5xl',
+      h1: 'scroll-m-20 text-balance font-extrabold text-4xl leading-tight tracking-tight',
       h2: 'mb-[10px] scroll-m-20 text-balance font-semibold text-[42px] leading-tight tracking-tight',
       h3: 'mb-[10px] scroll-m-20 text-balance font-semibold text-[32px] leading-tight tracking-tight',
       h4: 'scroll-m-20 text-balance font-semibold text-xl leading-tight tracking-tight',

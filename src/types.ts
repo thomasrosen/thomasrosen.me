@@ -28,10 +28,12 @@ export type TimelineEntry = {
   imageAspectRatio?: number
   audio?: string
   audio_length?: string
-  loc?: {
-    name?: string
-    lat: number
-    lng: number
-  }
+  // loc?: {
+  //   name?: string
+  //   lat: number
+  //   lng: number
+  // }
+  latitude?: number
+  longitude?: number
   tags?: string[]
 }

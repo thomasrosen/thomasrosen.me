@@ -14,13 +14,13 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
   const imagesAsEntries = await Promise.all(
     images.map(async (data: any) => {
-      const loc =
-        data.latitude && data.longitude
-          ? {
-              lat: Number.parseFloat(data.latitude),
-              lng: Number.parseFloat(data.longitude),
-            }
-          : undefined
+      // const loc =
+      //   data.latitude && data.longitude
+      //     ? {
+      //         lat: Number.parseFloat(data.latitude),
+      //         lng: Number.parseFloat(data.longitude),
+      //       }
+      //     : undefined
 
       if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
         try {
@@ -45,7 +45,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
       return {
         ...data,
         tags: [...new Set(['image', ...(data.tags || [])])],
-        loc,
+        // loc,
       }
     })
   )
