@@ -2,7 +2,6 @@ import maplibregl from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import useDarkTheme from '@/components/hooks/useDarkTheme'
-import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 
 function absoluteStyle(_previousStyle: any, nextStyle: any) {
@@ -170,13 +169,7 @@ export function ReactMap({
 
   return (
     <>
-      <div
-        className={cn(
-          'h-full w-full',
-          userWantsDarkmode ? 'darkmode bg-hsl(33,48%,5%)' : 'lightmode bg-[rgb(249,244,238)]'
-        )}
-        ref={mapContainer}
-      />
+      <div className="h-full w-full" ref={mapContainer} />
 
       <div className="absolute hidden h-[0px] w-[0px]">
         {entries.map((entry, index) => {

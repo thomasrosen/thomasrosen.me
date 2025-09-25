@@ -12,11 +12,13 @@ export default function Layout({
     <body className="overflow-hidden">
       <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange enableSystem>
         {children}
-        <div className="absolute top-6 bottom-6 left-6 z-20 w-[400px] overflow-auto rounded-xl border border-foreground/10 bg-background/80 p-6 backdrop-blur-sm backdrop-saturate-200">
+
+        <div className="absolute top-6 bottom-6 left-6 z-20 flex w-[400px] flex-col gap-12 overflow-auto rounded-xl border border-foreground/10 bg-background/80 p-6 backdrop-blur-sm backdrop-saturate-200">
           <Header />
-          <div className="mb-12" />
 
           {sidebar}
+
+          <div className="grow" />
 
           {/*
             <Link

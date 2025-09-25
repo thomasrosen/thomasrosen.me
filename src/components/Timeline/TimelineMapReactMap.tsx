@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
+import { ReactMap } from '@/components/ReactMap'
 import type { TimelineEntry } from '@/types'
-import { ReactMap } from '../ReactMap'
+import { Emoji } from '../Emoji'
 
 export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[] }) {
   return (
@@ -17,14 +18,18 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
 
           return (
             <div className="flex h-auto w-auto max-w-[64px] cursor-pointer flex-col overflow-hidden rounded-md bg-background p-1 shadow-md transition-transform hover:scale-125">
-              <Image
-                alt=""
-                className="h-auto w-auto overflow-hidden rounded-sm"
-                height={64}
-                src={imageSrc || `https://picsum.photos/id/${index}/64/`}
-                title={`Marker: ${entry.id} !!!`}
-                width={64}
-              />
+              {imageSrc ? (
+                <Image
+                  alt=""
+                  className="h-auto w-auto overflow-hidden rounded-sm"
+                  height={64}
+                  src={imageSrc || `https://picsum.photos/id/${index}/64/`}
+                  title={`Marker: ${entry.id} !!!`}
+                  width={64}
+                />
+              ) : (
+                <Emoji aria-hidden="true">🎸</Emoji>
+              )}
             </div>
           )
         }}
