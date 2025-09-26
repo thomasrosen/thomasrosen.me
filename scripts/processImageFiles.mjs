@@ -32,6 +32,20 @@ function getImageMetadata(filePath) {
       text = tags[textKey]?.description
     }
 
+    // Read EXIF Orientation (1..8). ExifReader stores numbers in .value
+    const orientationValue =
+      (Array.isArray(tags.Orientation?.value)
+        ? tags.Orientation.value[0]
+        : tags.Orientation?.value) || null
+
+    // If image is rotated 90/270 (5,6,7,8), swap width/height for display purposes
+    const rotated90 = orientationValue && [5, 6, 7, 8].includes(Number(orientationValue))
+    const width = rotated90 ? dimensions.height : dimensions.width
+    const height = rotated90 ? dimensions.width : dimensions.height
+
+    // Simple vertical/horizontal flag
+    const orientation = height >= width ? 'v' : 'h'
+
     return {
       exif: tags,
       width: dimensions.width,
@@ -40,6 +54,7 @@ function getImageMetadata(filePath) {
       text,
       latitude: tags.GPSLatitude?.description,
       longitude: tags.GPSLongitude?.description,
+      orientation,
     }
   } catch (error) {
     console.warn(`⚠️ Could not read metadata for ${filePath}:`, error.message)
@@ -86,6 +101,7 @@ export function processImageFiles() {
         title: '', // path.parse(filename).name,
         text: metadata.text,
         image: filename,
+        imageOrientation: metadata.orientation,
         imageAspectRatio: metadata.width / metadata.height,
         tags: [],
       })

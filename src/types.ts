@@ -26,6 +26,7 @@ export type TimelineEntry = {
   author?: string
   url?: string
   image?: string | { src: string }
+  imageOrientation?: 'v' | 'h'
   imageAspectRatio?: number
   audio?: string
   audio_length?: string

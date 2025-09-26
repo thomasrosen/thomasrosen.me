@@ -150,7 +150,11 @@ export function ReactMap({
         }
         cloned_marker_element.addEventListener('click', onMarkerClickFunc)
 
-        const newMarker = new maplibregl.Marker({ element: cloned_marker_element })
+        const newMarker = new maplibregl.Marker({
+          element: cloned_marker_element,
+          opacity: '1',
+          opacityWhenCovered: '0',
+        })
           .setLngLat([entry.longitude || 0, entry.latitude || 0])
           .addTo(map.current)
 
@@ -176,6 +180,7 @@ export function ReactMap({
           const markerComponent = renderEntryMarker({ entry, index })
           return (
             <div
+              className="relative z-10 hover:z-20"
               key={entry.id}
               ref={(el) => {
                 if (entry.id) {
