@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 export function Header({ className }: { className?: string }) {
   return (
-    <div className={cn('@container/header !flex flex-col gap-y-12', className)}>
+    <div className={cn('@container/header !flex shrink-0 flex-col gap-y-12', className)}>
       <header className="flex-wrap @lg/header:flex-nowrap">
         <Shine puffyness="3">
           <div

@@ -16,9 +16,7 @@ export default function Layout({
         <div className="absolute top-6 bottom-6 left-6 z-20 flex w-[400px] flex-col gap-12 overflow-auto rounded-xl border border-foreground/10 bg-background/80 p-6 backdrop-blur-sm backdrop-saturate-200">
           <Header />
 
-          {sidebar}
-
-          <div className="grow" />
+          <div className="grow">{sidebar}</div>
 
           {/*
             <Link
@@ -37,6 +35,7 @@ export default function Layout({
 
           <svg
             aria-hidden="true"
+            className="shrink-0"
             fill="none"
             style={{
               width: '100%',
