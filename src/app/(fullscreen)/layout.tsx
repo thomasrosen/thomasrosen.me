@@ -13,7 +13,7 @@ export default function Layout({
       <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange enableSystem>
         {children}
 
-        <div className="absolute top-6 bottom-6 left-6 z-20 flex w-[400px] flex-col gap-12 overflow-auto rounded-xl border border-foreground/10 bg-background/80 p-6 backdrop-blur-sm backdrop-saturate-200">
+        <div className="absolute top-6 bottom-6 left-6 z-20 flex w-[400px] flex-col gap-12 overflow-auto rounded-xl border border-foreground/10 bg-background/80 p-6 drop-shadow-2xl/10 backdrop-blur-sm backdrop-saturate-200">
           <Header />
 
           <div className="grow">{sidebar}</div>

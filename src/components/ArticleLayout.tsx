@@ -36,7 +36,7 @@ export function ArticleLayout({ children, data: article }: ArticleLayoutProps) {
     >
       {article ? (
         <>
-          <Typo as="h2" itemProp="headline">
+          <Typo as="h1" itemProp="headline">
             {article.title}
           </Typo>
 

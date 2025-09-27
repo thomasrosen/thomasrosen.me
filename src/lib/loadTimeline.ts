@@ -88,6 +88,8 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     date: article.data.date,
     tags: [...new Set(['article', ...(article.data.tags || [])])],
     audio: article.data.audio_src,
+    latitude: article.data.latitude,
+    longitude: article.data.longitude,
   }))
 
   const playlists = await loadPlaylists()

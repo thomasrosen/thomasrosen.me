@@ -4,38 +4,43 @@ export type Article = {
   getStaticProps: () => Promise<any>
   data: {
     id: string
-    slug: string
-    title: string
-    summary: string
     date: string
+    title: string
+    tags: string[]
+    latitude?: number
+    longitude?: number
+
+    coverphoto_src?: string
+
     audio: string
     audio_length: string
-    plaintext: string
-    tags: string[]
     audio_src?: string
-    coverphoto_src?: string
+
+    summary: string // equal to text from TimelineEntry
+    plaintext: string
+
+    slug: string
   }
 }
 
 export type TimelineEntry = {
   id?: string
   date: string
-  displayAs: string
   title?: string
-  text?: string
-  author?: string
-  url?: string
+  tags?: string[]
+  latitude?: number
+  longitude?: number
+
   image?: string | { src: string }
   imageOrientation?: 'v' | 'h'
   imageAspectRatio?: number
+
   audio?: string
   audio_length?: string
-  // loc?: {
-  //   name?: string
-  //   lat: number
-  //   lng: number
-  // }
-  latitude?: number
-  longitude?: number
-  tags?: string[]
+
+  text?: string // equal to summary from Article
+
+  author?: string
+  url?: string
+  displayAs: string
 }
