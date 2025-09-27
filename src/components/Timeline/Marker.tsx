@@ -75,15 +75,15 @@ export function Marker({ entry, index }: { entry: TimelineEntry; index: number }
               <clipPath clipPathUnits="objectBoundingBox" id="stickyClip">
                 <path
                   d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0"
-                  stroke-linecap="square"
-                  stroke-linejoin="round"
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
                 />
               </clipPath>
             </defs>
           </svg>
           <div
             className={cn(
-              'absolute right-0 bottom-0 flex h-[64px] w-[64px] translate-x-1/2 translate-y-1/2 flex-col gap-1 overflow-hidden text-ellipsis text-pretty p-1 font-[Ubuntu] text-[10px] leading-[1.1]',
+              'absolute right-0 bottom-0 flex h-[64px] w-[64px] translate-x-1/2 translate-y-1/2 flex-col gap-1 overflow-hidden text-ellipsis text-pretty p-1 font-[Ubuntu] text-[8px] leading-[1.1]',
               'transition-transform duration-300 ease-in-out group-hover/marker:rotate-0 group-hover/marker:scale-100',
               pickFakeRandom(
                 ['-rotate-12', '-rotate-6', '-rotate-3', 'rotate-3', 'rotate-6', 'rotate-12'],
@@ -113,7 +113,7 @@ export function Marker({ entry, index }: { entry: TimelineEntry; index: number }
             }}
           >
             <strong>{entry.title}</strong>
-            <span className="text-[8px] opacity-50">{entry.text}</span>
+            <span className="text-[6px] opacity-50">{entry.text}</span>
           </div>
         </>
       ) : null}

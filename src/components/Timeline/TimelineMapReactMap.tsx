@@ -5,8 +5,6 @@ import type { TimelineEntry } from '@/types'
 import { Marker } from './Marker'
 
 export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[] }) {
-  // console.log('entries', entries)
-
   return (
     <div className="h-screen w-screen">
       <ReactMap

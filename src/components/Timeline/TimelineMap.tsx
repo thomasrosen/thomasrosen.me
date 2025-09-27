@@ -19,7 +19,9 @@ export async function TimelineMap({
         !!entry.longitude
     )
     .map((entry, index) => {
-      entry.id = `id${index}`
+      if (!entry.id) {
+        entry.id = `id${index}`
+      }
       return entry
     })
 

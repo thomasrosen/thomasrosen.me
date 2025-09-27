@@ -13,7 +13,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
 
   const images = processImageFiles()
   const imagesAsEntries = await Promise.all(
-    images.map(async (data: any) => {
+    images.map((data: any) => {
       // const loc =
       //   data.latitude && data.longitude
       //     ? {
@@ -22,36 +22,44 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
       //       }
       //     : undefined
 
-      if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
-        try {
-          // Remove any URL encoding from the path
-          const cleanPath = decodeURIComponent(data.image)
-          // const currentDir = process.cwd()
-          const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
-          const image_src = imagePath.default
+      // if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
+      //   try {
+      //     // Remove any URL encoding from the path
+      //     const cleanPath = decodeURIComponent(data.image)
+      //     // const currentDir = process.cwd()
+      //     const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
+      //     const image_src = imagePath.default
 
-          const width = image_src.width
-          const height = image_src.height
-          const aspectRatio = width / height
+      //     const width = image_src.width
+      //     const height = image_src.height
+      //     const aspectRatio = width / height
 
-          data.image = image_src
-          data.imageAspectRatio = aspectRatio
-        } catch (error) {
-          console.error('Error loading image:', error)
-          // Continue without the image rather than failing the build
-        }
+      //     data.image = image_src
+      //     data.imageAspectRatio = aspectRatio
+      //   } catch (error) {
+      //     console.error('Error loading image:', error)
+      //     // Continue without the image rather than failing the build
+      //   }
+      // }
+
+      const timelineEntryWithSameId = timeline.entries.find((e: any) => e.id === data.id)
+      if (timelineEntryWithSameId) {
+        // remove from ary
       }
 
       return {
         ...data,
+        latitude: Number.parseFloat(data.latitude),
+        longitude: Number.parseFloat(data.longitude),
         tags: [...new Set(['image', ...(data.tags || [])])],
         // loc,
+        ...timelineEntryWithSameId,
       }
     })
   )
 
   const timelineEntries: TimelineEntry[] = await Promise.all(
-    timeline.entries.map(async (data: any) => {
+    [...timeline.entries, ...imagesAsEntries].map(async (data: any) => {
       if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
         try {
           // Remove any URL encoding from the path
@@ -106,7 +114,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   loadTimelineCache = [
     ...timelineEntries,
     ...articlesAsEntries,
-    ...imagesAsEntries,
+    // ...imagesAsEntries,
     ...playlistsAsEntries,
   ]
 

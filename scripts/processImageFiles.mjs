@@ -93,6 +93,7 @@ export function processImageFiles() {
 
       // Create image entry with correct path for imports
       images.push({
+        id: filename,
         date: metadata.datetime,
         latitude: metadata.latitude,
         longitude: metadata.longitude,
@@ -103,7 +104,7 @@ export function processImageFiles() {
         image: filename,
         imageOrientation: metadata.orientation,
         imageAspectRatio: metadata.width / metadata.height,
-        tags: [],
+        // tags: ['image'],
       })
     }
 

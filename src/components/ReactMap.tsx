@@ -139,7 +139,7 @@ export function ReactMap({
 
       clearMarkers()
       for (const entry of entries) {
-        if (!entry.id) {
+        if (!(entry.id && !!entry.longitude && !!entry.latitude)) {
           continue
         }
 
@@ -155,9 +155,8 @@ export function ReactMap({
           opacity: '1',
           opacityWhenCovered: '0',
         })
-          .setLngLat([entry.longitude || 0, entry.latitude || 0])
+          .setLngLat({ lng: entry.longitude, lat: entry.latitude })
           .addTo(map.current)
-
         markersCacheRef.current.push({
           marker: newMarker,
           element: cloned_marker_element,
