@@ -51,6 +51,14 @@ header {
   max-width: var(--content-box-width);
 }
 
+header h1 {
+  font-family: var(--font-family-website-title);
+  font-weight: bold;
+  font-size: 110px;
+  letter-spacing: -1.5px;
+  line-height: 0.85;
+}
+
 .tab_content {
   display: block;
   text-align: start;
