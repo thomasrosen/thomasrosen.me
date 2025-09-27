@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import { pickFakeRandom } from '@/lib/pickFakeRandom'
+import Image from 'next/image'
 // import { Emoji } from '@/components/Emoji'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
@@ -108,7 +108,7 @@ export function Marker({ entry, index }: { entry: TimelineEntry; index: number }
                 rgb(255 255 255 / 0.1) 0%,
                 rgb(255 255 255 / 0.075) 12%,
                 rgb(255 255 255 / 0.05) 75%,
-                rgb(255 255 255 / 0.3) 100%
+                rgb(255 255 255 / 0.4) 100%
               )`,
             }}
           >
