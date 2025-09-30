@@ -8,7 +8,10 @@ audio_length: 01:39
 coverphoto: /blog/images/2023-06-24-zug-fahrt/thomas-beim-lesen-in-der-bahn.png
 lang: de
 font: serif
-tags: [Travel, Politics, Trains]
+tags:
+  - Travel
+  - Politics
+  - Trains
 ---
 
 Oder: Unser Weg zum Bundesparteitag von [Volt Deutschland](https://voltdeutschland.org/)

@@ -8,7 +8,10 @@ audio_length: 01:09
 coverphoto: /blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-28-35.png
 lang: en
 font: serif
-tags: [Art, Minimalism, Software]
+tags:
+  - Art
+  - Minimalism
+  - Software
 ---
 
 A few years ago, I discovered this website with flat wallpapers. This was probably at the beginning of the flat design trend.

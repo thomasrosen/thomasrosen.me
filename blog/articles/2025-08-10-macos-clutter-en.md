@@ -8,7 +8,9 @@ audio_length: 00:00
 coverphoto: ""
 lang: en
 font: sans_serif
-tags: [Software]
+tags:
+  - Software
+  - macos
 ---
 
 ## Apps / Folders
