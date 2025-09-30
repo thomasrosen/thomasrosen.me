@@ -30,10 +30,12 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const timelineEntries: TimelineEntry[] = await Promise.all(
     [...imagesAsEntries, ...all_google_collection_entries.entries, ...timeline.entries].map(
       async (entry: any) => {
-        if (done_entry_ids.has(entry.id)) {
-          return null
+        if (entry.id) {
+          if (done_entry_ids.has(entry.id)) {
+            return null
+          }
+          done_entry_ids.add(entry.id)
         }
-        done_entry_ids.add(entry.id)
 
         // load image
         if (!!entry && typeof entry.image === 'string' && entry.image?.length > 0) {
@@ -57,7 +59,9 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
         }
 
         // get same timeline entries
-        const timelineEntriesWithSameId = timeline.entries.filter((e: any) => e.id === entry.id)
+        const timelineEntriesWithSameId = timeline.entries.filter(
+          (e: any) => !!e.id && !!entry.id && e.id === entry.id
+        )
 
         return {
           ...entry,
