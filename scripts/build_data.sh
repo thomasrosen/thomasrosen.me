@@ -74,6 +74,10 @@ mkdir -p ./src/data/timeline
 cp -rp ./data_about_thomasrosen/timeline/* ./src/data/timeline
 echo "✅ done copying timeline";
 
+mkdir -p ./src/data/google_collections
+cp -rp ./data_about_thomasrosen/google_collections/generated/all_google_collection_entries.yml ./src/data/google_collections/all_google_collection_entries.yml
+echo "✅ done copying google collections";
+
 # node ./scripts/processImageFiles.mjs
 # echo "✅ done running processImageFiles.mjs";
 

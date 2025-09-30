@@ -1,8 +1,10 @@
-import { processImageFiles } from '@@/scripts/processImageFiles.mjs'
+// biome-ignore assist/source/organizeImports: auto sort does conflict
+import all_google_collection_entries from '@/data/google_collections/all_google_collection_entries.yml'
 import timeline from '@/data/timeline/entries.yml'
 import { loadArticles } from '@/lib/loadArticles'
 import { loadPlaylists } from '@/lib/loadPlaylists'
 import type { TimelineEntry } from '@/types'
+import { processImageFiles } from '@@/scripts/processImageFiles.mjs'
 
 let loadTimelineCache: TimelineEntry[] | undefined
 
@@ -59,29 +61,31 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   )
 
   const timelineEntries: TimelineEntry[] = await Promise.all(
-    [...timeline.entries, ...imagesAsEntries].map(async (data: any) => {
-      if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
-        try {
-          // Remove any URL encoding from the path
-          const cleanPath = decodeURIComponent(data.image)
-          // const currentDir = process.cwd()
-          const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
-          const image_src = imagePath.default
+    [...timeline.entries, ...imagesAsEntries, ...all_google_collection_entries.entries].map(
+      async (data: any) => {
+        if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
+          try {
+            // Remove any URL encoding from the path
+            const cleanPath = decodeURIComponent(data.image)
+            // const currentDir = process.cwd()
+            const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
+            const image_src = imagePath.default
 
-          const width = image_src.width
-          const height = image_src.height
-          const aspectRatio = width / height
+            const width = image_src.width
+            const height = image_src.height
+            const aspectRatio = width / height
 
-          data.image = image_src
-          data.imageAspectRatio = aspectRatio
-        } catch (error) {
-          console.error('ERROR_KYb9FC2c Error loading image:', error)
-          // Continue without the image rather than failing the build
+            data.image = image_src
+            data.imageAspectRatio = aspectRatio
+          } catch (error) {
+            console.error('ERROR_KYb9FC2c Error loading image:', error)
+            // Continue without the image rather than failing the build
+          }
         }
-      }
 
-      return data
-    })
+        return data
+      }
+    )
   )
 
   const articles = await loadArticles()
