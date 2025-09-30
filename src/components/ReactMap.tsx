@@ -1,8 +1,8 @@
-import maplibregl from 'maplibre-gl'
-import { useEffect, useRef } from 'react'
-import 'maplibre-gl/dist/maplibre-gl.css'
 import useDarkTheme from '@/components/hooks/useDarkTheme'
 import type { TimelineEntry } from '@/types'
+import maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
+import { useEffect, useRef } from 'react'
 
 function absoluteStyle(_previousStyle: any, nextStyle: any) {
   return nextStyle
@@ -154,6 +154,7 @@ export function ReactMap({
           element: cloned_marker_element,
           opacity: '1',
           opacityWhenCovered: '0',
+          subpixelPositioning: true,
         })
           .setLngLat({ lng: entry.longitude, lat: entry.latitude })
           .addTo(map.current)

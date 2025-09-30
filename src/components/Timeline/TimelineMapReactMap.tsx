@@ -12,9 +12,7 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
         onEntryMarkerClick={({ entry }) => {
           alert(JSON.stringify(entry, null, 2))
         }}
-        renderEntryMarker={({ entry, index }) => {
-          return <Marker entry={entry} index={index} />
-        }}
+        renderEntryMarker={({ entry, index }) => <Marker entry={entry} index={index} />}
       />
     </div>
   )

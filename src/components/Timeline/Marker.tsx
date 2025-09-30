@@ -46,10 +46,13 @@ export function Marker({ entry, index }: { entry: TimelineEntry; index: number }
           ['-rotate-12', '-rotate-6', '-rotate-3', 'rotate-3', 'rotate-6', 'rotate-12'],
           index
         ),
-        pickFakeRandom(['scale-90', 'scale-100', 'scale-110'], index),
+        pickFakeRandom(
+          entry.displayAs === 'place' ? ['scale-30'] : ['scale-90', 'scale-100', 'scale-110'],
+          index
+        ),
         imageSrc && (isVertical ? 'max-h-[128px] max-w-[128px]' : 'max-h-[128px] max-w-[128px]')
       )}
-      href={entry.url}
+      // href={entry.url}
     >
       {imageSrc ? (
         <Image
