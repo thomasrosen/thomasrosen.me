@@ -12,19 +12,7 @@
     "source.organizeImports.biome": "explicit",
     "source.sortMembers.biome": "explicit"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescriptreact]": {
+  "[javascript][typescript][javascriptreact][typescriptreact][json][jsonc][css][graphql]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
   "files.associations": {
@@ -120,9 +108,6 @@
   "material-icon-theme.saturation": 1,
   "material-icon-theme.opacity": 1,
   "tailwindcss-intellisense.trace.server": "messages",
-  "[javascript][typescript][javascriptreact][typescriptreact][json][jsonc][css][graphql]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
