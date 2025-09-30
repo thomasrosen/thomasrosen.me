@@ -1,9 +1,9 @@
 import { Dot } from '@/components/Dot'
 import { Typo } from '@/components/Typo'
 
-export default function PageSponsor() {
+export default function PageSponsor({ className }: { className?: string }) {
   return (
-    <section className="tab_content">
+    <section className={className}>
       <Typo as="h2" className="mb-6">
         Sponsor
       </Typo>

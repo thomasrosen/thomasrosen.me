@@ -1,9 +1,9 @@
 import { Dot } from '@/components/Dot'
 import { Typo } from '@/components/Typo'
 
-export default function PageFollow() {
+export default function PageFollow({ className }: { className?: string }) {
   return (
-    <section className="tab_content">
+    <section className={className}>
       <Typo as="h2" className="mb-6">
         Follow
       </Typo>

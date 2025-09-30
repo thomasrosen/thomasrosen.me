@@ -1,9 +1,9 @@
 import { Emoji } from '@/components/Emoji'
 import { Typo } from '@/components/Typo'
 
-export default function PageHello() {
+export default function PageHello({ className }: { className?: string }) {
   return (
-    <section className="tab_content">
+    <section className={className}>
       <Typo as="h2" className="mb-6">
         Hi, nice to meet you <Emoji>👋</Emoji>
       </Typo>

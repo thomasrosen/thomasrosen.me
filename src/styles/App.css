@@ -60,7 +60,6 @@ header h1 {
 }
 
 .tab_content {
-  display: block;
   text-align: start;
   width: var(--content-box-width); /* same as header text */
   max-width: 100%;

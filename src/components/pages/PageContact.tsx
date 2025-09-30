@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import { Dot } from '@/components/Dot'
 import { Typo } from '@/components/Typo'
+import Link from 'next/link'
 
-export default function PageContact() {
+export default function PageContact({ className }: { className?: string }) {
   return (
-    <section className="tab_content">
+    <section className={className}>
       <Typo as="h2" className="mb-6">
         Contact
       </Typo>
