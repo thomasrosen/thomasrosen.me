@@ -111,7 +111,7 @@ export const components: MDXComponents = {
       </div>
     )
   },
-  table: (props) => <table className="mb-4 w-full border p-1" {...props} />,
+  table: (props) => <table className="mb-3 w-full border p-1" {...props} />,
   tr: (props) => <tr className="border p-1" {...props} />,
   td: (props) => <td className="border p-1" {...props} />,
   th: (props) => <th className="border p-1" {...props} />,
@@ -136,8 +136,8 @@ export const components: MDXComponents = {
     // const isOnlyEmoijs = containsOnlyEmojisAndWhitespace(child.value)
     // return <p className={cn('mb-4', isOnlyEmoijs && 'text-4xl')} {...props} />
   },
-  li: (props) => <li className="mb-4" {...props} />,
-  ul: (props) => <ul className="ms-4 list-disc" {...props} />,
+  li: (props) => <li className="mb-1" {...props} />,
+  ul: (props) => <ul className="ms-3 list-disc" {...props} />,
   ol: (props) => {
     const start = props.start || 1
     const li_count = 0 // props.children.filter((subnode: any) => subnode.tagName === 'li').length - 1
@@ -160,7 +160,7 @@ export const components: MDXComponents = {
   },
   blockquote: (props) => (
     <blockquote
-      className="relative mb-4 pl-4 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:rounded-full before:bg-primary before:content-['']"
+      className="relative mb-3 pl-3 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:rounded-full before:bg-primary before:content-['']"
       {...props}
     />
   ),
