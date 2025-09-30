@@ -47,6 +47,7 @@
     "@typescript-eslint/parser": "^6.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "eslint-config-next": "^15.3.0",
     "gray-matter": "^4.0.3",
     "js-yaml-loader": "^1.2.2",
