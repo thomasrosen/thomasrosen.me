@@ -1,13 +1,13 @@
+import type { Article } from '@/types'
 import { components, mdxOptions } from '@@/mdx-components'
+import { evaluate } from 'next-mdx-remote-client/rsc'
 import fs from 'node:fs'
 import path from 'node:path'
-import { evaluate } from 'next-mdx-remote-client/rsc'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import strip from 'strip-markdown'
 import { unified } from 'unified'
-import type { Article } from '@/types'
 import { removeFrontmatter } from './unified/removeFrontmatter'
 
 export async function loadArticles() {
