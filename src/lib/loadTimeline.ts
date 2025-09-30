@@ -15,58 +15,31 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
 
   const images = processImageFiles()
   const imagesAsEntries = await Promise.all(
-    images.map((data: any) => {
-      // const loc =
-      //   data.latitude && data.longitude
-      //     ? {
-      //         lat: Number.parseFloat(data.latitude),
-      //         lng: Number.parseFloat(data.longitude),
-      //       }
-      //     : undefined
-
-      // if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
-      //   try {
-      //     // Remove any URL encoding from the path
-      //     const cleanPath = decodeURIComponent(data.image)
-      //     // const currentDir = process.cwd()
-      //     const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
-      //     const image_src = imagePath.default
-
-      //     const width = image_src.width
-      //     const height = image_src.height
-      //     const aspectRatio = width / height
-
-      //     data.image = image_src
-      //     data.imageAspectRatio = aspectRatio
-      //   } catch (error) {
-      //     console.error('Error loading image:', error)
-      //     // Continue without the image rather than failing the build
-      //   }
-      // }
-
-      const timelineEntryWithSameId = timeline.entries.find((e: any) => e.id === data.id)
-      if (timelineEntryWithSameId) {
-        // remove from ary
-      }
-
+    images.map((entry: any) => {
       return {
-        ...data,
-        latitude: Number.parseFloat(data.latitude),
-        longitude: Number.parseFloat(data.longitude),
-        tags: [...new Set(['image', ...(data.tags || [])])],
-        // loc,
-        ...timelineEntryWithSameId,
+        ...entry,
+        latitude: Number.parseFloat(entry.latitude),
+        longitude: Number.parseFloat(entry.longitude),
+        tags: [...new Set(['image', ...(entry.tags || [])])],
       }
     })
   )
 
+  const done_entry_ids = new Set<string>()
+
   const timelineEntries: TimelineEntry[] = await Promise.all(
-    [...timeline.entries, ...imagesAsEntries, ...all_google_collection_entries.entries].map(
-      async (data: any) => {
-        if (!!data && typeof data.image === 'string' && data.image?.length > 0) {
+    [...imagesAsEntries, ...all_google_collection_entries.entries, ...timeline.entries].map(
+      async (entry: any) => {
+        if (done_entry_ids.has(entry.id)) {
+          return null
+        }
+        done_entry_ids.add(entry.id)
+
+        // load image
+        if (!!entry && typeof entry.image === 'string' && entry.image?.length > 0) {
           try {
             // Remove any URL encoding from the path
-            const cleanPath = decodeURIComponent(data.image)
+            const cleanPath = decodeURIComponent(entry.image)
             // const currentDir = process.cwd()
             const imagePath = await import(`@/data/timeline/images/${cleanPath}`)
             const image_src = imagePath.default
@@ -75,15 +48,30 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
             const height = image_src.height
             const aspectRatio = width / height
 
-            data.image = image_src
-            data.imageAspectRatio = aspectRatio
+            entry.image = image_src
+            entry.imageAspectRatio = aspectRatio
           } catch (error) {
             console.error('ERROR_KYb9FC2c Error loading image:', error)
             // Continue without the image rather than failing the build
           }
         }
 
-        return data
+        // get same timeline entries
+        const timelineEntriesWithSameId = timeline.entries.filter((e: any) => e.id === entry.id)
+
+        return {
+          ...entry,
+          ...timelineEntriesWithSameId.reduce((acc: any, curr: any) => {
+            // biome-ignore lint/performance/noAccumulatingSpread: this good is anymay not perfect
+            return { ...acc, ...curr }
+          }, {}),
+          tags: [
+            ...new Set([
+              ...(entry.tags || []),
+              ...timelineEntriesWithSameId.flatMap((e: any) => e.tags || []),
+            ]),
+          ],
+        }
       }
     )
   )
@@ -115,12 +103,14 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     text: playlist.count === 1 ? 'One Song' : `${playlist.count} Songs`,
   }))
 
-  loadTimelineCache = [
-    ...timelineEntries,
-    ...articlesAsEntries,
-    // ...imagesAsEntries,
-    ...playlistsAsEntries,
-  ]
+  loadTimelineCache = [...timelineEntries, ...articlesAsEntries, ...playlistsAsEntries]
+    .filter(Boolean)
+    .filter(
+      (entry: any) =>
+        // places must have a public tag to be shown
+        entry.displayAs !== 'place' ||
+        (entry.displayAs === 'place' && entry.tags.includes('public'))
+    )
 
   return loadTimelineCache
 }
