@@ -109,5 +109,6 @@
   "material-icon-theme.opacity": 1,
   "tailwindcss-intellisense.trace.server": "messages",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "workbench.colorTheme": "GitHub Light Default"
 }
