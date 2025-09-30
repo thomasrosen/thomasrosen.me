@@ -1,3 +1,4 @@
+import { Emoji } from '@/components/Emoji'
 import PageContact from '@/components/pages/PageContact'
 import PageFollow from '@/components/pages/PageFollow'
 import PageHello from '@/components/pages/PageHello'
@@ -16,19 +17,19 @@ export default function PageStart() {
           </Typo>
           <div className="flex flex-wrap gap-3">
             <Badge size="lg" variant="accent">
-              🤖 Programming
+              <Emoji aria-hidden="true">🤖</Emoji> Programming
             </Badge>
             <Badge size="lg" variant="accent">
-              📸 Photography
+              <Emoji aria-hidden="true">📸</Emoji> Photography
             </Badge>
             <Badge size="lg" variant="accent">
-              🎨 Design
+              <Emoji aria-hidden="true">🎨</Emoji> Design
             </Badge>
             <Badge size="lg" variant="accent">
-              🇪🇺 Politics
+              <Emoji aria-hidden="true">🇪🇺</Emoji> Politics
             </Badge>
             <Badge size="lg" variant="accent">
-              🏳️‍🌈 Queer-Rights
+              <Emoji aria-hidden="true">🏳️‍🌈</Emoji> Queer-Rights
             </Badge>
           </div>
         </div>
