@@ -1,6 +1,6 @@
+import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
 import type { ElementType, HTMLAttributes, ReactNode } from 'react'
-import { cn } from '@/lib/utils'
 
 type TypoVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div' | 'code' | 'small'
 
@@ -13,7 +13,7 @@ const typoVariants = cva('text-pretty', {
       h4: 'scroll-m-20 text-balance font-semibold text-xl leading-tight tracking-tight',
       h5: 'scroll-m-20 text-balance font-semibold text-lg leading-tight tracking-tight',
       h6: 'scroll-m-20 text-balance font-semibold text-base leading-tight tracking-tight',
-      p: 'text-pretty leading-7 [&:not(:last-child)]:mb-6',
+      p: '!leading-6 text-pretty [&:not(:last-child)]:mb-6',
       span: 'text-base',
       div: 'text-base',
       blockquote: 'mb-6 border-l-2 pl-6 italic',

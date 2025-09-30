@@ -1,8 +1,10 @@
+import { Typo } from '@/components/Typo'
+import { HR } from '@/components/hr'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import type { MDXComponents } from 'mdx/types'
+import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
-import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
 import recmaExportFilepath from 'recma-export-filepath'
 import recmaMdxEscapeMissingComponents from 'recma-mdx-escape-missing-components'
 import recmaNextjsStaticProps from 'recma-nextjs-static-props'
@@ -14,8 +16,6 @@ import remarkFootnotesExtra from 'remark-footnotes-extra'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
-import { HR } from '@/components/hr'
-import { Typo } from '@/components/Typo'
 // import nextMDX from '@next/mdx'
 import { rehypeMapHtmlElementsToReact } from '@/lib/unified/rehypeMapHtmlElementsToReact'
 import { remarkFootnoteReferences } from '@/lib/unified/remarkFootnoteReferences'
@@ -38,7 +38,7 @@ import { cn } from '@/lib/utils'
 
 export const components: MDXComponents = {
   code: (props) => {
-    return <code {...props} />
+    return <code className="-my-0.75 -mx-0.5 rounded-[8px] bg-accent px-1 py-0.75" {...props} />
   },
   div: (props) => <Typo as="div" {...props} />,
   h1: (props) => <Typo as="h1" {...props} />,
