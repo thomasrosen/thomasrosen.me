@@ -1,20 +1,16 @@
 import { Header } from '@/components/Header'
 
-export default function Layout({
-  children,
-  sidebar,
-}: {
-  children: React.ReactNode
-  sidebar: React.ReactNode
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <body className="overflow-hidden">
-      {children}
+    <body>
+      <div className="app_wrapper">
+        <Header className="tab_content" />
 
-      <div className="absolute top-6 bottom-6 left-6 z-20 flex w-[400px] flex-col gap-12 overflow-auto rounded-xl border border-foreground/10 bg-background/80 p-6 drop-shadow-2xl/10 backdrop-blur-sm backdrop-saturate-200">
-        <Header />
+        <div className="mb-4" />
 
-        <div className="grow">{sidebar}</div>
+        {children}
+
+        <div className="mb-4" />
 
         {/*
             <Link
@@ -33,14 +29,13 @@ export default function Layout({
 
         <svg
           aria-hidden="true"
-          className="shrink-0"
           fill="none"
           style={{
             width: '100%',
             maxWidth: 'calc(2 * var(--content-box-width, 500px))',
             marginInline: '5px',
             marginBlockStart: '0px',
-            // marginBlockEnd: 'calc(-25vh - 40px)',
+            marginBlockEnd: 'calc(-25vh - 40px)',
             aspectRatio: 'calc(2526 / 600)',
           }}
           viewBox="0 0 2526 600"

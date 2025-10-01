@@ -1,10 +1,11 @@
 import { Emoji } from '@/components/Emoji'
+import { Typo } from '@/components/Typo'
 import PageContact from '@/components/pages/PageContact'
 import PageFollow from '@/components/pages/PageFollow'
 import PageHello from '@/components/pages/PageHello'
 import PageSponsor from '@/components/pages/PageSponsor'
-import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
 export default function PageStart() {
   return (
@@ -19,9 +20,11 @@ export default function PageStart() {
             <Badge size="lg" variant="accent">
               <Emoji aria-hidden="true">🤖</Emoji> Programming
             </Badge>
-            <Badge size="lg" variant="accent">
-              <Emoji aria-hidden="true">📸</Emoji> Photography
-            </Badge>
+            <Link href="/tag/image/">
+              <Badge size="lg" variant="accent">
+                <Emoji aria-hidden="true">📸</Emoji> Photography
+              </Badge>
+            </Link>
             <Badge size="lg" variant="accent">
               <Emoji aria-hidden="true">🎨</Emoji> Design
             </Badge>

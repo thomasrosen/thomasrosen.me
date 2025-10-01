@@ -1,10 +1,9 @@
+import '@/app/globals.css'
 import '@/fonts/ubuntu-mono-v15-latin/index.css'
 import '@/fonts/ubuntu-v20-latin/index.css'
-import '@/styles/App.css'
-import '@/styles/index.css'
 import Script from 'next/script'
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -42,6 +41,13 @@ export default function RootLayout({ children }) {
           });`,
           }}
         />
+
+        <script>
+          {/* avoid FOUC by checking and setting the theme on page load */}
+          document.documentElement.classList.toggle("dark", localStorage.theme === "dark" ||
+          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+          );
+        </script>
       </head>
 
       {children}
