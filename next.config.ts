@@ -1,7 +1,7 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import type { NextConfig } from 'next'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -140,6 +140,21 @@ let nextConfig: NextConfig = {
       {
         source: '/zenris',
         destination: '/articles/zenris',
+        permanent: false,
+      },
+      {
+        source: '/follow',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/contact',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/sponsor',
+        destination: '/',
         permanent: false,
       },
     ]
