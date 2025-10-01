@@ -134,7 +134,7 @@ export async function Timeline({
               <Typo
                 as="h2"
                 className={cn(
-                  'col-span-1 xs:col-span-full row-span-1 h-auto w-full max-w-[var(--content-box-width)]',
+                  'col-span-1 xs:col-span-full row-span-1 h-auto w-full sm:max-w-[var(--content-box-width)]',
                   'font-bold',
                   'flex flex-wrap gap-x-4',
                   isNewMonth && index !== 0 && 'mt-8',

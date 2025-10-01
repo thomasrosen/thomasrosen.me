@@ -360,7 +360,7 @@ ol {
   padding: 80px 40px;
   gap: 40px;
 }
-@media (max-width: 800px) {
+@media (width <= 40rem) {
   .app_wrapper {
     align-items: start;
     padding: 20px 20px 60px 20px;
@@ -441,7 +441,7 @@ header h1 {
 .links_grid div p + a button {
   margin-block-start: 10px;
 }
-@media (max-width: 600px) {
+@media (width <= 40rem) {
   .links_grid {
     grid-template-columns: auto 1fr;
     grid-gap: 10px 10px;
@@ -511,7 +511,7 @@ a.link_box p:last-child {
   margin-block-start: 5px;
   border-radius: 5px;
 }
-@media (max-width: 600px) {
+@media (width <= 40rem) {
   .links_grid_item {
     flex-direction: column;
     gap: 10px;
@@ -603,11 +603,13 @@ _::-webkit-full-page-media,
 }
 @media (width >= 30rem) {
   .mygrid {
+    width: 100%;
     grid-template-columns: 1fr 1fr;
   }
 }
 @media (width >= 40rem) {
   .mygrid {
+    width: var(--content-box-width);
     grid-template-columns: repeat(auto-fit, 1fr);
   }
 }
@@ -629,7 +631,7 @@ _::-webkit-full-page-media,
     grid-template-columns: var(--size);
 	}
 }
-@media (width <= 620px) {
+@media (width <= 40rem) {
 	.mygrid {
 		--size: 50%;
 	}
