@@ -597,7 +597,7 @@ _::-webkit-full-page-media,
   --gap: calc(var(--spacing) * 4);
   --size: calc((var(--content-box-width) - var(--gap)) / 2);
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 100%;
   grid-template-rows: repeat(auto, 1fr);
   grid-auto-flow: row dense;
 }
