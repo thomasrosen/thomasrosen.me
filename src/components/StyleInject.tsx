@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import { useEffect } from 'react'
 
 export function StyleInject({
@@ -28,5 +27,5 @@ export function StyleInject({
     }
   }, [selector, className])
 
-  return <div className={cn('helloWorld123', className)} />
+  return null
 }

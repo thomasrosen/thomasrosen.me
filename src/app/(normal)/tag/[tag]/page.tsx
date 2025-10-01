@@ -1,8 +1,9 @@
-import { notFound } from 'next/navigation'
+import { StyleInject } from '@/components/StyleInject'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import { loadTimeline } from '@/lib/loadTimeline'
+import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -26,6 +27,8 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
 
   return (
     <>
+      <StyleInject className="bg-black" selector="body" />
+
       <Typo as="h2" className="tab_content">
         <div className="flex flex-wrap gap-2">
           {tags.map((tag_inner) => (
@@ -37,6 +40,7 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
       </Typo>
 
       <Timeline showTimeHeadlines={true} tags={tags} />
+      {/* <div className="-m-[40px] w-[calc(100%_+_80px)] bg-black p-[40px]" /> */}
     </>
   )
 }
