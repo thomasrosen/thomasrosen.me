@@ -36,6 +36,7 @@
   "dependencies": {
     "@biomejs/biome": "^2.1.4",
     "@braintree/sanitize-url": "^7.1.1",
+    "@fontsource-variable/material-symbols-rounded": "^5.2.24",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "^15.3.1",

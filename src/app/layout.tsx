@@ -1,4 +1,5 @@
 import '@/app/globals.css'
+import { MaterialIconStyle } from '@/components/Icon'
 import { VerticalFadeStyles } from '@/components/VerticalFade'
 import '@/fonts/ubuntu-mono-v15-latin/index.css'
 import '@/fonts/ubuntu-v20-latin/index.css'
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           );
         </script>
 
+        <MaterialIconStyle />
         <VerticalFadeStyles />
       </head>
 
