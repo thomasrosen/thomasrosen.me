@@ -28,7 +28,7 @@
   "diffEditor.experimental.showMoves": true,
   "diffEditor.experimental.useTrueInlineView": true,
   "editor.minimap.enabled": true,
-  "editor.minimap.autohide": false,
+  "editor.minimap.autohide": "none",
   "multiDiffEditor.experimental.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.minimap.scale": 1,
@@ -110,5 +110,5 @@
   "tailwindcss-intellisense.trace.server": "messages",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "workbench.colorTheme": "GitHub Light Default"
+  "workbench.colorTheme": "GitHub Dark Default"
 }
