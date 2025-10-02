@@ -115,6 +115,15 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
         entry.displayAs !== 'place' ||
         (entry.displayAs === 'place' && entry.tags.includes('public'))
     )
+    .filter((entry: any) => {
+      const dateA = new Date(entry.date || '1970-01-01').getTime()
+      return entry.displayAs !== 'image' || (entry.displayAs === 'image' && dateA > 31_000_000)
+    })
+  // .sort((a, b) => {
+  //   const dateA = new Date(a.date || '1970-01-01')
+  //   const dateB = new Date(b.date || '1970-01-01')
+  //   return dateB.getTime() - dateA.getTime()
+  // })
 
   return loadTimelineCache
 }
