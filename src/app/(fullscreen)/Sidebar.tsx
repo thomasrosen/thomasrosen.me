@@ -14,11 +14,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
     <MotionConfig transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
       <AnimatePresence initial={false} mode="popLayout">
         {open === false ? (
-          <motion.div
-            className="fixed top-0 left-0 z-100 flex p-6"
-            key="button-to-open-sidebar"
-            layoutId="sidebar"
-          >
+          <motion.div className="fixed top-0 left-0 z-100 flex p-6" layoutId="header">
             <Button
               asChild
               className="drop-shadow-xl/10"
@@ -41,8 +37,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
         {open === true ? (
           <motion.div
             className="pointer-events-none fixed top-0 left-0 z-110 flex h-max max-h-full w-[400px] max-w-full flex-col gap-3 overflow-auto p-6"
-            key="sidebar-open-state"
-            layoutId="sidebar"
+            layoutId="header"
           >
             <motion.div
               className="pointer-events-auto flex flex-col gap-0 rounded-5xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200"

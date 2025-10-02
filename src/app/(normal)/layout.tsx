@@ -1,10 +1,10 @@
-import { Header } from '@/components/Header'
+import { MotionHeaderWrapper } from '@/components/MotionHeaderWrapper'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <body>
       <div className="app_wrapper">
-        <Header className="tab_content" />
+        <MotionHeaderWrapper />
 
         <div className="mb-4" />
 
