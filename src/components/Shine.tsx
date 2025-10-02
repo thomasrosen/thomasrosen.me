@@ -9,7 +9,8 @@ export function Shine({
   children,
   lightColor = '#666666',
   puffyness = '1',
-  ...otherProps
+  style,
+  ...props
 }: {
   children: React.ReactNode
   lightColor?: `#${string}`
@@ -24,12 +25,14 @@ export function Shine({
   })
 
   useEffect(() => {
-    const children = childrenWrapperRef.current
+    const children_1 = childrenWrapperRef.current
     const filterElement = filterRef.current
     const lightElement = filterElement?.querySelector('fePointLight')
-    if (!(filterElement && children && lightElement)) return
+    if (!(filterElement && children_1 && lightElement)) {
+      return
+    }
 
-    function getBounds(children: HTMLDivElement) {
+    function getBounds(children_2: HTMLDivElement) {
       return new Promise<IntersectionObserverEntry['boundingClientRect']>((resolve) => {
         const observer = new IntersectionObserver(
           (entries) => {
@@ -46,13 +49,13 @@ export function Shine({
           }
         )
 
-        observer.observe(children as Element)
+        observer.observe(children_2 as Element)
       })
     }
 
     const setPos = async () => {
       // const childrenBox = children.getBoundingClientRect();
-      const childrenBox = await getBounds(children)
+      const childrenBox = await getBounds(children_1)
 
       lightElement.setAttribute('y', String(mouse.current.y - childrenBox.top))
       lightElement.setAttribute('x', String(mouse.current.x - childrenBox.left))
@@ -78,15 +81,17 @@ export function Shine({
   }, [])
 
   return (
-    <span
-      style={{
-        display: 'inline-block',
-        position: 'relative',
-        userSelect: 'none',
-      }}
-      {...otherProps}
-    >
+    <>
+      {/* <span
+        style={{
+          display: 'inline-block',
+          position: 'relative',
+          // userSelect: 'none',
+        }}
+        {...props}
+      > */}
       <svg
+        aria-hidden="true"
         height="0"
         style={{
           position: 'fixed',
@@ -127,16 +132,19 @@ export function Shine({
           />
         </filter>
       </svg>
-      <span
+      <div
         ref={childrenWrapperRef}
         style={{
           display: 'inline-block',
           filter: `url(#${filterId})`,
           isolation: 'isolate',
+          ...style,
         }}
+        {...props}
       >
         {children}
-      </span>
-    </span>
+      </div>
+      {/* </span> */}
+    </>
   )
 }
