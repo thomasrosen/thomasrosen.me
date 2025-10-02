@@ -1,4 +1,5 @@
 import '@/app/globals.css'
+import { VerticalFadeStyles } from '@/components/VerticalFade'
 import '@/fonts/ubuntu-mono-v15-latin/index.css'
 import '@/fonts/ubuntu-v20-latin/index.css'
 import Script from 'next/script'
@@ -48,6 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
           );
         </script>
+
+        <VerticalFadeStyles />
       </head>
 
       {children}
