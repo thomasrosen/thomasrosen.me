@@ -9,7 +9,7 @@ export default function PageContact({ className }: { className?: string }) {
         Contact
       </Typo>
 
-      <div className="links_grid !gap-y-6">
+      <div className="links_grid">
         <Typo as="h3" className="text-md">
           <Dot color="var(--primary)" />
           Email

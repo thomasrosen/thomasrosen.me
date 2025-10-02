@@ -8,7 +8,7 @@ export default function PageSponsor({ className }: { className?: string }) {
         Sponsor
       </Typo>
 
-      <div className="links_grid !gap-y-6">
+      <div className="links_grid">
         <Typo as="h3" className="text-md">
           <Dot color="#0d57aa" />
           PayPal

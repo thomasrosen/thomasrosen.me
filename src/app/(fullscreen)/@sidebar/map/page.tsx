@@ -9,7 +9,7 @@ export default function Page() {
       <Typo as="h2" className="tab_content">
         Places
       </Typo>
-      <Typo as="p" className="tab_content">
+      <Typo as="p" className="tab_content text-pretty">
         The map shows places I recommend and some images I took.
         <br />
         <br />

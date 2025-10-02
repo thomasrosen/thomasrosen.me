@@ -1,7 +1,7 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import ExifReader from 'exifreader'
 import { imageSize } from 'image-size'
+import fs from 'node:fs'
+import path from 'node:path'
 
 // Define paths
 const outputImagesDir = './src/data/timeline/images'
@@ -82,7 +82,7 @@ export function processImageFiles() {
       const ext = path.extname(filename).toLowerCase()
 
       if (!supportedFormats.includes(ext)) {
-        console.info(`Skipping ${filename}: Not a supported image format`)
+        // console.info(`Skipping ${filename}: Not a supported image format`)
         continue
       }
 
@@ -98,7 +98,7 @@ export function processImageFiles() {
         latitude: metadata.latitude,
         longitude: metadata.longitude,
         displayAs: 'image',
-        author: 'Thomas Rosen',
+        // author: 'Thomas Rosen',
         title: '', // path.parse(filename).name,
         text: metadata.text,
         image: filename,

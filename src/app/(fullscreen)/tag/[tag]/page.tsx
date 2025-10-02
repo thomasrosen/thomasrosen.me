@@ -1,7 +1,4 @@
-import { StyleInject } from '@/components/StyleInject'
 import { Timeline } from '@/components/Timeline/Timeline'
-import { Typo } from '@/components/Typo'
-import { Badge } from '@/components/ui/badge'
 import { loadTimeline } from '@/lib/loadTimeline'
 import { notFound } from 'next/navigation'
 
@@ -26,21 +23,9 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
   const tags = [tag] // to allow multiple tags in the future
 
   return (
-    <>
-      <StyleInject className="bg-black" selector="body" />
-
-      <Typo as="h2" className="tab_content">
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag_inner) => (
-            <Badge key={tag_inner} size="lg" variant="accent">
-              {tag_inner}
-            </Badge>
-          ))}
-        </div>
-      </Typo>
-
+    <div className="app_wrapper !pt-24 theme_black">
       <Timeline showTimeHeadlines={true} tags={tags} />
       {/* <div className="-m-[40px] w-[calc(100%_+_80px)] bg-black p-[40px]" /> */}
-    </>
+    </div>
   )
 }

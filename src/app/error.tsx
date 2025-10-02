@@ -15,7 +15,7 @@ export default function ErrorPage({
   }, [error])
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-3 p-6 text-center">
       <h2>Something went wrong!</h2>
       <p>{String(error)}</p>
       <button

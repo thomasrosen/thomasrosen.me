@@ -1,8 +1,11 @@
+'use client'
+
 import { Emoji } from '@/components/Emoji'
 import { NavLinkButton } from '@/components/NavLinkButton'
 import { Shine } from '@/components/Shine'
 import { Typo } from '@/components/Typo'
 import { cn } from '@/lib/utils'
+import { motion } from 'motion/react'
 
 export function Header({ className }: { className?: string }) {
   return (
@@ -11,7 +14,7 @@ export function Header({ className }: { className?: string }) {
         <Shine puffyness="3">
           <div
             aria-hidden="true"
-            className="headerImageOfMe @lg/header:h-[150px] @sm/header:h-[100px] h-[64px] @lg/header:w-[150px] @sm/header:w-[100px] w-[64px]"
+            className="headerImageOfMe @lg/header:h-[150px] @sm/header:h-[100px] h-[64px] @lg/header:w-[150px] @sm/header:w-[100px] w-[64px] rounded-3xl"
             title="Thomas Rosen eating a slice of watermelon."
           />
         </Shine>
@@ -21,9 +24,9 @@ export function Header({ className }: { className?: string }) {
           as="h1"
           className="!text-[40px] @lg/header:!text-[80px] @sm/header:!text-[60px]"
         >
-          Thomas
+          <motion.span layoutId="website-title-first">Thomas</motion.span>
           <br />
-          Rosen
+          <motion.span layoutId="website-title-last">Rosen</motion.span>
         </Typo>
       </header>
 
