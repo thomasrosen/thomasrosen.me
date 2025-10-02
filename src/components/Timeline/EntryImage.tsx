@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
+import Image from 'next/image'
 import { EntryTextContent } from './EntryTextContent'
 
 export function EntryImage({
@@ -50,9 +50,9 @@ export function EntryImage({
           'transition-transform duration-150 will-change-[transform] group-hover/image:translate-y-[100%]'
         )}
       >
-        <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-20 h-[calc(100%-32px)] backdrop-blur-[4px]" />
-        <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-30 h-[calc(100%-48px)] backdrop-blur-[8px]" />
-        <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-40 h-[calc(100%-64px)] backdrop-blur-[16px]" />
+        <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-20 h-[calc(100%-32px)] opacity-70 backdrop-blur-[4px]" />
+        <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-30 h-[calc(100%-48px)] opacity-80 backdrop-blur-[8px]" />
+        <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-40 h-[calc(100%-64px)] opacity-90 backdrop-blur-[16px]" />
         <div className="mask-t-to-[100%] absolute right-0 bottom-0 left-0 z-50 h-[calc(100%-32px)] bg-background opacity-30" />
         <div className="relative z-60 flex flex-col gap-2 p-4 text-foreground">
           <EntryTextContent
