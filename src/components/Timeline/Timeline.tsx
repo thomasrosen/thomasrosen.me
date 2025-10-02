@@ -146,6 +146,9 @@ export async function Timeline({
               </Typo>
             ) : null}
 
+            {entriesForRender.length === 1 ? (
+              <div className="col-span-1 row-span-1 hidden min-[1330px]:block" />
+            ) : null}
             {entriesForRender.length > 0 ? entriesForRender : null}
           </div>
         )

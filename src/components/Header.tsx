@@ -7,6 +7,34 @@ import { Typo } from '@/components/Typo'
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
 
+export function Nav({ className }: { className?: string }) {
+  return (
+    <nav className={cn('!flex h-min flex-row flex-wrap gap-2', className)}>
+      <NavLinkButton href="/">Hi!</NavLinkButton>
+      <NavLinkButton href="/articles/">
+        <Emoji aria-hidden="true">📝</Emoji> Blog
+      </NavLinkButton>
+      <NavLinkButton href="/press/">
+        <Emoji aria-hidden="true">📰</Emoji> In the Press
+      </NavLinkButton>
+      <NavLinkButton href="/playlists/">
+        <Emoji aria-hidden="true">🎸</Emoji> Playlists
+      </NavLinkButton>
+      <NavLinkButton href="/tag/image/">
+        <Emoji aria-hidden="true">🏞️</Emoji> Photos
+      </NavLinkButton>
+      <NavLinkButton href="/shared/">
+        <Emoji aria-hidden="true">🔗</Emoji> Interesting Links
+      </NavLinkButton>
+      {/*
+        <NavLinkButton href="/map/">
+          <Emoji aria-hidden="true">🗺️</Emoji> Places
+        </NavLinkButton>
+        */}
+    </nav>
+  )
+}
+
 export function Header({ className }: { className?: string }) {
   return (
     <div className={cn('@container/header !flex shrink-0 flex-col gap-y-12', className)}>
@@ -30,29 +58,7 @@ export function Header({ className }: { className?: string }) {
         </Typo>
       </header>
 
-      <nav className="!flex flex-row flex-wrap gap-2">
-        <NavLinkButton href="/">Hi!</NavLinkButton>
-        <NavLinkButton href="/articles/">
-          <Emoji aria-hidden="true">📝</Emoji> Blog
-        </NavLinkButton>
-        <NavLinkButton href="/press/">
-          <Emoji aria-hidden="true">📰</Emoji> In the Press
-        </NavLinkButton>
-        <NavLinkButton href="/playlists/">
-          <Emoji aria-hidden="true">🎸</Emoji> Playlists
-        </NavLinkButton>
-        <NavLinkButton href="/tag/image/">
-          <Emoji aria-hidden="true">🏞️</Emoji> Photos
-        </NavLinkButton>
-        <NavLinkButton href="/shared/">
-          <Emoji aria-hidden="true">🔗</Emoji> Interesting Links
-        </NavLinkButton>
-        {/*
-        <NavLinkButton href="/map/">
-          <Emoji aria-hidden="true">🗺️</Emoji> Places
-        </NavLinkButton>
-        */}
-      </nav>
+      <Nav />
     </div>
   )
 }

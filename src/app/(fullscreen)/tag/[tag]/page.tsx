@@ -1,4 +1,6 @@
 import { Timeline } from '@/components/Timeline/Timeline'
+import { Typo } from '@/components/Typo'
+import { Badge } from '@/components/ui/badge'
 import { loadTimeline } from '@/lib/loadTimeline'
 import { notFound } from 'next/navigation'
 
@@ -24,6 +26,19 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
 
   return (
     <div className="app_wrapper !pt-24 theme_black">
+      {tag !== 'image' ? (
+        <Typo as="h2" className="tab_content" variant="h3">
+          <div className="flex flex-wrap gap-3">
+            <span>Showing content for tags:</span>
+            {tags.map((tag_inner) => (
+              <Badge key={tag_inner} size="md" variant="accent">
+                {tag_inner}
+              </Badge>
+            ))}
+          </div>
+        </Typo>
+      ) : null}
+
       <Timeline showTimeHeadlines={true} tags={tags} />
       {/* <div className="-m-[40px] w-[calc(100%_+_80px)] bg-black p-[40px]" /> */}
     </div>

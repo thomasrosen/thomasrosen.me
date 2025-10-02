@@ -1,8 +1,8 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from '@/components/ui/button'
 
 export function NavLinkButton({ href, children }: { href: string; children: React.ReactNode }) {
   const pathname = usePathname()
@@ -10,7 +10,7 @@ export function NavLinkButton({ href, children }: { href: string; children: Reac
 
   return (
     <Link href={href}>
-      <Button size="lg" variant={isActive ? 'secondary' : 'accent'}>
+      <Button size="lg" variant={isActive ? 'secondary' : 'glass'}>
         {children}
       </Button>
     </Link>

@@ -9,62 +9,74 @@ import { useState } from 'react'
 export function Sidebar({ children }: { children?: React.ReactNode }) {
   const [open, setOpen] = useState(false)
 
-  // reducedMotion="user"
   return (
-    <MotionConfig transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
-      <AnimatePresence initial={false} mode="popLayout">
-        {open === false ? (
-          <motion.div className="fixed top-0 left-0 z-100 flex p-6" layoutId="header">
-            <Button
-              asChild
-              className="drop-shadow-xl/10"
-              onClick={() => setOpen(true)}
-              size="lg"
-              variant="glass"
-            >
-              <motion.button layoutId="sidebar-first-child" title="Open Menu">
-                <Icon name="menu" size="md" />
+    <MotionConfig reducedMotion="user" transition={{ duration: 0.4, type: 'spring', bounce: 0.2 }}>
+      <div className="fixed top-0 right-0 left-0 z-100 flex justify-center gap-2 p-6">
+        <AnimatePresence initial={false} mode="popLayout">
+          {open === false ? (
+            <motion.div className="z-100" key="sidebar-button" layoutId="header">
+              <Button
+                asChild
+                className="drop-shadow-xl/10"
+                onClick={() => setOpen(true)}
+                size="lg"
+                variant="glass"
+              >
+                <motion.button layoutId="sidebar-first-child" title="Open Menu">
+                  <Icon name="menu" size="md" />
 
-                <div className="flex gap-1 font-extrabold font-mono leading-tight tracking-tight">
-                  <motion.div layoutId="website-title-first">Thomas</motion.div>
-                  <motion.div layoutId="website-title-last">Rosen</motion.div>
-                </div>
-              </motion.button>
-            </Button>
-          </motion.div>
-        ) : null}
-
-        {open === true ? (
-          <motion.div
-            className="pointer-events-none fixed top-0 left-0 z-110 flex h-max max-h-full w-[400px] max-w-full flex-col gap-3 overflow-auto p-6"
-            layoutId="header"
-          >
-            <motion.div
-              className="pointer-events-auto flex flex-col gap-0 rounded-5xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200"
-              layoutId="sidebar-first-child"
-            >
-              <div className="sticky top-0 right-0 z-20">
-                <Button
-                  className="absolute top-0 right-0 z-20"
-                  onClick={() => setOpen(false)}
-                  size="icon-lg"
-                  title="Close Menu"
-                  variant="glass"
-                >
-                  <Icon name="close" size="lg" />
-                </Button>
-              </div>
-
-              <Header />
+                  <div className="flex gap-1 font-extrabold font-mono leading-tight tracking-tight">
+                    <motion.div layoutId="website-title-first">Thomas</motion.div>
+                    <motion.div layoutId="website-title-last">Rosen</motion.div>
+                  </div>
+                </motion.button>
+              </Button>
             </motion.div>
+          ) : null}
 
-            {children ? (
-              <div className="pointer-events-auto flex flex-col gap-3 rounded-3xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200 empty:hidden">
-                {children}
-              </div>
-            ) : null}
+          {open === true ? (
+            <motion.div
+              animate={{ opacity: 1 }}
+              className="fixed inset-0 z-100 cursor-pointer bg-black/30"
+              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
+              key="backdrop"
+              onClick={() => setOpen(false)}
+            />
+          ) : null}
 
-            {/*
+          {open === true ? (
+            <motion.div
+              className="pointer-events-none z-110 flex h-max max-h-full w-[400px] max-w-full flex-col gap-3 overflow-auto p-6"
+              key="sidebar"
+              layoutId="header"
+            >
+              <motion.div
+                className="pointer-events-auto flex flex-col gap-0 rounded-5xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200"
+                layoutId="sidebar-first-child"
+              >
+                <div className="sticky top-0 right-0 z-20">
+                  <Button
+                    className="absolute top-0 right-0 z-20"
+                    onClick={() => setOpen(false)}
+                    size="icon-lg"
+                    title="Close Menu"
+                    variant="glass"
+                  >
+                    <Icon name="close" size="lg" />
+                  </Button>
+                </div>
+
+                <Header />
+              </motion.div>
+
+              {children ? (
+                <div className="pointer-events-auto flex flex-col gap-3 rounded-3xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200 empty:hidden">
+                  {children}
+                </div>
+              ) : null}
+
+              {/*
             <Link
               className="link_box rounded-xl"
               data-umami-event="Newsletter"
@@ -79,7 +91,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
             </Link>
             */}
 
-            {/*
+              {/*
             <svg
               aria-hidden="true"
               className="shrink-0"
@@ -210,9 +222,10 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
               </defs>
             </svg>
             */}
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
     </MotionConfig>
   )
 }
