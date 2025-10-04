@@ -37,7 +37,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
           {open === true ? (
             <motion.div
               animate={{ opacity: 1 }}
-              className="fixed inset-[1px] z-100 cursor-pointer bg-black/30"
+              className="fixed inset-0 z-100 cursor-pointer bg-black/30"
               exit={{ opacity: 0 }}
               initial={{ opacity: 0 }}
               key="backdrop"
@@ -47,7 +47,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
 
           {open === true ? (
             <motion.div
-              className="pointer-events-none z-110 flex h-max max-h-full w-[400px] max-w-full flex-col gap-3 overflow-auto p-6"
+              className="pointer-events-none z-110 flex h-max max-h-full w-[500px] max-w-full flex-col gap-3 overflow-auto p-6"
               key="sidebar"
               layoutId="header"
             >
