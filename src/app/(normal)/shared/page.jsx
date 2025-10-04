@@ -10,6 +10,7 @@ export default function Page() {
       <Typo as="h2" className="tab_content">
         Interesting stuff
       </Typo>
+
       <Typo as="p" className="tab_content">
         Some articles that I think are worth reading. And other stuff that I think might be
         interesting for some ppl :)
@@ -22,7 +23,9 @@ export default function Page() {
         <strong>These are sorted by date not by importance.</strong>
       </Typo>
 
-      <Timeline hiddenTags={['share']} tags={['share']} />
+      <div className="tab_content">
+        <Timeline hiddenTags={['share']} tags={['share']} />
+      </div>
     </>
   )
 }

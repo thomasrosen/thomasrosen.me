@@ -84,7 +84,7 @@ export async function Timeline({
                   ? '!aspect-[unset] xs:col-span-full h-auto xs:max-w-[var(--content-box-width)]'
                   : null,
 
-                displayAs === 'image' && targetRatio > 1
+                displayAs === 'image' && targetRatio > 1.25
                   ? 'xs:col-span-2 h-auto' // xs:max-w-[var(--content-box-width)]
                   : null
 
@@ -129,27 +129,49 @@ export async function Timeline({
         }
 
         return (
-          <div className="mygrid place-content-center place-items-center gap-4" key={key}>
-            {showTimeHeadlines ? (
-              <Typo
-                as="h2"
-                className={cn(
-                  'col-span-1 xs:col-span-full row-span-1 h-auto w-full sm:max-w-[var(--content-box-width)]',
-                  'font-bold',
-                  'flex flex-wrap gap-x-4',
-                  isNewMonth && index !== 0 && 'mt-8',
-                  isNewYear && index !== 0 && 'mt-32'
-                )}
-              >
-                {isNewYear ? <span className="opacity-60">{year}</span> : null}
-                {isNewMonth ? <span>{getMonthName(Number.parseInt(month, 10))}</span> : null}
-              </Typo>
-            ) : null}
-
-            {entriesForRender.length === 1 ? (
-              <div className="col-span-1 row-span-1 hidden min-[1330px]:block" />
-            ) : null}
-            {entriesForRender.length > 0 ? entriesForRender : null}
+          <div className={cn('mx-auto')} key={`wrapper-${key}`}>
+            <div
+              className={cn(
+                'mygrid place-content-start place-items-stretch gap-4',
+                'mx-auto w-max-content',
+                entriesForRender.length >= 3
+                  ? 'max-w-[calc(var(--content-box-width)*2)]'
+                  : 'max-w-[var(--content-box-width)]'
+              )}
+              key={`date-headline-${key}`}
+            >
+              {showTimeHeadlines ? (
+                <Typo
+                  as="h2"
+                  className={cn(
+                    'col-span-1 row-span-1 h-auto w-full',
+                    // 'xs:col-span-full sm:max-w-[var(--content-box-width)]',
+                    'font-bold',
+                    'flex flex-wrap gap-x-4',
+                    isNewMonth && index !== 0 && 'mt-8',
+                    isNewYear && index !== 0 && 'mt-32'
+                  )}
+                >
+                  {isNewYear ? <span className="opacity-60">{year}</span> : null}
+                  {isNewMonth ? <span>{getMonthName(Number.parseInt(month, 10))}</span> : null}
+                </Typo>
+              ) : null}
+            </div>
+            <div
+              className={cn(
+                'mygrid place-content-start place-items-stretch gap-4',
+                'mx-auto w-max-content',
+                entriesForRender.length >= 3
+                  ? 'max-w-[calc(var(--content-box-width)*2)]'
+                  : 'max-w-[var(--content-box-width)]'
+              )}
+              key={`entries-${key}`}
+            >
+              {entriesForRender.length > 0 ? entriesForRender : null}
+              {/* {entriesForRender.length === 1 ? (
+                <div className="col-span-1 row-span-1 hidden min-[1330px]:block" />
+              ) : null} */}
+            </div>
           </div>
         )
       })}

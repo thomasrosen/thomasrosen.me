@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/*
             <Link
-              className="link_box rounded-xl"
+              className="link_box smooth-rounded-xl"
               data-umami-event="Newsletter"
               href="https://mailchi.mp/59f35b198abe/thomasrosen"
               rel="noreferrer"

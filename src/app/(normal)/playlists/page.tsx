@@ -143,7 +143,9 @@ export default async function Page() {
 
       <GenreChart chartData={chartData} />
 
-      <Timeline tags={['playlist']} />
+      <div className="tab_content">
+        <Timeline tags={['playlist']} />
+      </div>
     </>
   )
 }

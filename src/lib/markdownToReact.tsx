@@ -1,8 +1,13 @@
+import { HR } from '@/components/hr'
+import { Typo } from '@/components/Typo'
+import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
+import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
+import { cn } from '@/lib/utils'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import Image from 'next/image'
 import Link from 'next/link'
-import * as prod from 'react/jsx-runtime'
 import { BlockMath } from 'react-katex'
+import * as prod from 'react/jsx-runtime'
 import { refractor } from 'refractor'
 import refractor_bash from 'refractor/lang/bash'
 import refractor_csv from 'refractor/lang/csv'
@@ -17,11 +22,6 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import { HR } from '@/components/hr'
-import { Typo } from '@/components/Typo'
-import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
-import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
-import { cn } from '@/lib/utils'
 import { rehypePreElements } from './unified/rehypePreElements'
 import { remarkFootnoteReferences } from './unified/remarkFootnoteReferences'
 
@@ -152,7 +152,7 @@ export function markdownToReact(markdown: string) {
           //           <div className='flex flex-col gap-1'>
           //             {label ? <strong>{label}</strong> : null}
           //             {props.href ? (
-          //               <em className='inline-block w-fit max-w-[200px] break-all text-xs leading-tight opacity-60'>
+          //               <em className='inline-block w-fit max-w-[200px] break-all text-xs opacity-60'>
           //                 {props.href}
           //               </em>
           //             ) : null}
@@ -186,7 +186,7 @@ export function markdownToReact(markdown: string) {
             language = 'Email'
 
             children = (
-              <div className="max-w-[calc(100vw-5rem)] whitespace-pre-wrap rounded-xs border bg-sheet p-4 text-sheet-foreground">
+              <div className="smooth-rounded-xs max-w-[calc(100vw-5rem)] whitespace-pre-wrap border bg-sheet p-4 text-sheet-foreground">
                 {value}
               </div>
             )
@@ -194,7 +194,7 @@ export function markdownToReact(markdown: string) {
             children = (
               <pre
                 className={cn(
-                  '!m-0 max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap rounded-xs border bg-sheet p-4 text-sheet-foreground',
+                  '!m-0 smooth-rounded-xs max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap border bg-sheet p-4 text-sheet-foreground',
                   props.className
                 )}
               >
@@ -205,7 +205,7 @@ export function markdownToReact(markdown: string) {
 
           return (
             <div className="group/code relative mb-4 text-neutral">
-              <div className="-mb-3 flex items-center justify-between rounded-xs border px-4 py-1 pb-4">
+              <div className="-mb-3 smooth-rounded-xs flex items-center justify-between border px-4 py-1 pb-4">
                 <span className="font-mono text-xs">{language}</span>
               </div>
               {children}
@@ -272,7 +272,7 @@ export function markdownToReact(markdown: string) {
           return (
             <Image
               {...props}
-              className={cn('h-auto w-full rounded-xl', props.className)}
+              className={cn('smooth-rounded-xl h-auto w-full', props.className)}
               height={600}
               src={src}
               width={600}
@@ -313,7 +313,12 @@ export function markdownToReact(markdown: string) {
             return null
           }
 
-          return <iframe {...props} className={cn('overflow-hidden rounded-xl', props.className)} />
+          return (
+            <iframe
+              {...props}
+              className={cn('smooth-rounded-xl overflow-hidden', props.className)}
+            />
+          )
         },
       },
     })

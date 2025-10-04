@@ -11,7 +11,9 @@ export default function PagePress() {
         Articles about me and my projects
       </Typo>
 
-      <Timeline tags={['press']} />
+      <div className="tab_content">
+        <Timeline tags={['press']} />
+      </div>
     </>
   )
 }

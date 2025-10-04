@@ -1,4 +1,5 @@
 import { Typo } from '@/components/Typo'
+import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import { Emoji } from '../Emoji'
 import { Badge } from '../ui/badge'
@@ -54,7 +55,7 @@ export function EntryTextContent({
             </Typo>
           ) : null}
 
-          <div className="h-[1px] w-auto min-w-[16px] shrink-1 grow-1 rounded-full bg-foreground opacity-10" />
+          <div className="smooth-rounded-full h-[1px] w-auto min-w-[16px] shrink-1 grow-1 bg-foreground opacity-10" />
 
           {hasAudio || showTagsInner ? (
             <div className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -79,13 +80,16 @@ export function EntryTextContent({
       ) : null}
 
       {entry.author && (
-        <Typo as="small" className="-mt-2 mb-2 font-bold leading-tight" variant="muted">
+        <Typo as="small" className="-mt-2 mb-2 font-bold" variant="muted">
           by {entry.author}
         </Typo>
       )}
 
       {entry.text && (
-        <Typo as="p" className="body2 !mb-0">
+        <Typo
+          className={cn('!mb-0', entry.displayAs === 'image' && 'line-clamp-3')}
+          variant="small"
+        >
           {entry.text}
         </Typo>
       )}

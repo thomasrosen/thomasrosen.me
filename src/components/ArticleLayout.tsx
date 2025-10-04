@@ -1,11 +1,11 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { Dot } from '@/components/Dot'
 import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { getRelativeTime } from '@/lib/getRelativeTime'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface ArticleLayoutProps {
   children: React.ReactNode
@@ -59,7 +59,7 @@ export function ArticleLayout({ children, data: article }: ArticleLayoutProps) {
                 <Image
                   alt={article.title}
                   className={cn(
-                    'h-[20px] w-auto max-w-full rounded-sm',
+                    'smooth-rounded-sm h-[20px] w-auto max-w-full',
                     'z-10 transition-all duration-150 hover:scale-1000 hover:rounded-[1px]'
                   )}
                   height={40}

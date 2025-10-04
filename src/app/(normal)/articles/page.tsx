@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function PageArticles() {
   return (
@@ -57,7 +57,9 @@ export default function PageArticles() {
         </div>
       </div>
 
-      <Timeline showTimeHeadlines={false} tags={['article', 'project']} />
+      <div className="tab_content">
+        <Timeline showTimeHeadlines={false} tags={['article', 'project']} />
+      </div>
     </>
   )
 }

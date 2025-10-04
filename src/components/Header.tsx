@@ -42,7 +42,7 @@ export function Header({ className }: { className?: string }) {
         <Shine puffyness="3">
           <div
             aria-hidden="true"
-            className="headerImageOfMe @lg/header:h-[150px] @sm/header:h-[100px] h-[64px] @lg/header:w-[150px] @sm/header:w-[100px] w-[64px] rounded-3xl"
+            className="headerImageOfMe smooth-rounded-3xl @lg/header:h-[150px] @sm/header:h-[100px] h-[64px] @lg/header:w-[150px] @sm/header:w-[100px] w-[64px]"
             title="Thomas Rosen eating a slice of watermelon."
           />
         </Shine>

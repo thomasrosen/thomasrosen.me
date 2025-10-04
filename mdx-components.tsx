@@ -1,5 +1,5 @@
-import { Typo } from '@/components/Typo'
 import { HR } from '@/components/hr'
+import { Typo } from '@/components/Typo'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import type { MDXComponents } from 'mdx/types'
 import type { MDXRemoteOptions } from 'next-mdx-remote-client/rsc'
@@ -38,7 +38,9 @@ import { cn } from '@/lib/utils'
 
 export const components: MDXComponents = {
   code: (props) => {
-    return <code className="-my-0.75 -mx-0.5 rounded-[8px] bg-accent px-1 py-0.75" {...props} />
+    return (
+      <code className="-my-0.75 -mx-0.5 smooth-rounded-[8px] bg-accent px-1 py-0.75" {...props} />
+    )
   },
   div: (props) => <Typo as="div" {...props} />,
   h1: (props) => <Typo as="h1" {...props} />,
@@ -67,7 +69,7 @@ export const components: MDXComponents = {
     //           <div className='flex flex-col gap-1'>
     //             {label ? <strong>{label}</strong> : null}
     //             {props.href ? (
-    //               <em className='inline-block w-fit max-w-[200px] break-all text-xs leading-tight opacity-60'>
+    //               <em className='inline-block w-fit max-w-[200px] break-all text-xs opacity-60'>
     //                 {props.href}
     //               </em>
     //             ) : null}
@@ -97,12 +99,12 @@ export const components: MDXComponents = {
 
     return (
       <div className="group/code relative mb-4 text-neutral">
-        <div className="-mb-3 flex items-center justify-between rounded-xs border px-4 py-1 pb-4">
+        <div className="-mb-3 smooth-rounded-xs flex items-center justify-between border px-4 py-1 pb-4">
           <span className="font-mono text-xs">{language}</span>
         </div>
         <pre
           className={cn(
-            '!m-0 max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap rounded-xs border bg-sheet p-4 text-sheet-foreground',
+            '!m-0 smooth-rounded-xs max-w-[calc(100vw-5rem)] overflow-auto whitespace-pre-wrap border bg-sheet p-4 text-sheet-foreground',
             props.className
           )}
         >
@@ -175,7 +177,7 @@ export const components: MDXComponents = {
     return (
       <Image
         {...(props as ImageProps)}
-        className={cn('h-auto w-full rounded-xs', props.className)}
+        className={cn('smooth-rounded-xs h-auto w-full', props.className)}
         height={600}
         src={src}
         width={600}
@@ -214,7 +216,9 @@ export const components: MDXComponents = {
       return null
     }
 
-    return <iframe {...props} className={cn('overflow-hidden rounded-xl', props.className)} />
+    return (
+      <iframe {...props} className={cn('smooth-rounded-xl overflow-hidden', props.className)} />
+    )
   },
 }
 

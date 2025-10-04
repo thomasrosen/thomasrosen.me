@@ -25,7 +25,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
                 <motion.button layoutId="sidebar-first-child" title="Open Menu">
                   <Icon name="menu" size="md" />
 
-                  <div className="flex gap-1 font-extrabold font-mono leading-tight tracking-tight">
+                  <div className="flex gap-1 font-extrabold font-mono tracking-tight">
                     <motion.div layoutId="website-title-first">Thomas</motion.div>
                     <motion.div layoutId="website-title-last">Rosen</motion.div>
                   </div>
@@ -52,7 +52,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
               layoutId="header"
             >
               <motion.div
-                className="pointer-events-auto flex flex-col gap-0 rounded-5xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200"
+                className="smooth-rounded-5xl smooth-border smooth-border-foreground/10 pointer-events-auto flex flex-col gap-0 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200"
                 layoutId="sidebar-first-child"
               >
                 <div className="sticky top-0 right-0 z-20">
@@ -71,14 +71,14 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
               </motion.div>
 
               {children ? (
-                <div className="pointer-events-auto flex flex-col gap-3 rounded-3xl border border-foreground/10 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200 empty:hidden">
+                <div className="smooth-rounded-3xl smooth-border smooth-border-foreground/10 pointer-events-auto flex flex-col gap-3 bg-background/80 p-6 drop-shadow-xl/10 backdrop-blur-sm backdrop-saturate-200 empty:hidden">
                   {children}
                 </div>
               ) : null}
 
               {/*
             <Link
-              className="link_box rounded-xl"
+              className="link_box smooth-rounded-xl"
               data-umami-event="Newsletter"
               href="https://mailchi.mp/59f35b198abe/thomasrosen"
               rel="noreferrer"

@@ -45,8 +45,8 @@ export function ProgressiveBlur({
 
         return (
           <div
+            className="smooth-rounded-[inherit] pointer-events-none absolute inset-0"
             key={index}
-            className="pointer-events-none absolute inset-0 rounded-[inherit]"
             style={{
               maskImage: gradient,
               WebkitMaskImage: gradient,

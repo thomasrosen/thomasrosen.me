@@ -9,7 +9,9 @@ export default function PageProjects() {
         <Typo as="p">A small collection of some projects, I've worked on.</Typo>
       </div>
 
-      <Timeline tags={['project']} />
+      <div className="tab_content">
+        <Timeline tags={['project']} />
+      </div>
     </>
   )
 }

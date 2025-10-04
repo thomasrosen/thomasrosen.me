@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { Dot } from '@/components/Dot'
 import { Emoji } from '@/components/Emoji'
 import { LinkOrDiv } from '@/components/Timeline/LinkOrDiv'
@@ -7,6 +5,8 @@ import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import { loadPlaylist, loadPlaylists } from '@/lib/loadPlaylists'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -76,7 +76,7 @@ function SongCard({
         {title}
       </Typo>
 
-      <div className="text-sm leading-thight">
+      <div className="text-sm">
         {song.Artist.length ? <strong className="font-[900]">{song.Artist}</strong> : null}
 
         {song.Artist.length && song.Album.length ? ': ' : null}
@@ -118,12 +118,11 @@ function SongCard({
   return (
     <LinkOrDiv
       className={cn(
-        'relative overflow-hidden rounded-lg',
+        'smooth-rounded-lg relative overflow-hidden',
         'h-auto w-full',
         'bg-background text-card-foreground',
         'flex items-start',
         'gap-3 p-6',
-        // 'border border-border',
         'cursor-pointer hover:bg-accent',
         'transition-colors duration-150',
         'z-10',
@@ -138,7 +137,7 @@ function SongCard({
           <>
             <Image
               alt={''}
-              className="absolute z-10 h-[64px] w-[64px] shrink-0 rounded-sm object-cover blur-[64px] saturate-150"
+              className="smooth-rounded-sm absolute z-10 h-[64px] w-[64px] shrink-0 object-cover blur-[64px] saturate-150"
               height={64}
               loading="lazy"
               quality={100}
@@ -149,7 +148,7 @@ function SongCard({
             <Image
               alt={title}
               className={cn(
-                'relative z-20 h-[64px] w-[64px] rounded-sm object-cover',
+                'smooth-rounded-sm relative z-20 h-[64px] w-[64px] object-cover',
                 'contrast-110 saturate-110'
               )}
               height={64}
@@ -161,7 +160,7 @@ function SongCard({
             />
           </>
         ) : (
-          <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-sm bg-accent">
+          <div className="smooth-rounded-sm flex h-[64px] w-[64px] shrink-0 items-center justify-center bg-accent">
             <Emoji className="text-3xl">🎵</Emoji>
           </div>
         )}
@@ -170,7 +169,7 @@ function SongCard({
 
         {position ? (
           <Badge
-            className="z-30 flex h-7 w-7 shrink-0 items-center justify-center rounded-full p-0 font-bold text-sm"
+            className="smooth-rounded-full z-30 flex h-7 w-7 shrink-0 items-center justify-center p-0 font-bold text-sm"
             variant="accent"
           >
             {position}

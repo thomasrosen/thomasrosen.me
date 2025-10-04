@@ -18,9 +18,9 @@ const badgeVariants = cva(
         outline: 'text-foreground [a>&]:hover:bg-accent [a>&]:hover:text-accent-foreground',
       },
       size: {
-        sm: 'gap-1 rounded-md px-2 py-0.5 font-medium text-xs [&>svg]:size-3',
-        md: 'gap-1.5 rounded-lg px-3 py-1 font-bold text-sm',
-        lg: 'gap-2 rounded-2xl px-4 py-2.5 font-[900] text-md',
+        sm: 'smooth-rounded-md gap-1 px-2 py-0.5 font-medium text-xs [&>svg]:size-3',
+        md: 'smooth-rounded-lg gap-1.5 px-3 py-1 font-bold text-sm',
+        lg: 'smooth-rounded-2xl gap-2 px-4 py-2.5 font-[900] text-md',
       },
     },
     defaultVariants: {
