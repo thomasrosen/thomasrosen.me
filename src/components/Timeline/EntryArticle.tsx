@@ -64,7 +64,7 @@ export function EntryArticle({
             <Image
               alt={''}
               className={cn(
-                'smooth-rounded-lg absolute z-10 h-auto @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full shrink-0 object-cover opacity-60 blur-[64px] saturate-150 transition-all'
+                'absolute z-10 h-auto @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full shrink-0 rounded-lg object-cover opacity-60 blur-[64px] saturate-150 transition-all'
               )}
               height={128}
               loading={isFirstImage ? 'eager' : 'lazy'}
