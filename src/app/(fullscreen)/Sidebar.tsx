@@ -37,7 +37,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
           {open === true ? (
             <motion.div
               animate={{ opacity: 1 }}
-              className="fixed inset-0 z-100 cursor-pointer bg-black/30"
+              className="fixed inset-[1px] z-100 cursor-pointer bg-black/30"
               exit={{ opacity: 0 }}
               initial={{ opacity: 0 }}
               key="backdrop"
