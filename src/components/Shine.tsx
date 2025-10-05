@@ -9,12 +9,14 @@ export function Shine({
   children,
   lightColor = '#666666',
   puffyness = '1',
+  specularConstant = '0.75',
   style,
   ...props
 }: {
   children: React.ReactNode
   lightColor?: `#${string}`
-  puffyness?: '0' | '0.5' | '0.75' | '1' | '1.25' | '1.5' | '1.75' | '2' | '3'
+  puffyness?: string // '0' | '0.5' | '0.75' | '1' | '1.25' | '1.5' | '1.75' | '2' | '3' | '5'
+  specularConstant?: string
 } & React.ComponentProps<'div'>) {
   const filterId = useId()
   const filterRef = useRef<SVGFilterElement>(null)
@@ -113,7 +115,7 @@ export function Shine({
             // represents the height of the surface for a light filter primitive
             result="light-source"
             // The bigger the value the bigger the reflection
-            specularConstant="0.75"
+            specularConstant={specularConstant}
             // controls the focus for the light source. The bigger the value the brighter the light
             specularExponent="120"
             surfaceScale="2"
