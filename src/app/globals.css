@@ -657,3 +657,38 @@ _::-webkit-full-page-media,
   filter: invert(1) contrast(0.85) saturate(2) brightness(1.5) hue-rotate(180deg);
 }
 */
+
+/*
+.open_marker {
+  transform: scale(0.5);
+  cursor: pointer;
+}
+.open_marker:hover {
+  transform: scale(0.6);
+}
+  */
+
+.open_marker {
+  transform: translate(0, -25%) scale(0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* .open_marker #m_icon_group,
+.open_marker #m_note_group,
+.open_marker #m_image_wrapper {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+} */
+
+.open_marker #m_note_group,
+.open_marker #m_image_wrapper {
+  transform-box: fill-box;
+  transform-origin: center center;
+  transition: transform 0.2s ease;
+}
+.is_being_hovered .open_marker #m_note_group {
+  transform: rotate(-12deg) scale(1.2);
+}
+.is_being_hovered .open_marker #m_image_wrapper {
+  transform: rotate(5deg) scale(1.1);
+}
