@@ -31,6 +31,29 @@ function absoluteStyle(_previousStyle: any, nextStyle: any) {
   // }
 }
 
+function imageUrlToDataUrl(url: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.crossOrigin = 'Anonymous' // to avoid CORS issues
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.naturalWidth
+      canvas.height = img.naturalHeight
+      const ctx = canvas.getContext('2d')
+      ctx?.drawImage(img, 0, 0)
+      const dataURL = canvas.toDataURL('image/jpeg') // or 'image/png'
+
+      resolve(dataURL)
+      // map.current.addImage(name, img, { pixelRatio: 2 }) // crisp @2x
+    }
+    img.onerror = (error) => {
+      console.warn('failed-to-load-image', name, url, error)
+      reject()
+    }
+    img.src = url
+  })
+}
+
 export function ReactMap({
   entries,
   onEntryMarkerClick,
@@ -184,7 +207,6 @@ export function ReactMap({
     let hoveredId: string | null = null
 
     const onPoiMouseenter = (e: any) => {
-      console.log('onPoiMouseenter', e)
       if (!map.current || map.current === null) {
         // only change if map exists
         return
@@ -193,32 +215,6 @@ export function ReactMap({
       map.current.getCanvas().style.cursor = 'pointer'
 
       if (!map.current || map.current === null) {
-        // if (!e.features || e.features.length === 0) {
-        //   return
-        // }
-
-        // const f = e.features[0]
-
-        // const el = document.createElement('div')
-        // // el.className = '' // size via CSS
-        // el.innerHTML = `<div class="open_marker">${f.properties.iconSvg}</div>`
-        // // el.style.pointerEvents = 'none'
-        // htmlMarker = new maplibregl.Marker({
-        //   element: el,
-        //   anchor: 'center',
-        //   opacityWhenCovered: '0',
-        //   subpixelPositioning: true,
-        // })
-        //   .setLngLat(f.geometry.coordinates)
-        //   .addTo(map.current)
-
-        // map.current.setFeatureState({ source: 'pois', id: f.id }, { hidden: true })
-
-        // // The event object (e) contains information like the
-        // // coordinates of the point on the map that was clicked.
-        // console.log('A click event has occurred at:', e.lngLat)
-        // // map.current.getCanvas().style.cursor = 'pointer'
-
         // only change if map exists
         return
       }
@@ -292,26 +288,34 @@ export function ReactMap({
     */
 
     const onPoiMouseleave = (_e: any) => {
-      console.log('onPoiMouseleave', _e)
-
       if (!map.current || map.current === null) {
         // only change if map exists
         return
       }
 
       map.current.getCanvas().style.cursor = ''
-
       htmlMarker?.getElement().classList.remove('is_being_hovered') // remove animation
+
       setTimeout(() => {
         if (hoveredId !== null) {
           map.current?.setFeatureState({ source: 'pois', id: hoveredId }, { hidden: false })
           hoveredId = null
         }
-
         if (htmlMarker) {
           htmlMarker.remove()
         }
       }, 200)
+    }
+
+    const onPoiClick = (_e: any) => {
+      if (!map.current || map.current === null) {
+        // only change if map exists
+        return
+      }
+
+      // console.log('A click event has occurred at:', e.lngLat)
+
+      onEntryMarkerClick({ entry: _e.features[0].properties.entry })
     }
 
     map.current.on('load', async () => {
@@ -346,40 +350,51 @@ export function ReactMap({
       }
       */
 
-      const imageUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect width='1' height='1' fill='green'/></svg>`)}`
+      // const imageUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect width='1' height='1' fill='green'/></svg>`)}`
 
       const pois = {
         type: 'FeatureCollection' as const,
-        features: [
-          {
-            id: 'poi_1',
-            type: 'Feature' as const,
-            geometry: { type: 'Point' as const, coordinates: [13.405, 52.52] },
-            properties: {
-              rank: 1,
-              name: 'Cafe NAME',
-              'name:en': 'Cafe NAME:EN',
-              iconName: 'cafe_1',
-              iconUrl: '/icons/cafe.png',
-              // iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"><path fill="#fff" d="M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z"/></svg>`,
-              iconColor: '#FF9D00',
-              iconSvg: `
+        features: await Promise.all(
+          entries.map(async (entry) => {
+            const iconColor = '#FF9D00'
+
+            let imageUri = ''
+            if (typeof entry.image === 'string') {
+              imageUri = await imageUrlToDataUrl(entry.image)
+            } else if (typeof entry.image === 'object' && entry.image?.src) {
+              imageUri = await imageUrlToDataUrl(entry.image.src)
+            }
+            const entryText = `<strong>${entry.title}</strong>${entry.text}`
+
+            return {
+              id: entry.id, // 'poi_1',
+              type: 'Feature' as const,
+              geometry: { type: 'Point' as const, coordinates: [entry.longitude, entry.latitude] },
+              properties: {
+                entry,
+                rank: 1,
+                name: entry.title,
+                iconName: `poi_icon_${entry.id}`,
+                // iconUrl: '/icons/cafe.png',
+                // iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"><path fill="#fff" d="M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z"/></svg>`,
+                iconColor,
+                iconSvg: `
 <svg width="256" height="256" viewBox="-5 -5 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="m_icon_frame">
 <g id="m_icon_wrapper">
 <g id="m_image_wrapper">
-<rect id="m_image" x="4" y="4" width="50" height="66" rx="4" transform="rotate(-5)" fill="url(#pattern0_1_74)" stroke="black" stroke-width="2" style="filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));"/>
+<rect id="m_image" x="4" y="4" width="50" height="66" rx="4" transform="rotate(-5)" fill="url(#pattern0_1_74)" stroke="black" stroke-width="2" style="background-color: white; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));"/>
 </g>
 <g id="m_note_group" style="filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));">
 <rect id="m_note_bg" x="43.295" y="35.9396" width="32.8838" height="33.679" transform="rotate(12 43.295 35.9396)" fill="#75FDFF"/>
 
 <foreignObject id="m_note_text" transform="translate(45.0685 38.2403) rotate(12)" width="32" height="32" style="line-height: 0;">
-<body xmlns="http://www.w3.org/1999/xhtml" style="margin: 0; padding: 0; word-wrap: break-word; white-space: normal; font-size: 5px; font-family: 'Ubuntu', sans-serif; color: black; margin: 0; padding: 0; font-weight: 400; letter-spacing: 0px; line-height: 1.1; overflow: hidden text-overflow: ellipsis; white-space: nowrap;"><span style="margin: 0; padding: 0; word-wrap: break-word; white-space: normal; font-size: 5px; font-family: 'Ubuntu', sans-serif; color: black; margin: 0; padding: 0; font-weight: 400; letter-spacing: 0px; line-height: 1.1; overflow: hidden text-overflow: ellipsis; white-space: nowrap;"><strong>Dies ist ein langer Text,</strong> der über mehrere Zeilen umgebrochen wird.</span></body>
+<body xmlns="http://www.w3.org/1999/xhtml" style="margin: 0; padding: 0; word-wrap: break-word; white-space: normal; font-size: 5px; font-family: 'Ubuntu', sans-serif; color: black; margin: 0; padding: 0; font-weight: 400; letter-spacing: 0px; line-height: 1.1; overflow: hidden text-overflow: ellipsis;"><span style="margin: 0; padding: 0; word-wrap: break-word; white-space: normal; font-size: 5px; font-family: 'Ubuntu', sans-serif; color: black; margin: 0; padding: 0; font-weight: 400; letter-spacing: 0px; line-height: 1.1; overflow: hidden text-overflow: ellipsis;">${entryText}</span></body>
 </foreignObject>
 </g>
 <g id="m_icon_group" style="filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));">
 <rect id="m_icon_bg" x="28" y="54.97" width="24" height="24" rx="12" fill="white"/>
-<path id="m_icon" d="M40 58.97L41.7961 64.4978H47.6085L42.9062 67.9142L44.7023 73.4421L40 70.0257L35.2977 73.4421L37.0938 67.9142L32.3915 64.4978H38.2039L40 58.97Z" fill="#FF9D00"/>
+<path id="m_icon" d="M40 58.97L41.7961 64.4978H47.6085L42.9062 67.9142L44.7023 73.4421L40 70.0257L35.2977 73.4421L37.0938 67.9142L32.3915 64.4978H38.2039L40 58.97Z" fill="${iconColor}"/>
 </g>
 </g>
 </g>
@@ -391,9 +406,10 @@ export function ReactMap({
 </defs>
 </svg>
 `,
-            },
-          },
-        ],
+              },
+            }
+          })
+        ),
       }
 
       /*
@@ -510,6 +526,7 @@ export function ReactMap({
       map.current.on('mouseenter', 'poi-icons', onPoiMouseenter)
       // map.current.on('mousemove', 'poi-icons', onPoiMousemove)
       map.current.on('mouseleave', 'poi-icons', onPoiMouseleave)
+      map.current.on('click', 'poi-icons', onPoiClick)
     })
 
     return () => {
@@ -521,16 +538,15 @@ export function ReactMap({
       map.current.off('mouseenter', 'poi-icons', onPoiMouseenter)
       // map.current.off('mousemove', 'poi-icons', onPoiMousemove)
       map.current.off('mouseleave', 'poi-icons', onPoiMouseleave)
+      map.current.off('click', 'poi-icons', onPoiClick)
     }
-  }, [])
+  }, [onEntryMarkerClick])
 
   return (
     <>
-      {/* <div className="hidden scale-50 cursor-pointer hover:scale-[0.6]" /> */}
-
       <div className="h-full w-full" ref={mapContainer} />
 
-      <div className="absolute hidden h-[0px] w-[0px]">
+      {/* <div className="absolute hidden h-[0px] w-[0px]">
         {entries.map((entry, index) => {
           const markerComponent = renderEntryMarker({ entry, index })
           return (
@@ -547,7 +563,7 @@ export function ReactMap({
             </div>
           )
         })}
-      </div>
+      </div> */}
     </>
   )
 }
