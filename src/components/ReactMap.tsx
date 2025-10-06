@@ -31,20 +31,30 @@ function absoluteStyle(_previousStyle: any, nextStyle: any) {
   // }
 }
 
+const preview_img_width = Math.round(3024 / 60)
+const preview_img_height = Math.round(4032 / 60)
+
 function imageUrlToDataUrl(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.crossOrigin = 'Anonymous' // to avoid CORS issues
     img.onload = () => {
       const canvas = document.createElement('canvas')
-      canvas.width = img.naturalWidth
-      canvas.height = img.naturalHeight
+      canvas.width = preview_img_width // img.naturalWidth
+      canvas.height = preview_img_height // img.naturalHeight
+
+      const img_width = img.height
+      const img_height = img.width
+
+      const hRatio = preview_img_width / img_width
+      const vRatio = preview_img_height / img_height
+      const ratio = Math.min(hRatio, vRatio)
       const ctx = canvas.getContext('2d')
-      ctx?.drawImage(img, 0, 0)
-      const dataURL = canvas.toDataURL('image/jpeg') // or 'image/png'
+      ctx?.drawImage(img, 0, 0, img_width, img_height, 0, 0, img_width * ratio, img_height * ratio)
+
+      const dataURL = canvas.toDataURL('image/png') // or 'image/jpeg'
 
       resolve(dataURL)
-      // map.current.addImage(name, img, { pixelRatio: 2 }) // crisp @2x
     }
     img.onerror = (error) => {
       console.warn('failed-to-load-image', name, url, error)
@@ -57,7 +67,7 @@ function imageUrlToDataUrl(url: string): Promise<string> {
 export function ReactMap({
   entries,
   onEntryMarkerClick,
-  renderEntryMarker,
+  // renderEntryMarker,
 }: {
   entries: TimelineEntry[]
   onEntryMarkerClick: ({ entry }: { entry: TimelineEntry }) => void
@@ -65,8 +75,8 @@ export function ReactMap({
 }) {
   const mapContainer = useRef<HTMLDivElement | null>(null)
   const map = useRef<maplibregl.Map | null>(null)
-  const markersCacheRef = useRef<any[]>([])
-  const markerElementRefs = useRef<any>({})
+  // const markersCacheRef = useRef<any[]>([])
+  // const markerElementRefs = useRef<any>({})
 
   const userWantsDarkmode = useDarkTheme()
   const mapStylePath = userWantsDarkmode
@@ -111,34 +121,34 @@ export function ReactMap({
       transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
     })
 
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
+    // map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
 
-    map.current.on('style.load', () => {
-      if (!map.current || map.current === null) {
-        return
-      }
-
-      map.current.setProjection({
-        type: 'globe', // Set projection to globe
-      })
-    })
+    // map.current.on('style.load', () => {
+    //   if (!map.current || map.current === null) {
+    //     return
+    //   }
+    //
+    //   map.current.setProjection({
+    //     type: 'globe', // Set projection to globe
+    //   })
+    // })
   }, [mapStylePath])
 
-  useEffect(() => {
-    if (!map.current || map.current === null) {
-      // only change if map exists
-      return
-    }
-
-    map.current.setStyle(mapStylePath, {
-      // The paths in the style are relative, but MapLibre GL JS needs
-      // absolute URLs. This is done below, taking the URL of the page
-      // for the path. This is because the page could be served on
-      // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
-      // or a specific server.
-      transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
-    })
-  }, [mapStylePath])
+  // useEffect(() => {
+  //   if (!map.current || map.current === null) {
+  //     // only change if map exists
+  //     return
+  //   }
+  //
+  //   map.current.setStyle(mapStylePath, {
+  //     // The paths in the style are relative, but MapLibre GL JS needs
+  //     // absolute URLs. This is done below, taking the URL of the page
+  //     // for the path. This is because the page could be served on
+  //     // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
+  //     // or a specific server.
+  //     transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
+  //   })
+  // }, [mapStylePath])
 
   /*
   useEffect(() => {
@@ -355,14 +365,16 @@ export function ReactMap({
       const pois = {
         type: 'FeatureCollection' as const,
         features: await Promise.all(
-          entries.map(async (entry) => {
+          [entries[0]].map(async (entry) => {
             const iconColor = '#FF9D00'
 
             let imageUri = ''
             if (typeof entry.image === 'string') {
-              imageUri = await imageUrlToDataUrl(entry.image)
+              const full_src = String(new URL(entry.image, String(window.location)))
+              imageUri = await imageUrlToDataUrl(full_src)
             } else if (typeof entry.image === 'object' && entry.image?.src) {
-              imageUri = await imageUrlToDataUrl(entry.image.src)
+              const full_src = String(new URL(entry.image.src, String(window.location)))
+              imageUri = await imageUrlToDataUrl(full_src)
             }
             const entryText = `<strong>${entry.title}</strong>${entry.text}`
 
@@ -383,7 +395,7 @@ export function ReactMap({
 <g id="m_icon_frame">
 <g id="m_icon_wrapper">
 <g id="m_image_wrapper">
-<rect id="m_image" x="4" y="4" width="50" height="66" rx="4" transform="rotate(-5)" fill="url(#pattern0_1_74)" stroke="black" stroke-width="2" style="background-color: white; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));"/>
+<rect id="m_image" x="4" y="4" width="${preview_img_width}" height="${preview_img_height}" rx="4" transform="rotate(-5)" fill="url(#pattern0_1_74)" stroke="black" stroke-width="2" style="background-color: white; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));"/>
 </g>
 <g id="m_note_group" style="filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));">
 <rect id="m_note_bg" x="43.295" y="35.9396" width="32.8838" height="33.679" transform="rotate(12 43.295 35.9396)" fill="#75FDFF"/>
@@ -399,10 +411,10 @@ export function ReactMap({
 </g>
 </g>
 <defs>
-<pattern id="pattern0_1_74" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_1_74" transform="matrix(0.000634921 0 0 0.00047619 -0.566667 0)"/>
+<pattern id="pattern0_1_74" patternContentUnits="objectBoundingBox" width="${preview_img_width}" height="${preview_img_height}">
+<use xlink:href="#image0_1_74" transform="matrix(0.5 0 0 2 0 0)"/>
 </pattern>
-<image id="image0_1_74" data-name="Screenshot 2025-10-06 at 02.06.04.png" width="3360" height="2100" preserveAspectRatio="none" xlink:href="${imageUri}"/>
+<image id="image0_1_74" data-name="Screenshot 2025-10-06 at 02.06.04.png" width="${preview_img_width}" height="${preview_img_height}" preserveAspectRatio="none" xlink:href="${imageUri}"/>
 </defs>
 </svg>
 `,
@@ -540,7 +552,7 @@ export function ReactMap({
       map.current.off('mouseleave', 'poi-icons', onPoiMouseleave)
       map.current.off('click', 'poi-icons', onPoiClick)
     }
-  }, [onEntryMarkerClick])
+  }, [onEntryMarkerClick, entries])
 
   return (
     <>
