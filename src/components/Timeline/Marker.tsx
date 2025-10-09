@@ -19,10 +19,12 @@ export function Marker({
   entry,
   index,
   ref,
+  onImageLoaded,
 }: {
   entry: TimelineEntry
   index: number
   ref?: (element: HTMLDivElement | null) => void
+  onImageLoaded?: () => void
 }) {
   const isVertical = entry.imageOrientation === 'v'
   const imageSrc = typeof entry.image === 'string' ? entry.image : entry.image?.src
@@ -40,9 +42,12 @@ export function Marker({
   //   marker_icon = <BigEmoij aria-hidden="true">📍</BigEmoij>
   //   custom_classes = 'max-h-[48px] max-w-[48px]'
 
+  // group-hover/marker:classname
+  // [.hover_&]:classname
+
   return (
     <div
-      className="group/marker relative z-10 flex h-[128px] w-[128px] items-center justify-center overflow-hidden bg-purple-500 p-[10px] hover:z-20"
+      className="group/marker relative z-10 flex h-[128px] w-[128px] items-center justify-center overflow-hidden p-[10px]"
       ref={ref}
     >
       <LinkOrDiv
@@ -51,7 +56,8 @@ export function Marker({
           'grid grid-cols-[auto_auto] items-start gap-0',
           'h-auto w-auto',
           'cursor-pointer drop-shadow-md/10',
-          'transition-transform ease-in-out group-hover/marker:rotate-0 group-hover/marker:scale-125',
+          'transition-transform ease-in-out',
+          '[.hover_&]:rotate-0 [.hover_&]:scale-135',
           'bg-transparent',
           pickFakeRandom(
             ['-rotate-12', '-rotate-6', '-rotate-3', 'rotate-3', 'rotate-6', 'rotate-12'],
@@ -68,20 +74,30 @@ export function Marker({
         {imageSrc ? (
           <Image
             alt={entry.title || 'Photo'}
+            // blurDataURL={typeof entry.image === 'string' ? undefined : entry.image?.blurDataURL}
             className={cn(
               // 'rounded-sm',
               // 'overflow-hidden',
               'rounded-md border-2 border-background bg-background',
               isVertical ? '!h-auto w-[64px]' : '!w-auto h-[64px]'
             )}
-            height={64}
+            height={32}
             loading="eager"
+            onLoadingComplete={onImageLoaded}
+            // placeholder="blur"
             priority={true}
-            src={imageSrc || `https://picsum.photos/id/${index}/64/`}
-            title={`Marker: ${entry.id} !!!`}
-            width={64}
+            quality={100}
+            src={imageSrc}
+            width={32}
           />
-        ) : null}
+        ) : (
+          (() => {
+            if (onImageLoaded) {
+              onImageLoaded()
+            }
+            return null
+          })()
+        )}
 
         {entry.title?.length ? (
           <>
@@ -100,9 +116,9 @@ export function Marker({
             <div
               className={cn(
                 'absolute right-0 bottom-0 flex h-[64px] w-[64px] flex-col gap-1 overflow-hidden text-ellipsis text-pretty p-1 font-[Ubuntu] text-[8px] leading-[1.1]',
-                'transition-transform duration-300 ease-in-out group-hover/marker:rotate-0 group-hover/marker:scale-90',
+                'transition-transform duration-300 ease-in-out [.hover_&]:rotate-0 [.hover_&]:scale-90',
                 imageSrc
-                  ? 'translate-x-1/4 translate-y-1/4 group-hover/marker:translate-x-1/8 group-hover/marker:translate-y-1/8'
+                  ? 'translate-x-1/4 translate-y-1/4 [.hover_&]:translate-x-1/8 [.hover_&]:translate-y-1/8'
                   : 'translate-x-1/2 translate-y-1/2',
                 pickFakeRandom(
                   ['-rotate-12', '-rotate-6', '-rotate-3', 'rotate-3', 'rotate-6', 'rotate-12'],
@@ -139,7 +155,7 @@ export function Marker({
 
         {/* {entry.title?.length ? (
         <div className="h-full w-[0px]">
-          <div className="pointer-events-none ml-3 flex h-full min-w-[200px] items-center text-balance font-[Ubuntu] font-bold text-lg leading-[1.1] opacity-0 transition-opacity group-hover/marker:opacity-100">
+          <div className="pointer-events-none ml-3 flex h-full min-w-[200px] items-center text-balance font-[Ubuntu] font-bold text-lg leading-[1.1] opacity-0 transition-opacity [.hover_&]:opacity-100">
             {entry.title}
           </div>
         </div>

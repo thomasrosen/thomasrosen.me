@@ -24,6 +24,7 @@ export async function TimelineMap({
       }
       return entry
     })
+  // .slice(0, 50) // limit to 5 entries for testing
 
   return <TimelineMapReactMap entries={onlyEntriesWithLocation} />
 }
