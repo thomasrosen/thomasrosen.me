@@ -1,8 +1,9 @@
 import useDarkTheme from '@/components/hooks/useDarkTheme'
 import type { TimelineEntry } from '@/types'
+import * as htmlToImage from 'html-to-image'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 function absoluteStyle(_previousStyle: any, nextStyle: any) {
   return nextStyle
@@ -64,19 +65,94 @@ function imageUrlToDataUrl(url: string): Promise<string> {
   })
 }
 
+function onImagesLoaded(container: Element) {
+  return new Promise<void>((resolve) => {
+    if (!container) {
+      resolve()
+      return
+    }
+
+    const images = container.querySelectorAll('img')
+    let loadedCount = 0
+
+    if (images.length === 0) {
+      resolve()
+      return
+    }
+
+    const checkDone = () => {
+      loadedCount++
+      if (loadedCount === images.length) {
+        resolve()
+      }
+    }
+
+    for (const img of images) {
+      if (img.complete) {
+        checkDone()
+      } else {
+        img.addEventListener('load', checkDone, { once: true })
+        img.addEventListener('error', checkDone, { once: true })
+      }
+    }
+  })
+}
+
+function onBackgroundImagesLoaded(container: Element) {
+  return new Promise<void>((resolve) => {
+    if (!container) {
+      resolve()
+      return
+    }
+
+    // Get image from CSS, assumes single image. For multiple, must iterate.
+    const src = window.getComputedStyle(container).backgroundImage
+    const urlMatch = src.match(/url\\(["']?(.*?)["']?\\)/)
+    if (!urlMatch) {
+      // No background-image
+      resolve()
+      return
+    }
+
+    const imageURL = urlMatch[1]
+
+    const img = new window.Image()
+    img.onload = () => resolve()
+    img.onerror = () => resolve() // Even if loading fails, trigger callback
+    img.src = imageURL
+
+    // If already cached
+    if (img.complete) {
+      resolve()
+    }
+  })
+}
+
+async function onAllImagesLoaded(container: Element) {
+  return await Promise.all([onImagesLoaded(container), onBackgroundImagesLoaded(container)])
+}
+
 export function ReactMap({
   entries,
   onEntryMarkerClick,
-  // renderEntryMarker,
+  renderEntryMarker,
 }: {
   entries: TimelineEntry[]
   onEntryMarkerClick: ({ entry }: { entry: TimelineEntry }) => void
-  renderEntryMarker: ({ entry, index }: { entry: TimelineEntry; index: number }) => React.ReactNode
+  renderEntryMarker: ({
+    entry,
+    index,
+    ref,
+  }: {
+    entry: TimelineEntry
+    index: number
+    ref: (element: HTMLDivElement | null) => void
+  }) => React.ReactNode
 }) {
   const mapContainer = useRef<HTMLDivElement | null>(null)
   const map = useRef<maplibregl.Map | null>(null)
   // const markersCacheRef = useRef<any[]>([])
-  // const markerElementRefs = useRef<any>({})
+  const markerElementRefs = useRef<any>({})
 
   const userWantsDarkmode = useDarkTheme()
   const mapStylePath = userWantsDarkmode
@@ -323,8 +399,6 @@ export function ReactMap({
         return
       }
 
-      // console.log('A click event has occurred at:', e.lngLat)
-
       onEntryMarkerClick({ entry: _e.features[0].properties.entry })
     }
 
@@ -554,9 +628,103 @@ export function ReactMap({
     }
   }, [onEntryMarkerClick, entries])
 
+  const [counter, setCounter] = useState<number>(0)
+  const cacheMarkerElement = useRef(
+    async (element: HTMLDivElement | null, entry: any, index: number) => {
+      if (!(element && entry.id)) {
+        return
+      }
+
+      await onAllImagesLoaded(element) // wait for all images to load
+
+      const width = element.offsetWidth
+      const height = element.offsetHeight
+
+      htmlToImage
+        .toPng(element, {
+          quality: 100,
+          // pixelRatio: 4,
+          canvasWidth: width * 1,
+          canvasHeight: height * 1,
+          width,
+          height,
+          cacheBust: true,
+          includeQueryParams: true,
+        })
+        .then((dataUrl) => {
+          markerElementRefs.current[entry.id] = {
+            index,
+            entry,
+            element,
+            dataUrl,
+            width,
+            height,
+          }
+          setCounter((c) => c + 1)
+        })
+        .catch((err) => {
+          console.error('oops, something went wrong!', err)
+        })
+    }
+  )
+
+  const entriesRendered = useMemo(() => {
+    return entries.map((entry, index) => {
+      return (
+        <React.Fragment key={entry.id}>
+          {renderEntryMarker({
+            entry,
+            index,
+            ref: (element) => cacheMarkerElement.current(element, entry, index),
+          })}
+        </React.Fragment>
+      )
+    })
+  }, [entries, renderEntryMarker])
+
   return (
     <>
-      <div className="h-full w-full" ref={mapContainer} />
+      <div className="">{entriesRendered}</div>
+
+      <h1>counter: {counter}</h1>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <div className="absolute top-0 left-[200px]">
+        {Object.values(markerElementRefs.current)
+          .sort((a: any, b: any) => a.index - b.index)
+          .map(({ width, height, entry, dataUrl }: any) => {
+            return (
+              // biome-ignore lint/performance/noImgElement: testing
+              <img
+                alt=""
+                data-id={entry.id}
+                height={height}
+                key={entry.id}
+                src={dataUrl}
+                width={width}
+              />
+            )
+          })}
+      </div>
+
+      {/* <div className="h-full w-full" ref={mapContainer} /> */}
 
       {/* <div className="absolute hidden h-[0px] w-[0px]">
         {entries.map((entry, index) => {

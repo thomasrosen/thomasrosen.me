@@ -51,6 +51,7 @@
     "dotenv": "^17.2.3",
     "eslint-config-next": "^15.3.0",
     "gray-matter": "^4.0.3",
+    "html-to-image": "^1.11.13",
     "js-yaml": "^4.1.0",
     "js-yaml-loader": "^1.2.2",
     "lucide-react": "^0.487.0",
