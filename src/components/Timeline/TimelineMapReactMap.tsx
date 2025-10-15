@@ -12,8 +12,8 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
         onEntryMarkerClick={({ entry }) => {
           alert(JSON.stringify(entry, null, 2))
         }}
-        renderEntryMarker={({ entry, index, ref }) => (
-          <Marker entry={entry} index={index} ref={ref} />
+        renderEntryMarker={({ entry, index, ref, onImageLoaded }) => (
+          <Marker entry={entry} index={index} onImageLoaded={onImageLoaded} ref={ref} />
         )}
       />
     </div>

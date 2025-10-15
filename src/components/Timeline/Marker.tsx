@@ -2,6 +2,7 @@
 
 import { pickFakeRandom } from '@/lib/pickFakeRandom'
 import Image from 'next/image'
+import { useCallback, useRef } from 'react'
 // import { Emoji } from '@/components/Emoji'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
@@ -24,10 +25,11 @@ export function Marker({
   entry: TimelineEntry
   index: number
   ref?: (element: HTMLDivElement | null) => void
-  onImageLoaded?: () => void
+  onImageLoaded?: ({ element }: { element: HTMLDivElement | null }) => void
 }) {
   const isVertical = entry.imageOrientation === 'v'
   const imageSrc = typeof entry.image === 'string' ? entry.image : entry.image?.src
+  const elementRef = useRef<HTMLDivElement>(null)
 
   // } else if (entry.displayAs === 'image') {
   //   marker_icon = <BigEmoij aria-hidden="true">📸</BigEmoij>
@@ -45,10 +47,19 @@ export function Marker({
   // group-hover/marker:classname
   // [.hover_&]:classname
 
+  const onImageLoadedInternal = useCallback(() => {
+    console.log('\n\nonImageLoadedInternal')
+    console.log('typeof onImageLoaded', typeof onImageLoaded)
+    console.log('typeof elementRef.current', typeof elementRef.current)
+    if (onImageLoaded) {
+      onImageLoaded({ element: elementRef.current })
+    }
+  }, [onImageLoaded])
+
   return (
     <div
       className="group/marker relative z-10 flex h-[128px] w-[128px] items-center justify-center overflow-hidden p-[10px]"
-      ref={ref}
+      ref={ref || elementRef}
     >
       <LinkOrDiv
         className={cn(
@@ -71,33 +82,37 @@ export function Marker({
         )}
         // href={entry.url}
       >
-        {imageSrc ? (
-          <Image
-            alt={entry.title || 'Photo'}
-            // blurDataURL={typeof entry.image === 'string' ? undefined : entry.image?.blurDataURL}
-            className={cn(
-              // 'rounded-sm',
-              // 'overflow-hidden',
-              'rounded-md border-2 border-background bg-background',
-              isVertical ? '!h-auto w-[64px]' : '!w-auto h-[64px]'
-            )}
-            height={32}
-            loading="eager"
-            onLoadingComplete={onImageLoaded}
-            // placeholder="blur"
-            priority={true}
-            quality={100}
-            src={imageSrc}
-            width={32}
-          />
-        ) : (
-          (() => {
-            if (onImageLoaded) {
-              onImageLoaded()
-            }
-            return null
-          })()
-        )}
+        {
+          imageSrc ? (
+            <Image
+              alt={entry.title || 'Photo'}
+              // blurDataURL={typeof entry.image === 'string' ? undefined : entry.image?.blurDataURL}
+              className={cn(
+                // 'rounded-sm',
+                // 'overflow-hidden',
+                'rounded-md border-2 border-background bg-background',
+                isVertical ? '!h-auto w-[64px]' : '!w-auto h-[64px]'
+              )}
+              height={32}
+              loading="eager"
+              onError={onImageLoadedInternal}
+              onLoad={onImageLoadedInternal}
+              // placeholder="blur"
+              priority={true}
+              // quality={100}
+              src={imageSrc}
+              width={32}
+            />
+          ) : null
+          // (
+          // (() => {
+          //   if (onImageLonImageLoadedInternaloaded) {
+          //     onImageLoadedInternal()
+          //   }
+          //   return null
+          // })()
+          // )
+        }
 
         {entry.title?.length ? (
           <>

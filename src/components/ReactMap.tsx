@@ -1,9 +1,9 @@
 /** biome-ignore-all assist/source/organizeImports: werd ide config */
 import { Icon } from '@/components/Icon'
 import { absoluteStyle } from '@/lib/client/absoluteStyle'
-import { onImagesLoaded } from '@/lib/client/onAllImagesLoaded'
+// import { onImagesLoaded } from '@/lib/client/onAllImagesLoaded'
 import type { TimelineEntry } from '@/types'
-import { toPng as htmlToImage_toPng } from 'html-to-image'
+import { toBlob as htmlToImage_toBlob } from 'html-to-image'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
@@ -19,6 +19,9 @@ type MarkerFeature = {
     iconName: string
     iconUrl?: string
     iconSvg?: string
+    iconImageData?: Uint8ClampedArray
+    iconWidth?: number
+    iconHeight?: number
   }
 }
 
@@ -32,6 +35,7 @@ type EntryMarkerProps = {
   entry: TimelineEntry
   element: HTMLDivElement | null
   dataUrl: string
+  imageData?: Uint8ClampedArray
   width: number
   height: number
   state: 'loading' | 'finished' | 'error'
@@ -48,10 +52,12 @@ export function ReactMap({
     entry,
     index,
     ref,
+    onImageLoaded,
   }: {
     entry: TimelineEntry
     index: number
-    ref: (element: HTMLDivElement | null) => void
+    ref?: (element: HTMLDivElement | null) => void
+    onImageLoaded?: ({ element }: { element: HTMLDivElement | null }) => void
   }) => React.ReactNode
 }) {
   const mapContainer = useRef<HTMLDivElement | null>(null)
@@ -262,7 +268,7 @@ export function ReactMap({
       const pois: MarkerFeatureCollection = {
         type: 'FeatureCollection' as const,
         features: Object.values(markerElementRefs.current)
-          .map(({ dataUrl, entry }) => {
+          .map(({ dataUrl, imageData, width, height, entry }) => {
             // let imageUri = ''
             // if (typeof entry.image === 'string') {
             //   const full_src = String(new URL(entry.image, String(window.location)))
@@ -289,6 +295,10 @@ export function ReactMap({
                 name: entry.title || '',
                 iconName: `poi_icon_${entry.id}`,
                 iconUrl: dataUrl, // '/icons/cafe.png',
+                iconImageData: imageData,
+                iconWidth: width,
+                iconHeight: height,
+                // iconSvg,
               },
             }
           })
@@ -308,31 +318,69 @@ export function ReactMap({
       }
 
       try {
-        // deduplicate and preload all icons
-        const unique = Array.from(
-          new Map(
-            pois.features.map((f) => {
-              if (f.properties.iconSvg) {
-                let iconSvg = f.properties.iconSvg
-                iconSvg = iconSvg.replace(/\n/g, '') // remove newlines
-
-                return [
-                  f.properties.iconName,
-                  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(iconSvg)}`,
-                ]
-              }
-
-              if (f.properties.iconUrl) {
-                return [f.properties.iconName, f.properties.iconUrl]
-              }
-
-              return [f.properties.iconName, ''] // should not happen
-            })
-          )
-        )
-
         await Promise.all(
-          unique.map(([name, url]) => {
+          // deduplicate and preload all icons
+          Array.from(
+            new Map(
+              pois.features.map(
+                (
+                  f
+                ): [
+                  string,
+                  {
+                    type: string
+                    data: string | Uint8ClampedArray
+                    width?: number
+                    height?: number
+                  },
+                ] => {
+                  if (!f) {
+                    return ['unknown', { type: 'error', data: '' }]
+                  }
+
+                  if (!f.properties.iconName) {
+                    return ['unknown', { type: 'error', data: '' }]
+                  }
+
+                  if (
+                    f.properties.iconImageData &&
+                    f.properties.iconWidth &&
+                    f.properties.iconHeight
+                  ) {
+                    const width = f.properties.iconWidth
+                    const height = f.properties.iconHeight
+                    return [
+                      f.properties.iconName,
+                      { type: 'imageData', data: f.properties.iconImageData, width, height },
+                    ]
+                  }
+
+                  if (f.properties.iconSvg) {
+                    let iconSvg = f.properties.iconSvg
+                    iconSvg = iconSvg.replace(/\n/g, '') // remove newlines
+
+                    return [
+                      f.properties.iconName,
+                      {
+                        type: 'dataUrl',
+                        data: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(iconSvg)}`,
+                      },
+                    ]
+                  }
+
+                  if (f.properties.iconUrl) {
+                    return [f.properties.iconName, { type: 'dataUrl', data: f.properties.iconUrl }]
+                  }
+
+                  return [f.properties.iconName, { type: 'error', data: '' }] // should not happen
+                }
+              )
+            )
+          ).map(([name, { type, data, width, height }]) => {
+            if (!(name && data)) {
+              return Promise.resolve(false)
+            }
+
             if (!map.current || map.current === null) {
               // only change if map exists
               return false
@@ -343,20 +391,39 @@ export function ReactMap({
               return false
             }
 
-            // load image from URL and add to map
-            const img = new Image()
-            img.onload = () => {
-              if (!map.current || map.current === null) {
-                // only change if map exists
-                return
-              }
+            if (type === 'dataUrl' && typeof data === 'string') {
+              // load image from URL and add to map
+              const img = new Image()
+              img.onload = () => {
+                if (!map.current || map.current === null) {
+                  // only change if map exists
+                  return
+                }
 
-              map.current.addImage(name, img, { pixelRatio: 2 }) // crisp @2x
+                map.current.addImage(name, img, {
+                  pixelRatio: 2, // crisp @2x
+                  sdf: false,
+                })
+              }
+              img.onerror = (error) => {
+                console.warn('failed-to-load-image', name, data, error)
+              }
+              img.src = data
+            } else if (
+              type === 'imageData' &&
+              data instanceof Uint8ClampedArray &&
+              width &&
+              height
+            ) {
+              map.current.addImage(
+                name,
+                { width, height, data },
+                {
+                  pixelRatio: 2, // crisp @2x
+                  sdf: false,
+                }
+              )
             }
-            img.onerror = (error) => {
-              console.warn('failed-to-load-image', name, url, error)
-            }
-            img.src = url
 
             return false
           })
@@ -411,6 +478,7 @@ export function ReactMap({
       map.current.on('mouseleave', 'poi-icons', onPoiMouseleave)
       map.current.on('click', 'poi-icons', onPoiClick)
     }
+
     if (map.current.loaded()) {
       renderMarkers()
     } else {
@@ -432,65 +500,74 @@ export function ReactMap({
   }, [onEntryMarkerClick])
 
   // const [counter, setCounter] = useState<number>(0)
-  const cacheMarkerElement = useRef(
-    async (element: HTMLDivElement | null, entry: any, index: number) => {
-      const entryId = entry?.id
-      if (!(element && entryId)) {
-        return
-      }
-
-      await onImagesLoaded(element) // wait for all images to load
-
-      const width = element.offsetWidth
-      const height = element.offsetHeight
-
-      markerElementRefs.current[entryId] = {
-        index,
-        entry,
-        element,
-        dataUrl: '', // not loaded yet
-        width,
-        height,
-        state: 'loading',
-      }
-
-      htmlToImage_toPng(element, {
-        // quality: 100,
-        pixelRatio: 2,
-        canvasWidth: width,
-        canvasHeight: height,
-        width,
-        height,
-        cacheBust: false,
-        includeQueryParams: true,
-      })
-        .then((dataUrl) => {
-          markerElementRefs.current[entryId] = {
-            ...markerElementRefs.current[entryId],
-            dataUrl,
-            state: 'finished',
-          }
-        })
-        .catch((err) => {
-          markerElementRefs.current[entryId] = {
-            ...markerElementRefs.current[entryId],
-            state: 'error',
-          }
-          console.error('oops, something went wrong!', err)
-        })
-        .finally(() => {
-          // check if there is still at least one entry to load
-          const hasAtLeastOneToLoad = Object.values(markerElementRefs.current).find(
-            (m: any) => m.state === 'loading'
-          )
-          if (!hasAtLeastOneToLoad) {
-            // only trigger ui-rerender when all are loaded
-            // setCounter((c) => c + 1)
-            displayMarkers()
-          }
-        })
+  const cacheMarkerElement = useRef((element: HTMLDivElement | null, entry: any, index: number) => {
+    const entryId = entry?.id
+    if (!(element && entryId)) {
+      return
     }
-  )
+
+    // await onImagesLoaded(element) // wait for all images to load
+
+    const width = element.offsetWidth
+    const height = element.offsetHeight
+
+    markerElementRefs.current[entryId] = {
+      index,
+      entry,
+      element,
+      dataUrl: '', // not loaded yet
+      width,
+      height,
+      state: 'loading',
+    }
+
+    htmlToImage_toBlob(element, {
+      // quality: 100,
+      pixelRatio: 2,
+      canvasWidth: width,
+      canvasHeight: height,
+      width,
+      height,
+      cacheBust: false,
+      includeQueryParams: true,
+    })
+      .then(async (blobData) => {
+        console.log('blobData', blobData)
+
+        const imageData = blobData?.arrayBuffer
+          ? new Uint8ClampedArray(new Uint8Array(await blobData.arrayBuffer()))
+          : undefined
+
+        if (!imageData) {
+          throw new Error('could not load image')
+        }
+
+        markerElementRefs.current[entryId] = {
+          ...markerElementRefs.current[entryId],
+          // dataUrl,
+          imageData,
+          state: 'finished',
+        }
+      })
+      .catch((err) => {
+        markerElementRefs.current[entryId] = {
+          ...markerElementRefs.current[entryId],
+          state: 'error',
+        }
+        console.error('oops, something went wrong!', err)
+      })
+      .finally(() => {
+        // check if there is still at least one entry to load
+        const hasAtLeastOneToLoad = Object.values(markerElementRefs.current).find(
+          (m: any) => m.state === 'loading'
+        )
+        if (!hasAtLeastOneToLoad) {
+          // only trigger ui-rerender when all are loaded
+          // setCounter((c) => c + 1)
+          displayMarkers()
+        }
+      })
+  })
 
   const entriesRendered = useMemo(() => {
     return entries.map((entry, index) => {
@@ -499,7 +576,8 @@ export function ReactMap({
           {renderEntryMarker({
             entry,
             index,
-            ref: (element) => cacheMarkerElement.current(element, entry, index),
+            onImageLoaded: ({ element }) => cacheMarkerElement.current(element, entry, index),
+            // ref: (element) => cacheMarkerElement.current(element, entry, index),
           })}
         </React.Fragment>
       )
