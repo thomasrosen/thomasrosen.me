@@ -657,3 +657,9 @@ _::-webkit-full-page-media,
   filter: invert(1) contrast(0.85) saturate(2) brightness(1.5) hue-rotate(180deg);
 }
 */
+
+/* 
+.open_marker {
+  transform: translate(0, -50%);
+  opacity: 0.5;
+} */

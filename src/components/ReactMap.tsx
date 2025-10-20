@@ -1,34 +1,55 @@
+/** biome-ignore-all lint/complexity/noExcessiveCognitiveComplexity: not that bad of a problem */
+/** biome-ignore-all assist/source/organizeImports: werd ide config */
+
 import useDarkTheme from '@/components/hooks/useDarkTheme'
+import { Icon } from '@/components/Icon'
+import { absoluteStyle } from '@/lib/client/absoluteStyle'
 import type { TimelineEntry } from '@/types'
+import { toCanvas as htmlToImage_toCanvas } from 'html-to-image'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 
-function absoluteStyle(_previousStyle: any, nextStyle: any) {
-  return nextStyle
-  // return {
-  //   ...nextStyle,
-  //   // make relative paths absolute
-  //   sprite: [
-  //     ...nextStyle.sprite.map((s: any) => {
-  //       return {
-  //         ...s,
-  //         url: s.url, // new URL(s.url, window.location.href).href,
-  //       }
-  //     }),
-  //   ],
-  //   // URL will % encode the {} in nextStyle.glyphs, so assemble the URL manually
-  //   glyphs: nextStyle.glyphs, // window.location.origin +
-  //   sources: {
-  //     'versatiles-shortbread': {
-  //       ...nextStyle.sources['versatiles-shortbread'],
-  //       // tiles: [window.location.origin + nextStyle.sources['versatiles-shortbread'].tiles[0]],
-  //       tiles: [
-  //         `https://vector.openstreetmap.org${nextStyle.sources['versatiles-shortbread'].tiles[0]}`,
-  //       ],
-  //     },
-  //   },
-  // }
+const _PixelRatio_ = 2 // window.devicePixelRatio || 1
+
+type MarkerFeature = {
+  id: string
+  type: 'Feature'
+  geometry: { type: 'Point'; coordinates: number[] }
+  properties: {
+    entry: TimelineEntry
+    rank: number
+    name: string
+    iconName: string
+    iconWidth?: number
+    iconHeight?: number
+  }
+}
+
+type MarkerFeatureCollection = {
+  type: 'FeatureCollection'
+  features: MarkerFeature[]
+}
+
+type CustomIcon = {
+  // documentation at https://maplibre.org/maplibre-gl-js/docs/API/interfaces/StyleImageInterface/
+  width: number
+  height: number
+  data: Uint8ClampedArray
+  context: CanvasRenderingContext2D | null
+  dataChange: boolean
+  onAdd: () => void
+  onRemove: () => void
+  render: () => boolean
+}
+
+type EntryMarkerProps = {
+  index: number
+  entry: TimelineEntry
+  element: HTMLDivElement | null
+  width: number
+  height: number
+  rerender: boolean
 }
 
 export function ReactMap({
@@ -38,17 +59,24 @@ export function ReactMap({
 }: {
   entries: TimelineEntry[]
   onEntryMarkerClick: ({ entry }: { entry: TimelineEntry }) => void
-  renderEntryMarker: ({ entry, index }: { entry: TimelineEntry; index: number }) => React.ReactNode
+  renderEntryMarker: ({
+    entry,
+    index,
+    ref,
+    onImageLoaded,
+  }: {
+    entry: TimelineEntry
+    index: number
+    ref?: (element: HTMLDivElement | null) => void
+    onImageLoaded?: ({ element }: { element: HTMLDivElement | null }) => void
+  }) => React.ReactNode
 }) {
   const mapContainer = useRef<HTMLDivElement | null>(null)
   const map = useRef<maplibregl.Map | null>(null)
-  const markersCacheRef = useRef<any[]>([])
-  const markerElementRefs = useRef<any>({})
+  // const markersCacheRef = useRef<any[]>([])
+  const markerElementRefs = useRef<Record<string, EntryMarkerProps>>({})
 
   const userWantsDarkmode = useDarkTheme()
-  const mapStylePath = userWantsDarkmode
-    ? '/map_styles/liberty-dark.json'
-    : '/map_styles/liberty.json' // https://tiles.openfreemap.org/styles/liberty
 
   useEffect(() => {
     // this useEffect is only called once. all changes to the map must be in other useEffects
@@ -72,23 +100,19 @@ export function ReactMap({
       // style: 'https://vector.openstreetmap.org/demo/shortbread/colorful.json',
       // center: [lng, lat],
       // zoom,
-      center: [7, 50],
+      center: [13.405, 52.52], // [7, 50],
       zoom: 1,
       hash: true,
       minZoom: 2.5,
-      maxZoom: 18, // A zoom level this high is a bit silly but helps testing
-      canvasContextAttributes: { antialias: true }, // create the gl context with MSAA antialiasing, so custom layers are antialiased
-    })
-    map.current.setStyle(mapStylePath, {
-      // The paths in the style are relative, but MapLibre GL JS needs
-      // absolute URLs. This is done below, taking the URL of the page
-      // for the path. This is because the page could be served on
-      // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
-      // or a specific server.
-      transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
+      maxZoom: 22, // A zoom level this high is a bit silly but helps testing
+      canvasContextAttributes: {
+        antialias: true,
+        desynchronized: true,
+        // powerPreference: 'high-performance',
+      }, // create the gl context with MSAA antialiasing, so custom layers are antialiased
     })
 
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
+    // map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
 
     map.current.on('style.load', () => {
       if (!map.current || map.current === null) {
@@ -99,13 +123,17 @@ export function ReactMap({
         type: 'globe', // Set projection to globe
       })
     })
-  }, [mapStylePath])
+  }, [])
 
   useEffect(() => {
     if (!map.current || map.current === null) {
       // only change if map exists
       return
     }
+
+    const mapStylePath = userWantsDarkmode
+      ? 'https://api.maptiler.com/maps/0199b5a8-a337-72d0-8131-30642ac6c1d3/style.json?key=o3zELAXbKePggwdGFWww' // '/map_styles/liberty-dark.json'
+      : 'https://api.maptiler.com/maps/0199b5cc-cff4-7175-814c-751f58656516/style.json?key=o3zELAXbKePggwdGFWww' // 'https://tiles.openfreemap.org/styles/liberty' // /map_styles/liberty.json' // https://tiles.openfreemap.org/styles/liberty
 
     map.current.setStyle(mapStylePath, {
       // The paths in the style are relative, but MapLibre GL JS needs
@@ -115,7 +143,11 @@ export function ReactMap({
       // or a specific server.
       transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
     })
-  }, [mapStylePath])
+  }, [userWantsDarkmode])
+
+  const htmlMarker = useRef<Record<string, maplibregl.Marker>>({})
+  const clusterMarkers = useRef<Set<string>>(new Set())
+  const lastHoveredEntryId = useRef<string>('')
 
   useEffect(() => {
     if (!map.current || map.current === null) {
@@ -123,76 +155,522 @@ export function ReactMap({
       return
     }
 
-    function clearMarkers() {
-      for (const { marker, element, func } of markersCacheRef.current) {
-        element.removeEventListener('click', func)
-        marker.remove()
+    const showMarker = ({
+      f,
+      entryId,
+      isClusterMarker,
+    }: {
+      f: any
+      entryId: string
+      isClusterMarker: boolean
+    }) => {
+      if (!map.current || map.current === null || !entryId) {
+        // only change if map exists
+        return
       }
-      markersCacheRef.current = []
-    }
 
-    map.current.on('style.load', () => {
+      map.current.getCanvas().style.cursor = 'pointer'
+
+      if (isClusterMarker === false) {
+        const marker_element = markerElementRefs.current[entryId]
+        if (!marker_element.element) {
+          return
+        }
+        const cloned_marker_element = marker_element.element.cloneNode(true) as HTMLElement
+        // cloned_marker_element.classList.add('open_marker')
+
+        // await onImagesLoaded(cloned_marker_element) // wait for all images to load.
+
+        const el = document.createElement('div')
+        // el.innerHTML = `<div class="open_marker">${f.properties.iconSvg}</div>`
+        el.style.pointerEvents = 'none'
+        el.appendChild(cloned_marker_element)
+
+        htmlMarker.current[entryId] = new maplibregl.Marker({
+          element: el,
+          anchor: 'center',
+          opacityWhenCovered: '0',
+          subpixelPositioning: true,
+        })
+          .setLngLat(f.geometry.coordinates)
+          .addTo(map.current)
+
+        setTimeout(() => {
+          el.classList.add('hover') // start animation
+        }, 100)
+      } else {
+        clusterMarkers.current.add(entryId)
+      }
+
+      if (entryId) {
+        map.current.setFeatureState({ source: 'pois', id: entryId }, { hover: true })
+        // map.current.triggerRepaint()
+      }
+    }
+    const hideMarker = ({ entryId }: { entryId: string }) => {
+      if (!map.current || map.current === null || !entryId) {
+        // only change if map exists
+        return
+      }
+
+      if (clusterMarkers.current.has(entryId)) {
+        // is cluster marker
+        if (entryId) {
+          map.current.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
+          clusterMarkers.current.delete(entryId)
+          // map.current.triggerRepaint()
+        }
+        return
+      }
+
+      if (entryId) {
+        map.current.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
+        // map.current.triggerRepaint()
+      }
+
+      map.current.getCanvas().style.cursor = ''
+      const thisMarker = htmlMarker.current[entryId]
+      thisMarker?.getElement().classList.remove('hover') // remove animation
+
+      setTimeout(() => {
+        if (entryId) {
+          map.current?.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
+          // map.current?.triggerRepaint()
+        }
+        if (thisMarker) {
+          thisMarker.remove()
+        }
+      }, 200)
+    }
+    const hideAllMarkers = () => {
       if (!map.current || map.current === null) {
         // only change if map exists
         return
       }
 
-      clearMarkers()
-      for (const entry of entries) {
-        if (!(entry.id && !!entry.longitude && !!entry.latitude)) {
-          continue
+      // normal markers
+      for (const entryId of Object.keys(htmlMarker.current)) {
+        hideMarker({ entryId })
+      }
+
+      // cluster markers
+      for (const entryId of [...clusterMarkers.current]) {
+        hideMarker({ entryId })
+      }
+    }
+
+    const onPoiMousemove = (event: any) => {
+      if (!map.current || map.current === null || event?.features.length === 0) {
+        // only change if map exists
+        return
+      }
+
+      const f =
+        (lastHoveredEntryId.current
+          ? event?.features.find((f2: any) => f2.id === lastHoveredEntryId.current)
+          : undefined) || event?.features[0]
+      const currentHoveredEntryId = f.id
+
+      let isClusterMarker = false
+      const layer = f?.layer?.id
+      if (layer === 'poi-icons-clusters') {
+        isClusterMarker = true
+      }
+
+      if (lastHoveredEntryId.current !== currentHoveredEntryId) {
+        if (lastHoveredEntryId.current) {
+          hideAllMarkers()
         }
 
-        const marker_element = markerElementRefs.current[entry.id]
-        const cloned_marker_element = marker_element.cloneNode(true)
-        const onMarkerClickFunc = () => {
-          onEntryMarkerClick({ entry })
+        if (currentHoveredEntryId) {
+          lastHoveredEntryId.current = currentHoveredEntryId
+          showMarker({ f, entryId: currentHoveredEntryId, isClusterMarker })
         }
-        cloned_marker_element.addEventListener('click', onMarkerClickFunc)
+      }
+    }
 
-        const newMarker = new maplibregl.Marker({
-          element: cloned_marker_element,
-          opacity: '1',
-          opacityWhenCovered: '0',
-          subpixelPositioning: true,
-        })
-          .setLngLat({ lng: entry.longitude, lat: entry.latitude })
-          .addTo(map.current)
-        markersCacheRef.current.push({
-          marker: newMarker,
-          element: cloned_marker_element,
-          func: onMarkerClickFunc,
+    const onPoiMouseleave = () => {
+      if (!map.current || map.current === null) {
+        // only change if map exists
+        return
+      }
+
+      hideAllMarkers()
+      lastHoveredEntryId.current = ''
+    }
+
+    const onPoiClick = async (event: any) => {
+      if (!map.current || map.current === null || event?.features.length === 0) {
+        // only change if map exists
+        return
+      }
+
+      const f =
+        (lastHoveredEntryId.current
+          ? event?.features.find((f2: any) => f2.id === lastHoveredEntryId.current)
+          : undefined) || event?.features[0]
+
+      const layer = f?.layer?.id
+
+      if (layer === 'poi-icons-clusters') {
+        // zoom into cluster
+        const clusterId = f?.properties?.cluster_id
+        const source = map.current.getSource('pois') as maplibregl.GeoJSONSource
+        if (source && 'getClusterExpansionZoom' in source) {
+          const zoom = await source.getClusterExpansionZoom(clusterId)
+          map.current.easeTo({
+            center: f?.geometry.coordinates,
+            zoom,
+          })
+        }
+      } else {
+        // single marker clicked
+        const currentHoveredEntry =
+          typeof f.properties.entry === 'string'
+            ? JSON.parse(f.properties.entry)
+            : f.properties.entry
+
+        onEntryMarkerClick({ entry: currentHoveredEntry })
+      }
+
+      hideAllMarkers()
+      lastHoveredEntryId.current = ''
+    }
+
+    const renderMarkers = () => {
+      if (!map.current || map.current === null) {
+        // only change if map exists
+        return
+      }
+
+      const pois: MarkerFeatureCollection = {
+        type: 'FeatureCollection' as const,
+        features: Object.values(markerElementRefs.current)
+          .map(({ width, height, entry }) => {
+            if (!(entry.id && entry.latitude && entry.longitude)) {
+              return null
+            }
+
+            const iconName = `poi_icon_${entry.id}`
+            if (!map.current?.hasImage(iconName)) {
+              const entryId = entry.id
+
+              const canvasWidth = width * _PixelRatio_
+              const canvasHeight = height * _PixelRatio_
+
+              const customIcon: CustomIcon = {
+                width: canvasWidth,
+                height: canvasHeight,
+                data: new Uint8ClampedArray(canvasWidth * canvasHeight * 4),
+                context: null as CanvasRenderingContext2D | null,
+                dataChange: false,
+
+                onAdd() {
+                  // nothing needed here
+                },
+
+                onRemove() {
+                  // nothing needed here
+                },
+
+                render() {
+                  if (markerElementRefs.current[entryId].rerender === true) {
+                    markerElementRefs.current[entryId].rerender = false
+
+                    const elementToRender = markerElementRefs.current[entryId].element
+                    if (elementToRender && canvasWidth > 0 && canvasHeight > 0) {
+                      // onImagesLoaded(elementToRender).then(() => {}) // wait for all images to load.
+
+                      htmlToImage_toCanvas(elementToRender, {
+                        // quality: 100,
+                        pixelRatio: 1,
+                        canvasWidth,
+                        canvasHeight,
+                        width,
+                        height,
+                        cacheBust: false,
+                        includeQueryParams: true,
+                      })
+                        .then((canvas) => {
+                          const context = canvas.getContext('2d')
+                          if (!context) {
+                            throw new Error('Could not get canvas context')
+                          }
+
+                          this.context = context
+                          this.data = context.getImageData(0, 0, canvasWidth, canvasHeight).data
+                          this.dataChange = true
+
+                          // show the icon on the map
+                          map.current?.triggerRepaint()
+                        })
+                        .catch((err) => {
+                          // markerElementRefs.current[entryId] = {
+                          //   ...markerElementRefs.current[entryId],
+                          //   state: 'error',
+                          // }
+                          console.error('oops, something went wrong!', err)
+                        })
+                    }
+                  }
+
+                  if (this.dataChange === true) {
+                    this.dataChange = false
+                    return true
+                  }
+
+                  return false
+                },
+              }
+
+              map.current?.addImage(iconName, customIcon, { pixelRatio: _PixelRatio_ })
+            }
+
+            return {
+              id: entry.id,
+              type: 'Feature' as const,
+              geometry: {
+                type: 'Point' as const,
+                coordinates: [entry.longitude, entry.latitude],
+              },
+              properties: {
+                id: entry.id,
+                entry,
+                rank: 1,
+                name: entry.title || '',
+                iconName,
+                iconWidth: width,
+                iconHeight: height,
+              },
+            }
+          })
+          .filter((f) => f !== null), // filter out nulls
+      }
+
+      const src = map.current.getSource('pois') as maplibregl.GeoJSONSource
+      if (src) {
+        // already exists; ensure it’s GeoJSON then update
+        if ('setData' in src) {
+          src.setData(pois)
+        } else {
+          throw new Error('Source "pois" exists but is not GeoJSON')
+        }
+      } else {
+        map.current.addSource('pois', {
+          type: 'geojson',
+          data: pois,
+          promoteId: 'id',
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+          clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+
+          attribution: 'Thomas Rosen',
+          // clusterProperties: {
+          //   sum: [
+          //     ['+', ['accumulated'], ['get', 'sum']],
+          //     ['get', 'scalerank'],
+          //   ],
+          // },
         })
       }
-    })
+
+      if (!map.current.getLayer('poi-icons')) {
+        map.current.addLayer({
+          id: 'poi-icons',
+          filter: ['!', ['has', 'point_count']],
+          type: 'symbol' as const,
+          source: 'pois',
+          minzoom: 0,
+          layout: {
+            'icon-image': ['get', 'iconName'], // per-feature icon
+            'icon-allow-overlap': true,
+            'icon-size': 1,
+            'symbol-sort-key': ['to-number', ['get', 'rank']],
+            'text-anchor': 'center',
+            'text-field': ['get', 'name'],
+            'text-font': ['Ubuntu Medium', 'Noto Sans Medium'],
+            'text-line-height': 0.9,
+            'text-max-width': 12,
+            'text-optional': true,
+            'text-padding': 2,
+            'text-size': 16,
+            visibility: 'visible',
+            'text-justify': 'center',
+            'icon-anchor': 'center',
+            'icon-text-fit': 'none',
+            'text-offset': [0, 0],
+            'text-overlap': 'never', // cooperative always never
+            'icon-overlap': 'always', // cooperative always never
+            'text-pitch-alignment': 'auto',
+            'text-rotation-alignment': 'auto',
+            'text-ignore-placement': false,
+          },
+          paint: {
+            'icon-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0, 1],
+            'text-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0, 1],
+            'text-color': 'hsl(0 0% 100%)',
+            'text-halo-blur': ['interpolate', ['linear'], ['zoom'], 12, 1, 14, 0.5, 16, 0],
+            'text-halo-color': 'hsl(0 0% 0% / 0.5)',
+            'text-halo-width': 2,
+          },
+        })
+
+        map.current.addLayer({
+          id: 'poi-icons-clusters',
+          type: 'circle',
+          source: 'pois',
+          filter: ['has', 'point_count'],
+          paint: {
+            // Use step expressions (https://maplibre.org/maplibre-style-spec/#expressions-step)
+            // with three steps to implement three types of circles:
+            //   * Blue, 20px circles when point count is less than 100
+            //   * Yellow, 30px circles when point count is between 100 and 750
+            //   * Pink, 40px circles when point count is greater than or equal to 750
+            'circle-color': ['step', ['get', 'point_count'], '#fff', 100, '#fff', 750, '#fff'],
+            'circle-radius': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              ['step', ['get', 'point_count'], 20, 10, 25, 100, 30, 1000, 35],
+              ['step', ['get', 'point_count'], 15, 10, 20, 100, 25, 1000, 30],
+            ],
+          },
+        })
+
+        map.current.addLayer({
+          id: 'poi-icons-cluster-count',
+          type: 'symbol',
+          source: 'pois',
+          filter: ['has', 'point_count'],
+          layout: {
+            'text-field': '{point_count_abbreviated}',
+            'text-font': ['Ubuntu Bold', 'Noto Sans Bold'],
+            'text-size': 16,
+            'icon-allow-overlap': true,
+            visibility: 'visible',
+            'text-overlap': 'always', // cooperative always never
+            'icon-overlap': 'always', // cooperative always never
+          },
+          paint: {
+            'text-color': 'hsl(0 0% 0%)',
+            'text-halo-blur': ['interpolate', ['linear'], ['zoom'], 12, 1, 14, 0.5, 16, 0],
+            'text-halo-color': 'hsl(0 0% 100% / 0.5)',
+            'text-halo-width': 2,
+          },
+        })
+      }
+
+      map.current.on('mouseenter', 'poi-icons-clusters', onPoiMousemove)
+      map.current.on('mousemove', 'poi-icons-clusters', onPoiMousemove)
+      map.current.on('mouseleave', 'poi-icons-clusters', onPoiMouseleave)
+      map.current.on('click', 'poi-icons-clusters', onPoiClick)
+
+      map.current.on('mouseenter', 'poi-icons', onPoiMousemove)
+      map.current.on('mousemove', 'poi-icons', onPoiMousemove)
+      map.current.on('mouseleave', 'poi-icons', onPoiMouseleave)
+      map.current.on('click', 'poi-icons', onPoiClick)
+    }
+
+    if (map.current.loaded()) {
+      renderMarkers()
+    } else {
+      map.current.on('load', renderMarkers)
+    }
 
     return () => {
-      clearMarkers()
+      if (!map.current || map.current === null) {
+        // only change if map exists
+        return
+      }
+
+      map.current.off('load', renderMarkers)
+
+      map.current.off('mouseenter', 'poi-icons-clusters', onPoiMousemove)
+      map.current.off('mousemove', 'poi-icons-clusters', onPoiMousemove)
+      map.current.off('mouseleave', 'poi-icons-clusters', onPoiMouseleave)
+      map.current.off('click', 'poi-icons-clusters', onPoiClick)
+
+      map.current.off('mouseenter', 'poi-icons', onPoiMousemove)
+      map.current.off('mousemove', 'poi-icons', onPoiMousemove)
+      map.current.off('mouseleave', 'poi-icons', onPoiMouseleave)
+      map.current.off('click', 'poi-icons', onPoiClick)
     }
-  }, [entries, onEntryMarkerClick])
+  }, [onEntryMarkerClick])
+
+  const entriesRendered = useMemo(() => {
+    return entries.map((entry, index) => {
+      const entryId = entry?.id
+      if (!entryId) {
+        return null
+      }
+
+      if (!markerElementRefs.current[entryId]) {
+        markerElementRefs.current[entryId] = {
+          index,
+          entry,
+          element: null,
+          width: 0,
+          height: 0,
+          rerender: false,
+        }
+      }
+
+      return (
+        <React.Fragment key={entry.id}>
+          {renderEntryMarker({
+            entry,
+            index,
+            onImageLoaded: ({ element }) => {
+              if (!(element && entryId)) {
+                return
+              }
+
+              markerElementRefs.current[entryId] = {
+                ...markerElementRefs.current[entryId],
+                element,
+                width: element.offsetWidth,
+                height: element.offsetHeight,
+                rerender: true,
+              }
+
+              // trigger map to rerender with new marker
+              map.current?.triggerRepaint()
+            },
+            ref: (element) => {
+              if (!(element && entryId)) {
+                return
+              }
+
+              markerElementRefs.current[entryId] = {
+                ...markerElementRefs.current[entryId],
+                element,
+                width: element.offsetWidth,
+                height: element.offsetHeight,
+                rerender: true,
+              }
+
+              // trigger map to rerender with new marker
+              map.current?.triggerRepaint()
+            },
+          })}
+        </React.Fragment>
+      )
+    })
+  }, [entries, renderEntryMarker])
+
+  const markersAreLoading =
+    Object.values(markerElementRefs.current).filter((m: any) => m.state === 'loading').length > 0
 
   return (
     <>
+      <div className="absolute h-0 w-0 overflow-hidden">{entriesRendered}</div>
+
       <div className="h-full w-full" ref={mapContainer} />
 
-      <div className="absolute hidden h-[0px] w-[0px]">
-        {entries.map((entry, index) => {
-          const markerComponent = renderEntryMarker({ entry, index })
-          return (
-            <div
-              className="relative z-10 hover:z-20"
-              key={entry.id}
-              ref={(el) => {
-                if (entry.id) {
-                  markerElementRefs.current[entry.id] = el
-                }
-              }}
-            >
-              {markerComponent}
-            </div>
-          )
-        })}
-      </div>
+      {markersAreLoading ? (
+        <div className="-translate-x-1/2 -translate-y-1/2 pointer-events-none fixed top-1/2 left-1/2 z-20 flex h-auto w-auto items-center justify-center rounded-full bg-foreground p-1 text-background">
+          <Icon className="animate-spin drop-shadow" name="loading" size="xl" />
+        </div>
+      ) : null}
     </>
   )
 }

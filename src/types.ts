@@ -31,7 +31,7 @@ export type TimelineEntry = {
   latitude?: number
   longitude?: number
 
-  image?: string | { src: string }
+  image?: string | { src: string; blurDataURL?: string }
   imageOrientation?: 'v' | 'h'
   imageAspectRatio?: number
 

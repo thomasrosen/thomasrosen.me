@@ -10,11 +10,7 @@ export function StyleInject({
   className?: string
 }) {
   useEffect(() => {
-    console.log('selector', selector)
-    console.log('className', className)
-
     const element = document.querySelector(selector)
-    console.log('element', element)
     if (!element) {
       return
     }
