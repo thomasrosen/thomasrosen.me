@@ -1,3 +1,4 @@
+import { getEntries } from '@/components/Timeline/getEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
@@ -23,6 +24,7 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
   }
 
   const tags = [tag] // to allow multiple tags in the future
+  const entries = await getEntries({ tags })
 
   return (
     <div className="app_wrapper !pt-24 theme_black">
@@ -39,7 +41,7 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
         </Typo>
       ) : null}
 
-      <Timeline showTimeHeadlines={true} tags={tags} />
+      <Timeline entries={entries} showTimeHeadlines={true} />
       {/* <div className="-m-[40px] w-[calc(100%_+_80px)] bg-black p-[40px]" /> */}
     </div>
   )

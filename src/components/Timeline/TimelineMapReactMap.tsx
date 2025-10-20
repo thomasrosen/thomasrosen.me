@@ -14,10 +14,11 @@ import {
 } from '@/components/ui/dialog'
 import type { TimelineEntry } from '@/types'
 import { useRef, useState } from 'react'
+import { Timeline } from './Timeline'
 
 export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[] }) {
   const [isOpen, setIsOpen] = useState(false)
-  const entryRef = useRef<TimelineEntry | null>(null)
+  const selectedEntriesRef = useRef<TimelineEntry[]>([])
 
   return (
     <div className="h-screen w-screen">
@@ -25,7 +26,7 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
         entries={entries}
         key={JSON.stringify(entries)}
         onEntryMarkerClick={({ entry }) => {
-          entryRef.current = entry
+          selectedEntriesRef.current = [entry]
           setIsOpen(true)
         }}
         renderEntryMarker={({ entry, index, ref, onImageLoaded }) => (
@@ -34,13 +35,13 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
       />
 
       <Dialog onOpenChange={setIsOpen} open={isOpen}>
-        <DialogContent className="z-100">
+        <DialogContent className="z-100 max-w-[calc(2*var(--content-box-width))] sm:max-w-full">
           <DialogHeader>
-            <DialogTitle>Entry JSON</DialogTitle>
-            <DialogDescription>For now only the JSON.</DialogDescription>
+            <DialogTitle>Details</DialogTitle>
+            <DialogDescription>This is not finished.</DialogDescription>
           </DialogHeader>
 
-          {entryRef.current && <pre>{JSON.stringify(entryRef.current, null, 2)}</pre>}
+          <Timeline entries={selectedEntriesRef.current} showTimeHeadlines={true} />
 
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>

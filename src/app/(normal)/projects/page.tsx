@@ -1,7 +1,9 @@
+import { getEntries } from '@/components/Timeline/getEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 
-export default function PageProjects() {
+export default async function PageProjects() {
+  const entries = await getEntries({ tags: ['project'] })
   return (
     <>
       <div className="tab_content space-y-6">
@@ -10,7 +12,7 @@ export default function PageProjects() {
       </div>
 
       <div className="tab_content">
-        <Timeline tags={['project']} />
+        <Timeline entries={entries} />
       </div>
     </>
   )

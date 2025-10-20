@@ -1,9 +1,11 @@
+import { getEntries } from '@/components/Timeline/getEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-export default function PageArticles() {
+export default async function PageArticles() {
+  const entries = await getEntries({ tags: ['article', 'project'] })
   return (
     <>
       <div className="tab_content space-y-6">
@@ -58,7 +60,7 @@ export default function PageArticles() {
       </div>
 
       <div className="tab_content">
-        <Timeline showTimeHeadlines={false} tags={['article', 'project']} />
+        <Timeline entries={entries} showTimeHeadlines={false} />
       </div>
     </>
   )

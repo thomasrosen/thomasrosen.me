@@ -2,23 +2,24 @@ import { Typo } from '@/components/Typo'
 import '@/fonts/petrona-v28-latin/index.css'
 import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
 import { cn } from '@/lib/utils'
+import type { TimelineEntry } from '@/types'
 import type React from 'react'
 import { Entry } from './Entry'
-import { getGroupedEntries } from './getGroupedEntries'
 import { getMonthName } from './getMonthName'
+import { groupEntries } from './groupEntries'
 
-export async function Timeline({
-  tags = [],
+export function Timeline({
+  entries = [],
+  // tags = [],
   showTimeHeadlines = false,
   hiddenTags = [],
 }: {
-  tags?: string[]
+  entries?: TimelineEntry[]
+  // tags?: string[]
   showTimeHeadlines?: boolean
   hiddenTags?: string[]
 }) {
-  const groupedEntries = await getGroupedEntries({
-    tags,
-  })
+  const groupedEntries = groupEntries({ entries })
 
   let entriesToCombineWith: React.ReactNode[] = []
 

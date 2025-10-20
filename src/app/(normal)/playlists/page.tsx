@@ -1,5 +1,6 @@
 import { GenreChart } from '@/components/GenreChart'
-import { getGroupedEntries } from '@/components/Timeline/getGroupedEntries'
+import { getEntries } from '@/components/Timeline/getEntries'
+import { groupEntries } from '@/components/Timeline/groupEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Button } from '@/components/ui/button'
@@ -9,9 +10,8 @@ import Link from 'next/link'
 const MAX_TAGS = 12
 
 export default async function Page() {
-  const groupedEntries = await getGroupedEntries({
-    tags: ['playlist'],
-  })
+  const entries = await getEntries({ tags: ['playlist'] })
+  const groupedEntries = groupEntries({ entries })
 
   const tags = Object.values(groupedEntries)
     .flat()
@@ -144,7 +144,7 @@ export default async function Page() {
       <GenreChart chartData={chartData} />
 
       <div className="tab_content">
-        <Timeline tags={['playlist']} />
+        <Timeline entries={entries} />
       </div>
     </>
   )

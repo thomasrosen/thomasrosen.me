@@ -1,15 +1,8 @@
-import type { TimelineEntry } from '@/types'
-import { getEntries } from './getEntries'
+import type { GroupedEntries, TimelineEntry } from '@/types'
 
-type GroupedEntries = Record<string, TimelineEntry[]>
-
-export async function getGroupedEntries({
-  tags = [],
-}: {
-  tags?: string[]
-} = {}): Promise<GroupedEntries> {
-  let entries = await getEntries({ tags })
-
+export function groupEntries(
+  { entries }: { entries: TimelineEntry[] } = { entries: [] }
+): GroupedEntries {
   // Sort entries by date in descending order
   entries = entries.sort((a, b) => {
     const dateA = new Date(a.date || '1970-01-01').getTime()

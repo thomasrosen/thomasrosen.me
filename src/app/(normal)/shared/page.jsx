@@ -1,10 +1,12 @@
+import { getEntries } from '@/components/Timeline/getEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
-export default function Page() {
+export default async function Page() {
+  const entries = await getEntries({ tags: ['share'] })
   return (
     <>
       <Typo as="h2" className="tab_content">
@@ -24,7 +26,7 @@ export default function Page() {
       </Typo>
 
       <div className="tab_content">
-        <Timeline hiddenTags={['share']} tags={['share']} />
+        <Timeline entries={entries} hiddenTags={['share']} />
       </div>
     </>
   )

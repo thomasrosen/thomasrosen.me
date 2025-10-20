@@ -44,3 +44,5 @@ export type TimelineEntry = {
   url?: string
   displayAs: string
 }
+
+export type GroupedEntries = Record<string, TimelineEntry[]>
