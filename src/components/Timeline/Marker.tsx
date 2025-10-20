@@ -48,9 +48,6 @@ export function Marker({
   // [.hover_&]:classname
 
   const onImageLoadedInternal = useCallback(() => {
-    console.log('\n\nonImageLoadedInternal')
-    console.log('typeof onImageLoaded', typeof onImageLoaded)
-    console.log('typeof elementRef.current', typeof elementRef.current)
     if (onImageLoaded) {
       onImageLoaded({ element: elementRef.current })
     }
