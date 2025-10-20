@@ -320,7 +320,7 @@ export function ReactMap({
           const zoom = await source.getClusterExpansionZoom(clusterId)
           map.current.easeTo({
             center: f?.geometry.coordinates,
-            zoom,
+            zoom: zoom + 1, // zoom in a bit more
           })
         }
       } else {
