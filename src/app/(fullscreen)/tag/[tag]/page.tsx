@@ -27,7 +27,7 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
   const entries = await getEntries({ tags })
 
   return (
-    <div className="app_wrapper !pt-24 theme_black">
+    <div className="app_wrapper !pt-24">
       {tag !== 'image' ? (
         <Typo as="h2" className="tab_content" variant="h3">
           <div className="flex flex-wrap gap-3">

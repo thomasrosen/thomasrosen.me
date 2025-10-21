@@ -1,9 +1,9 @@
 import { Emoji } from '@/components/Emoji'
-import { Typo } from '@/components/Typo'
 import PageContact from '@/components/pages/PageContact'
 import PageFollow from '@/components/pages/PageFollow'
 import PageHello from '@/components/pages/PageHello'
 import PageSponsor from '@/components/pages/PageSponsor'
+import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 
@@ -31,9 +31,11 @@ export default function PageStart() {
             <Badge size="lg" variant="accent">
               <Emoji aria-hidden="true">🇪🇺</Emoji> Politics
             </Badge>
-            <Badge size="lg" variant="accent">
-              <Emoji aria-hidden="true">🏳️‍🌈</Emoji> Queer-Rights
-            </Badge>
+            <Link href="/tag/queer/">
+              <Badge size="lg" variant="accent">
+                <Emoji aria-hidden="true">🏳️‍🌈</Emoji> Queer-Rights
+              </Badge>
+            </Link>
           </div>
         </div>
       </section>
