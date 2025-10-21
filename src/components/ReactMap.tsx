@@ -146,6 +146,7 @@ export function ReactMap({
     })
   }, [userWantsDarkmode])
 
+  const entry_zindex = useRef<Map<string, { zindex: number }>>(new Map())
   const htmlMarker = useRef<
     Map<string, { markerId: string; entryId: string; marker: maplibregl.Marker }>
   >(new Map())
@@ -182,12 +183,12 @@ export function ReactMap({
         const cloned_marker_element = marker_element.element.cloneNode(true) as HTMLElement
         // cloned_marker_element.classList.add('open_marker')
 
-        await onImagesLoaded(cloned_marker_element) // wait for all images to load.
-
         const el = document.createElement('div')
         // el.innerHTML = `<div class="open_marker">${f.properties.iconSvg}</div>`
         el.style.pointerEvents = 'none'
         el.appendChild(cloned_marker_element)
+
+        await onImagesLoaded(el) // wait for all images to load.
 
         const newMarker = new maplibregl.Marker({
           element: el,
@@ -209,6 +210,8 @@ export function ReactMap({
       }
 
       if (entryId) {
+        entry_zindex.current.set(entryId, { zindex: Date.now() })
+        setSource() // set-source to update z-index
         map.current.setFeatureState({ source: 'pois', id: entryId }, { hover: true })
         // map.current.triggerRepaint()
       }
@@ -231,9 +234,7 @@ export function ReactMap({
           return
         }
 
-        console.log('htmlMarker.current.values()', htmlMarker.current.values())
         const thisMarker = htmlMarker.current.get(markerId)
-        console.log('thisMarker', thisMarker)
         if (!thisMarker) {
           return
         }
@@ -351,7 +352,7 @@ export function ReactMap({
       lastHoveredEntryId.current = ''
     }
 
-    const renderMarkers = () => {
+    const setSource = () => {
       if (!map.current || map.current === null) {
         // only change if map exists
         return
@@ -361,11 +362,12 @@ export function ReactMap({
         type: 'FeatureCollection' as const,
         features: Object.values(markerElementRefs.current)
           .map(({ width, height, entry }) => {
-            if (!(entry.id && entry.latitude && entry.longitude)) {
+            const entryId = entry.id
+            if (!(entryId && entry.latitude && entry.longitude)) {
               return null
             }
 
-            const iconName = `poi_icon_${entry.id}`
+            const iconName = `poi_icon_${entryId}`
             if (!map.current?.hasImage(iconName)) {
               const entryId = entry.id
 
@@ -441,16 +443,16 @@ export function ReactMap({
             }
 
             return {
-              id: entry.id,
+              id: entryId,
               type: 'Feature' as const,
               geometry: {
                 type: 'Point' as const,
                 coordinates: [entry.longitude, entry.latitude],
               },
               properties: {
-                id: entry.id,
+                id: entryId,
                 entry,
-                rank: 1,
+                rank: entry_zindex.current.get(entryId)?.zindex || 1,
                 name: entry.title || '',
                 iconName,
                 iconWidth: width,
@@ -486,6 +488,13 @@ export function ReactMap({
           //   ],
           // },
         })
+      }
+    }
+
+    const addLayers = () => {
+      if (!map.current || map.current === null) {
+        // only change if map exists
+        return
       }
 
       if (!map.current.getLayer('poi-icons')) {
@@ -585,9 +594,11 @@ export function ReactMap({
     }
 
     if (map.current.loaded()) {
-      renderMarkers()
+      setSource()
+      addLayers()
     } else {
-      map.current.on('load', renderMarkers)
+      map.current.on('load', setSource)
+      map.current.on('load', addLayers)
     }
 
     return () => {
@@ -596,7 +607,8 @@ export function ReactMap({
         return
       }
 
-      map.current.off('load', renderMarkers)
+      map.current.off('load', setSource)
+      map.current.off('load', addLayers)
 
       map.current.off('mouseenter', 'poi-icons-clusters', onPoiMousemove)
       map.current.off('mousemove', 'poi-icons-clusters', onPoiMousemove)
