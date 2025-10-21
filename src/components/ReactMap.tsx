@@ -4,6 +4,7 @@
 import useDarkTheme from '@/components/hooks/useDarkTheme'
 import { Icon } from '@/components/Icon'
 import { absoluteStyle } from '@/lib/client/absoluteStyle'
+import { onImagesLoaded } from '@/lib/client/onAllImagesLoaded'
 import type { TimelineEntry } from '@/types'
 import { toCanvas as htmlToImage_toCanvas } from 'html-to-image'
 import maplibregl from 'maplibre-gl'
@@ -155,7 +156,7 @@ export function ReactMap({
       return
     }
 
-    const showMarker = ({
+    const showMarker = async ({
       f,
       entryId,
       isClusterMarker,
@@ -179,7 +180,7 @@ export function ReactMap({
         const cloned_marker_element = marker_element.element.cloneNode(true) as HTMLElement
         // cloned_marker_element.classList.add('open_marker')
 
-        // await onImagesLoaded(cloned_marker_element) // wait for all images to load.
+        await onImagesLoaded(cloned_marker_element) // wait for all images to load.
 
         const el = document.createElement('div')
         // el.innerHTML = `<div class="open_marker">${f.properties.iconSvg}</div>`
@@ -493,7 +494,7 @@ export function ReactMap({
             'text-max-width': 12,
             'text-optional': true,
             'text-padding': 2,
-            'text-size': 16,
+            'text-size': 0, // 16,
             visibility: 'visible',
             'text-justify': 'center',
             'icon-anchor': 'center',
