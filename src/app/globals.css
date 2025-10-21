@@ -19,6 +19,10 @@
   --radius-4xl: 2rem;
   --radius-5xl: 3rem;
 
+  --ease-out-soft: cubic-bezier(0.4,1,0.4,1);
+  --ease-out-nano-bounce: cubic-bezier(0.2,1.3,0.4,1);
+  --ease-out-mini-bounce: cubic-bezier(0.4,2,0.4,1);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

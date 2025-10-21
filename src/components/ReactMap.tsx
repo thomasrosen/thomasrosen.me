@@ -146,7 +146,9 @@ export function ReactMap({
     })
   }, [userWantsDarkmode])
 
-  const htmlMarker = useRef<Record<string, maplibregl.Marker>>({})
+  const htmlMarker = useRef<
+    Map<string, { markerId: string; entryId: string; marker: maplibregl.Marker }>
+  >(new Map())
   const clusterMarkers = useRef<Set<string>>(new Set())
   const lastHoveredEntryId = useRef<string>('')
 
@@ -187,7 +189,7 @@ export function ReactMap({
         el.style.pointerEvents = 'none'
         el.appendChild(cloned_marker_element)
 
-        htmlMarker.current[entryId] = new maplibregl.Marker({
+        const newMarker = new maplibregl.Marker({
           element: el,
           anchor: 'center',
           opacityWhenCovered: '0',
@@ -196,9 +198,12 @@ export function ReactMap({
           .setLngLat(f.geometry.coordinates)
           .addTo(map.current)
 
+        const markerId = Math.random().toString(36).substring(2, 15)
+        htmlMarker.current.set(markerId, { markerId, entryId, marker: newMarker })
+
         setTimeout(() => {
           el.classList.add('hover') // start animation
-        }, 100)
+        }, 10)
       } else {
         clusterMarkers.current.add(entryId)
       }
@@ -208,40 +213,48 @@ export function ReactMap({
         // map.current.triggerRepaint()
       }
     }
-    const hideMarker = ({ entryId }: { entryId: string }) => {
-      if (!map.current || map.current === null || !entryId) {
+    const hideMarker = ({ markerId, entryId }: { markerId?: string; entryId?: string }) => {
+      if (!map.current || map.current === null) {
         // only change if map exists
         return
       }
 
-      if (clusterMarkers.current.has(entryId)) {
+      if (entryId && clusterMarkers.current.has(entryId)) {
         // is cluster marker
         if (entryId) {
           map.current.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
           clusterMarkers.current.delete(entryId)
           // map.current.triggerRepaint()
         }
-        return
-      }
+      } else {
+        if (!markerId) {
+          return
+        }
 
-      if (entryId) {
-        map.current.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
-        // map.current.triggerRepaint()
+        console.log('htmlMarker.current.values()', htmlMarker.current.values())
+        const thisMarker = htmlMarker.current.get(markerId)
+        console.log('thisMarker', thisMarker)
+        if (!thisMarker) {
+          return
+        }
+
+        entryId = thisMarker.entryId
+
+        thisMarker.marker?.getElement().classList.remove('hover') // remove animation
+
+        setTimeout(() => {
+          if (entryId) {
+            map.current?.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
+            // map.current?.triggerRepaint()
+          }
+          if (thisMarker) {
+            thisMarker.marker.remove()
+          }
+          htmlMarker.current.delete(thisMarker.markerId)
+        }, 300)
       }
 
       map.current.getCanvas().style.cursor = ''
-      const thisMarker = htmlMarker.current[entryId]
-      thisMarker?.getElement().classList.remove('hover') // remove animation
-
-      setTimeout(() => {
-        if (entryId) {
-          map.current?.setFeatureState({ source: 'pois', id: entryId }, { hover: false })
-          // map.current?.triggerRepaint()
-        }
-        if (thisMarker) {
-          thisMarker.remove()
-        }
-      }, 200)
     }
     const hideAllMarkers = () => {
       if (!map.current || map.current === null) {
@@ -250,12 +263,12 @@ export function ReactMap({
       }
 
       // normal markers
-      for (const entryId of Object.keys(htmlMarker.current)) {
-        hideMarker({ entryId })
+      for (const markerId of htmlMarker.current.keys()) {
+        hideMarker({ markerId })
       }
 
       // cluster markers
-      for (const entryId of [...clusterMarkers.current]) {
+      for (const entryId of clusterMarkers.current.values()) {
         hideMarker({ entryId })
       }
     }
