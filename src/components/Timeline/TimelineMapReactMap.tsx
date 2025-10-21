@@ -35,15 +35,18 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
       />
 
       <Dialog onOpenChange={setIsOpen} open={isOpen}>
-        <DialogContent className="z-100 max-w-[calc(2*var(--content-box-width))] sm:max-w-full">
-          <DialogHeader>
+        <DialogContent
+          className="z-100 max-h-full w-max max-w-full rounded-4xl sm:w-max sm:max-w-full"
+          showCloseButton={false}
+        >
+          <DialogHeader className="hidden">
             <DialogTitle>Details</DialogTitle>
             <DialogDescription>This is not finished.</DialogDescription>
           </DialogHeader>
 
           <Timeline entries={selectedEntriesRef.current} showTimeHeadlines={true} />
 
-          <DialogFooter className="sm:justify-start">
+          <DialogFooter className="justify-start sm:justify-start">
             <DialogClose asChild>
               <Button type="button" variant="secondary">
                 Close
