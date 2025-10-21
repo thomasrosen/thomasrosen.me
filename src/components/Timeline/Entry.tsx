@@ -34,6 +34,7 @@ export function Entry({
           hiddenTags={hiddenTags}
         />
       )
+    case 'place':
     case 'playlist':
     case 'link':
     case 'article':
