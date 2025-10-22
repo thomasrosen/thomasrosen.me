@@ -613,11 +613,11 @@ _::-webkit-full-page-media,
 
 @media (hover: hover) and (pointer: fine) {
   button,
-  a {
+  a.is-button {
     transition: transform 0.1s var(--ease-out-soft);
   }
   button:active,
-  a:active {
+  a.is-button:active {
     transform: scale(0.97);
   }
 }
