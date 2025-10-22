@@ -48,7 +48,7 @@ export function EntryTextContent({
   return (
     <div className="flex w-full flex-col gap-y-3 text-[0px] leading-none">
       {showMetadataHeader ? (
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <div aria-hidden className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {entry.date ? (
             <Typo as="time" className="shrink-0" variant="muted">
               {noTimeDefined ? dateString : fullDateTimeString}
@@ -85,6 +85,8 @@ export function EntryTextContent({
         </Typo>
       )}
 
+      {entry.title && entry.text ? <span className="sr-only"> — </span> : null}
+
       {entry.text && (
         <Typo
           className={cn('!mb-0', entry.displayAs === 'image' && 'line-clamp-3')}
@@ -95,7 +97,7 @@ export function EntryTextContent({
       )}
 
       {entry.url && !entry.url.startsWith('/') ? (
-        <Typo as="div" className="!text-sm break-all" variant="muted">
+        <Typo aria-hidden as="div" className="!text-sm break-all" variant="muted">
           {entry.url}
         </Typo>
       ) : null}

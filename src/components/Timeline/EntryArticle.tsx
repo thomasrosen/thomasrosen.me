@@ -54,6 +54,7 @@ export function EntryArticle({
           <>
             {displayAs === 'playlist' ? (
               <div
+                aria-hidden
                 className="image_backdrop_glow"
                 style={{
                   // @ts-expect-error
@@ -63,6 +64,7 @@ export function EntryArticle({
             ) : null}
             <Image
               alt={''}
+              aria-hidden
               className={cn(
                 'absolute z-10 h-auto @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full shrink-0 rounded-lg object-cover opacity-60 blur-[64px] saturate-150 transition-all'
               )}
@@ -77,6 +79,7 @@ export function EntryArticle({
             />
             <Image
               alt={''}
+              aria-hidden
               className={cn(
                 'smooth-rounded-lg relative z-20 h-auto @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full object-cover transition-all',
                 displayAs === 'playlist' && 'contrast-110 saturate-110'
@@ -92,14 +95,20 @@ export function EntryArticle({
             />
           </>
         ) : displayAs === 'playlist' ? (
-          <div className="smooth-rounded-lg flex h-[32px] @sm/card:w-[32px] w-full shrink-0 items-center justify-center bg-accent">
+          <div
+            aria-hidden
+            className="smooth-rounded-lg flex h-[32px] @sm/card:w-[32px] w-full shrink-0 items-center justify-center bg-accent"
+          >
             <Emoji className="text-5xl">🎵</Emoji>
           </div>
         ) : displayAs === 'link' ? null : (
           // <div className="flex h-[32px] @sm/card:w-[32px] w-[32px] shrink-0 items-center justify-center smooth-rounded-lg bg-accent">
           //   <Emoji className="text-lg">🔗</Emoji>
           // </div>
-          <div className="smooth-rounded-lg flex @lg/card:h-[calc(32px*6)] @md/card:h-[calc(32px*5)] h-[calc(32px*4)] @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full shrink-0 items-center justify-center bg-accent">
+          <div
+            aria-hidden
+            className="smooth-rounded-lg flex @lg/card:h-[calc(32px*6)] @md/card:h-[calc(32px*5)] h-[calc(32px*4)] @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full shrink-0 items-center justify-center bg-accent"
+          >
             <Emoji className="text-5xl">📄</Emoji>
           </div>
         )}
