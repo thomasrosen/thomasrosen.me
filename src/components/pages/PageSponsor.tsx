@@ -1,4 +1,4 @@
-import { Dot } from '@/components/Dot'
+import { DotLinkRow } from '@/components/DotLinkRow'
 import { Typo } from '@/components/Typo'
 
 export default function PageSponsor({ className }: { className?: string }) {
@@ -9,31 +9,20 @@ export default function PageSponsor({ className }: { className?: string }) {
       </Typo>
 
       <div className="links_grid">
-        <Typo as="h3" className="text-md">
-          <Dot color="#0d57aa" />
-          PayPal
-        </Typo>
-        <a
+        <DotLinkRow
+          color="#0d57aa"
           data-umami-event="paypal"
           href="https://paypal.me/ThomasRosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          ThomasRosen
-        </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#000000" />
-          GitHub
-        </Typo>
-        <a
-          data-umami-event="github"
+          label="PayPal"
+          value="ThomasRosen"
+        />
+        <DotLinkRow
+          color="#000000"
+          data-umami-event="github-sponsors"
           href="https://github.com/sponsors/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
+          label="GitHub"
+          value="thomasrosen"
+        />
 
         {/*
 

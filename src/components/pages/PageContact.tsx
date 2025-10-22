@@ -1,6 +1,5 @@
-import { Dot } from '@/components/Dot'
+import { DotLinkRow } from '@/components/DotLinkRow'
 import { Typo } from '@/components/Typo'
-import Link from 'next/link'
 
 export default function PageContact({ className }: { className?: string }) {
   return (
@@ -10,31 +9,21 @@ export default function PageContact({ className }: { className?: string }) {
       </Typo>
 
       <div className="links_grid">
-        <Typo as="h3" className="text-md">
-          <Dot color="var(--primary)" />
-          Email
-        </Typo>
-        <Link
+        <DotLinkRow
+          color="var(--primary)"
           data-umami-event="Email"
           href="mailto:hello@thomasrosen.me"
-          rel="noreferrer"
-          target="_blank"
-        >
-          hello@thomasrosen.me
-        </Link>
+          label="Email"
+          value="hello@thomasrosen.me"
+        />
 
-        <Typo as="h3" className="text-md">
-          <Dot color="#502379" />
-          Volt Email
-        </Typo>
-        <Link
+        <DotLinkRow
+          color="#502379"
           data-umami-event="Volt Email"
           href="mailto:thomas.rosen@volteuropa.org"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas.rosen@volteuropa.org
-        </Link>
+          label="Volt Email"
+          value="thomas.rosen@volteuropa.org"
+        />
       </div>
     </section>
   )

@@ -1,4 +1,5 @@
-import { Dot } from '@/components/Dot'
+import { DotLinkRow } from '@/components/DotLinkRow'
+import { LinksGridDivider } from '@/components/LinksGridDivider'
 import { Typo } from '@/components/Typo'
 
 export default function PageFollow({ className }: { className?: string }) {
@@ -9,274 +10,165 @@ export default function PageFollow({ className }: { className?: string }) {
       </Typo>
 
       <div className="links_grid">
-        <Typo as="h3" className="text-md">
-          <Dot color="#ed4956" />
-          Instagram
-        </Typo>
-        <a
+        <DotLinkRow
+          color="#ed4956"
           data-umami-event="instagram"
           href="https://www.instagram.com/thomasrosen/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#000" />
-          Threads
-        </Typo>
-        <a
+          label="Instagram"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#000"
           data-umami-event="threads"
           href="https://www.threads.com/@thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#00f2ea" />
-          TikTok
-        </Typo>
-        {/* #ff0050 #00f2ea */}
-        <a
+          label="Threads"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#00f2ea" // #ff0050 #00f2ea
           data-umami-event="tiktok"
           href="https://www.tiktok.com/@thomasroses"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasroses
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#ff0000" />
-          YouTube
-        </Typo>
-        <a
+          label="TikTok"
+          value="thomasroses"
+        />
+        <DotLinkRow
+          color="#ff0000"
           data-umami-event="youtube"
           href="https://youtube.com/@thomas_rosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas_rosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#0a66c1" />
-          LinkedIn
-        </Typo>
-        <a
+          label="YouTube"
+          value="thomas_rosen"
+        />
+        <DotLinkRow
+          color="#0a66c1"
           data-umami-event="linkedin"
           href="https://www.linkedin.com/in/thomasroses/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasroses
-        </a>
-        <div />
-        <div className="h-2" />
-        <Typo as="h3" className="text-md">
-          <Dot color="#00f" />
-          Bluesky
-        </Typo>
-        <a
-          data-umami-event="threads"
+          label="LinkedIn"
+          value="thomasroses"
+        />
+
+        <LinksGridDivider />
+
+        <DotLinkRow
+          color="#00f"
+          data-umami-event="bluesky"
           href="https://bsky.app/profile/thomasrosen.me"
-          rel="noreferrer"
-          target="_blank"
-        >
-          @thomasrosen.me
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#2f93d7" />
-          Mastodon
-        </Typo>
-        <a
+          label="Bluesky"
+          value="@thomasrosen.me"
+        />
+        <DotLinkRow
+          color="#2f93d7"
           data-umami-event="mastodon"
           href="https://mastodon.social/@thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#1da1f2" />
-          Twitter
-        </Typo>
-        <a
+          label="Mastodon"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#1da1f2"
           data-umami-event="twitter"
           href="https://twitter.com/thomas_roses"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas_roses
-        </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#000000" />
-          Subreply
-        </Typo>
-        <a
+          label="Twitter"
+          value="thomas_roses"
+        />
+        <DotLinkRow
+          color="#000000"
           data-umami-event="subreply"
           href="https://subreply.com/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#268f23" />
-          Medium
-        </Typo>
-        <a
+          label="Subreply"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#268f23"
           data-umami-event="medium"
           href="https://medium.com/@thomas_rosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas_rosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#001935" />
-          Tumblr
-        </Typo>
-        <a
+          label="Medium"
+          value="thomas_rosen"
+        />
+        <DotLinkRow
+          color="#001935"
           data-umami-event="tumblr"
           href="https://thomasrosen.tumblr.com/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
+          label="Tumblr"
+          value="thomasrosen"
+        />
 
-        <div />
-        <div className="h-2" />
-        <Typo as="h3" className="text-md">
-          <Dot color="#000000" />
-          GitHub
-        </Typo>
-        <a
+        <LinksGridDivider />
+
+        <DotLinkRow
+          color="#000000"
           data-umami-event="github"
           href="https://github.com/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#e24329" />
-          GitLab
-        </Typo>
-        <a
+          label="GitHub"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#e24329"
           data-umami-event="gitlab"
           href="https://gitlab.com/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#e24329" />
-          GitLab (Volt DE)
-        </Typo>
-        <a
+          label="GitLab"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#e24329"
           data-umami-event="gitlab-volt"
           href="https://gitlab.com/thomas.rosen.volt"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas.rosen.volt
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#000000" />
-          dev.to
-        </Typo>
-        <a
+          label="GitLab (Volt DE)"
+          value="thomas.rosen.volt"
+        />
+        <DotLinkRow
+          color="#000000"
           data-umami-event="dev-to"
           href="https://dev.to/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#7ebc6f" />
-          OpenStreetMap
-        </Typo>
-        <a
+          label="dev.to"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#7ebc6f"
           data-umami-event="openstreetmap"
           href="https://www.openstreetmap.org/user/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
+          label="OpenStreetMap"
+          value="thomasrosen"
+        />
 
-        <div />
-        <div className="h-2" />
-        <Typo as="h3" className="text-md">
-          <Dot color="#d60017" />
-          Apple Music
-        </Typo>
-        <a
+        <LinksGridDivider />
+
+        <DotLinkRow
+          color="#d60017"
           data-umami-event="apple-music"
           href="https://music.apple.com/profile/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#1ed760" />
-          Spotify
-        </Typo>
-        <a
-          data-umami-event="apple-music"
+          label="Apple Music"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#1ed760"
+          data-umami-event="spotify"
           href="https://open.spotify.com/user/1165642010"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Thomas Rosen (1165642010)
-        </a>
+          label="Spotify"
+          value="Thomas Rosen (1165642010)"
+        />
 
-        <div />
-        <div className="h-2" />
+        <LinksGridDivider />
 
-        <Typo as="h3" className="text-md">
-          <Dot color="#e60023" />
-          Pinterest
-        </Typo>
-        <a
+        <DotLinkRow
+          color="#e60023"
           data-umami-event="pinterest"
           href="https://www.pinterest.com/thomas_roses/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas_roses
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#1067d9" />
-          Flickr
-        </Typo>
-        <a
+          label="Pinterest"
+          value="thomas_roses"
+        />
+        <DotLinkRow
+          color="#1067d9"
           data-umami-event="flickr"
           href="https://www.flickr.com/people/116207237@N03/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Thomas Rosen (thomasroses / 116207237@N03)
-        </a>
-        <Typo as="h3" className="text-md">
-          <Dot color="#ea4c89" />
-          Dribbble
-        </Typo>
-        <a
+          label="Flickr"
+          value="Thomas Rosen (thomasroses / 116207237@N03)"
+        />
+        <DotLinkRow
+          color="#ea4c89"
           data-umami-event="dribbble"
           href="https://dribbble.com/thomasrosen/likes"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen/likes
-        </a>
+          label="Dribbble"
+          value="thomasrosen/likes"
+        />
       </div>
     </section>
   )
