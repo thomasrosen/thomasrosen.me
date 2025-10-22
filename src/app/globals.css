@@ -258,84 +258,18 @@ img {
   max-width: 100%;
 }
 
-.OLDSTYLES button {
-  font-family: var(--font-family-button);
-  text-decoration: none;
-
-  font-size: inherit;
-  letter-spacing: inherit;
-
-  /* text-transform: uppercase; */
-  border: 0;
-  font-weight: bold;
-  cursor: pointer;
-
-  padding: 10px 20px;
-  border-radius: 100px;
-  color: var(--background);
-  fill: var(--background);
-  background: var(--foreground);
-
-  --shadow-width: 0px;
-  --shadow-color: var(--foreground);
-  --shadow-amount: 0;
-  /* this gets rid of a weird 0.1px gap between box and shadow */
-  box-shadow:
-    inset 0 0 calc(1px * var(--shadow-amount)) calc(1px * var(--shadow-amount))
-    var(--shadow-color),
-    0 0 0 calc(var(--shadow-width) * var(--shadow-amount)) var(--shadow-color),
-    0 0 calc(1px * var(--shadow-amount)) calc(1px * var(--shadow-amount))
-    var(--shadow-color);
-
-  transition: box-shadow 0.2s ease;
-}
-.OLDSTYLES button.small {
-  padding: 5px 10px;
-  font-size: 14px;
-}
-.OLDSTYLES button[data-selected="true"] {
-  --shadow-width: 5px;
-  --shadow-amount: 1;
-}
-.OLDSTYLES button:not(:disabled):hover {
-  --shadow-width: 10px;
-  --shadow-amount: 1;
-  color: var(--background);
-  fill: var(--background);
-  background: var(--foreground);
-  text-decoration: none;
-}
-.OLDSTYLES button.small:not(:disabled):hover {
-  --shadow-width: 5px;
-  --shadow-amount: 1;
-}
-.OLDSTYLES button:not(:disabled):active,
-.OLDSTYLES button:not(:disabled):focus,
-.OLDSTYLES button:not(:disabled).active,
-.OLDSTYLES a.active button:not(:disabled) {
-  color: var(--background);
-  fill: var(--background);
-  background: var(--primary);
-  --shadow-color: var(--primary);
-  text-decoration: none;
-}
-.OLDSTYLES button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 code {
   font-family: var(--font-family-code);
 }
 
-a,
+a:not(.is-button),
 .link {
   color: var(--primary);
   text-decoration: none;
   text-decoration-color: var(--primary);
 }
 
-a:hover,
+a:not(.is-button):hover,
 .link:hover {
   color: var(--primary);
   text-decoration: underline;
@@ -343,7 +277,16 @@ a:hover,
   text-decoration-color: currentColor;
 }
 
-a.inherit_color {
+a:not(.is-button):focus-visible,
+.link:focus-visible {
+  outline-offset: 3px;
+  outline-width: 3px;
+  outline-style: solid;
+  border-radius: 3px;
+  outline-color: currentColor;
+}
+
+a:not(.is-button).inherit_color {
   color: inherit;
   text-decoration-color: inherit;
 }
@@ -667,3 +610,15 @@ _::-webkit-full-page-media,
   transform: translate(0, -50%);
   opacity: 0.5;
 } */
+
+@media (hover: hover) and (pointer: fine) {
+  button,
+  a {
+    transition: transform 0.1s var(--ease-out-soft);
+  }
+  button:active,
+  a:active {
+    transform: scale(0.97);
+  }
+}
+

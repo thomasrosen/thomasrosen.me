@@ -5,7 +5,7 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 const badgeVariants = cva(
-  'inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap border transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none',
+  'focus-visible:-outline-offset-3 inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap border transition-[color,box-shadow] focus-visible:outline-[3px] focus-visible:outline-ring focus-visible:outline-solid aria-invalid:border-destructive aria-invalid:outline-destructive/20 dark:aria-invalid:outline-destructive/40 [&>svg]:pointer-events-none',
   {
     variants: {
       variant: {
@@ -14,7 +14,7 @@ const badgeVariants = cva(
           'border-transparent bg-secondary text-secondary-foreground [a>&]:hover:bg-secondary/80',
         accent: 'border-transparent bg-accent text-accent-foreground [a>&]:hover:bg-accent/80',
         destructive:
-          'border-transparent bg-destructive text-white focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40 [a>&]:hover:bg-destructive/80',
+          'border-transparent bg-destructive text-white focus-visible:outline-destructive/20 dark:bg-destructive/60 dark:focus-visible:outline-destructive/40 [a>&]:hover:bg-destructive/80',
         outline: 'text-foreground [a>&]:hover:bg-accent [a>&]:hover:text-accent-foreground',
       },
       size: {

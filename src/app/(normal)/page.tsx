@@ -20,22 +20,26 @@ export default function PageStart() {
             <Badge size="lg" variant="accent">
               <Emoji aria-hidden="true">🤖</Emoji> Programming
             </Badge>
-            <Link href="/tag/image/">
-              <Badge size="lg" variant="accent">
+
+            <Badge asChild size="lg" variant="accent">
+              <Link className="is-button" href="/tag/image/">
                 <Emoji aria-hidden="true">📸</Emoji> Photography
-              </Badge>
-            </Link>
+              </Link>
+            </Badge>
+
             <Badge size="lg" variant="accent">
               <Emoji aria-hidden="true">🎨</Emoji> Design
             </Badge>
+
             <Badge size="lg" variant="accent">
               <Emoji aria-hidden="true">🇪🇺</Emoji> Politics
             </Badge>
-            <Link href="/tag/queer/">
-              <Badge size="lg" variant="accent">
+
+            <Badge asChild size="lg" variant="accent">
+              <Link className="is-button" href="/tag/queer/">
                 <Emoji aria-hidden="true">🏳️‍🌈</Emoji> Queer-Rights
-              </Badge>
-            </Link>
+              </Link>
+            </Badge>
           </div>
         </div>
       </section>

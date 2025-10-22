@@ -134,11 +134,16 @@ export default async function Page() {
           The following playlists are songs I liked or discovered in the month of that playlist.
         </Typo>
 
-        <Link href="https://music.apple.com/profile/thomasrosen" rel="noreferrer" target="_blank">
-          <Button size="lg" variant="secondary">
+        <Button asChild size="lg" variant="secondary">
+          <Link
+            className="is-button"
+            href="https://music.apple.com/profile/thomasrosen"
+            rel="noreferrer"
+            target="_blank"
+          >
             follow what I listen to on Apple Music
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       <GenreChart chartData={chartData} />

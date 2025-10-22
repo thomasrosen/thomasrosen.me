@@ -23,39 +23,42 @@ export default async function PageArticles() {
         <br />
 
         <div className="mb-6 flex flex-wrap gap-2">
-          <Link href="/blog/feed.rss" target="_blank">
-            <Button size="lg" variant="secondary">
+          <Button asChild size="lg" variant="secondary">
+            <Link className="is-button" href="/blog/feed.rss" target="_blank">
               RSS-Feed
-            </Button>
-          </Link>
+            </Link>
+          </Button>
 
-          <Link
-            href="https://open.spotify.com/show/4tdSfXGtc96XrdmYR7NlMk"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Button size="lg" variant="accent">
+          <Button asChild size="lg" variant="accent">
+            <Link
+              className="is-button"
+              href="https://open.spotify.com/show/4tdSfXGtc96XrdmYR7NlMk"
+              rel="noreferrer"
+              target="_blank"
+            >
               Spotify
-            </Button>
-          </Link>
-          <Link
-            href="https://www.youtube.com/playlist?list=PLLImRvwJvhwmueAA0cY4qCScBsjpKP5T2"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Button size="lg" variant="accent">
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="accent">
+            <Link
+              className="is-button"
+              href="https://www.youtube.com/playlist?list=PLLImRvwJvhwmueAA0cY4qCScBsjpKP5T2"
+              rel="noreferrer"
+              target="_blank"
+            >
               YouTube Podcasts
-            </Button>
-          </Link>
-          <Link
-            href="https://podcasts.apple.com/de/podcast/thomas-rosen-blog/id1678064365"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Button size="lg" variant="accent">
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="accent">
+            <Link
+              className="is-button"
+              href="https://podcasts.apple.com/de/podcast/thomas-rosen-blog/id1678064365"
+              rel="noreferrer"
+              target="_blank"
+            >
               Apple Podcasts
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
 

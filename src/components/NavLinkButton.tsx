@@ -9,10 +9,10 @@ export function NavLinkButton({ href, children }: { href: string; children: Reac
   const isActive = pathname === href
 
   return (
-    <Link href={href}>
-      <Button size="lg" variant={isActive ? 'secondary' : 'glass'}>
+    <Button asChild size="lg" variant={isActive ? 'secondary' : 'glass'}>
+      <Link className="is-button" href={href}>
         {children}
-      </Button>
-    </Link>
+      </Link>
+    </Button>
   )
 }
