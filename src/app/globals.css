@@ -614,7 +614,9 @@ _::-webkit-full-page-media,
 @media (hover: hover) and (pointer: fine) {
   button,
   a.is-button {
-    transition: transform 0.1s var(--ease-out-soft);
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   button:active,
   a.is-button:active {
