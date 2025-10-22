@@ -21,7 +21,6 @@ export default function PageFollow({ className }: { className?: string }) {
         >
           thomasrosen
         </a>
-
         <Typo as="h3" className="text-md">
           <Dot color="#000" />
           Threads
@@ -34,7 +33,6 @@ export default function PageFollow({ className }: { className?: string }) {
         >
           thomasrosen
         </a>
-
         <Typo as="h3" className="text-md">
           <Dot color="#00f2ea" />
           TikTok
@@ -48,33 +46,18 @@ export default function PageFollow({ className }: { className?: string }) {
         >
           thomasroses
         </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#00f" />
-          Bluesky
-        </Typo>
-        <a
-          data-umami-event="threads"
-          href="https://bsky.app/profile/thomasrosen.me"
-          rel="noreferrer"
-          target="_blank"
-        >
-          @thomasrosen.me
-        </a>
-
         <Typo as="h3" className="text-md">
           <Dot color="#ff0000" />
           YouTube
         </Typo>
         <a
           data-umami-event="youtube"
-          href="https://www.youtube.com/channel/UCd5NFphJXk6aHaQJ7IildTA"
+          href="https://youtube.com/@thomas_rosen"
           rel="noreferrer"
           target="_blank"
         >
-          Thomas Rosen
+          thomas_rosen
         </a>
-
         <Typo as="h3" className="text-md">
           <Dot color="#0a66c1" />
           LinkedIn
@@ -87,63 +70,43 @@ export default function PageFollow({ className }: { className?: string }) {
         >
           thomasroses
         </a>
-
         <div />
         <div className="h-2" />
-
         <Typo as="h3" className="text-md">
-          <Dot color="#000000" />
-          GitHub
+          <Dot color="#00f" />
+          Bluesky
         </Typo>
         <a
-          data-umami-event="github"
-          href="https://github.com/thomasrosen"
+          data-umami-event="threads"
+          href="https://bsky.app/profile/thomasrosen.me"
+          rel="noreferrer"
+          target="_blank"
+        >
+          @thomasrosen.me
+        </a>
+        <Typo as="h3" className="text-md">
+          <Dot color="#2f93d7" />
+          Mastodon
+        </Typo>
+        <a
+          data-umami-event="mastodon"
+          href="https://mastodon.social/@thomasrosen"
           rel="noreferrer"
           target="_blank"
         >
           thomasrosen
         </a>
-
         <Typo as="h3" className="text-md">
-          <Dot color="#e24329" />
-          GitLab
+          <Dot color="#1da1f2" />
+          Twitter
         </Typo>
         <a
-          data-umami-event="gitlab"
-          href="https://gitlab.com/thomasrosen"
+          data-umami-event="twitter"
+          href="https://twitter.com/thomas_roses"
           rel="noreferrer"
           target="_blank"
         >
-          thomasrosen
-        </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#e24329" />
-          GitLab (Volt DE)
-        </Typo>
-        <a
-          data-umami-event="gitlab-volt"
-          href="https://gitlab.com/thomas.rosen.volt"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomas.rosen.volt
-        </a>
-
-        <div />
-        <div className="h-2" />
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#d60017" />
-          Apple Music
-        </Typo>
-        <a
-          data-umami-event="apple-music"
-          href="https://music.apple.com/profile/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
+          thomas_roses
         </a>
 
         <Typo as="h3" className="text-md">
@@ -153,19 +116,6 @@ export default function PageFollow({ className }: { className?: string }) {
         <a
           data-umami-event="subreply"
           href="https://subreply.com/thomasrosen"
-          rel="noreferrer"
-          target="_blank"
-        >
-          thomasrosen
-        </a>
-
-        <Typo as="h3" className="text-md">
-          <Dot color="#2f93d7" />
-          Mastodon
-        </Typo>
-        <a
-          data-umami-event="mastodon"
-          href="https://mastodon.social/@thomasrosen"
           rel="noreferrer"
           target="_blank"
         >
@@ -184,7 +134,6 @@ export default function PageFollow({ className }: { className?: string }) {
         >
           thomas_rosen
         </a>
-
         <Typo as="h3" className="text-md">
           <Dot color="#001935" />
           Tumblr
@@ -198,45 +147,56 @@ export default function PageFollow({ className }: { className?: string }) {
           thomasrosen
         </a>
 
+        <div />
+        <div className="h-2" />
         <Typo as="h3" className="text-md">
-          <Dot color="#e60023" />
-          Pinterest
+          <Dot color="#000000" />
+          GitHub
         </Typo>
         <a
-          data-umami-event="pinterest"
-          href="https://www.pinterest.com/thomas_roses/"
+          data-umami-event="github"
+          href="https://github.com/thomasrosen"
           rel="noreferrer"
           target="_blank"
         >
-          thomas_roses
+          thomasrosen
         </a>
-
         <Typo as="h3" className="text-md">
-          <Dot color="#1067d9" />
-          Flickr
+          <Dot color="#e24329" />
+          GitLab
         </Typo>
         <a
-          data-umami-event="flickr"
-          href="https://www.flickr.com/photos/116207237@N03/"
+          data-umami-event="gitlab"
+          href="https://gitlab.com/thomasrosen"
           rel="noreferrer"
           target="_blank"
         >
-          Thomas Rosen
+          thomasrosen
         </a>
-
         <Typo as="h3" className="text-md">
-          <Dot color="#ea4c89" />
-          Dribbble
+          <Dot color="#e24329" />
+          GitLab (Volt DE)
         </Typo>
         <a
-          data-umami-event="dribbble"
-          href="https://dribbble.com/thomasrosen/likes"
+          data-umami-event="gitlab-volt"
+          href="https://gitlab.com/thomas.rosen.volt"
           rel="noreferrer"
           target="_blank"
         >
-          thomasrosen/likes
+          thomas.rosen.volt
         </a>
-
+        <Typo as="h3" className="text-md">
+          <Dot color="#000000" />
+          dev.to
+        </Typo>
+        <a
+          data-umami-event="dev-to"
+          href="https://dev.to/thomasrosen"
+          rel="noreferrer"
+          target="_blank"
+        >
+          thomasrosen
+        </a>
         <Typo as="h3" className="text-md">
           <Dot color="#7ebc6f" />
           OpenStreetMap
@@ -250,13 +210,15 @@ export default function PageFollow({ className }: { className?: string }) {
           thomasrosen
         </a>
 
+        <div />
+        <div className="h-2" />
         <Typo as="h3" className="text-md">
-          <Dot color="#000000" />
-          dev.to
+          <Dot color="#d60017" />
+          Apple Music
         </Typo>
         <a
-          data-umami-event="dev-to"
-          href="https://dev.to/thomasrosen"
+          data-umami-event="apple-music"
+          href="https://music.apple.com/profile/thomasrosen"
           rel="noreferrer"
           target="_blank"
         >
@@ -264,16 +226,56 @@ export default function PageFollow({ className }: { className?: string }) {
         </a>
 
         <Typo as="h3" className="text-md">
-          <Dot color="#1da1f2" />
-          Twitter
+          <Dot color="#1ed760" />
+          Spotify
         </Typo>
         <a
-          data-umami-event="twitter"
-          href="https://twitter.com/thomas_roses"
+          data-umami-event="apple-music"
+          href="https://open.spotify.com/user/1165642010"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Thomas Rosen (1165642010)
+        </a>
+
+        <div />
+        <div className="h-2" />
+
+        <Typo as="h3" className="text-md">
+          <Dot color="#e60023" />
+          Pinterest
+        </Typo>
+        <a
+          data-umami-event="pinterest"
+          href="https://www.pinterest.com/thomas_roses/"
           rel="noreferrer"
           target="_blank"
         >
           thomas_roses
+        </a>
+        <Typo as="h3" className="text-md">
+          <Dot color="#1067d9" />
+          Flickr
+        </Typo>
+        <a
+          data-umami-event="flickr"
+          href="https://www.flickr.com/people/116207237@N03/"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Thomas Rosen (thomasroses / 116207237@N03)
+        </a>
+        <Typo as="h3" className="text-md">
+          <Dot color="#ea4c89" />
+          Dribbble
+        </Typo>
+        <a
+          data-umami-event="dribbble"
+          href="https://dribbble.com/thomasrosen/likes"
+          rel="noreferrer"
+          target="_blank"
+        >
+          thomasrosen/likes
         </a>
       </div>
     </section>
