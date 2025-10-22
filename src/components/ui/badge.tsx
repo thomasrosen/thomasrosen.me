@@ -9,13 +9,16 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-primary text-primary-foreground [a>&]:hover:bg-primary/80',
+        default:
+          'border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/80 [a>&]:hover:bg-primary/80',
         secondary:
-          'border-transparent bg-secondary text-secondary-foreground [a>&]:hover:bg-secondary/80',
-        accent: 'border-transparent bg-accent text-accent-foreground [a>&]:hover:bg-accent/80',
+          'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/80 [a>&]:hover:bg-secondary/80',
+        accent:
+          'border-transparent bg-accent text-accent-foreground [a&]:hover:bg-accent/80 [a>&]:hover:bg-accent/80',
         destructive:
-          'border-transparent bg-destructive text-white focus-visible:outline-destructive/20 dark:bg-destructive/60 dark:focus-visible:outline-destructive/40 [a>&]:hover:bg-destructive/80',
-        outline: 'text-foreground [a>&]:hover:bg-accent [a>&]:hover:text-accent-foreground',
+          'border-transparent bg-destructive text-white focus-visible:outline-destructive/20 dark:bg-destructive/60 dark:focus-visible:outline-destructive/40 [a&]:hover:bg-destructive/80 [a>&]:hover:bg-destructive/80',
+        outline:
+          'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground [a>&]:hover:bg-accent [a>&]:hover:text-accent-foreground',
       },
       size: {
         sm: 'smooth-rounded-md gap-1 px-2 py-0.5 font-medium text-xs [&>svg]:size-3',
