@@ -44,7 +44,7 @@ export function ArticleLayout({ children, data: article, simlilarEntries }: Arti
               {typeof coverphoto_src === 'string' && coverphoto_src.length > 0 ? (
                 <meta content={coverphoto_src} itemProp="image" />
               ) : null}
-              <div className="smooth-rounded-lg relative mb-8 h-[300px] w-full overflow-hidden">
+              <div className="smooth-rounded-lg relative mb-8 aspect-3/2 w-full overflow-hidden">
                 <Image
                   alt={''}
                   className="relative object-cover"
@@ -76,22 +76,6 @@ export function ArticleLayout({ children, data: article, simlilarEntries }: Arti
                 </Link>
               ))}
             </span>
-
-            {!!article && typeof coverphoto_src === 'string' && coverphoto_src.length > 0 ? (
-              <>
-                <meta content={coverphoto_src} itemProp="image" />
-                <Image
-                  alt={article.title}
-                  className={cn(
-                    'smooth-rounded-sm h-[20px] w-auto max-w-full',
-                    'z-10 transition-all duration-150 hover:scale-1000 hover:rounded-[1px]'
-                  )}
-                  height={40}
-                  src={coverphoto_src}
-                  width={40}
-                />
-              </>
-            ) : null}
           </Typo>
 
           {audio_src ? (
