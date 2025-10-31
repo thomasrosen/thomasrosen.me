@@ -1,25 +1,35 @@
 const express = require('express')
 
 function checkOrigin(origin) {
-  let isAllowed = false
-
-  if (
-    typeof origin === 'string' &&
-    // allow from main domain
-    (origin === 'thomasrosen.me' ||
-      origin.endsWith('://thomasrosen.me') ||
-      // allow from subdomains
-      origin.endsWith('.thomasrosen.me') ||
-      // allow for localhost
-      origin.endsWith('localhost:3000') ||
-      origin.endsWith('localhost:19814') ||
-      origin.endsWith('0.0.0.0:3000') ||
-      origin.endsWith('0.0.0.0:19814'))
-  ) {
-    isAllowed = true
+  if (typeof origin !== 'string') return false;
+  // Disallow null origin explicitly
+  if (origin === 'null') return false;
+  // List of allowed origins (with scheme and port)
+  const allowedOrigins = new Set([
+    'https://thomasrosen.me',
+    'https://www.thomasrosen.me',
+    'https://blog.thomasrosen.me',
+    'http://localhost:3000',
+    'http://localhost:19814',
+    'http://0.0.0.0:3000',
+    'http://0.0.0.0:19814'
+  ]);
+  // also allow all https subdomains of thomasrosen.me
+  try {
+    const url = new URL(origin);
+    // main domain or subdomain with https
+    if (url.protocol === 'https:' && (url.hostname === 'thomasrosen.me' || url.hostname.endsWith('.thomasrosen.me'))) {
+      return true;
+    }
+    // allow localhost and 0.0.0.0 with matching allowedOrigins
+    if (allowedOrigins.has(origin)) {
+      return true;
+    }
+  } catch (e) {
+    // If origin is not a valid URL, do not allow
+    return false;
   }
-
-  return isAllowed
+  return false;
 }
 
 const app = express()
