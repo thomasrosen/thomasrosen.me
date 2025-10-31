@@ -31,7 +31,7 @@ export function Timeline({
 
   return (
     <div className="w-full space-y-4">
-      {groupedEntriesAsArray.map(([key, entries], index) => {
+      {groupedEntriesAsArray.map(([key, entriesGrouped], index) => {
         const isLastGroup = index === groupedEntriesAsArray.length - 1
 
         const date = new Date(key)
@@ -48,11 +48,11 @@ export function Timeline({
         monthBefore = month
         // dayBefore = day
 
-        const isOnlyOneEntry = entries.length === 1
+        const isOnlyOneEntry = entriesGrouped.length === 1
 
-        const entriesContent = entries.map((entry, index_entry) => {
-          const before = entries[index_entry - 1]
-          const after = entries[index_entry + 1]
+        const entriesContent = entriesGrouped.map((entry, index_entry) => {
+          const before = entriesGrouped[index_entry - 1]
+          const after = entriesGrouped[index_entry + 1]
 
           const displayAs = entry.displayAs || 'text'
 
@@ -105,8 +105,8 @@ export function Timeline({
               entryBefore={before}
               hiddenTags={hiddenTags}
               isFirstImage={
-                false
-                // index_entry === 0 && entryClone.displayAs === 'image'
+                // false
+                index_entry === 0 && entryClone.displayAs === 'image'
               }
               key={`${entryClone.date}-${index_entry}`}
             />

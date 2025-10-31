@@ -4,8 +4,10 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { getRelativeTime } from '@/lib/getRelativeTime'
 import { cn } from '@/lib/utils'
+import type { TimelineEntry } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Timeline } from './Timeline/Timeline'
 
 interface ArticleLayoutProps {
   children: React.ReactNode
@@ -20,9 +22,10 @@ interface ArticleLayoutProps {
     slug: string
     html: string
   }
+  simlilarEntries: TimelineEntry[]
 }
 
-export function ArticleLayout({ children, data: article }: ArticleLayoutProps) {
+export function ArticleLayout({ children, data: article, simlilarEntries }: ArticleLayoutProps) {
   const coverphoto_src = article.coverphoto_src
   const audio_src = article.audio_src
 
@@ -82,9 +85,16 @@ export function ArticleLayout({ children, data: article }: ArticleLayoutProps) {
 
           {children}
 
-          <center>
-            <Dot />
-          </center>
+          <Dot />
+
+          {simlilarEntries?.length ? (
+            <section className="flex flex-col gap-6 pt-24">
+              <Typo as="h2" itemProp="headline" variant="h1">
+                Similar Articles
+              </Typo>
+              <Timeline entries={simlilarEntries} showTimeHeadlines={false} />
+            </section>
+          ) : null}
 
           <script
             dangerouslySetInnerHTML={{

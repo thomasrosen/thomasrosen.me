@@ -43,6 +43,9 @@ export type TimelineEntry = {
   author?: string
   url?: string
   displayAs: string
+
+  rank?: number
+  searchtext?: string
 }
 
 export type GroupedEntries = Record<string, TimelineEntry[]>

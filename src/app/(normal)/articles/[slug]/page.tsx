@@ -1,7 +1,9 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { entryToSearchString } from '@/lib/embedding/entryToSearchString'
+import { getSimliarTimelineEntries } from '@/lib/embedding/getSimliarTimelineEntries'
+import { loadArticles } from '@/lib/loadArticles'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { loadArticles } from '@/lib/loadArticles'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -54,8 +56,13 @@ export default async function PageArticle({ params }: Props) {
   const { content, data, getStaticProps } = article
   const { props } = await getStaticProps()
 
+  const simlilarEntries = await getSimliarTimelineEntries({
+    query: entryToSearchString(data), // [(data.title, data.summary)].join(' '),
+    allowedDisplayAs: ['article'],
+  })
+
   return (
-    <ArticleLayout {...props} data={data}>
+    <ArticleLayout {...props} data={data} simlilarEntries={simlilarEntries}>
       {content}
     </ArticleLayout>
   )
