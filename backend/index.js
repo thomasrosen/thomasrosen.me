@@ -1,4 +1,5 @@
 const express = require('express')
+const rateLimit = require('express-rate-limit')
 
 function checkOrigin(origin) {
   let isAllowed = false
@@ -47,7 +48,15 @@ app.get('/zenris', (_req, res) => {
 
 app.use('/', express.static('../build/', { fallthrough: true }))
 
-app.get('*', (_req, res) => {
+// Apply rate limiting: e.g. 100 requests per 15 minutes per IP
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // adjust as needed for your use case
+  standardHeaders: true, 
+  legacyHeaders: false,
+})
+
+app.get('*', limiter, (_req, res) => {
   res.sendFile('index.html', { root: '../build/' })
 })
 
