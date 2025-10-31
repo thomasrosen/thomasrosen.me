@@ -39,6 +39,27 @@ export function ArticleLayout({ children, data: article, simlilarEntries }: Arti
     >
       {article ? (
         <>
+          {coverphoto_src ? (
+            <>
+              {typeof coverphoto_src === 'string' && coverphoto_src.length > 0 ? (
+                <meta content={coverphoto_src} itemProp="image" />
+              ) : null}
+              <div className="smooth-rounded-lg relative mb-8 h-[300px] w-full overflow-hidden">
+                <Image
+                  alt={''}
+                  className="relative object-cover"
+                  fill
+                  loading={'eager'}
+                  priority={true}
+                  quality={75}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  src={coverphoto_src}
+                  unoptimized={false}
+                />
+              </div>
+            </>
+          ) : null}
+
           <Typo as="h1" itemProp="headline">
             {article.title}
           </Typo>
