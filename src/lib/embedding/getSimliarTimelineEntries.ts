@@ -1,6 +1,7 @@
 import { getEmbeddings, rank_documents } from '@/lib/embedding/embedding'
 import type { TimelineEntry } from '@/types'
 import { loadTimeline } from '../loadTimeline'
+import { entryToSearchString } from './entryToSearchString'
 
 export async function getSimliarTimelineEntries({
   query,
@@ -9,29 +10,33 @@ export async function getSimliarTimelineEntries({
   query: string
   allowedDisplayAs: string[]
 }): Promise<TimelineEntry[]> {
-  const partial_timeline = (await loadTimeline()).filter((entry) =>
-    allowedDisplayAs.includes(entry.displayAs)
-  )
-
-  const entriesWithSearchText = partial_timeline
+  const entriesWithSearchText: TimelineEntry[] = (await loadTimeline())
+    .filter(
+      (entry) =>
+        allowedDisplayAs.includes(entry.displayAs) &&
+        (!!entry.title || !!entry.text || !!entry.tags)
+    )
     .map((entry) => ({
       ...entry,
-      searchtext: [entry.title, entry.text].filter(Boolean).join(' '),
+      searchtext: entryToSearchString(entry),
     }))
-    .filter(({ searchtext }) => !!searchtext && searchtext !== query)
 
   const source_embeddings = await getEmbeddings([query])
   const document_embeddings = await getEmbeddings(
-    entriesWithSearchText.map(({ searchtext }) => searchtext)
+    entriesWithSearchText
+      .map(({ searchtext }) => searchtext || '')
+      .filter((searchtext) => !!searchtext)
   )
 
-  let simliarTexts = await rank_documents(source_embeddings[0], document_embeddings)
-  simliarTexts = simliarTexts.slice(0, 3)
+  const simliarTexts = await rank_documents(source_embeddings[0], document_embeddings)
+  const simliarTextsWithoutFirst = simliarTexts.slice(1) // rmeove the most similar item (itself)
 
   const entries: TimelineEntry[] = []
-  for (const { text, similarity } of simliarTexts) {
+  for (const { text, similarity } of simliarTextsWithoutFirst) {
     const foundEntry = entriesWithSearchText.find((entry) => entry.searchtext === text)
     if (foundEntry) {
+      foundEntry.searchtext = undefined
+
       const entryAlreadyAdded = entries.find(
         (entry) => JSON.stringify(entry) === JSON.stringify(foundEntry)
       )
@@ -48,5 +53,5 @@ export async function getSimliarTimelineEntries({
     }
   }
 
-  return entries.sort((a, b) => (b.rank || 0) - (a.rank || 0))
+  return entries // .sort((a, b) => (b.rank || 0) - (a.rank || 0))
 }

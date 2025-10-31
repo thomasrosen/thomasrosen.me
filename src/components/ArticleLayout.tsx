@@ -92,7 +92,7 @@ export function ArticleLayout({ children, data: article, simlilarEntries }: Arti
               <Typo as="h2" itemProp="headline" variant="h1">
                 Similar Articles
               </Typo>
-              <Timeline entries={simlilarEntries} />
+              <Timeline entries={simlilarEntries} showTimeHeadlines={false} />
             </section>
           ) : null}
 

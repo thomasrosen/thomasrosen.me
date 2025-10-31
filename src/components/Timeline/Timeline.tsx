@@ -105,8 +105,8 @@ export function Timeline({
               entryBefore={before}
               hiddenTags={hiddenTags}
               isFirstImage={
-                false
-                // index_entry === 0 && entryClone.displayAs === 'image'
+                // false
+                index_entry === 0 && entryClone.displayAs === 'image'
               }
               key={`${entryClone.date}-${index_entry}`}
             />

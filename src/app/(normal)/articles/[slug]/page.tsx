@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { entryToSearchString } from '@/lib/embedding/entryToSearchString'
 import { getSimliarTimelineEntries } from '@/lib/embedding/getSimliarTimelineEntries'
 import { loadArticles } from '@/lib/loadArticles'
 import type { Metadata } from 'next'
@@ -56,7 +57,7 @@ export default async function PageArticle({ params }: Props) {
   const { props } = await getStaticProps()
 
   const simlilarEntries = await getSimliarTimelineEntries({
-    query: [data.title, data.summary].join(' '),
+    query: entryToSearchString(data), // [(data.title, data.summary)].join(' '),
     allowedDisplayAs: ['article'],
   })
 
