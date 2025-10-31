@@ -5,6 +5,7 @@ title: Frühlingssonne
 slug: spring-sun
 audio: /blog/audio/2023-03-16-spring-sun-de.mp3
 audio_length: 00:46
+coverphoto: /blog/images/2023-03-16-spring-sun/IMG_2052.jpeg
 lang: de
 font: serif
 tags:

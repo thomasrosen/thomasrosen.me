@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export default async function PageArticles() {
-  const entries = await getEntries({ tags: ['article', 'project'] })
+  const entries = await getEntries({ tags: ['article'] })
   return (
     <>
       <div className="tab_content space-y-6">

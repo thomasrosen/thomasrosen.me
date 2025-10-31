@@ -14,6 +14,9 @@ export function Nav({ className }: { className?: string }) {
       <NavLinkButton href="/articles/">
         <Emoji aria-hidden="true">📝</Emoji> Blog
       </NavLinkButton>
+      <NavLinkButton href="/projects/">
+        <Emoji aria-hidden="true">🛠️</Emoji> Projects
+      </NavLinkButton>
       <NavLinkButton href="/press/">
         <Emoji aria-hidden="true">📰</Emoji> In the Press
       </NavLinkButton>

@@ -5,7 +5,7 @@ title: 🚂 Eine noch typische Bahnfahrt
 slug: typische-bahnfahrt
 audio: /blog/audio/2023-06-24-zug-fahrt.mp3
 audio_length: 01:39
-coverphoto: /blog/images/2023-06-24-zug-fahrt/thomas-beim-lesen-in-der-bahn.png
+coverphoto: /blog/images/2023-06-24-zug-fahrt/thomas-beim-lesen-in-der-bahn-cropped.png
 lang: de
 font: serif
 tags:

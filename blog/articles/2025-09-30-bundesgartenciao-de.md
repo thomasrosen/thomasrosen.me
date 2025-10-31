@@ -5,7 +5,7 @@ title: Bundesgartenciao
 slug: bundesgartenciao
 audio: ""
 audio_length: 00:00
-coverphoto: ""
+coverphoto: "/blog/images/2025-09-30-bundesgartenciao/Screenshot 2025-10-31 at 15.18.26.png"
 lang: de
 font: serif
 tags:

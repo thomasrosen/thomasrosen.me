@@ -5,7 +5,7 @@ title: Possible Clutter on MacOS
 slug: macos-clutter
 audio: ""
 audio_length: 00:00
-coverphoto: ""
+coverphoto: "/blog/images/2025-08-10-macos-clutter/Screenshot 2025-10-31 at 15.18.43.png"
 lang: en
 font: sans_serif
 tags:
