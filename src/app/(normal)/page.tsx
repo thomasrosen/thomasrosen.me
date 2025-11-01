@@ -17,8 +17,10 @@ export default function PageStart() {
             Interests
           </Typo>
           <div className="flex flex-wrap gap-3">
-            <Badge size="lg" variant="accent">
-              <Emoji aria-hidden="true">🤖</Emoji> Programming
+            <Badge asChild size="lg" variant="accent">
+              <Link className="is-button" href="/projects/">
+                <Emoji aria-hidden="true">🤖</Emoji> Programming
+              </Link>
             </Badge>
 
             <Badge asChild size="lg" variant="accent">
