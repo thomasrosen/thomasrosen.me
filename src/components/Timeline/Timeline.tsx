@@ -1,12 +1,12 @@
+import { Entry } from '@/components/Timeline/Entry'
+import { getMonthName } from '@/components/Timeline/getMonthName'
+import { groupEntries } from '@/components/Timeline/groupEntries'
 import { Typo } from '@/components/Typo'
 import '@/fonts/petrona-v28-latin/index.css'
 import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import type React from 'react'
-import { Entry } from './Entry'
-import { getMonthName } from './getMonthName'
-import { groupEntries } from './groupEntries'
 
 export function Timeline({
   entries = [],

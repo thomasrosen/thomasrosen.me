@@ -1,7 +1,7 @@
+import { EntryTextContent } from '@/components/Timeline/EntryTextContent'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import Image from 'next/image'
-import { EntryTextContent } from './EntryTextContent'
 
 export function EntryImage({
   entry,

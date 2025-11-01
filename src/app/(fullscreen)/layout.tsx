@@ -1,4 +1,4 @@
-import { Sidebar } from './Sidebar'
+import { Sidebar } from '@/app/(fullscreen)/Sidebar'
 
 export default function Layout({
   children,

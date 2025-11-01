@@ -1,9 +1,9 @@
+import { Emoji } from '@/components/Emoji'
 import { Typo } from '@/components/Typo'
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import React from 'react'
-import { Emoji } from '../Emoji'
-import { Badge } from '../ui/badge'
 
 export function EntryTextContent({
   // entryBefore,

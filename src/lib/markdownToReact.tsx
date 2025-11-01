@@ -2,6 +2,8 @@ import { HR } from '@/components/hr'
 import { Typo } from '@/components/Typo'
 import { containsOnlyEmojisAndWhitespace } from '@/lib/containsOnlyEmojisAndWhitespace'
 import { correctMarkdownTextForRender } from '@/lib/correctMarkdownText'
+import { rehypePreElements } from '@/lib/unified/rehypePreElements'
+import { remarkFootnoteReferences } from '@/lib/unified/remarkFootnoteReferences'
 import { cn } from '@/lib/utils'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import Image from 'next/image'
@@ -22,8 +24,6 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import { rehypePreElements } from './unified/rehypePreElements'
-import { remarkFootnoteReferences } from './unified/remarkFootnoteReferences'
 
 refractor.register(refractor_jsx)
 refractor.register(refractor_excelFormula)

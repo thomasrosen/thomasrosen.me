@@ -1,5 +1,5 @@
-import { getEntries } from './getEntries'
-import { TimelineMapReactMap } from './TimelineMapReactMap'
+import { getEntries } from '@/components/Timeline/getEntries'
+import { TimelineMapReactMap } from '@/components/Timeline/TimelineMapReactMap'
 
 export async function TimelineMap({
   tags = [],

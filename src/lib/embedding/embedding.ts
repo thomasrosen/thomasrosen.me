@@ -1,6 +1,6 @@
 import { embed_texts } from '@/lib/embedding/models/snowflake-arctic-embed-xs'
+import type { Embedding } from '@/lib/embedding/types'
 import { dot } from '@xenova/transformers'
-import type { Embedding } from './types'
 
 const embedding_cache: Map<string, Embedding> = new Map()
 

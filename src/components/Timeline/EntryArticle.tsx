@@ -1,12 +1,12 @@
 /** biome-ignore-all lint/style/noNestedTernary: it works perfectly fine. i dont care. */
 /** biome-ignore-all lint/complexity/noExcessiveCognitiveComplexity: it works perfectly fine. i dont care. */
+import { Emoji } from '@/components/Emoji'
+import { EntryTextContent } from '@/components/Timeline//EntryTextContent'
+import { LinkOrDiv } from '@/components/Timeline//LinkOrDiv'
 import Image from 'next/image'
 // import { findNearestRatio, possibleImageAspectRatios } from '@/lib/findNearestRatio'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
-import { Emoji } from '../Emoji'
-import { EntryTextContent } from './EntryTextContent'
-import { LinkOrDiv } from './LinkOrDiv'
 
 export function EntryArticle({
   entry,

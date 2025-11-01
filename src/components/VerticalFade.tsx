@@ -1,5 +1,5 @@
+import { ProgressiveBlur } from '@/components/progressive-blur'
 import { cn } from '@/lib/utils'
-import { ProgressiveBlur } from './progressive-blur'
 
 // make sure typescript understand css variables in styles
 declare module 'react' {

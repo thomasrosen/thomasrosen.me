@@ -1,12 +1,12 @@
 'use client'
 
+import { LinkOrDiv } from '@/components/Timeline/LinkOrDiv'
 import { pickFakeRandom } from '@/lib/pickFakeRandom'
 import Image from 'next/image'
 import { useCallback, useRef } from 'react'
 // import { Emoji } from '@/components/Emoji'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
-import { LinkOrDiv } from './LinkOrDiv'
 
 // function BigEmoij(props: React.ComponentProps<typeof Emoji>) {
 //   return (

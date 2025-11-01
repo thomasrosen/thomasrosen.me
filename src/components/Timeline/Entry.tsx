@@ -1,7 +1,7 @@
+import { EntryImage } from '@/components/Timeline//EntryImage'
+import { EntryText } from '@/components/Timeline//EntryText'
+import { EntryArticle } from '@/components/Timeline/EntryArticle'
 import type { TimelineEntry } from '@/types'
-import { EntryArticle } from './EntryArticle'
-import { EntryImage } from './EntryImage'
-import { EntryText } from './EntryText'
 
 export function Entry({
   entry,

@@ -1,4 +1,5 @@
 import { Dot } from '@/components/Dot'
+import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -7,7 +8,6 @@ import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Timeline } from './Timeline/Timeline'
 
 interface ArticleLayoutProps {
   children: React.ReactNode

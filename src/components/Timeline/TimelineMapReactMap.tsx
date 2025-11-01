@@ -2,6 +2,7 @@
 
 import { ReactMap } from '@/components/ReactMap'
 import { Marker } from '@/components/Timeline/Marker'
+import { Timeline } from '@/components/Timeline/Timeline'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -14,7 +15,6 @@ import {
 } from '@/components/ui/dialog'
 import type { TimelineEntry } from '@/types'
 import { useRef, useState } from 'react'
-import { Timeline } from './Timeline'
 
 export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[] }) {
   const [isOpen, setIsOpen] = useState(false)

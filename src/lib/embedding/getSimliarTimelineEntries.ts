@@ -1,7 +1,7 @@
 import { getEmbeddings, rank_documents } from '@/lib/embedding/embedding'
+import { entryToSearchString } from '@/lib/embedding/entryToSearchString'
+import { loadTimeline } from '@/lib/loadTimeline'
 import type { TimelineEntry } from '@/types'
-import { loadTimeline } from '../loadTimeline'
-import { entryToSearchString } from './entryToSearchString'
 
 export async function getSimliarTimelineEntries({
   query,
