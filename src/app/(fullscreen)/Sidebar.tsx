@@ -13,31 +13,6 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
     <MotionConfig reducedMotion="user" transition={{ duration: 0.4, type: 'spring', bounce: 0.2 }}>
       <div className="pointer-events-none fixed top-0 right-0 left-0 z-100 flex justify-center gap-2 p-6">
         <AnimatePresence initial={false} mode="popLayout">
-          {open === false ? (
-            <motion.div
-              className="pointer-events-auto z-100"
-              key="sidebar-button"
-              layoutId="header"
-            >
-              <Button
-                asChild
-                className="drop-shadow-xl/10"
-                onClick={() => setOpen(true)}
-                size="lg"
-                variant="glass"
-              >
-                <motion.button layoutId="sidebar-first-child" title="Open Menu">
-                  <Icon name="menu" size="md" />
-
-                  <div className="flex gap-1 font-extrabold font-mono tracking-tight">
-                    <motion.div layoutId="website-title-first">Thomas</motion.div>
-                    <motion.div layoutId="website-title-last">Rosen</motion.div>
-                  </div>
-                </motion.button>
-              </Button>
-            </motion.div>
-          ) : null}
-
           {open === true ? (
             <motion.div
               animate={{ opacity: 1 }}
@@ -48,8 +23,35 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
               onClick={() => setOpen(false)}
             />
           ) : null}
+        </AnimatePresence>
 
-          {open === true ? (
+        <AnimatePresence initial={false} mode="popLayout">
+          {open === false ? (
+            <motion.div
+              className="pointer-events-auto z-100"
+              key="sidebar-button"
+              layoutId="header"
+            >
+              <motion.div layoutId="sidebar-first-child">
+                <Button
+                  asChild
+                  className="drop-shadow-xl/10"
+                  onClick={() => setOpen(true)}
+                  size="lg"
+                  variant="glass"
+                >
+                  <motion.button title="Open Menu">
+                    <Icon name="menu" size="md" />
+
+                    <div className="flex gap-1 font-extrabold font-mono tracking-tight">
+                      <motion.div layoutId="website-title-first">Thomas</motion.div>
+                      <motion.div layoutId="website-title-last">Rosen</motion.div>
+                    </div>
+                  </motion.button>
+                </Button>
+              </motion.div>
+            </motion.div>
+          ) : (
             <motion.div
               className="pointer-events-none z-110 flex h-max max-h-full w-[500px] max-w-full flex-col gap-3 overflow-auto p-6"
               key="sidebar"
@@ -227,7 +229,7 @@ export function Sidebar({ children }: { children?: React.ReactNode }) {
             </svg>
             */}
             </motion.div>
-          ) : null}
+          )}
         </AnimatePresence>
       </div>
     </MotionConfig>
