@@ -1,6 +1,7 @@
 import { Typo } from '@/components/Typo'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
+import React from 'react'
 import { Emoji } from '../Emoji'
 import { Badge } from '../ui/badge'
 
@@ -92,7 +93,12 @@ export function EntryTextContent({
           className={cn('!mb-0', entry.displayAs === 'image' && 'line-clamp-3')}
           variant="small"
         >
-          {entry.text}
+          {entry.text.split('\n').map((line, index, arr) => (
+            <React.Fragment key={`${index}-${line}`}>
+              {line}
+              {index < arr.length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </Typo>
       )}
 
