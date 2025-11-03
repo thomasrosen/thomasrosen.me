@@ -29,13 +29,13 @@ export function simpify_music_tags(tag) {
     return ['Electronic']
   }
   if (tag === 'Techno') {
-    return ['Electronic', 'Techno']
+    return ['Electronic'] // ['Electronic', 'Techno']
   }
   if (tag === 'Alternative Rap') {
-    return ['Alternative', 'Rap']
+    return ['Rap'] // ['Alternative', 'Rap']
   }
   if (['Hip Hop/Rap', 'Hip-Hop/Rap'].includes(tag)) {
-    return ['Hip-Hop'] // ['Hip-Hop', 'Rap']
+    return ['Hip-Hop', 'Rap']
   }
   if (tag === 'Hip Hop') {
     return ['Hip-Hop']
@@ -44,7 +44,7 @@ export function simpify_music_tags(tag) {
     return ['Pop', 'Rock']
   }
   if (tag === 'Alternative Folk') {
-    return ['Alternative', 'Folk']
+    return ['Folk'] // ['Alternative', 'Folk']
   }
   if (tag === 'Country & Folk') {
     return ['Country', 'Folk']
