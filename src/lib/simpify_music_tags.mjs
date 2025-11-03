@@ -60,7 +60,7 @@ export function simpify_music_tags(tag) {
   // if (tag === 'R&B/Soul') {
   //   return ['R&B', 'Soul']
   // }
-  if (['Alternative', 'Punk', 'Indie Rock', 'Hard Rock', 'Prog-Rock/Art Rock', 'Soft Rock'].includes(tag)) {
+  if (['Indie Rock', 'Hard Rock', 'Prog-Rock/Art Rock', 'Soft Rock'].includes(tag)) {
     return ['Rock']
   }
   if (['German Pop', 'French Pop', 'Indie Pop', 'K-Pop', 'Pop Latino', 'Teen Pop'].includes(tag)) {
