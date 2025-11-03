@@ -6,6 +6,7 @@ export function simpify_music_tags(tag) {
 
   if (
     [
+      '', // empty tag
       'Worldwide',
       'Compilation',
       'Vocal',
@@ -15,35 +16,39 @@ export function simpify_music_tags(tag) {
       'Instrumental',
       'Soundtrack',
       'Singer/Songwriter',
+      'Urbano latino',
+      'Musicals',
+      'EMO',
+      'Original Score',
+      "Jungle/Drum'n'bass",
+      'New Age',
     ].includes(tag)
   ) {
     // remove these tags
     return []
   }
 
+  if (tag === 'Ska') {
+    return ['Reggae']
+  }
+
   if (['Christian', 'Religious', 'Holiday'].includes(tag)) {
     return ['Religious']
   }
 
-  if (tag === 'Electronica') {
+  if (['Electronica', 'Techno', 'Dance', 'House'].includes(tag)) {
     return ['Electronic']
   }
-  if (tag === 'Techno') {
-    return ['Electronic'] // ['Electronic', 'Techno']
+  if (tag === 'Afro House') {
+    return ['Electronic'] // ['House']
   }
-  if (tag === 'Alternative Rap') {
-    return ['Rap'] // ['Alternative', 'Rap']
-  }
-  if (['Hip Hop/Rap', 'Hip-Hop/Rap'].includes(tag)) {
-    return ['Hip-Hop', 'Rap']
-  }
-  if (tag === 'Hip Hop') {
-    return ['Hip-Hop']
+  if (['Hip Hop/Rap', 'Hip-Hop/Rap', 'Alternative Rap', 'Hip Hop'].includes(tag)) {
+    return ['Hip-Hop/Rap']
   }
   if (tag === 'Pop/Rock') {
     return ['Pop', 'Rock']
   }
-  if (tag === 'Alternative Folk') {
+  if (tag === 'Alternative Folk' || tag === 'German Folk') {
     return ['Folk'] // ['Alternative', 'Folk']
   }
   if (tag === 'Country & Folk') {
@@ -55,10 +60,7 @@ export function simpify_music_tags(tag) {
   // if (tag === 'R&B/Soul') {
   //   return ['R&B', 'Soul']
   // }
-  if (tag === 'Afro House') {
-    return ['House']
-  }
-  if (['Indie Rock', 'Hard Rock', 'Prog-Rock/Art Rock', 'Soft Rock'].includes(tag)) {
+  if (['Alternative', 'Punk', 'Indie Rock', 'Hard Rock', 'Prog-Rock/Art Rock', 'Soft Rock'].includes(tag)) {
     return ['Rock']
   }
   if (['German Pop', 'French Pop', 'Indie Pop', 'K-Pop', 'Pop Latino', 'Teen Pop'].includes(tag)) {
