@@ -35,7 +35,7 @@ export function simpify_music_tags(tag) {
     return ['Alternative', 'Rap']
   }
   if (['Hip Hop/Rap', 'Hip-Hop/Rap'].includes(tag)) {
-    return ['Hip-Hop', 'Rap']
+    return ['Hip-Hop'] // ['Hip-Hop', 'Rap']
   }
   if (tag === 'Hip Hop') {
     return ['Hip-Hop']
@@ -52,9 +52,9 @@ export function simpify_music_tags(tag) {
   if (tag === 'Classical Crossover') {
     return ['Classical']
   }
-  if (tag === 'R&B/Soul') {
-    return ['R&B', 'Soul']
-  }
+  // if (tag === 'R&B/Soul') {
+  //   return ['R&B', 'Soul']
+  // }
   if (tag === 'Afro House') {
     return ['House']
   }
