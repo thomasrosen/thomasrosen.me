@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import { readdir } from 'node:fs/promises'
 import path from 'node:path'
 import sharp from 'sharp'
+import { simpify_music_tags } from '../src/lib/simpify_music_tags.mjs'
 import { ensureCleanDirectoryExists } from './ensureDirectoryExists.mjs'
 
 const empty_transparent_png =
@@ -43,11 +44,13 @@ function get_genres(playlist) {
   let genres = playlist.Songs
     // sort the genres by count with reduce
     .reduce((acc, song) => {
-      const genre = song.Genre
-      if (!Object.hasOwn(acc, genre)) {
-        acc[genre] = 0
+      const simpified_genres = simpify_music_tags(song.Genre)
+      for (const genre of simpified_genres) {
+        if (!Object.hasOwn(acc, genre)) {
+          acc[genre] = 0
+        }
+        acc[genre] += 1
       }
-      acc[genre] += 1
       return acc
     }, {})
 

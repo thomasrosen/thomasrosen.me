@@ -5,6 +5,7 @@ import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Button } from '@/components/ui/button'
 import '@/fonts/petrona-v28-latin/index.css'
+import { simpify_music_tags } from '@/lib/simpify_music_tags.mjs'
 import Link from 'next/link'
 
 const MAX_TAGS = 12
@@ -15,74 +16,7 @@ export default async function Page() {
 
   const tags = Object.values(groupedEntries)
     .flat()
-    .flatMap((entry) =>
-      entry.tags?.flatMap((tag) => {
-        if (
-          [
-            'Worldwide',
-            'Compilation',
-            'Vocal',
-            'Easy Listening',
-            'TV Soundtrack',
-            'Comedy',
-            'Instrumental',
-            'Soundtrack',
-            'Singer/Songwriter',
-          ].includes(tag)
-        ) {
-          // remove these tags
-          return []
-        }
-
-        if (['Christian', 'Religious', 'Holiday'].includes(tag)) {
-          return ['Religious']
-        }
-
-        if (tag === 'Electronica') {
-          return ['Electronic']
-        }
-        if (tag === 'Techno') {
-          return ['Electronic', 'Techno']
-        }
-        if (tag === 'Alternative Rap') {
-          return ['Alternative', 'Rap']
-        }
-        if (['Hip Hop/Rap', 'Hip-Hop/Rap'].includes(tag)) {
-          return ['Hip-Hop', 'Rap']
-        }
-        if (tag === 'Hip Hop') {
-          return ['Hip-Hop']
-        }
-        if (tag === 'Pop/Rock') {
-          return ['Pop', 'Rock']
-        }
-        if (tag === 'Alternative Folk') {
-          return ['Alternative', 'Folk']
-        }
-        if (tag === 'Country & Folk') {
-          return ['Country', 'Folk']
-        }
-        if (tag === 'Classical Crossover') {
-          return ['Classical']
-        }
-        if (tag === 'R&B/Soul') {
-          return ['R&B', 'Soul']
-        }
-        if (tag === 'Afro House') {
-          return ['House']
-        }
-        if (['Indie Rock', 'Hard Rock', 'Prog-Rock/Art Rock', 'Soft Rock'].includes(tag)) {
-          return ['Rock']
-        }
-        if (
-          ['German Pop', 'French Pop', 'Indie Pop', 'K-Pop', 'Pop Latino', 'Teen Pop'].includes(tag)
-        ) {
-          return ['Pop']
-        }
-
-        return [tag]
-      })
-    )
+    .flatMap((entry) => entry.tags?.flatMap(simpify_music_tags))
     .reduce(
       (acc, tag) => {
         if (!tag || tag.includes('playlist')) {
