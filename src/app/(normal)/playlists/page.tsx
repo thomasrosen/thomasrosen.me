@@ -22,12 +22,9 @@ export default async function Page() {
             'Worldwide',
             'Compilation',
             'Vocal',
-            'Christian',
             'Easy Listening',
             'TV Soundtrack',
-            'Religious',
             'Comedy',
-            'Holiday',
             'Instrumental',
             'Soundtrack',
             'Singer/Songwriter',
@@ -37,8 +34,15 @@ export default async function Page() {
           return []
         }
 
+        if (['Christian', 'Religious', 'Holiday'].includes(tag)) {
+          return ['Religious']
+        }
+
         if (tag === 'Electronica') {
           return ['Electronic']
+        }
+        if (tag === 'Techno') {
+          return ['Electronic', 'Techno']
         }
         if (tag === 'Alternative Rap') {
           return ['Alternative', 'Rap']
