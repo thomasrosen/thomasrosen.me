@@ -1,5 +1,3 @@
-import { simpify_music_tags } from './simpify_music_tags.mjs'
-
 export async function loadPlaylists() {
   try {
     const playlistData = await import('@/data/music/playlists.json')
@@ -23,7 +21,6 @@ export async function loadPlaylists() {
           return {
             ...playlist,
             coverphoto: coverphoto_src,
-            genres: playlist.genres.flatMap(simpify_music_tags),
           }
         })
     )
