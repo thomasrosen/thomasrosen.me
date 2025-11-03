@@ -5,7 +5,7 @@ import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
 import { Button } from '@/components/ui/button'
 import '@/fonts/petrona-v28-latin/index.css'
-import { simpify_music_tags } from '@/lib/simpify_music_tags.mjs'
+// import { simpify_music_tags } from '@/lib/simpify_music_tags.mjs'
 import Link from 'next/link'
 
 const MAX_TAGS = 12
@@ -16,7 +16,8 @@ export default async function Page() {
 
   const tags = Object.values(groupedEntries)
     .flat()
-    .flatMap((entry) => entry.tags?.flatMap(simpify_music_tags))
+    // .flatMap((entry) => entry.tags?.flatMap(simpify_music_tags))
+    .flatMap((entry) => entry.tags)
     .reduce(
       (acc, tag) => {
         if (!tag || tag.includes('playlist')) {
