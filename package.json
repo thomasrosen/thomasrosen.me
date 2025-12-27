@@ -5,6 +5,7 @@
   "homepage": "https://thomasrosen.me/",
   "scripts": {
     "dev": "next dev",
+    "dev:https": "next dev --experimental-https",
     "types": "tsc --noEmit",
     "prebuild": "npm run build_data",
     "build": "next build",
