@@ -3,7 +3,6 @@
 
 import useDarkTheme from '@/components/hooks/useDarkTheme'
 import { Icon } from '@/components/Icon'
-import { absoluteStyle } from '@/lib/client/absoluteStyle'
 import { onImagesLoaded } from '@/lib/client/onAllImagesLoaded'
 import type { TimelineEntry } from '@/types'
 import { toCanvas as htmlToImage_toCanvas } from 'html-to-image'
@@ -98,6 +97,8 @@ export function ReactMap({
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
+      // style: 'https://tiles.openfreemap.org/styles/liberty',
+      style: 'https://tiles.openfreemap.org/styles/bright',
       // style: 'https://vector.openstreetmap.org/demo/shortbread/colorful.json',
       // center: [lng, lat],
       // zoom,
@@ -113,12 +114,24 @@ export function ReactMap({
       }, // create the gl context with MSAA antialiasing, so custom layers are antialiased
     })
 
-    // map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
-
     map.current.on('style.load', () => {
       if (!map.current || map.current === null) {
         return
       }
+
+      map.current.addControl( new maplibregl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,          // follow user as they move
+        showAccuracyCircle: true,
+      }), "bottom-right");
+      // map.on("load", () => {
+      //   // programmatically start locating (optional)
+      //   geolocate.trigger();              // or geolocate.trigger(false) to not animate
+      // });
+
+      map.current.addControl(new maplibregl.NavigationControl(), 'bottom-right')
 
       map.current.setProjection({
         type: 'globe', // Set projection to globe
@@ -126,25 +139,27 @@ export function ReactMap({
     })
   }, [])
 
-  useEffect(() => {
-    if (!map.current || map.current === null) {
-      // only change if map exists
-      return
-    }
+  // useEffect(() => {
+  //   if (!map.current || map.current === null) {
+  //     // only change if map exists
+  //     return
+  //   }
 
-    const mapStylePath = userWantsDarkmode
-      ? 'https://api.maptiler.com/maps/0199b5a8-a337-72d0-8131-30642ac6c1d3/style.json?key=o3zELAXbKePggwdGFWww' // '/map_styles/liberty-dark.json'
-      : 'https://api.maptiler.com/maps/0199b5cc-cff4-7175-814c-751f58656516/style.json?key=o3zELAXbKePggwdGFWww' // 'https://tiles.openfreemap.org/styles/liberty' // /map_styles/liberty.json' // https://tiles.openfreemap.org/styles/liberty
+  //   let mapStylePath = userWantsDarkmode
+  //     ? 'https://api.maptiler.com/maps/0199b5a8-a337-72d0-8131-30642ac6c1d3/style.json?key=o3zELAXbKePggwdGFWww' // '/map_styles/liberty-dark.json'
+  //     : 'https://api.maptiler.com/maps/0199b5cc-cff4-7175-814c-751f58656516/style.json?key=o3zELAXbKePggwdGFWww' // 'https://tiles.openfreemap.org/styles/liberty' // /map_styles/liberty.json' // https://tiles.openfreemap.org/styles/liberty
 
-    map.current.setStyle(mapStylePath, {
-      // The paths in the style are relative, but MapLibre GL JS needs
-      // absolute URLs. This is done below, taking the URL of the page
-      // for the path. This is because the page could be served on
-      // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
-      // or a specific server.
-      transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
-    })
-  }, [userWantsDarkmode])
+  //  // const mapStylePath = 'https://tiles.openfreemap.org/styles/liberty'
+
+  //   map.current.setStyle(mapStylePath, {
+  //     // The paths in the style are relative, but MapLibre GL JS needs
+  //     // absolute URLs. This is done below, taking the URL of the page
+  //     // for the path. This is because the page could be served on
+  //     // multiple domains, e.g. 127.0.0.1, vector.openstreetmap.org,
+  //     // or a specific server.
+  //     transformStyle: mapStylePath.startsWith('http') ? undefined : absoluteStyle,
+  //   })
+  // }, [userWantsDarkmode])
 
   const entry_zindex = useRef<Map<string, { zindex: number }>>(new Map())
   const htmlMarker = useRef<
