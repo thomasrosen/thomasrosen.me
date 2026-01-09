@@ -67,7 +67,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-katex": "^3.0.1",
-    "react-router-dom": "^6.6.2",
+    "react-router-dom": "^6.30.3",
     "recharts": "^3.2.1",
     "recma-export-filepath": "^1.2.0",
     "recma-mdx-change-imports": "^1.1.2",
