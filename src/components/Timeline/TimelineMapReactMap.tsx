@@ -26,7 +26,21 @@ export function TimelineMapReactMap({ entries = [] }: { entries?: TimelineEntry[
         entries={entries}
         key={JSON.stringify(entries)}
         onEntryMarkerClick={({ entry }) => {
-          selectedEntriesRef.current = [entry]
+
+          // const okayDistance = 100
+
+          const entriesNearby = entries.filter((e) => {
+            if (e.latitude === undefined || e.longitude === undefined || entry.longitude === undefined || entry.latitude === undefined) {
+              return false
+            }
+            const distance = Math.sqrt(
+              Math.pow(e.latitude - entry.latitude, 2) +
+                Math.pow(e.longitude - entry.longitude, 2)
+            )
+            return distance < 0.01 // Adjust the threshold as needed
+          })
+
+          selectedEntriesRef.current = entriesNearby // [entry]
           setIsOpen(true)
         }}
         renderEntryMarker={({ entry, index, ref, onImageLoaded }) => (

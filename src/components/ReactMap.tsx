@@ -10,7 +10,7 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import React, { useEffect, useMemo, useRef } from 'react'
 
-const _PixelRatio_ = 2 // window.devicePixelRatio || 1
+const _PixelRatio_ = 1 // window.devicePixelRatio || 1
 
 type MarkerFeature = {
   id: string
@@ -98,6 +98,7 @@ export function ReactMap({
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       // style: 'https://tiles.openfreemap.org/styles/liberty',
+      // style: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==',
       style: 'https://tiles.openfreemap.org/styles/bright',
       // style: 'https://vector.openstreetmap.org/demo/shortbread/colorful.json',
       // center: [lng, lat],
@@ -526,7 +527,7 @@ export function ReactMap({
             'symbol-sort-key': ['to-number', ['get', 'rank']],
             'text-anchor': 'center',
             'text-field': ['get', 'name'],
-            'text-font': ['Ubuntu Medium', 'Noto Sans Medium'],
+            'text-font': ['Ubuntu Medium', 'Noto Sans Medium', 'Arial', 'Times New Roman'],
             'text-line-height': 0.9,
             'text-max-width': 12,
             'text-optional': true,
