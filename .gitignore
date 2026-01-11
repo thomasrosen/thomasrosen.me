@@ -5,6 +5,8 @@ public/data/
 public/blog/
 src/data/
 
+.DS_Store
+
 # Logs
 logs
 *.log
