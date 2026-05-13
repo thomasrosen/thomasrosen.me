@@ -47,7 +47,7 @@ export function EntryImage({
       <div
         className={cn(
           '-bottom-2 -left-2 -right-2 absolute z-30 w-[calc(100%+(var(--spacing)*2))] overflow-hidden rounded-[0.52rem] p-2 pt-[64px]',
-          'transition-transform duration-150 group-hover/image:translate-y-[100%]'
+          'transition-transform duration-150 translate-y-[100%] group-hover/image:translate-y-[0%]'
         )}
       >
         <div className="mask-t-from-[calc(100%-64px)] absolute right-0 bottom-0 left-0 z-20 h-[calc(100%-32px)] opacity-70 backdrop-blur-[4px]" />
