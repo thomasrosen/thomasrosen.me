@@ -94,6 +94,23 @@ export default function PageFollow({ className }: { className?: string }) {
         <LinksGridDivider />
 
         <DotLinkRow
+          color="#d60017"
+          data-umami-event="apple-music"
+          href="https://music.apple.com/profile/thomasrosen"
+          label="Apple Music"
+          value="thomasrosen"
+        />
+        <DotLinkRow
+          color="#1ed760"
+          data-umami-event="spotify"
+          href="https://open.spotify.com/user/1165642010"
+          label="Spotify"
+          value="Thomas Rosen (1165642010)"
+        />
+
+        <LinksGridDivider />
+
+        <DotLinkRow
           color="#000000"
           data-umami-event="github"
           href="https://github.com/thomasrosen"
@@ -127,23 +144,6 @@ export default function PageFollow({ className }: { className?: string }) {
           href="https://www.openstreetmap.org/user/thomasrosen"
           label="OpenStreetMap"
           value="thomasrosen"
-        />
-
-        <LinksGridDivider />
-
-        <DotLinkRow
-          color="#d60017"
-          data-umami-event="apple-music"
-          href="https://music.apple.com/profile/thomasrosen"
-          label="Apple Music"
-          value="thomasrosen"
-        />
-        <DotLinkRow
-          color="#1ed760"
-          data-umami-event="spotify"
-          href="https://open.spotify.com/user/1165642010"
-          label="Spotify"
-          value="Thomas Rosen (1165642010)"
         />
 
         <LinksGridDivider />
