@@ -9,9 +9,11 @@ coverphoto: /blog/images/Screenshot_2023-03-16_22-47-12.png
 lang: de
 font: serif
 tags:
-  - Amazon
+  - amazon
   - queer
-  - Interview
+  - interview
+  - programming
+  - design
 notes: |
   Schreibe einen kurzen Bericht wie AWS einen Artikel über die QueerMap von Thomas Rosen geschrieben hat. Alle Informationen bekommst du aus den Stichpunkten.
   Variere die Länge der Absätze. Schreib in der Ich-Perspektive als Thomas Rosen.

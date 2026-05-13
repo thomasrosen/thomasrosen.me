@@ -9,8 +9,8 @@ coverphoto: /blog/images/2023-03-16-spring-sun/IMG_2052.jpeg
 lang: de
 font: serif
 tags:
-  - Story
-  - Nature
+  - story
+  - nature
 ---
 
 Ein zügiger Schritt und ich bin draußen. Die kalte Luft wallt um mich.

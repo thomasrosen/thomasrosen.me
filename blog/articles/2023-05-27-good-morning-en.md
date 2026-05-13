@@ -10,11 +10,11 @@ coverphoto: /blog/images/2023-05-27-good-morning/0A75508D-70EF-4915-AD74-024DF15
 lang: en
 font: serif
 tags:
-  - Story
-  - Summer
-  - Good Morning
-  - Orange Juice
-  - Self
+  - story
+  - summer
+  - good morning
+  - orange juice
+  - self
 ---
 
 It was an early morning. The sun was still cold and the windows wet from the night. It wasn’t a steamy night inside. Just the normal spring temperature difference. Or maybe I just slowly need to get used to the temperature of the day first.

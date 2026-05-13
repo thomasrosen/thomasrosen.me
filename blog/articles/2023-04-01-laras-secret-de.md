@@ -9,9 +9,9 @@ coverphoto: /blog/images/2023-04-01-laras-secret/IMG_4588_cropped.jpg
 lang: de
 font: serif
 tags:
-  - Story
-  - Nature
-  - Adventure
+  - story
+  - nature
+  - adventure
 notes: |-
   Alternatives Ende: Liam wacht aus einem Traum auf… "Why kann sowas nicht endlich mal echt sein? Immer muss so ne Geschichte als Traum enttarnt werden. Hhhhrmmmnnnneee"
 ---

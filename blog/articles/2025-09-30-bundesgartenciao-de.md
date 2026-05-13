@@ -9,7 +9,7 @@ coverphoto: "/blog/images/2025-09-30-bundesgartenciao/Screenshot 2025-10-31 at 1
 lang: de
 font: serif
 tags:
-  - Writting
+  - writting
 ---
 
 Hier ein paar Optionen Leuten auf Deutsch komisch tschö zu sagen:

@@ -9,8 +9,9 @@ coverphoto: "/blog/images/2025-08-10-macos-clutter/Screenshot 2025-10-31 at 15.1
 lang: en
 font: sans_serif
 tags:
-  - Software
+  - software
   - macos
+  - programming
 ---
 
 ## Apps / Folders

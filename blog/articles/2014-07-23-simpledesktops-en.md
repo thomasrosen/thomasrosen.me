@@ -9,9 +9,10 @@ coverphoto: /blog/images/2014-07-23-simpledesktops/Screenshot_2023-03-26_20-28-3
 lang: en
 font: serif
 tags:
-  - Art
-  - Minimalism
-  - Software
+  - art
+  - minimalism
+  - software
+  - design
 ---
 
 A few years ago, I discovered this website with flat wallpapers. This was probably at the beginning of the flat design trend.
