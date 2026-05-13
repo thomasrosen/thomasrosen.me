@@ -17,7 +17,7 @@ export default async function PageArticles() {
         </Typo>
         <Typo as="p">
           You can read the articles here or listen to them on the various podcast platforms. But
-          don't ecpect the to be an hour long lecture, it's just the article in audio form.
+          don't ecpect them to be an hour long lecture, it's just the article in audio form.
         </Typo>
 
         <br />
