@@ -18,8 +18,20 @@ export default function PageStart() {
           </Typo>
           <div className="flex flex-wrap gap-3">
             <Badge asChild size="lg" variant="accent">
-              <Link className="is-button" href="/projects/">
-                <Emoji aria-hidden="true">🤖</Emoji> Programming
+              <Link className="is-button" href="/tag/politics/">
+                <Emoji aria-hidden="true">🇪🇺</Emoji> Politics
+              </Link>
+            </Badge>
+
+            <Badge asChild size="lg" variant="accent">
+              <Link className="is-button" href="/tag/queer/">
+                <Emoji aria-hidden="true">🏳️‍🌈</Emoji> Queer-Rights
+              </Link>
+            </Badge>
+
+            <Badge asChild size="lg" variant="accent">
+              <Link className="is-button" href="/tag/design/">
+                <Emoji aria-hidden="true">🎨</Emoji> Design
               </Link>
             </Badge>
 
@@ -29,17 +41,9 @@ export default function PageStart() {
               </Link>
             </Badge>
 
-            <Badge size="lg" variant="accent">
-              <Emoji aria-hidden="true">🎨</Emoji> Design
-            </Badge>
-
-            <Badge size="lg" variant="accent">
-              <Emoji aria-hidden="true">🇪🇺</Emoji> Politics
-            </Badge>
-
             <Badge asChild size="lg" variant="accent">
-              <Link className="is-button" href="/tag/queer/">
-                <Emoji aria-hidden="true">🏳️‍🌈</Emoji> Queer-Rights
+              <Link className="is-button" href="/projects/">
+                <Emoji aria-hidden="true">🤖</Emoji> Programming
               </Link>
             </Badge>
           </div>
