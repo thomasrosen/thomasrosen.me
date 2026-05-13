@@ -24,7 +24,12 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
   }
 
   const tags = [tag] // to allow multiple tags in the future
-  const entries = await getEntries({ tags })
+  let entries = await getEntries({ tags })
+
+  // filter out entries, that are from external sources (not from me).
+  if (!tags.includes('share')) {
+    entries = entries.filter(entry => !(entry.tags || []).includes('share'))
+  }
 
   return (
     <div className="app_wrapper !pt-24">
