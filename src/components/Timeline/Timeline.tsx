@@ -13,11 +13,13 @@ export function Timeline({
   // tags = [],
   showTimeHeadlines = false,
   hiddenTags = [],
+  fullWidth = false,
 }: {
   entries?: TimelineEntry[]
   // tags?: string[]
   showTimeHeadlines?: boolean
   hiddenTags?: string[]
+  fullWidth?: boolean
 }) {
   const groupedEntries = groupEntries({ entries })
 
@@ -30,7 +32,10 @@ export function Timeline({
   // let dayBefore: string | null = null
 
   return (
-    <div className="w-full space-y-4">
+    <div className={cn(
+      fullWidth === false && 'lg:w-[620px]',
+      'w-full max-w-full space-y-4'
+    )}>
       {groupedEntriesAsArray.map(([key, entriesGrouped], index) => {
         const isLastGroup = index === groupedEntriesAsArray.length - 1
 

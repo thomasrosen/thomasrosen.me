@@ -16,6 +16,7 @@ export default function PageStart() {
           <Typo as="h2" className="mb-0">
             Interests
           </Typo>
+          <Typo as="p" className="!mb-0">Click on my interests to see a seletion of work I have done in that field.</Typo>
           <div className="flex flex-wrap gap-3">
             <Badge asChild size="lg" variant="accent">
               <Link className="is-button" href="/tag/politics/">
