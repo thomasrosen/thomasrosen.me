@@ -24,7 +24,7 @@ export function Nav({ className }: { className?: string }) {
         <Emoji aria-hidden="true">🎸</Emoji> Playlists
       </NavLinkButton>
       <NavLinkButton href="/tag/image/">
-        <Emoji aria-hidden="true">🏞️</Emoji> Photos
+        <Emoji aria-hidden="true">📸</Emoji> Photos
       </NavLinkButton>
       <NavLinkButton href="/shared/">
         <Emoji aria-hidden="true">🔗</Emoji> Interesting Links

@@ -46,6 +46,13 @@ export default function PageStart() {
                 <Emoji aria-hidden="true">🤖</Emoji> Programming
               </Link>
             </Badge>
+
+
+            <Badge asChild size="lg" variant="accent">
+              <Link className="is-button" href="/tag/socialmedia/">
+                <Emoji aria-hidden="true">🏞️</Emoji> Social-Media
+              </Link>
+            </Badge>
           </div>
         </div>
       </section>
