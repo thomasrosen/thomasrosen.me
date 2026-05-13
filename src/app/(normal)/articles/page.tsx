@@ -12,12 +12,10 @@ export default async function PageArticles() {
         <Typo as="h2">Blog</Typo>
 
         <Typo as="p">
-          I occasionally write some articles. These can be short and are about any topic that
-          currently interests me.
+          I occasionally write some articles. These can be short and are about any topic that currently interests me.
         </Typo>
         <Typo as="p">
-          You can read the articles here or listen to them on the various podcast platforms. But
-          don't ecpect them to be an hour long lecture, it's just the article in audio form.
+          You can read the articles here or listen to them on the various podcast platforms. But don't ecpect them to be an hour long lecture, it's just the article in audio form.
         </Typo>
 
         <br />
