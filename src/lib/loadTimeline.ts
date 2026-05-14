@@ -16,11 +16,25 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const images = processImageFiles()
   const imagesAsEntries = await Promise.all(
     images.map((entry: any) => {
+      let same_timeline_entry = timeline.entries.filter((t_entry: any) => t_entry.image === entry.image)
+      if (same_timeline_entry.length) {
+        same_timeline_entry = same_timeline_entry[0]
+      } else {
+        same_timeline_entry = {}
+      }
+
       return {
+        ...same_timeline_entry,
         ...entry,
-        latitude: Number.parseFloat(entry.latitude),
-        longitude: Number.parseFloat(entry.longitude),
-        tags: [...new Set(['image', ...(entry.tags || [])])],
+        displayAs: same_timeline_entry.displayAs || entry.displayAs,
+        date: same_timeline_entry.date || entry.date,
+        latitude: Number.parseFloat(same_timeline_entry.latitude) || Number.parseFloat(entry.latitude),
+        longitude: Number.parseFloat(same_timeline_entry.latitude) || Number.parseFloat(entry.longitude),
+        tags: [...new Set([
+          'image',
+          ...(entry.tags || []),
+          ...(same_timeline_entry.tags || []),
+        ])],
       }
     })
   )
@@ -28,7 +42,11 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
   const done_entry_ids = new Set<string>()
 
   const timelineEntries: TimelineEntry[] = await Promise.all(
-    [...imagesAsEntries, ...all_google_collection_entries.entries, ...timeline.entries].map(
+    [
+      ...imagesAsEntries.filter((ie:any) => !timeline.entries.some((te: any) => ie.image === te.image)),
+      ...all_google_collection_entries.entries,
+      ...timeline.entries // .filter((te:any) => !imagesAsEntries.some((ie: any) => ie.image === te.image))
+    ].map(
       async (entry: any) => {
         if (entry.id) {
           if (done_entry_ids.has(entry.id)) {
