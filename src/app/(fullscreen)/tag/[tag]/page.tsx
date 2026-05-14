@@ -31,6 +31,11 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
     entries = entries.filter(entry => !(entry.tags || []).includes('share'))
   }
 
+  // filter out images that should not be shown on the photos page
+  if (tags.includes('image')) {
+    entries = entries.filter(entry => !(entry.tags || []).includes('not_image'))
+  }
+
   return (
     <div className="app_wrapper !pt-24">
       {tags.includes('image') ||
