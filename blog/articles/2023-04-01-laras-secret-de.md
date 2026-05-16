@@ -12,6 +12,7 @@ tags:
   - story
   - nature
   - adventure
+  - writting
 notes: |-
   Alternatives Ende: Liam wacht aus einem Traum auf… "Why kann sowas nicht endlich mal echt sein? Immer muss so ne Geschichte als Traum enttarnt werden. Hhhhrmmmnnnneee"
 ---

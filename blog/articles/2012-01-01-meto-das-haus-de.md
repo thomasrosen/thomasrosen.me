@@ -10,6 +10,7 @@ lang: de
 font: serif
 tags:
   - book_review
+  - writting
 ---
 
 Alle Jungen sind in Farbgruppen entsprechend ihres Alters eingeteilt: Die Jüngsten tragen ein hellblaues Band um den Bauch, die Nächsten ein dunkelblaues, die wiederum Älteren ein lila und die Ältesten ein rotes Band.

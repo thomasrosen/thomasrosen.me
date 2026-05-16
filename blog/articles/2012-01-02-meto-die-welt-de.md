@@ -10,6 +10,7 @@ lang: de
 font: serif
 tags:
   - book_review
+  - writting
 ---
 
 Im finalen Teil der Méto Trilogie versuchen die Cäsaren Méto auf ihre Seite zu ziehen. Er  wird Teil einer geheimen Gruppe E. Diese Gruppe lebt abgetrennt von den anderen Kindern und soll Aufträge auf dem Festland, in der “Welt” erfüllen. Doch Méto lässt sich nicht von seinem Plan abbringen, alle Häuser zu befreien.

@@ -11,6 +11,7 @@ font: serif
 tags:
   - story
   - nature
+  - writting
 ---
 
 Ein zügiger Schritt und ich bin draußen. Die kalte Luft wallt um mich.

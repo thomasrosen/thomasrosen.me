@@ -15,6 +15,7 @@ tags:
   - good morning
   - orange juice
   - self
+  - writting
 ---
 
 It was an early morning. The sun was still cold and the windows wet from the night. It wasn’t a steamy night inside. Just the normal spring temperature difference. Or maybe I just slowly need to get used to the temperature of the day first.
