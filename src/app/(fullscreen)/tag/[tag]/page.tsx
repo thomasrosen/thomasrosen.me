@@ -1,3 +1,5 @@
+import { DotLinkRow } from '@/components/DotLinkRow'
+import { LinksGridDivider } from '@/components/LinksGridDivider'
 import { getEntries } from '@/components/Timeline/getEntries'
 import { Timeline } from '@/components/Timeline/Timeline'
 import { Typo } from '@/components/Typo'
@@ -42,7 +44,9 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
       tags.includes('socialmedia') ||
       tags.includes('design') ||
       tags.includes('politics') ||
-      tags.includes('queer')
+      tags.includes('queer') ||
+      tags.includes('programming') ||
+      tags.includes('volt')
       ? null
       : (
         <Typo as="h2" className="tab_content" variant="h3">
@@ -57,6 +61,51 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
         </Typo>
       )}
 
+      {tags.includes('programming') ? (
+        <div className="tab_content">
+          <Typo as="h2">
+            Programming
+          </Typo>
+          <div className="links_grid">
+            <DotLinkRow
+              color="#000000"
+              data-umami-event="github"
+              href="https://github.com/thomasrosen"
+              label="GitHub"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#e24329"
+              data-umami-event="gitlab"
+              href="https://gitlab.com/thomasrosen"
+              label="GitLab"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#e24329"
+              data-umami-event="gitlab-volt"
+              href="https://gitlab.com/thomas.rosen.volt"
+              label="GitLab (Volt DE)"
+              value="thomas.rosen.volt"
+            />
+            <DotLinkRow
+              color="#000000"
+              data-umami-event="dev-to"
+              href="https://dev.to/thomasrosen"
+              label="dev.to"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#7ebc6f"
+              data-umami-event="openstreetmap"
+              href="https://www.openstreetmap.org/user/thomasrosen"
+              label="OpenStreetMap"
+              value="thomasrosen"
+            />
+          </div>
+        </div>
+      ) : null}
+
       {tags.includes('image') ? (
         <div className="tab_content">
           <Typo as="h2">
@@ -65,6 +114,29 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
           <Typo as="p" className="text-pretty">
             A small collection of photos I took over the years. Taken on an iPhone or my Nikon 5300. Most are colorgraded with the iOS Photos app or tools like Affinity, Lightroom and VSCO.
           </Typo>
+          <div className="links_grid">
+            <DotLinkRow
+              color="var(--primary)"
+              data-umami-event="Email"
+              href="mailto:hello@thomasrosen.me"
+              label="Contact"
+              value="hello@thomasrosen.me"
+            />
+            <DotLinkRow
+              color="#ed4956"
+              data-umami-event="instagram"
+              href="https://www.instagram.com/thomasrosen/"
+              label="Instagram"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#1067d9"
+              data-umami-event="flickr"
+              href="https://www.flickr.com/people/116207237@N03/"
+              label="Flickr"
+              value="Thomas Rosen (thomasroses / 116207237@N03)"
+            />
+          </div>
         </div>
       ) : null}
 
@@ -76,6 +148,77 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
           <Typo as="p" className="text-pretty">
             Some social-media related designs, videos and websites I created over the years.
           </Typo>
+          <div className="links_grid">
+            <DotLinkRow
+              color="var(--primary)"
+              data-umami-event="Email"
+              href="mailto:hello@thomasrosen.me"
+              label="Contact"
+              value="hello@thomasrosen.me"
+            />
+
+            <LinksGridDivider />
+
+            <DotLinkRow
+              color="#ed4956"
+              data-umami-event="instagram"
+              href="https://www.instagram.com/thomasrosen/"
+              label="Instagram"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#000"
+              data-umami-event="threads"
+              href="https://www.threads.com/@thomasrosen"
+              label="Threads"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#00f2ea" // #ff0050 #00f2ea
+              data-umami-event="tiktok"
+              href="https://www.tiktok.com/@thomasroses"
+              label="TikTok"
+              value="thomasroses"
+            />
+            <DotLinkRow
+              color="#ff0000"
+              data-umami-event="youtube"
+              href="https://youtube.com/@thomas_rosen"
+              label="YouTube"
+              value="thomas_rosen"
+            />
+            <DotLinkRow
+              color="#0a66c1"
+              data-umami-event="linkedin"
+              href="https://www.linkedin.com/in/thomasroses/"
+              label="LinkedIn"
+              value="thomasroses"
+            />
+
+            <LinksGridDivider />
+
+            <DotLinkRow
+              color="#00f"
+              data-umami-event="bluesky"
+              href="https://bsky.app/profile/thomasrosen.me"
+              label="Bluesky"
+              value="@thomasrosen.me"
+            />
+            <DotLinkRow
+              color="#2f93d7"
+              data-umami-event="mastodon"
+              href="https://mastodon.social/@thomasrosen"
+              label="Mastodon"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#1da1f2"
+              data-umami-event="twitter"
+              href="https://twitter.com/thomas_roses"
+              label="Twitter"
+              value="thomas_roses"
+            />
+          </div>
         </div>
       ) : null}
 
@@ -87,6 +230,29 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
           <Typo as="p" className="text-pretty">
             Examples showing designs I made. Many graphics were done with Figma, but also Canva, Affinity, Photoshop, and even Apple Keynote.
           </Typo>
+          <div className="links_grid">
+            <DotLinkRow
+              color="var(--primary)"
+              data-umami-event="Email"
+              href="mailto:hello@thomasrosen.me"
+              label="Contact"
+              value="hello@thomasrosen.me"
+            />
+            <DotLinkRow
+              color="#ed4956"
+              data-umami-event="instagram"
+              href="https://www.instagram.com/thomasrosen/"
+              label="Instagram"
+              value="thomasrosen"
+            />
+            <DotLinkRow
+              color="#ea4c89"
+              data-umami-event="dribbble"
+              href="https://dribbble.com/thomasrosen/likes"
+              label="Dribbble"
+              value="thomasrosen/likes"
+            />
+          </div>
         </div>
       ) : null}
 
@@ -98,6 +264,43 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
           <Typo as="p" className="text-pretty">
             Some politicals activites and content from me.
           </Typo>
+          <div className="links_grid">
+            <DotLinkRow
+              color="#502379"
+              data-umami-event="Volt Email"
+              href="mailto:thomas.rosen@volteuropa.org"
+              label="Volt Email"
+              value="thomas.rosen@volteuropa.org"
+            />
+          </div>
+        </div>
+      ) : null}
+
+
+      {tags.includes('volt') ? (
+        <div className="tab_content">
+          <Typo as="h2">
+            Volt Europa
+          </Typo>
+          <Typo as="p" className="text-pretty">
+            Some examples of content I created for Volt Europa.
+          </Typo>
+          <div className="links_grid">
+            <DotLinkRow
+              color="#502379"
+              data-umami-event="Volt Email"
+              href="mailto:thomas.rosen@volteuropa.org"
+              label="Volt Email"
+              value="thomas.rosen@volteuropa.org"
+            />
+            <DotLinkRow
+              color="#e24329"
+              data-umami-event="gitlab-volt"
+              href="https://gitlab.com/thomas.rosen.volt"
+              label="GitLab (Volt DE)"
+              value="thomas.rosen.volt"
+            />
+          </div>
         </div>
       ) : null}
 
