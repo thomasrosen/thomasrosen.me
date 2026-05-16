@@ -112,7 +112,7 @@ export default async function PageTag({ params }: { params: Promise<{ tag: strin
         </div>
       ) : null}
 
-      <Timeline entries={entries} showTimeHeadlines={true} fullWidth={tags.includes('image') === true} />
+      <Timeline entries={entries} showTimeHeadlines={true} hiddenTags={tags} fullWidth={tags.includes('image') === true} />
       {/* <div className="-m-[40px] w-[calc(100%_+_80px)] bg-black p-[40px]" /> */}
     </div>
   )
