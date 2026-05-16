@@ -50,7 +50,7 @@ let nextConfig: NextConfig = {
 
     // Add rule for audio files
     config.module.rules.push({
-      test: /\.(mp3|m4a|mp4|wav|ogg)$/,
+      test: /\.(mp3|m4a|mp4|wav|ogg|pdf)$/,
       use: {
         loader: 'file-loader',
         options: {
@@ -96,10 +96,10 @@ let nextConfig: NextConfig = {
     //   ],
     // })
 
-    // Ignore HEIC files
+    // ignore some file types
     config.module.rules.push({
-      test: /\.heic$/i,
-      use: 'ignore-loader',
+      test: /\.(heic|zip|pages|plist)$/i,
+      loader: 'ignore-loader',
     })
 
     // // Find existing rule handling images
