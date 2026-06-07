@@ -32,6 +32,7 @@ export function EntryArticle({
   const displayAs = entry.displayAs
 
   const imageAspectRatio = entry.imageAspectRatio || 1
+  const showAsVerticalImage = imageAspectRatio < imageAspectRatioThreshold || displayAs === 'playlist'
   // const nearestRatio = findNearestRatio(imageAspectRatio)
   // const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
 
@@ -53,7 +54,7 @@ export function EntryArticle({
     >
       <div className={cn(
         'flex flex-wrap @sm/card:flex-nowrap content-start items-start gap-6',
-        imageAspectRatio < imageAspectRatioThreshold ? 'flex-row' : 'flex-col'
+        showAsVerticalImage ? 'flex-row' : 'flex-col'
       )}>
         {hasImage ? (
           <>
@@ -72,7 +73,7 @@ export function EntryArticle({
               aria-hidden
               className={cn(
                 'absolute z-10 h-auto shrink-0 rounded-lg object-cover opacity-60 blur-[64px] saturate-150 transition-all',
-                imageAspectRatio < imageAspectRatioThreshold ? '@lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full' : 'w-full'
+                showAsVerticalImage ? '@lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full' : 'w-full'
               )}
               height={128}
               loading={isFirstImage ? 'eager' : 'lazy'}
@@ -89,7 +90,7 @@ export function EntryArticle({
               className={cn(
                 'smooth-rounded-lg relative z-20 h-auto object-cover transition-all',
                 displayAs === 'playlist' && 'contrast-110 saturate-110',
-                imageAspectRatio < imageAspectRatioThreshold ? '@lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full' : 'w-full'
+                showAsVerticalImage ? '@lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full' : 'w-full'
               )}
               height={128}
               loading={isFirstImage ? 'eager' : 'lazy'}
