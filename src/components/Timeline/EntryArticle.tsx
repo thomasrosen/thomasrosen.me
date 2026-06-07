@@ -8,6 +8,8 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import type { TimelineEntry } from '@/types'
 
+const imageAspectRatioThreshold = 1.2
+
 export function EntryArticle({
   entry,
   isFirstImage = false,
@@ -29,8 +31,8 @@ export function EntryArticle({
 
   const displayAs = entry.displayAs
 
-  // const targetRatio = entry.imageAspectRatio || 1
-  // const nearestRatio = findNearestRatio(targetRatio)
+  const imageAspectRatio = entry.imageAspectRatio || 1
+  // const nearestRatio = findNearestRatio(imageAspectRatio)
   // const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
 
   return (
@@ -49,7 +51,10 @@ export function EntryArticle({
       )}
       href={entry.url}
     >
-      <div className={cn('flex flex-wrap @sm/card:flex-nowrap content-start items-start gap-6')}>
+      <div className={cn(
+        'flex flex-wrap @sm/card:flex-nowrap content-start items-start gap-6',
+        imageAspectRatio < imageAspectRatioThreshold ? 'flex-row' : 'flex-col'
+      )}>
         {hasImage ? (
           <>
             {displayAs === 'playlist' ? (
@@ -66,7 +71,8 @@ export function EntryArticle({
               alt={''}
               aria-hidden
               className={cn(
-                'absolute z-10 h-auto @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full shrink-0 rounded-lg object-cover opacity-60 blur-[64px] saturate-150 transition-all'
+                'absolute z-10 h-auto shrink-0 rounded-lg object-cover opacity-60 blur-[64px] saturate-150 transition-all',
+                imageAspectRatio < imageAspectRatioThreshold ? '@lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full' : 'w-full'
               )}
               height={128}
               loading={isFirstImage ? 'eager' : 'lazy'}
@@ -81,8 +87,9 @@ export function EntryArticle({
               alt={''}
               aria-hidden
               className={cn(
-                'smooth-rounded-lg relative z-20 h-auto @lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full object-cover transition-all',
-                displayAs === 'playlist' && 'contrast-110 saturate-110'
+                'smooth-rounded-lg relative z-20 h-auto object-cover transition-all',
+                displayAs === 'playlist' && 'contrast-110 saturate-110',
+                imageAspectRatio < imageAspectRatioThreshold ? '@lg/card:w-[calc(32px*6)] @md/card:w-[calc(32px*5)] @sm/card:w-[calc(32px*4)] w-full' : 'w-full'
               )}
               height={128}
               loading={isFirstImage ? 'eager' : 'lazy'}
