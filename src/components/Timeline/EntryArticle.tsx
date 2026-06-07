@@ -31,8 +31,8 @@ export function EntryArticle({
 
   const displayAs = entry.displayAs
 
-  const imageAspectRatio = entry.imageAspectRatio || 1
-  const showAsVerticalImage = imageAspectRatio < imageAspectRatioThreshold || displayAs === 'playlist'
+  const imageAspectRatio = (displayAs === 'playlist' ? 1 : entry.imageAspectRatio) || 1
+  const showAsVerticalImage = imageAspectRatio < imageAspectRatioThreshold
   // const nearestRatio = findNearestRatio(imageAspectRatio)
   // const aspectRatioClass = possibleImageAspectRatios[nearestRatio]
 
