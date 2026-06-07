@@ -106,7 +106,7 @@ export async function loadTimeline(): Promise<TimelineEntry[]> {
     url: `/articles/${article.data.slug}`,
     image: article.data.coverphoto_src,
     displayAs: 'article',
-    imageAspectRatio: 4,
+    imageAspectRatio: 1, // todo get the real aspect ratio
     date: article.data.date,
     tags: [...new Set(['article', ...(article.data.tags || [])])],
     audio: article.data.audio_src,
