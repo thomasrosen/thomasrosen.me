@@ -16,8 +16,7 @@
     "prepare": "husky",
     "uuid": "node new_uuid.js",
     "start_server": "cd ./backend/; node ./index.js",
-    "build_data": "sh ./scripts/build_data.sh",
-    "postinstall": "sh ./.ci-aplsji.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "build_data": "sh ./scripts/build_data.sh"
   },
   "browserslist": {
     "production": [
